@@ -592,6 +592,49 @@ export const insightArticles: InsightArticle[] = [
       },
     ],
   },
+  {
+    slug: "can-penile-filler-be-dissolved",
+    title: "Can Penile Filler Be Dissolved?",
+    category: "Male Aesthetics",
+    excerpt:
+      "Short answer: hyaluronic acid-based penile filler can generally be dissolved, though whether it's the right option depends on assessment. Here's what dissolution actually involves.",
+    datePublished: PUBLISHED_PHASE_C,
+    clinicalReviewRequired: true,
+    relatedHref: "/male-aesthetics/penile-filler-correction",
+    relatedLabel: "Penile Filler Correction",
+    secondaryRelatedHref: "/male-aesthetics/penile-girth-enhancement",
+    secondaryRelatedLabel: "Penile Girth Enhancement",
+    relatedArticleSlugs: [
+      "penile-filler-nodules-and-irregularities",
+      "penile-filler-migration-what-to-know",
+    ],
+    sections: [
+      {
+        heading: "The short answer",
+        body: [
+          "Hyaluronic acid-based penile filler can generally be dissolved using hyaluronidase, an enzyme that breaks down hyaluronic acid. Whether dissolution is the right option for a given presentation — rather than observation or revision — is an assessed decision, not an automatic one.",
+        ],
+      },
+      {
+        heading: "What dissolution actually involves",
+        body: [
+          "Hyaluronidase works specifically on hyaluronic acid-based products; it doesn't affect the body's own tissue the same way. In practice, this means dissolution is a targeted option for hyaluronic acid filler specifically, assessed and planned around the individual presentation rather than applied as a blanket first step.",
+        ],
+      },
+      {
+        heading: "What to expect afterward",
+        body: [
+          "The tissue moves gradually back toward its pre-treatment state rather than changing instantly. Whether any further treatment is considered afterward — and when — is a separate decision made at follow-up, based on the result and the patient's own goals, not assumed as an automatic next step.",
+        ],
+      },
+      {
+        heading: "When dissolution may not be the first choice",
+        body: [
+          "Not every finding needs dissolution. Some are better suited to observation, and others to revision rather than dissolution alone — the full range of options, and how the choice is actually made, is set out at our Penile Filler Correction page.",
+        ],
+      },
+    ],
+  },
 ];
 
 export function getInsightArticle(slug: string): InsightArticle | undefined {
