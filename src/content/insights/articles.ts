@@ -81,6 +81,8 @@ export type InsightArticle = {
 const PUBLISHED = "2026-09-03";
 /** Real date this batch of Phase B (Penile Girth Enhancement cluster) articles was added — not an invented or backdated value. */
 const PUBLISHED_PHASE_B = "2026-09-06";
+/** Real date this batch of Phase C (topical authority expansion) articles was added. */
+const PUBLISHED_PHASE_C = "2026-09-06";
 
 export const insightArticles: InsightArticle[] = [
   {
@@ -496,6 +498,53 @@ export const insightArticles: InsightArticle[] = [
         heading: "When to have the result properly reviewed",
         body: [
           "Follow-up timing is planned individually as part of the treatment plan, specifically so the result can be reviewed once it has genuinely settled, rather than while it's still changing.",
+        ],
+      },
+    ],
+  },
+
+  // --- Phase C: topical authority expansion ---
+
+  {
+    slug: "penile-filler-migration-what-to-know",
+    title: "Penile Filler Migration: What Patients Should Know",
+    category: "Male Aesthetics",
+    excerpt:
+      "Product moving from where it was originally placed is one of the more specific reasons for assessment after penile filler. Here's what migration actually means, and how it differs from normal settling.",
+    datePublished: PUBLISHED_PHASE_C,
+    clinicalReviewRequired: true,
+    relatedHref: "/male-aesthetics/penile-filler-correction",
+    relatedLabel: "Penile Filler Correction",
+    secondaryRelatedHref: "/male-aesthetics/penile-girth-enhancement",
+    secondaryRelatedLabel: "Penile Girth Enhancement",
+    relatedArticleSlugs: [
+      "why-penile-filler-takes-weeks-to-settle",
+      "what-happens-to-penile-filler-over-time",
+      "penile-filler-nodules-and-irregularities",
+    ],
+    sections: [
+      {
+        heading: "What migration means",
+        body: [
+          "Migration refers to filler product moving away from where it was originally placed, rather than staying within the treated area as intended. It's a specific finding, distinct from the general softening and settling that's a normal part of the process for every patient.",
+        ],
+      },
+      {
+        heading: "Why it can happen",
+        body: [
+          "Several factors can contribute, including the technique used, the specific product's characteristics, how the tissue responds individually, and mechanical forces on the area over time. This is discussed in general terms because the relevant factors — and whether any of them apply — are specific to each presentation, not something a general article can determine.",
+        ],
+      },
+      {
+        heading: "How migration differs from normal settling",
+        body: [
+          "The early weeks after treatment involve expected swelling and settling — see our related article on why penile filler can take several weeks to settle. Migration is a different pattern: it tends to present as new asymmetry or a change in a specific area, and it can appear later, after the initial settling period is already complete, rather than during it.",
+        ],
+      },
+      {
+        heading: "What assessment and correction involve",
+        body: [
+          "If migration is suspected, assessment starts with history and examination, with ultrasound used where it helps clarify the location and extent of the finding. From there, options are considered individually — including observation, dissolution or revision — at our Penile Filler Correction page, rather than assumed in advance from this article alone.",
         ],
       },
     ],
