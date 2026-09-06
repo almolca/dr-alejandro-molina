@@ -185,3 +185,27 @@ export function articleSchema(input: {
     author: { "@type": "Person", name: doctor.displayName },
   });
 }
+
+/**
+ * VideoObject schema — Phase C video-ready architecture. Callers must
+ * only invoke this when `article.video` AND `article.video.thumbnailUrl`
+ * both exist (Google's structured-data guidelines treat `thumbnailUrl`
+ * as required for VideoObject) — see the guard in `insights/[slug]/page.tsx`.
+ * Never called speculatively; with no real videos yet, this function is
+ * simply unreachable in production until owner-supplied video content
+ * exists.
+ */
+export function videoObjectSchema(input: {
+  video: { title: string; url: string; thumbnailUrl?: string; summary?: string };
+  datePublished: string;
+}) {
+  return prune({
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: input.video.title,
+    description: input.video.summary || input.video.title,
+    thumbnailUrl: input.video.thumbnailUrl,
+    uploadDate: input.datePublished,
+    contentUrl: input.video.url,
+  });
+}
