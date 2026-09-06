@@ -549,6 +549,49 @@ export const insightArticles: InsightArticle[] = [
       },
     ],
   },
+  {
+    slug: "penile-filler-nodules-and-irregularities",
+    title: "Penile Filler Nodules and Irregularities",
+    category: "Male Aesthetics",
+    excerpt:
+      "A firm area or an uneven contour after penile filler isn't automatically a problem, but it's not something to self-diagnose either. Here's how these findings are actually assessed.",
+    datePublished: PUBLISHED_PHASE_C,
+    clinicalReviewRequired: true,
+    relatedHref: "/male-aesthetics/penile-filler-correction",
+    relatedLabel: "Penile Filler Correction",
+    secondaryRelatedHref: "/male-aesthetics/penile-girth-enhancement",
+    secondaryRelatedLabel: "Penile Girth Enhancement",
+    relatedArticleSlugs: [
+      "penile-filler-migration-what-to-know",
+      "why-penile-filler-takes-weeks-to-settle",
+    ],
+    sections: [
+      {
+        heading: "What a nodule is",
+        body: [
+          "A nodule is a discrete firm area that can develop at or near an injection site. An irregularity more broadly can also mean an uneven contour or a texture that feels inconsistent with the surrounding tissue, rather than a single firm lump specifically.",
+        ],
+      },
+      {
+        heading: "Possible contributing factors",
+        body: [
+          "Product distribution during treatment, individual tissue response, and how the treated area has settled can all contribute to how a nodule or irregularity develops. As with migration, which factor is relevant for a given presentation is an individual question, not a general one.",
+        ],
+      },
+      {
+        heading: "Normal early firmness versus a reasonable trigger for assessment",
+        body: [
+          "Some firmness is expected in the early weeks as swelling resolves and the product integrates with surrounding tissue. A new nodule that appears well after that settling period, or an irregularity that doesn't gradually soften the way the rest of the result does, is a more reasonable trigger for assessment than firmness noticed in the first days or weeks.",
+        ],
+      },
+      {
+        heading: "What assessment and treatment may involve",
+        body: [
+          "Assessment starts with history and examination, with ultrasound used where it helps clarify a finding. From there, the same range of options considered for other presentations applies — observation, dissolution, or revision — set out in full at our Penile Filler Correction page, and chosen based on the specific finding rather than a fixed rule.",
+        ],
+      },
+    ],
+  },
 ];
 
 export function getInsightArticle(slug: string): InsightArticle | undefined {
