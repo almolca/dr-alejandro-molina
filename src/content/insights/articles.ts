@@ -163,6 +163,7 @@ export const insightArticles: InsightArticle[] = [
     clinicalReviewRequired: true,
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
+    relatedArticleSlugs: ["how-much-girth-can-penile-filler-add", "lessons-from-500-penile-girth-enhancement-procedures"],
     sections: [
       {
         heading: "Why anatomy-led assessment matters",
@@ -273,6 +274,7 @@ export const insightArticles: InsightArticle[] = [
     relatedLabel: "Penile Girth Enhancement",
     secondaryRelatedHref: "/male-aesthetics/penile-filler-correction",
     secondaryRelatedLabel: "Penile Filler Correction",
+    relatedArticleSlugs: ["how-much-hyaluronic-acid-used-penile-girth-enhancement", "penile-girth-enhancement-assessment"],
     sections: [
       {
         heading: "Why there's no fixed answer",
@@ -310,6 +312,7 @@ export const insightArticles: InsightArticle[] = [
     clinicalReviewRequired: true,
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
+    relatedArticleSlugs: ["how-much-girth-can-penile-filler-add", "how-long-does-penile-filler-last"],
     sections: [
       {
         heading: "Volume is planned, not standardised",
@@ -349,6 +352,7 @@ export const insightArticles: InsightArticle[] = [
     relatedLabel: "Penile Girth Enhancement",
     secondaryRelatedHref: "/male-aesthetics/penile-filler-correction",
     secondaryRelatedLabel: "Penile Filler Correction",
+    relatedArticleSlugs: ["what-happens-to-penile-filler-over-time", "why-penile-filler-takes-weeks-to-settle"],
     sections: [
       {
         heading: "Not a permanent result",
@@ -388,6 +392,11 @@ export const insightArticles: InsightArticle[] = [
     relatedLabel: "Penile Girth Enhancement",
     secondaryRelatedHref: "/male-aesthetics/penile-filler-correction",
     secondaryRelatedLabel: "Penile Filler Correction",
+    relatedArticleSlugs: [
+      "why-penile-filler-takes-weeks-to-settle",
+      "penile-filler-migration-what-to-know",
+      "penile-filler-nodules-and-irregularities",
+    ],
     sections: [
       {
         heading: "The early settling period",
@@ -425,6 +434,7 @@ export const insightArticles: InsightArticle[] = [
     clinicalReviewRequired: true,
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
+    relatedArticleSlugs: ["why-penile-filler-takes-weeks-to-settle", "how-long-does-penile-filler-last"],
     sections: [
       {
         heading: "Why timing isn't one-size-fits-all",
@@ -462,6 +472,7 @@ export const insightArticles: InsightArticle[] = [
     clinicalReviewRequired: true,
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
+    relatedArticleSlugs: ["what-happens-to-penile-filler-over-time", "when-can-you-have-sex-after-penile-girth-enhancement"],
     sections: [
       {
         heading: "Initial swelling is expected",
