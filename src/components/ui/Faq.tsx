@@ -3,11 +3,18 @@
 import * as Accordion from "@radix-ui/react-accordion";
 import { Plus } from "lucide-react";
 import { Container } from "@/components/ui/Container";
+import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { faqPageSchema } from "@/lib/seo/json-ld";
 import { JsonLd } from "@/components/seo/JsonLd";
 
-export type FaqItem = { question: string; answer: string };
+export type FaqItem = {
+  question: string;
+  answer: string;
+  /** Optional "short answer → read more" link into a deeper Insights article (spec Phase C §6/§7). */
+  readMoreHref?: string;
+  readMoreLabel?: string;
+};
 
 /**
  * FAQ accordion — spec §24 "FAQ where genuinely useful", §25 FAQPage
@@ -40,6 +47,14 @@ export function Faq({ items, eyebrow = "FAQs" }: { items: FaqItem[]; eyebrow?: s
               </Accordion.Header>
               <Accordion.Content className="overflow-hidden text-sm text-muted-foreground data-[state=closed]:animate-none data-[state=open]:pb-6">
                 <p className="max-w-2xl">{item.answer}</p>
+                {item.readMoreHref && item.readMoreLabel && (
+                  <Link
+                    href={item.readMoreHref}
+                    className="mt-3 inline-flex text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
+                  >
+                    {item.readMoreLabel}
+                  </Link>
+                )}
               </Accordion.Content>
             </Accordion.Item>
           ))}
