@@ -1729,6 +1729,32 @@ succeeded after every content addition — **45 static pages** (was 40:
 +5 new articles). No new routes were created; all new content is
 served by the existing `insights/[slug]` dynamic route.
 
+### QA (2026-09-06)
+
+`tsc --noEmit`, `eslint`, and `next build` all pass clean (45/45
+static pages generated). Verified against a second production server
+instance on an alternate port, without touching the developer's
+existing process already bound to :3000: sitemap.xml returns exactly
+35 `<url>` entries including all 5 new article slugs; robots.txt
+unchanged. Real-browser QA (Playwright) at 390px and 1440px on the
+Girth Enhancement page, Filler Correction page, Insights index, and
+all 5 new articles: exactly one `<h1>` per page, zero horizontal
+overflow, zero console errors (one pre-existing, expected
+`NEXT_PUBLIC_SITE_URL`-unset warning only). Confirmed in-browser: the
+new "Is penile girth enhancement safe?" FAQ renders first on the Girth
+page; both new/updated read-more links (size-increase → girth-add
+article, dissolution FAQ → dissolution article, migration FAQ →
+migration article) resolve to the correct article; the booking CTA
+still points to `booking.nmc.ae` everywhere; the Related Insights
+section renders the correct 2-3 cross-linked cards on every checked
+article; no `VideoObject` JSON-LD is emitted anywhere (correctly, since
+no article has video content yet). One observation, not a defect: a
+`Reveal`-wrapped section (site-wide scroll-triggered fade-in, present
+since Phase 1) shows `opacity:0` in a screenshot taken without
+scrolling first — confirmed via DOM inspection that all content is
+present and renders normally once scrolled into view, exactly as it
+does for every other page on the site.
+
 ### What Phase C explicitly did not do
 
 Did not build the 3 rejected candidate articles (reasons above). Did
