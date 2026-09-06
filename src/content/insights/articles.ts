@@ -29,6 +29,25 @@ export type InsightSection = {
   body: string[];
 };
 
+/**
+ * Optional video metadata for an Insights article — Phase C video-ready
+ * architecture. Every field is populated only when a real, owner-supplied
+ * video exists; nothing here should ever be invented (no placeholder
+ * YouTube/Vimeo URLs). `ArticleVideoBlock` renders nothing when an
+ * article has no `video` field at all.
+ */
+export type InsightVideo = {
+  title: string;
+  /** Real hosted video URL (YouTube, Vimeo, or self-hosted file) — never invented. */
+  url: string;
+  thumbnailUrl?: string;
+  /** Short summary shown near the video, distinct from the full transcript. */
+  summary?: string;
+  /** Full transcript text, for accessibility and search — not auto-generated filler. */
+  transcript?: string;
+  durationMinutes?: number;
+};
+
 export type InsightArticle = {
   slug: string;
   title: string;
@@ -47,6 +66,15 @@ export type InsightArticle = {
    */
   secondaryRelatedHref?: string;
   secondaryRelatedLabel?: string;
+  /** Optional physician video — see `InsightVideo`. Omitted on every article until a real video exists. */
+  video?: InsightVideo;
+  /**
+   * Slugs of 2-4 other `insightArticles` this one is most thematically
+   * related to, for the on-page "Related Insights" section (Phase C).
+   * Optional/additive — pre-existing articles without a natural cluster
+   * don't need it.
+   */
+  relatedArticleSlugs?: string[];
   sections: InsightSection[];
 };
 
@@ -465,4 +493,19 @@ export const insightArticles: InsightArticle[] = [
 
 export function getInsightArticle(slug: string): InsightArticle | undefined {
   return insightArticles.find((article) => article.slug === slug);
+}
+
+/**
+ * Resolves `article.relatedArticleSlugs` to real `InsightArticle` objects,
+ * capped at 4. Silently drops any slug that doesn't resolve (defensive —
+ * matches the fail-safe pattern used elsewhere in this codebase, e.g.
+ * `AuthorityStripSection`'s empty-array guard) rather than throwing, so a
+ * future typo in a slug degrades gracefully instead of breaking the page.
+ */
+export function getRelatedArticles(article: InsightArticle): InsightArticle[] {
+  if (!article.relatedArticleSlugs) return [];
+  return article.relatedArticleSlugs
+    .map((slug) => getInsightArticle(slug))
+    .filter((related): related is InsightArticle => related !== undefined && related.slug !== article.slug)
+    .slice(0, 4);
 }
