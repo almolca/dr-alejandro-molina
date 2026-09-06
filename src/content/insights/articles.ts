@@ -635,6 +635,49 @@ export const insightArticles: InsightArticle[] = [
       },
     ],
   },
+  {
+    slug: "why-penile-filler-feels-different-between-patients",
+    title: "Why Can Penile Filler Feel Different Between Patients?",
+    category: "Male Aesthetics",
+    excerpt:
+      "Two patients can have a broadly similar treatment and still describe the result differently. Here's why comparing texture and feel between patients isn't a reliable way to judge an outcome.",
+    datePublished: PUBLISHED_PHASE_C,
+    clinicalReviewRequired: true,
+    relatedHref: "/male-aesthetics/penile-girth-enhancement",
+    relatedLabel: "Penile Girth Enhancement",
+    secondaryRelatedHref: "/male-aesthetics/penile-filler-correction",
+    secondaryRelatedLabel: "Penile Filler Correction",
+    relatedArticleSlugs: [
+      "how-much-girth-can-penile-filler-add",
+      "why-penile-filler-takes-weeks-to-settle",
+    ],
+    sections: [
+      {
+        heading: "Anatomy varies between patients",
+        body: [
+          "Baseline tissue thickness, elasticity and sensitivity all vary from one individual to another. Because filler integrates with a patient's own tissue, the same product and volume can reasonably feel different depending on that underlying anatomy — this isn't a sign that something has been done differently or incorrectly.",
+        ],
+      },
+      {
+        heading: "Technique and placement play a role",
+        body: [
+          "How and where product is placed also affects how it's felt afterward. This is one of the reasons treatment planning is anatomy-led rather than standardised — the plan for a given patient is built around their own anatomy, not a fixed technique applied uniformly.",
+        ],
+      },
+      {
+        heading: "Settling stage affects feel as much as appearance",
+        body: [
+          "Texture, like appearance, changes as swelling resolves and the product settles over the following weeks — see our related article on why penile filler can take several weeks to settle. Comparing feel before that process has completed adds another variable on top of individual anatomy.",
+        ],
+      },
+      {
+        heading: "Why comparing results between patients isn't meaningful",
+        body: [
+          "Given how many individual factors are involved, one patient's description of feel doesn't reliably predict another's experience — the same honest reasoning already applied to size outcomes on the Penile Girth Enhancement page applies here too. What matters for any one patient is discussed and reviewed individually, at consultation and follow-up.",
+        ],
+      },
+    ],
+  },
 ];
 
 export function getInsightArticle(slug: string): InsightArticle | undefined {
