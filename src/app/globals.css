@@ -1,0 +1,58 @@
+@import "tailwindcss";
+@import "../styles/tokens.css";
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    color-scheme: light;
+  }
+
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-stone-950);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Spec §30 — accessible skip-to-content link, visible only on focus. */
+  .skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    z-index: 100;
+    background: var(--color-foreground);
+    color: var(--color-background);
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.25rem;
+    font-size: var(--text-sm);
+    transition: top 200ms var(--ease-soft);
+  }
+
+  .skip-link:focus-visible {
+    top: 1rem;
+  }
+}
+
+/* Spec §17 — motion system must respect prefers-reduced-motion globally. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
