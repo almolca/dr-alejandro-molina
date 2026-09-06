@@ -98,6 +98,13 @@ const faqItems = [
       "If you notice asymmetry, an irregular or lumpy contour, migration, uneven distribution, or swelling that hasn't settled as expected, that's generally a reasonable reason to seek assessment — regardless of where the original treatment was performed.",
   },
   {
+    question: "Can penile filler migrate?",
+    answer:
+      "Yes — product can move from its original treatment area, which is one of the presentations assessment looks for. This is a different pattern from the normal, gradual settling that follows treatment, and it's assessed individually rather than assumed from a general description.",
+    readMoreHref: "/insights/penile-filler-migration-what-to-know",
+    readMoreLabel: "Read more: Penile Filler Migration — What Patients Should Know",
+  },
+  {
     question: "Can all penile filler problems be corrected?",
     answer:
       "Not every presentation can be fully corrected. Some irregularities respond well to dissolution or revision; others, particularly longstanding tissue changes, may only partially improve. This is assessed and discussed individually, not assumed either way.",
