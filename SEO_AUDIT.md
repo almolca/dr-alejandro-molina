@@ -498,3 +498,81 @@ targets an existing page's primary cluster. The relationship between
 the new Filler Correction page and the Girth Enhancement page mirrors
 the already-audited, SEO-healthy Scrotal Lift / Girth Enhancement
 sibling relationship (§9a).
+
+---
+
+## Phase C — Topical authority expansion: 5 new articles + linking hardening (2026-09-06)
+
+Per the owner's Phase C prompt and
+`docs/superpowers/plans/2026-09-06-phase-c-content-cluster.md`. No new
+routes were created this phase — verified against the real production
+build, not assumed.
+
+### New indexable content
+
+Five new Insights articles, no new pages. `next build` now generates
+**45 static pages** (was 40); `sitemap.xml` now lists **35 entries**
+(was 30) — exactly +5, confirmed by diffing the raw sitemap output.
+
+### Keyword cluster targeting — cannibalization decisions made explicit
+
+Three of the eight owner-proposed candidate articles were deliberately
+**not** built, specifically to avoid cannibalization:
+
+- "Is Penile Girth Enhancement Safe?" would have targeted the same
+  query intent as the flagship page's own Risks/Aftercare/Revision
+  section and FAQ. Addressed instead via a new direct-answer FAQ item
+  on the flagship page itself — one page owns the "is it safe" intent,
+  not two competing ones.
+- "Penile Filler Correction: When Is It Necessary?" would have
+  duplicated the Filler Correction page's own thesis and FAQ verbatim.
+- "Penile Filler vs Fat Transfer" was excluded on clinical-accuracy
+  grounds (fat transfer isn't offered here), not a cannibalization
+  concern, but is noted here since it's one of the three omissions.
+
+The five articles built each own a distinct long-tail intent
+(migration, nodules/irregularities, dissolution, inter-patient feel
+variability, physician reflective/experience piece) checked against
+each other and against the existing 12-article girth cluster: **no
+overlap found**.
+
+### Metadata
+
+Five new articles: title/description pulled from each article's own
+`title`/`excerpt` via the existing `generateMetadata()` — same
+mechanism as all 16 other articles, no changes needed. Confirmed no
+duplicate title/description against the other 44 pages.
+
+### Structured data
+
+Five new articles emit `BreadcrumbList` + `Article` — automatic, same
+mechanism as Phase B. New optional `VideoObject` schema (`lib/seo/
+json-ld.ts`) exists but is not emitted anywhere in this phase, since no
+article has a populated `video` field yet — confirmed via the real
+rendered JSON-LD on all five new article pages (no `VideoObject` block
+present). No `aggregateRating` or award data introduced.
+
+### Internal linking — Related Insights + FAQ read-more links
+
+- New `RelatedInsights` component renders 2-4 cross-linked articles at
+  the bottom of an article page; applied to all 12 girth-cluster
+  articles (7 pre-existing + 5 new), thematically grouped (e.g.
+  migration ↔ nodules ↔ settling-time; the 500+ procedures article ↔
+  assessment, feel-variability, and settling-time articles).
+- New optional `readMoreHref`/`readMoreLabel` on `FaqItem`: wired on
+  the Girth Enhancement page (size-increase and permanence FAQs → their
+  matching articles) and the Filler Correction page (migration FAQ →
+  new migration article; dissolution FAQ → new dissolution article).
+- Anchor text checked across all new links: natural variants only
+  ("Read more: How Much Girth Can Penile Filler Actually Add?," etc.)
+  — no repeated exact-match anchor spam.
+
+### No keyword cannibalization introduced (Phase C)
+
+Confirmed via the same method as Phases A and B: no new article
+targets an existing page's or article's primary intent. The one
+borderline case — "Is Penile Girth Enhancement Safe?" — was resolved
+by folding the intent into the flagship page's existing FAQ rather
+than creating a competing page, which is the same resolution pattern
+already validated for the Filler Correction / Girth Enhancement
+relationship in Phase B.

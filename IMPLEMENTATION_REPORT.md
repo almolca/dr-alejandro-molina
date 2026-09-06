@@ -1601,3 +1601,139 @@ Console-driven iteration). Did not mark any new or existing content as
 clinically, legally, or compliance-approved — see the Phase B
 addendum in `CLINICAL_CONTENT_REVIEW.md` for the specific new items
 awaiting review.
+
+---
+
+## Phase 9 — SEO restructure, Phase C: Topical authority expansion (2026-09-06)
+
+Context recovery confirmed Phases A (Phase 7) and B (Phase 8) were
+already fully implemented and verified — this phase did not rebuild
+either. Full plan: `docs/superpowers/plans/2026-09-06-phase-c-content-cluster.md`.
+
+### 1. Overlap audit — 5 of 8 candidate articles built
+
+Read all 11 existing article bodies plus both the Girth Enhancement
+and Filler Correction pages in full before writing anything. Built:
+
+1. Penile Filler Migration: What Patients Should Know
+2. Penile Filler Nodules and Irregularities
+3. Can Penile Filler Be Dissolved?
+4. Why Can Penile Filler Feel Different Between Patients?
+5. What I Have Learned From 500+ Penile Girth Enhancement Procedures
+
+**Not built, with reasons:**
+- **Penile Filler vs Fat Transfer** — fat transfer isn't a technique
+  offered here or mentioned anywhere on the site; an authoritative
+  comparison would require fabricating clinical claims about a
+  procedure not performed, and would dilute topical focus.
+- **Is Penile Girth Enhancement Safe?** — would cannibalize the
+  flagship page's own Risks/Aftercare/Revision section and FAQ.
+  Addressed instead by adding a direct-answer "Is penile girth
+  enhancement safe?" FAQ item to the flagship page itself.
+- **Penile Filler Correction: When Is It Necessary?** — verbatim the
+  Filler Correction page's own thesis and FAQ; would violate the
+  Phase B principle that complications/correction content lives on
+  that page, not a separate article.
+
+### 2. The 500+ procedures article's framing
+
+Written with an explicit first section ("Personal clinical experience,
+not a clinical study") distinguishing personal experience from
+published evidence, before any observation is stated. No statistics,
+complication rates, or outcome numbers are claimed anywhere in it —
+themes are anatomical variability, product/tissue-response
+variability, settling-time patience, patient selection, and why
+correction needs specialist reassessment, each cross-linked to the
+relevant existing page rather than re-explained.
+
+### 3. Video-ready architecture
+
+Added, populated by nothing (no real video content exists yet):
+- `InsightVideo` type + optional `InsightArticle.video` field
+  (`content/insights/articles.ts`).
+- `videoObjectSchema()` builder (`lib/seo/json-ld.ts`), only callable
+  when both `video` and `video.thumbnailUrl` exist (Google's
+  structured-data requirement for `VideoObject`).
+- `ArticleVideoBlock` component — renders `null` when `article.video`
+  is undefined, same fail-safe pattern as `AuthorityStripSection`.
+- Wired into `insights/[slug]/page.tsx`: video block renders after the
+  author block; `VideoObject` JSON-LD only emitted when the guard
+  passes.
+
+### 4. Related-content system
+
+- `InsightArticle.relatedArticleSlugs?: string[]` + `getRelatedArticles()`
+  helper (resolves slugs to real articles, drops unresolved ones,
+  caps at 4).
+- New `RelatedInsights` component — 2-4 article cards, renders nothing
+  when there are none.
+- Applied to all 12 girth-cluster articles (7 pre-existing + 5 new),
+  cross-linked thematically (e.g. the migration and nodules articles
+  link to each other and to the settling-time article; the 500+
+  procedures article links to the assessment, feel-variability, and
+  settling-time articles).
+
+### 5. GEO/AEO hardening — direct answers + read-more links
+
+- `FaqItem` gained optional `readMoreHref`/`readMoreLabel`, rendered
+  as a link beneath the answer in `Faq.tsx`.
+- Girth Enhancement page: added a new first FAQ item, "Is penile girth
+  enhancement safe?", with a direct answer before elaboration; wired
+  read-more links from the size-increase and permanence FAQs to their
+  matching Insights articles.
+- Filler Correction page: added a new "Can penile filler migrate?" FAQ
+  with a read-more link to the new migration article; wired the
+  existing "Is dissolution always the right approach?" FAQ to the new
+  dissolution article.
+
+### 6. Articles created
+
+Six commits, `content/insights/articles.ts`, category "Male
+Aesthetics," all `clinicalReviewRequired: true`, `datePublished:
+"2026-09-06"` (real add-date, matching the file's existing convention
+of using genuine dates rather than invented ones):
+
+1. Penile Filler Migration: What Patients Should Know
+2. Penile Filler Nodules and Irregularities
+3. Can Penile Filler Be Dissolved?
+4. Why Can Penile Filler Feel Different Between Patients?
+5. What I Have Learned From 500+ Penile Girth Enhancement Procedures
+
+Checked against the "do not fabricate" list: no citations, studies,
+percentages, complication rates, or outcome numbers anywhere in any of
+the five. Where a mechanism is stated (hyaluronidase breaking down
+hyaluronic acid), it's described as general pharmacology only, not a
+timeframe or success rate.
+
+### 7. Entity-consistency audit
+
+Grepped the full `src/` tree for name/title variants ("Dr Alejandro
+Molina," "Dr. Molina," "Consultant Urologist," spelled-out "Urologist
+and Andrologist"). Every hardcoded occurrence matches
+`doctor.displayName`/`doctor.title` consistently. No discrepancy
+found; no file changes made.
+
+### 8. Search Console monitoring plan
+
+New `SEARCH_CONSOLE_MONITORING_PLAN.md` — query groups (Brand, Penile
+Girth, Correction, Andrology), metrics to track, cannibalization
+checks specific to this site's page structure, and an explicit
+"Status: Not yet actionable" note since `NEXT_PUBLIC_SITE_URL` is
+still unset and the site has never been deployed. Contains no
+invented ranking forecasts.
+
+### Verification
+
+`tsc --noEmit` and `eslint` clean after every commit. `next build`
+succeeded after every content addition — **45 static pages** (was 40:
++5 new articles). No new routes were created; all new content is
+served by the existing `insights/[slug]` dynamic route.
+
+### What Phase C explicitly did not do
+
+Did not build the 3 rejected candidate articles (reasons above). Did
+not add any real video content, URLs, or thumbnails — the video
+architecture exists but renders nothing. Did not touch `features.prpPage`,
+`doctor.awards`, `bookingUrl`, or `physicianProfileUrl`. Did not create
+any new route. Did not deploy or set `NEXT_PUBLIC_SITE_URL`. Did not
+mark any content as clinically, legally, or compliance-approved.
