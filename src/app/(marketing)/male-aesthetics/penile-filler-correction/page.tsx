@@ -113,6 +113,8 @@ const faqItems = [
     question: "Is dissolution always the right approach?",
     answer:
       "No. Dissolution is one option among several, and its suitability depends on the specific presentation. In some cases, observation or a different approach may be more appropriate.",
+    readMoreHref: "/insights/can-penile-filler-be-dissolved",
+    readMoreLabel: "Read more: Can Penile Filler Be Dissolved?",
   },
   {
     question: "Will you need to use ultrasound?",
