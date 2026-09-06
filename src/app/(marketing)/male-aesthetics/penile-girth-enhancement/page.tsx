@@ -89,9 +89,16 @@ const afterConsiderations = [
 
 const faqItems = [
   {
+    question: "Is penile girth enhancement safe?",
+    answer:
+      "No aesthetic or medical procedure is entirely risk-free. Performed within a Consultant Urologist & Andrologist's practice, with anatomy-led assessment beforehand, risks such as swelling, bruising, asymmetry or irregularity are discussed and reviewed individually — not eliminated. See Risks, Aftercare and Revision below for detail.",
+  },
+  {
     question: "How much size increase can I expect?",
     answer:
       "Specific outcome measurements aren't published here, since results depend on individual anatomy, technique and the option chosen. This is discussed in detail, and in context, at consultation.",
+    readMoreHref: "/insights/how-much-girth-can-penile-filler-add",
+    readMoreLabel: "Read more: How Much Girth Can Penile Filler Actually Add?",
   },
   {
     question: "Is this surgical or non-surgical?",
@@ -102,11 +109,15 @@ const faqItems = [
     question: "What if I've had a bad experience with filler elsewhere?",
     answer:
       "Previous procedures, including those performed elsewhere, are assessed individually — revision is considered where appropriate.",
+    readMoreHref: "/male-aesthetics/penile-filler-correction",
+    readMoreLabel: "Explore Penile Filler Correction",
   },
   {
     question: "Is the result permanent?",
     answer:
       "This depends on the option chosen and is discussed individually. Hyaluronic acid-based results are not typically permanent, for example, while other options may differ.",
+    readMoreHref: "/insights/how-long-does-penile-filler-last",
+    readMoreLabel: "Read more: How Long Does Penile Filler Last?",
   },
   {
     question: "What does aftercare involve?",
