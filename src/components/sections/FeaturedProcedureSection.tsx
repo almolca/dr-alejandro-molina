@@ -1,29 +1,22 @@
 import Link from "next/link";
-import { doctor } from "@/config/doctor";
+import { AuthorityBlock } from "@/components/ui/AuthorityBlock";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 
 /**
  * Homepage flagship-procedure section — SEO_RESTRUCTURE_IMPLEMENTATION_
- * PLAN.md Phase A3. Introduces Penile Girth Enhancement by name as the
- * site's most prominent single internal link, without turning the
- * homepage into a procedure landing page (only one section among many —
- * see page.tsx composition). Copy reuses phrasing already live and
- * approved on the treatment page itself; the two authority lines are
- * config-driven and simply don't render if unset, same pattern as
- * AuthorityStripSection.
+ * PLAN.md Phase A3, upgraded to `.section-dark` in Phase R1-R2. The
+ * audit found Penile Girth Enhancement was explicitly called "flagship"
+ * in copy sitewide but never received the homepage's strongest visual
+ * treatment — Penile Implant Surgery did, via its own dark band. This
+ * section now holds the homepage's one dark "flagship" moment instead,
+ * with the same AuthorityBlock metrics used on the treatment page
+ * itself, so authority is visible here too, not just asserted in prose.
  */
-const authorityLines = [
-  doctor.girthProcedureCount !== undefined &&
-    `${doctor.girthProcedureCount} procedures performed`,
-  doctor.girthEnhancementSince !== undefined &&
-    `Performing penile girth enhancement since ${doctor.girthEnhancementSince}`,
-].filter((line): line is string => Boolean(line));
-
 export function FeaturedProcedureSection() {
   return (
-    <section className="border-t border-border bg-surface py-section-y">
+    <section className="section-dark bg-background py-section-y text-foreground">
       <Container className="mx-auto max-w-2xl text-center">
         <Reveal>
           <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
@@ -40,15 +33,11 @@ export function FeaturedProcedureSection() {
           </p>
         </Reveal>
 
-        {authorityLines.length > 0 && (
-          <Reveal delay={0.05}>
-            <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-xs font-medium uppercase tracking-widest text-muted-foreground">
-              {authorityLines.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
-            </ul>
-          </Reveal>
-        )}
+        <Reveal delay={0.05}>
+          <div className="mt-10">
+            <AuthorityBlock align="center" />
+          </div>
+        </Reveal>
 
         <Reveal delay={0.1}>
           <div className="mt-10 flex justify-center">
