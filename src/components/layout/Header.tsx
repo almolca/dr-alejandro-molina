@@ -23,11 +23,13 @@ export function Header() {
       )}
     >
       <Container className="flex h-20 items-center justify-between">
-        <Link
-          href="/"
-          className="font-display text-lg tracking-tight text-foreground"
-        >
-          {doctor.displayName}
+        <Link href="/" className="flex flex-col leading-tight">
+          <span className="font-display text-lg tracking-tight text-foreground">
+            {doctor.displayName}
+          </span>
+          <span className="hidden text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-muted-foreground md:block">
+            {doctor.title}
+          </span>
         </Link>
 
         <DesktopNav />
