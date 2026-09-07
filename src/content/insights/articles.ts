@@ -75,6 +75,8 @@ export type InsightArticle = {
    * don't need it.
    */
   relatedArticleSlugs?: string[];
+  /** Optional short "key takeaway" callout, rendered near the top of the article — additive, most articles won't set it. */
+  keyTakeaway?: string;
   sections: InsightSection[];
 };
 
@@ -690,6 +692,8 @@ export const insightArticles: InsightArticle[] = [
     relatedLabel: "Penile Girth Enhancement",
     secondaryRelatedHref: "/male-aesthetics/penile-filler-correction",
     secondaryRelatedLabel: "Penile Filler Correction",
+    keyTakeaway:
+      "Anatomical variability, not technique alone, is the biggest driver of how different two patients' results can look and feel.",
     relatedArticleSlugs: [
       "penile-girth-enhancement-assessment",
       "why-penile-filler-feels-different-between-patients",

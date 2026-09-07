@@ -4,6 +4,7 @@ import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
+import { PullQuote } from "@/components/ui/PullQuote";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import { Reveal } from "@/components/motion/Reveal";
 import { ArticleAuthorBlock } from "@/components/sections/ArticleAuthorBlock";
@@ -103,6 +104,12 @@ export default async function InsightArticlePage({ params }: Props) {
       <Container className="max-w-2xl">
         <ArticleAuthorBlock />
       </Container>
+
+      {article.keyTakeaway && (
+        <Container className="max-w-2xl py-10">
+          <PullQuote>{article.keyTakeaway}</PullQuote>
+        </Container>
+      )}
 
       {article.video && (
         <Container className="max-w-2xl">
