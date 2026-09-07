@@ -23,7 +23,7 @@ export function Header() {
           : "bg-transparent",
       )}
     >
-      <Container className="flex h-20 items-center justify-between">
+      <Container className="flex h-20 items-center justify-between gap-x-4">
         <Link href="/" className="flex items-center gap-2.5">
           <Image
             src="/brand/logo-symbol.png"

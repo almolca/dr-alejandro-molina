@@ -5,3 +5,13 @@ out/
 *.tsbuildinfo
 .DS_Store
 .playwright-mcp/
+
+# QA/verification screenshots — working artifacts, never part of the repo
+/before-*.png
+/after-*.png
+
+# Unused reference/mockup images kept on disk but never wired into the
+# site — see MEDIA_REQUIREMENTS.md (no invented/AI-generated photography
+# of Dr. Molina). Real brand assets (logo-*.png) are not covered by this.
+public/brand/ChatGPT Image*.png
+public/brand/Elegant 3D Ebook Mockup*.png

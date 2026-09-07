@@ -3,7 +3,7 @@ import { primaryNav } from "@/config/navigation";
 
 export function DesktopNav() {
   return (
-    <nav aria-label="Primary" className="hidden items-center gap-8 xl:flex">
+    <nav aria-label="Primary" className="hidden items-center gap-6 xl:flex">
       {primaryNav.map((item) => (
         <Link
           key={item.href}
