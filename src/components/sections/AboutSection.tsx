@@ -12,7 +12,7 @@ import { Reveal } from "@/components/motion/Reveal";
  */
 const highlightLabels = [
   "Hospital Clínic Barcelona training",
-  "European Board of Urology",
+  "FEBU — Fellow of the European Board of Urology",
   "Advanced laparoscopic surgery",
   "Practicing in the United Arab Emirates",
 ];

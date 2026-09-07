@@ -17,7 +17,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 const PATH = "/about";
 
 export const metadata: Metadata = buildMetadata({
-  title: "About Dr. Alejandro Molina",
+  title: "About",
   description:
     "Dr. Alejandro Molina — Consultant Urologist & Andrologist at NMC Royal Hospital Khalifa City, Abu Dhabi. European surgical training, evolving toward andrology and men's health.",
   path: PATH,
@@ -69,7 +69,7 @@ const narrative = [
     eyebrow: "Academic activity",
     heading: "A Continued Connection to Teaching",
     body:
-      "Alongside clinical practice, Dr. Molina has maintained academic and teaching involvement, reflecting an ongoing commitment to the field beyond individual patient care." +
+      "Dr. Molina has maintained academic and teaching involvement throughout his clinical career, reflecting a commitment to the field beyond individual patient care." +
       (doctor.medicalTrainer?.description ? ` ${doctor.medicalTrainer.description}` : ""),
   },
 ];
