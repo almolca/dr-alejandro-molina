@@ -10,6 +10,7 @@ import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { TonalSection } from "@/components/ui/TonalSection";
 import { MaskedReveal } from "@/components/motion/MaskedReveal";
 import { Reveal } from "@/components/motion/Reveal";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -217,8 +218,8 @@ export default function MaleAestheticsPage() {
         </Container>
       </section>
 
-      {/* Also available — visually secondary pair (Phase R1-R2) */}
-      <section className="border-t border-border bg-surface py-section-y">
+      {/* Also available — visually secondary pair (Phase R1-R2), warm tonal gradient (Phase R3) */}
+      <TonalSection tone="warm" className="border-t border-border">
         <Container>
           <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
             Also available
@@ -240,7 +241,7 @@ export default function MaleAestheticsPage() {
             ))}
           </div>
         </Container>
-      </section>
+      </TonalSection>
 
       {/* Physician presence — Phase R1-R2 */}
       <section className="border-t border-border bg-surface py-section-y">
