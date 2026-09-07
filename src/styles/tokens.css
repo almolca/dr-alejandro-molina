@@ -125,7 +125,8 @@
 
   /* Section rhythm — spec §16 "large margins". */
   --spacing-gutter: clamp(1.25rem, 1rem + 2vw, 3rem);
-  --spacing-section-y: clamp(4rem, 3rem + 5vw, 8rem);
+  /* Phase R1-R2: tightened floor/midpoint/ceiling to reduce excess whitespace, especially on mobile where the floor dominates. */
+  --spacing-section-y: clamp(3rem, 2.5rem + 4vw, 6.5rem);
 
   --container-editorial: 90rem;
 
