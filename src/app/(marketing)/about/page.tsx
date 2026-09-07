@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { doctor } from "@/config/doctor";
 import { isPhysicianProfileConfigured, practice, practiceLocationLine } from "@/config/practice";
@@ -133,9 +134,20 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* Authority block — Phase R2.1/R3, key facts right after the hero */}
+      {/* Authority block — Phase R2.1/R3, key facts right after the hero.
+          Full logo lockup placed here (Phase R3 correction) — a light
+          background gives it clean contrast, unlike the navy-on-navy
+          footer problem, and it doesn't repeat the H1 since it sits
+          below a full section break. */}
       <section className="border-t border-border bg-background py-14">
         <Container>
+          <Image
+            src="/brand/logo-full.png"
+            alt=""
+            width={1536}
+            height={1024}
+            className="mx-auto mb-10 h-auto w-44 opacity-90"
+          />
           <AuthorityBlock />
         </Container>
       </section>

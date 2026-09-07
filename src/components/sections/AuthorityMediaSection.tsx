@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { doctor } from "@/config/doctor";
 import { mediaAppearances } from "@/config/mediaAppearances";
 import { Container } from "@/components/ui/Container";
@@ -29,6 +30,13 @@ export function AuthorityMediaSection() {
     <section className="border-t border-border py-section-y">
       <Container className="mx-auto max-w-2xl text-center">
         <Reveal>
+          <Image
+            src="/brand/logo-full.png"
+            alt=""
+            width={1536}
+            height={1024}
+            className="mx-auto mb-8 h-auto w-36 opacity-90"
+          />
           {publishableAwards.length > 0 && (
             <p className="text-sm text-foreground">
               {publishableAwards.map((a) => `${a.officialTitle} — ${a.issuer}, ${a.year}`).join(" · ")}
