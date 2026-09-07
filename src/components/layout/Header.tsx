@@ -27,7 +27,7 @@ export function Header() {
           <span className="font-display text-lg tracking-tight text-foreground">
             {doctor.displayName}
           </span>
-          <span className="hidden text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-muted-foreground md:block">
+          <span className="hidden text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-muted-foreground lg:block">
             {doctor.title}
           </span>
         </Link>
