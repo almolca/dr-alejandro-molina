@@ -29,7 +29,7 @@ export function AboutSection() {
         <MaskedReveal className="order-last aspect-[3/4] w-full border border-border bg-surface lg:order-first">
           <ImagePlaceholder
             index={doctor.displayName}
-            caption={doctor.profileImage.alt}
+            label="Portrait of Dr. Alejandro Molina"
           />
         </MaskedReveal>
 

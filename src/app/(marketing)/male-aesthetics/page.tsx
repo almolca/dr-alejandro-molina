@@ -113,10 +113,7 @@ export default function MaleAestheticsPage() {
       <section className="py-section-y">
         <Container className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <MaskedReveal className="order-last aspect-[4/5] w-full border border-border bg-surface lg:order-first">
-            <ImagePlaceholder
-              index="§13"
-              caption="Material / texture imagery — anatomy-led, not a clinical photograph. No genital close-ups."
-            />
+            <ImagePlaceholder index="§13" label="Editorial imagery pending" />
           </MaskedReveal>
 
           <div>

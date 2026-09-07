@@ -3,9 +3,16 @@
 No photographs of Dr. Molina have been generated, sourced, or invented
 anywhere in this build — every image slot on the site is a styled,
 clearly-labelled CSS placeholder (`components/ui/ImagePlaceholder.tsx`:
-a diagonal hairline pattern, an index label, and a caption naming what
-belongs there), never a fake or stock photo standing in as if real.
-This document is the manifest for replacing those placeholders.
+a diagonal hairline pattern and an index label), never a fake or stock
+photo standing in as if real. This document is the manifest for
+replacing those placeholders.
+
+**As of Phase R1-R2**, the detailed per-slot descriptions in this
+document are the **only** place this photography intent is written
+down — `ImagePlaceholder` no longer renders any caption text on the
+live site (it previously did, which real visitors could see; this was
+fixed as a P0 launch blocker), only a short generic accessibility
+label and the visual surface itself.
 
 **Current wiring, verified by grep, not assumed:** exactly one config
 value — `doctor.profileImage` (`src/config/doctor.ts`) — drives every

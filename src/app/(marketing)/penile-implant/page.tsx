@@ -159,10 +159,7 @@ export default function PenileImplantPage() {
           </div>
 
           <MaskedReveal className="aspect-square w-full self-start border border-border bg-surface lg:aspect-[4/5]">
-            <ImagePlaceholder
-              index="§8"
-              caption="Clean medical diagram — device placement, for illustration only. Photography/diagram pending."
-            />
+            <ImagePlaceholder index="§8" label="Medical diagram pending" />
           </MaskedReveal>
         </Container>
       </section>

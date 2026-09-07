@@ -88,7 +88,7 @@ export default function AboutPage() {
               image, even though the image sits left on desktop — found
               in the Phase 5 UX audit. */}
           <MaskedReveal className="order-last aspect-[3/4] w-full border border-border bg-surface lg:order-first">
-            <ImagePlaceholder index={doctor.displayName} caption={doctor.profileImage.alt} />
+            <ImagePlaceholder index={doctor.displayName} label="Portrait of Dr. Alejandro Molina" />
           </MaskedReveal>
 
           <div>
