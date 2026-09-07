@@ -122,7 +122,9 @@ export default function PeyroniesDiseasePage() {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="mt-10 flex flex-wrap gap-4">
-              <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg" />
+              <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg">
+                Book a Confidential Consultation
+              </BookingCta>
             </div>
           </Reveal>
         </Container>
@@ -225,6 +227,7 @@ export default function PeyroniesDiseasePage() {
       <TreatmentCtaSection
         heading="Discuss Your Phase and Severity"
         sourcePage={PATH}
+        bookingLabel="Book a Confidential Consultation"
         secondary={{ label: "Explore Erectile Dysfunction", href: "/erectile-dysfunction" }}
       />
     </>

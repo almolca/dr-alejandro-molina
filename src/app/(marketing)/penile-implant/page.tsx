@@ -147,7 +147,9 @@ export default function PenileImplantPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <div className="mt-10 flex flex-wrap gap-4">
-                <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg" />
+                <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg">
+                  Book a Confidential Consultation
+                </BookingCta>
                 <a
                   href="#candidacy"
                   className="inline-flex h-13 items-center px-6 text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
@@ -302,6 +304,7 @@ export default function PenileImplantPage() {
       <TreatmentCtaSection
         heading={<AmpersandText text="Discuss Candidacy & Next Steps" />}
         sourcePage={PATH}
+        bookingLabel="Book a Confidential Consultation"
         secondary={{ label: "Explore Erectile Dysfunction", href: "/erectile-dysfunction" }}
       />
     </>

@@ -132,7 +132,9 @@ export default function MaleAestheticsPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <div className="mt-10 flex flex-wrap gap-4">
-                <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg" />
+                <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg">
+                  Book a Confidential Consultation
+                </BookingCta>
               </div>
             </Reveal>
           </div>
@@ -233,6 +235,7 @@ export default function MaleAestheticsPage() {
       <TreatmentCtaSection
         heading="Begin With a Medical Consultation"
         sourcePage={PATH}
+        bookingLabel="Book a Confidential Consultation"
         secondary={{
           label: "Explore Penile Girth Enhancement",
           href: "/male-aesthetics/penile-girth-enhancement",

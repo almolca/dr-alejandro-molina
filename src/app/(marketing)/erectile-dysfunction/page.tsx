@@ -171,7 +171,9 @@ export default function ErectileDysfunctionPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="mt-10 flex flex-wrap gap-4">
-              <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg" />
+              <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg">
+                Book a Confidential Consultation
+              </BookingCta>
               <a
                 href="#treatment-ladder"
                 className="inline-flex h-13 items-center px-6 text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
@@ -292,6 +294,7 @@ export default function ErectileDysfunctionPage() {
       <TreatmentCtaSection
         heading="Start With an Assessment, Not an Assumption"
         sourcePage={PATH}
+        bookingLabel="Book a Confidential Consultation"
         secondary={{ label: "Explore Penile Implants", href: "/penile-implant" }}
       />
     </>

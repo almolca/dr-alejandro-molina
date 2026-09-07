@@ -105,7 +105,9 @@ export default function PenileDopplerPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="mt-10 flex flex-wrap gap-4">
-              <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg" />
+              <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg">
+                Book a Confidential Consultation
+              </BookingCta>
             </div>
           </Reveal>
         </Container>
@@ -178,7 +180,11 @@ export default function PenileDopplerPage() {
 
       <Faq items={faqItems} />
 
-      <TreatmentCtaSection heading="Discuss Whether Assessment Is Right for You" sourcePage={PATH} />
+      <TreatmentCtaSection
+        heading="Discuss Whether Assessment Is Right for You"
+        sourcePage={PATH}
+        bookingLabel="Book a Confidential Consultation"
+      />
     </>
   );
 }
