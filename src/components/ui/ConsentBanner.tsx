@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getConsent, setConsent } from "@/lib/analytics/consent";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { Button } from "@/components/ui/Button";
@@ -25,9 +25,18 @@ import { Button } from "@/components/ui/Button";
  * - Mounted early in the DOM (root layout, before page content) so
  *   keyboard users reach it early via Tab, not after tabbing through
  *   an entire page first.
+ *
+ * Phase R1-R2 P0 fix: the banner is `position: fixed` and was
+ * confirmed (via DOM measurement) to overlap the hero CTA on mobile at
+ * first paint. It now measures its own real rendered height and writes
+ * it to `--consent-banner-space`, which `body` uses as bottom padding
+ * (see globals.css) — this reserves space and pushes content up rather
+ * than covering it, without shrinking the banner's text or introducing
+ * any dark pattern.
  */
 export function ConsentBanner() {
   const [visible, setVisible] = useState(false);
+  const bannerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Deliberate: localStorage isn't available during SSR, so both the
@@ -38,6 +47,25 @@ export function ConsentBanner() {
     setVisible(getConsent() === "unset");
   }, []);
 
+  useEffect(() => {
+    const root = document.documentElement;
+    if (!visible || !bannerRef.current) {
+      root.style.setProperty("--consent-banner-space", "0px");
+      return;
+    }
+    const el = bannerRef.current;
+    const updateSpace = () => {
+      root.style.setProperty("--consent-banner-space", `${el.offsetHeight}px`);
+    };
+    updateSpace();
+    const observer = new ResizeObserver(updateSpace);
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      root.style.setProperty("--consent-banner-space", "0px");
+    };
+  }, [visible]);
+
   if (!visible) return null;
 
   function choose(status: "granted" | "denied") {
@@ -47,6 +75,7 @@ export function ConsentBanner() {
 
   return (
     <div
+      ref={bannerRef}
       role="region"
       aria-label="Cookie preferences"
       className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background"

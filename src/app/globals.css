@@ -13,6 +13,8 @@
   body {
     background: var(--color-background);
     color: var(--color-foreground);
+    padding-bottom: var(--consent-banner-space, 0px);
+    transition: padding-bottom 200ms var(--ease-soft);
   }
 
   ::selection {
