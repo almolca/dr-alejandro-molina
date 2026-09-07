@@ -27,6 +27,11 @@ export function ImagePlaceholder({
           "repeating-linear-gradient(135deg, var(--color-border) 0px, var(--color-border) 1px, transparent 1px, transparent 28px)",
       }}
     >
+      {/* Bronze corner bracket (Phase R3 correction) — reads as an
+          intentional editorial frame device rather than a generic
+          placeholder box. */}
+      <span aria-hidden className="absolute left-0 top-0 h-8 w-px bg-accent-strong" />
+      <span aria-hidden className="absolute left-0 top-0 h-px w-8 bg-accent-strong" />
       {index && (
         <span className="absolute left-6 top-6 font-display text-sm text-accent-strong">
           {index}
