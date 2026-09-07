@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Activity, CircleDot, Pill, Stethoscope, Syringe, TestTube, Zap } from "lucide-react";
 import { AmpersandText } from "@/components/ui/AmpersandText";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
@@ -73,36 +74,43 @@ const ladder = [
     title: "Lifestyle / risk-factor management",
     description:
       "Addressing cardiovascular risk factors, weight, activity levels, alcohol and smoking where relevant to the underlying cause.",
+    icon: Activity,
   },
   {
     title: "PDE5 inhibitors",
     description:
       "Oral medication that can support erectile function in appropriately selected patients, prescribed after assessment.",
+    icon: Pill,
   },
   {
     title: "Hormonal treatment when indicated",
     description:
       "Considered only when a hormonal cause, such as testosterone deficiency, has been identified on assessment.",
+    icon: TestTube,
   },
   {
     title: "Vacuum / device options",
     description:
       "Non-invasive mechanical devices that can support erectile function for selected patients.",
+    icon: CircleDot,
   },
   {
     title: "Selected shockwave treatment",
     description:
       "Low-intensity shockwave therapy may be considered for selected patients where clinically appropriate.",
+    icon: Zap,
   },
   {
     title: "Intracavernosal therapy",
     description:
       "Injectable therapy administered directly into the penis, used when oral treatments are not suitable or effective.",
+    icon: Syringe,
   },
   {
     title: "Penile implant surgery",
     description:
       "A surgical option considered for severe or refractory erectile dysfunction, once other treatments no longer provide reliable results.",
+    icon: Stethoscope,
   },
 ];
 
@@ -239,9 +247,12 @@ export default function ErectileDysfunctionPage() {
             {ladder.map((step, index) => (
               <StaggerItem key={step.title}>
                 <div className="grid grid-cols-[3rem_1fr] gap-x-6 gap-y-2 py-7 sm:grid-cols-[4rem_1fr_2fr] sm:items-baseline">
-                  <span className="font-display text-2xl text-accent-strong">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+                  <div className="flex flex-col gap-1">
+                    <step.icon aria-hidden size={18} className="text-accent-strong" />
+                    <span className="font-display text-2xl text-accent-strong">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                  </div>
                   <h3 className="font-display text-xl text-foreground sm:col-start-2">
                     {step.title}
                   </h3>

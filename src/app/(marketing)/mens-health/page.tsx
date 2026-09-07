@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Activity, ClipboardList, HeartPulse, Stethoscope, TestTube } from "lucide-react";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -27,11 +28,11 @@ const breadcrumbItems = [
 ];
 
 const diagnosticSteps = [
-  "Symptoms",
-  "Hormonal assessment",
-  "Metabolic / medical contributors",
-  "Sexual function",
-  "Individual treatment strategy",
+  { label: "Symptoms", icon: Stethoscope },
+  { label: "Hormonal assessment", icon: TestTube },
+  { label: "Metabolic / medical contributors", icon: Activity },
+  { label: "Sexual function", icon: HeartPulse },
+  { label: "Individual treatment strategy", icon: ClipboardList },
 ];
 
 /**
@@ -110,12 +111,10 @@ export default function MensHealthPage() {
             How assessment works
           </p>
           <StaggerGroup className="mt-8 grid grid-cols-1 gap-y-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-6">
-            {diagnosticSteps.map((step, index) => (
-              <StaggerItem key={step}>
-                <span className="font-display text-2xl text-accent-strong">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <p className="mt-2 max-w-[18ch] text-sm text-foreground">{step}</p>
+            {diagnosticSteps.map((step) => (
+              <StaggerItem key={step.label}>
+                <step.icon aria-hidden size={20} className="text-accent-strong" />
+                <p className="mt-3 max-w-[18ch] text-sm text-foreground">{step.label}</p>
               </StaggerItem>
             ))}
           </StaggerGroup>
