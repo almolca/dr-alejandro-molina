@@ -1,4 +1,8 @@
+"use client";
+
+import { motion } from "motion/react";
 import { doctor } from "@/config/doctor";
+import { defaultViewport, durations, easeSoft } from "@/components/motion/motion-config";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { cn } from "@/lib/utils/cn";
 
@@ -40,7 +44,15 @@ export function AuthorityBlock({ align = "left" }: { align?: "left" | "center" }
           key={metric.label}
           className={align === "center" ? "text-center" : "text-center lg:text-left"}
         >
-          <p className="font-display text-display-md text-foreground">{metric.value}</p>
+          <motion.p
+            className="font-display text-display-md text-foreground"
+            initial={{ opacity: 0, scale: 0.94 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={defaultViewport}
+            transition={{ duration: durations.base, ease: easeSoft }}
+          >
+            {metric.value}
+          </motion.p>
           <p className="mt-2 text-xs font-medium uppercase tracking-widest text-muted-foreground">
             {metric.label}
           </p>

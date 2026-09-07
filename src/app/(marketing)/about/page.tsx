@@ -16,6 +16,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { MediaAppearancesSection } from "@/components/sections/MediaAppearancesSection";
+import { PatientReviewsCta } from "@/components/sections/PatientReviewsCta";
 import { RecognitionSection } from "@/components/sections/RecognitionSection";
 import { breadcrumbSchema } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
@@ -265,6 +266,9 @@ export default function AboutPage() {
             <p className="mt-4 text-sm text-muted-foreground">{practiceLocationLine}</p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <BookingCta sourcePage={PATH} ctaPosition="page-closing-cta" size="lg" />
+            </div>
+            <div className="mt-6">
+              <PatientReviewsCta />
             </div>
           </Reveal>
         </Container>

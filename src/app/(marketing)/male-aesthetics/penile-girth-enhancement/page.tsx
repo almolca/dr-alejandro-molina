@@ -6,6 +6,7 @@ import { BookingCta } from "@/components/ui/BookingCta";
 import { BrandCurve } from "@/components/ui/BrandCurve";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
+import { EditorialTexture } from "@/components/ui/EditorialTexture";
 import { Faq } from "@/components/ui/Faq";
 import { PullQuote } from "@/components/ui/PullQuote";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
@@ -239,7 +240,8 @@ export default function PenileGirthEnhancementPage() {
       </Container>
 
       {/* Expected variability — dark section, this page's one dark moment, used to give the "no numbers" honesty real weight */}
-      <section className="section-dark bg-background py-section-y text-foreground">
+      <section className="section-dark relative bg-background py-section-y text-foreground">
+        <EditorialTexture watermark={false} />
         <Container className="mx-auto max-w-2xl text-center">
           <Reveal>
             <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
