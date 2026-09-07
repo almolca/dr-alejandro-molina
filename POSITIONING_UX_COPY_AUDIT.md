@@ -6,6 +6,8 @@ Phase D. Read-only audit — no code was modified to produce this document. Find
 
 Priority scale used throughout: **P0** — materially harms positioning or conversion, fix before launch. **P1** — important improvement. **P2** — refinement.
 
+**Implementation status (2026-09-07):** all 5 confirmed P0 findings from this audit are now fixed — see `IMPLEMENTATION_REPORT.md` Phase 11 for the full record. In summary: live `ImagePlaceholder` caption text removed sitewide; the mobile cookie-banner/hero-CTA overlap resolved (banner moved from a fixed overlay to in-flow placement); the flagship-vs-Implant homepage visual-hierarchy mismatch corrected (Girth Enhancement now holds the dark "flagship" treatment); the Male Aesthetics hub's flagship-vs-secondary-services mismatch corrected; the Men's Health hub rebuilt from a near-empty stub into a full page. Most P1 findings referenced in individual page sections below were also addressed as part of that implementation — this document is left as originally written (the audit as performed) rather than retroactively edited line-by-line; treat `IMPLEMENTATION_REPORT.md` Phase 11 and `POSITIONING_UX_REDESIGN_PLAN.md`'s status markers as the current source of truth for what's done versus still open (Phase R3 items remain open).
+
 ---
 
 ## 1. Homepage — `/`

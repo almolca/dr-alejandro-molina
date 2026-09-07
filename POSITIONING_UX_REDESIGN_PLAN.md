@@ -6,6 +6,13 @@ Every item specifies: problem, proposed solution, component/page affected, expec
 
 This plan does not resolve `NEXT_PUBLIC_SITE_URL` / deployment — that remains the pre-existing launch blocker documented in `LAUNCH_CHECKLIST.md` and is out of scope here.
 
+**Implementation status (2026-09-07):** most of PHASE R1 and the highest-priority items of PHASE R2 are now implemented (branch `phase-r1-r2-positioning-redesign`, 19 commits — full detail in `IMPLEMENTATION_REPORT.md` Phase 11 and `docs/superpowers/plans/2026-09-07-phase-r1-r2-positioning-redesign.md`).
+
+- **Done:** R1.1 (cookie banner — implemented differently than originally proposed; see the plan doc's own note on why), R1.2 (placeholder captions), R1.3 (documentation only — photography itself not sourced), R1.4 (header identity), R1.5 (AuthorityBlock extraction), R1.9 (confirmed bugs); R2.1 (Homepage), R2.2 (Male Aesthetics hub), R2.5 (Men's Health hub), R2.8 (Penile Implant — both sub-items satisfied via A1's placeholder fix and R2.1's homepage reweighting), R2.9 (About, via the P0 bug fixes). Also done but not originally itemized here: FAQ + closing CTA added to the Sexual Medicine and Penile Surgery hubs (R3.4 pulled forward), footer physician-identity update (item 25 of the owner's brief).
+- **Not done — still open:** R1.6 (FAQ support in the article template), R1.7 (functional category filtering on the Insights index), R1.8 (the broader sitewide hedge-phrase copy variation pass — CTA wording and structural fixes landed, but the phrase-level rewrite itself wasn't done), R2.3 (a Girth-Enhancement-specific distinguishing template element beyond the now-shared AuthorityBlock — e.g. a page-specific strapline or correction-experience callout), R2.4 (Filler Correction's presentations-grid visual differentiation), R2.7 (AuthorityBlock exists and is reusable but hasn't been added to the ED page itself), and all of PHASE R3 except the two hub items pulled forward above.
+
+Read each item below for its original, unedited recommendation; this status note is the single place tracking what's actually landed versus still open.
+
 ---
 
 ## PHASE R1 — GLOBAL SYSTEM

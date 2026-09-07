@@ -576,3 +576,31 @@ by folding the intent into the flagship page's existing FAQ rather
 than creating a competing page, which is the same resolution pattern
 already validated for the Filler Correction / Girth Enhancement
 relationship in Phase B.
+
+---
+
+## Phase R1-R2 — Positioning/UX implementation (2026-09-07)
+
+No routes were added, removed, or renamed this phase — sitemap entry
+count is unchanged from Phase C's 35. Two metadata/entity changes
+worth recording here:
+
+- **Homepage H1** changed from "Advanced Andrology & Men's Health" (a
+  generic specialty label, present in no other page's H1 either, so no
+  duplicate-H1 risk existed or exists) to "Dr. Alejandro Molina" — a
+  stronger, more specific entity signal on the site's highest-traffic
+  page, matching the physician-entity-first approach already used in
+  the site's `<title>` template and `personSchema()`.
+- **About page `<title>`** fixed from a duplicated
+  "About Dr. Alejandro Molina | Dr. Alejandro Molina" to
+  "About | Dr. Alejandro Molina" (the sitewide title template already
+  appends the doctor's name, so the page-level title only needed to
+  say "About").
+
+Person/Physician JSON-LD (emitted globally via `layout.tsx`) is
+unaffected by any change this phase. `medicalWebPageSchema` and
+`faqPageSchema` on the Male Aesthetics hub, Men's Health hub, Sexual
+Medicine hub, and Penile Surgery hub were re-verified to still parse
+correctly after each page's content changes (new FAQ items on 3 of the
+4 automatically feed the existing `faqPageSchema()` mechanism — no
+schema-layer code change was needed for that).
