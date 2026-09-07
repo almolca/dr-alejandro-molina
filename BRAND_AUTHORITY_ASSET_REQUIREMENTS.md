@@ -2,14 +2,13 @@
 
 Phase R2.1/R3. This document lists exactly which owner-supplied assets and verified facts are still needed to finish wiring the brand/authority architecture built this phase. Nothing below has been invented — every config module this phase added (`mediaAppearances`, `patientReviews`) ships empty, and `doctor.awards` stays `publishReady: false`, until the real values listed here are supplied. See `MEDIA_REQUIREMENTS.md` for photography specifically (not duplicated here).
 
-## 1. Logo files — DONE (2026-09-07)
+## 1. Logo files — DONE (2026-09-07, extended in the Phase 13 correction pass)
 
 | | |
 |---|---|
 | **Status** | Wired in. `public/brand/logo-symbol.png` (AM monogram, 1254×1254, transparent) and `public/brand/logo-full.png` (full lockup: AM monogram + "Dr. Alejandro Molina" + "CONSULTANT UROLOGIST & ANDROLOGIST", 1536×1024) — used exactly as supplied, not redrawn or recolored. |
-| **Wired into** | `src/app/icon.png` (64×64, favicon) and `src/app/apple-icon.jpg` (180×180, flattened onto white per Apple's convention — the source has a transparent background, which iOS would otherwise fill with black) — both replace the previous temporary code-generated typographic mark. Footer brand column: the symbol sits in a small light circular chip (the source is navy-on-transparent, invisible against the footer's own navy `.section-dark` background without one) above the existing `doctor.displayName`/title/specialty text, which is unchanged. |
-| **Not yet placed** | `logo-full.png` (the full lockup) isn't used anywhere yet — a natural future spot is the About page hero, once real photography also exists there, so the two aren't competing for the same visual moment. The header intentionally stays text-only (adding the symbol risks reintroducing the 768px overflow found and fixed in Phase 11's QA — the header lockup is already tight at that exact breakpoint). |
-| **Note on the source folder** | `public/brand/` also contained 5 (as of this check, 7) AI-generated "doctor" photographs and one apparently unrelated marketing asset, mixed in with the 2 real logo files. Per explicit owner instruction, none of those are used or committed — they remain on disk, untracked. Using any of them as if they were real photography of Dr. Molina would violate this project's standing rule against invented photography (`MEDIA_REQUIREMENTS.md`). If any of those 7 files should be removed or were added by mistake, that's an owner decision, not made here. |
+| **Wired into** | `src/app/icon.png` (favicon) and `src/app/apple-icon.jpg` (flattened onto white per Apple's convention). **Header** (`Header.tsx`): the AM symbol now sits next to the practice name at every breakpoint — the earlier text-only header (kept that way in Phase 12 to sidestep a 768px overflow risk) was reworked instead of left as-is, per explicit owner correction; the responsive tiers moved to `xl:` (1280px) for the full desktop nav + subtitle. **Footer**: the symbol sits in a bordered square chip (redesigned in Phase 13 from a plain circular one) above the existing identity text. **Full lockup** (`logo-full.png`): now placed on the homepage's Authority & Media section and About's authority block, both on light backgrounds for clean contrast against the navy-on-transparent source file. |
+| **Note on the source folder** | `public/brand/` also contains 7 AI-generated "doctor" photographs and marketing mockups, mixed in with the 2 real logo files. Per explicit owner instruction ("déjalas, pero no las uses" — leave them, don't use them), none of those are used anywhere in the rendered site. They were briefly, accidentally swept into a git commit by an earlier broad `git add`; this was caught and fixed in the Phase 13 correction pass (`git rm --cached`, plus new `.gitignore` rules) — the files remain on disk exactly as before, only git tracking changed. Using any of them as if they were real photography of Dr. Molina would violate this project's standing rule against invented photography (`MEDIA_REQUIREMENTS.md`). If any of those 7 files should be deleted outright, that's an owner decision, not made here. |
 
 ## 2. Professional recognition — exact official titles
 
@@ -46,8 +45,8 @@ Section 12 of the Phase R2.1/R3 brief asks for a restrained logo strip of verifi
 
 | # | Asset | Status |
 |---|---|---|
-| 1 | Full logo file | **Done** — supplied, not yet placed on a page (About page is the natural future spot) |
-| 1 | AM symbol file | **Done** — wired into favicon, apple-icon, and footer |
+| 1 | Full logo file | **Done** — placed on Homepage (Authority & Media) and About (authority block) |
+| 1 | AM symbol file | **Done** — wired into favicon, apple-icon, header, and footer |
 | 2 | Top Doctors Spain 2020 — exact official title | Not yet verified |
 | 2 | Doctoralia Awards Spain 2022 — exact official title | Not yet verified |
 | 3 | Media appearance entries (outlet/title/year/url) | None supplied yet |

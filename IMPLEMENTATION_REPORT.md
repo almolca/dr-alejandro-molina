@@ -2150,3 +2150,180 @@ any `mediaAppearances` entry, `patientReviews` profile, or flip any
 article title, review count, or award title was invented anywhere.
 Did not touch `features.prpPage`, `bookingUrl`, or
 `physicianProfileUrl`. Did not create any new route. Did not deploy.
+
+## Phase 13 — Correction pass: complete the visual enrichment & brand authority phase (2026-09-07)
+
+The owner's Phase 12 wrap-up was judged insufficient: *"mostly
+integrated favicon/footer assets and left the existing visual system
+substantially unchanged."* This phase completes the original R2.1/R3
+objective on the same branch (`phase-r3-correction-visual-brand`), with
+before/after screenshots at 1440px and 390px as the acceptance bar
+rather than a written description alone. Plan:
+`docs/superpowers/plans/2026-09-07-phase-r3-correction-visual-brand.md`.
+Every commit verified clean (`tsc --noEmit` + `eslint` + `next build`)
+before landing.
+
+### What changed, task by task
+
+- **Palette correction (A1)**: `.section-dark` reverted from the
+  Phase 12 navy `--color-ink-*` scale back to a deep charcoal
+  (`--color-stone-950/900/800`), per the owner's explicit "do NOT use
+  navy blue as the dominant brand color." The `--color-ink-*` `@theme`
+  block was deleted outright, not just unreferenced.
+- **Header responsive rework (B1)**: the AM symbol is now genuinely
+  in the header (`logo-symbol.png`, 26px), not text-only. Rather than
+  keep the old `md:` breakpoint (which is what caused the Phase 12
+  author to leave the header text-only), the tier structure moved to
+  `xl:` (1280px) for the full desktop nav + subtitle, with a
+  symbol+name compact header below that — matching the owner's
+  suggested tiers. A regression this introduced (see below) was caught
+  and fixed in the same phase.
+- **Reusable background primitives (C1–C3)**: `EditorialTexture`
+  (replaces `TextureOverlay` — subtle diagonal hatching + a large,
+  near-invisible AM watermark), `BrandCurve` (a thin gold SVG curve
+  that draws in on scroll), and `TonalSection` (ivory/stone/charcoal/
+  warm-gradient tone wrapper) — all built on the existing motion
+  tokens, none introduce new dependencies.
+- **Full logo placement (D1)**: `logo-full.png` now renders on the
+  homepage's Authority & Media section and the About page's authority
+  block — both light backgrounds, avoiding the navy-on-navy contrast
+  problem the footer already solved differently.
+- **Footer chip redesign (E1)**: circular plain-white chip replaced
+  with a bordered square mark, so it reads as an intentional part of
+  the identity rather than a patch.
+- **Text-wall reduction (F1, plus carried-over C2 uses)**: `PullQuote`
+  added to Penile Filler Correction, Testosterone, and Penile Implant
+  (Male Aesthetics and Girth Enhancement already had one from Phase
+  12/prior work) — breaks up long clinical sections without removing
+  or shortening any clinical content.
+- **Patient reviews wiring (G1)**: `PatientReviewsCta` is now in the
+  About page's closing CTA render tree. It still renders nothing —
+  `patientReviews.publishReady` is false and no profile is configured
+  — but the fail-safe component is wired in, not just written.
+- **Girth Enhancement texture (H1)**: `EditorialTexture` (watermark
+  disabled) added to the page's one dark section ("Expected
+  variability"), matching the treatment on About's Credentials section
+  and the homepage's Featured Procedure section.
+- **AuthorityBlock motion (I1)**: metric numbers now scale in
+  (`opacity 0→1`, `scale 0.94→1`) on scroll, on top of the existing
+  fade+rise stagger — small, restrained, respects
+  `prefers-reduced-motion` via the shared motion tokens.
+- **Header gap regression, found and fixed during QA**: the B1
+  breakpoint rework introduced a new bug — at exactly 1280px, "About"
+  and the "Book a Consultation" button ended up ~1px apart (touching)
+  because the header's flex row had no minimum-gap floor and
+  `justify-between` let the outer gaps collapse under content
+  pressure. Fixed by trimming `DesktopNav`'s item gap (`gap-8` →
+  `gap-6`) and adding an explicit `gap-x-4` floor to the header's flex
+  row, so this can't silently recur if nav copy or the doctor's
+  name/title ever get longer. Re-verified clean at 1280/1440/1728px
+  (healthy ~21px gap) after the fix.
+- **Git hygiene**: discovered mid-phase that an earlier broad `git add`
+  had committed four QA screenshots and all seven of the
+  explicitly-unused AI-generated/marketing images (public/brand/
+  ChatGPT*.png, Elegant 3D Ebook Mockup*.png) into git history. Ran
+  `git rm --cached` on all eleven (files remain on disk exactly as the
+  owner asked — "déjalas, pero no las uses" — only git tracking was
+  removed) and added `.gitignore` rules so this can't happen silently
+  again.
+
+### Mandatory visual verification (§16 of the correction brief)
+
+Real-browser QA via Playwright against a local `next start` (production
+build) server, with `before-*.png` screenshots captured prior to any
+edit in this phase and `after-*.png` captured on the finished branch,
+both full-page at 1440px, plus 390px and a header-focused viewport
+sweep (375/390/430/768/1024/1280/1440/1728px). Screenshots were working
+artifacts only (not committed — see git hygiene note above); the
+comparison below is the permanent record.
+
+1. **What is visibly different on the rendered page, not just in the
+   codebase?** The Featured Procedure section, About's Credentials
+   section, and the footer all shifted from navy-black to a warmer
+   charcoal-black. The header now carries the AM monogram next to the
+   practice name at every breakpoint. The full logo lockup appears
+   twice (homepage Authority & Media section, About's authority
+   block) where it was previously unused. A thin gold curve now draws
+   in under three H1s (About, Girth Enhancement, Male Aesthetics'
+   flagship heading). Three more clinical pages have a pull-quote
+   breaking up what was previously an unbroken text column.
+2. **Where does the full logo lockup now appear?** Homepage
+   (`AuthorityMediaSection`, above the Medical Education & Training
+   copy) and About (`AuthorityBlock`, right after the hero) — both on
+   light backgrounds for clean contrast.
+3. **Where was navy actually removed, and what replaced it?** Every
+   `.section-dark` consumer (Featured Procedure on the homepage, the
+   Credentials section and footer on About, the ED treatment ladder,
+   the Girth Enhancement "Expected variability" section, the Penile
+   Implant "surgical pathway" section) — replaced by
+   `--color-stone-950/900/800`, a deep charcoal rather than a tinted
+   navy. `--color-ink-*` was deleted, so there's no way for navy to
+   resurface through that token.
+4. **Where does real background texture/depth appear, and how is it
+   built?** `EditorialTexture` (diagonal hatching + a faint AM
+   watermark) on the homepage's Featured Procedure section, About's
+   Credentials section, and Girth Enhancement's "Expected variability"
+   section (watermark off there, section too short for it to read
+   well). `TonalSection` gives Male Aesthetics' "Also available" block
+   a warm-gradient tone distinct from the flat white sections around
+   it.
+5. **What motion was actually added, distinct from what already
+   existed?** `BrandCurve`'s SVG path draws in on scroll (`pathLength`
+   0→1) under three H1s/headings; `AuthorityBlock`'s metric numbers
+   scale in (0.94→1) on top of the pre-existing fade+rise stagger.
+   Both ride the same shared `motion-config` tokens as everything
+   else, so `prefers-reduced-motion` handling is inherited, not
+   reimplemented.
+6. **How were text walls actually broken up, and were clinical facts
+   removed to do it?** `PullQuote` (existing component) now appears on
+   Filler Correction, Testosterone, and Penile Implant, in each case
+   restating a claim already made in the surrounding prose — no
+   clinical content was cut to make room for it.
+7. **Where do recognition/media/review signals appear in the render
+   tree, even while gated?** `RecognitionSection` and
+   `MediaAppearancesSection` render on About (after Credentials);
+   `PatientReviewsCta` renders in About's closing CTA. All three
+   currently return `null` — confirmed via a real-browser DOM check
+   (`document.body.innerText` has no "award", "recognition",
+   "featured in", "rating", or "review" anywhere on the rendered
+   About page) — because no backing config has been marked
+   `publishReady`/configured. Nothing fake was rendered to make this
+   phase look more finished than the underlying data supports.
+8. **Which authority elements remain hidden, and why?** Awards,
+   media/editorial appearances, and patient reviews all stay at zero
+   entries — none of `doctor.awards[].publishReady`,
+   `mediaAppearances[].publishReady`, or `patientReviews.publishReady`
+   was touched. They stay hidden because no verified data for them
+   exists yet, not because of a bug or an oversight.
+
+### QA results
+
+`tsc --noEmit`, `eslint`, `next build` clean after every commit. Real
+browser QA: zero horizontal overflow at 375/390/430/768/1024/1280/
+1440/1728px on Home and About (768px and 1280px specifically re-checked
+given this phase's two header breakpoint changes); zero overflow at
+390/1440px on Male Aesthetics, Girth Enhancement, Testosterone, Penile
+Implant, and one Insight article; exactly one `<h1>` per page checked;
+zero console errors (two pre-existing, unrelated warnings: the expected
+`NEXT_PUBLIC_SITE_URL` notice, and a benign "logo preloaded but not
+used within a few seconds" hint from the header's `priority` image).
+One real regression was found and fixed during this QA pass — the
+1280px header gap collision documented above — which is the reason
+this phase re-ran the full viewport sweep after the fix rather than
+treating the first pass as sufficient.
+
+### What Phase 13 explicitly did not do
+
+Did not deploy. Did not add any new SEO article or Insight page. Did
+not enable PRP. Did not populate any `mediaAppearances` entry,
+`patientReviews` profile, or flip any `doctor.awards` entry to
+`publishReady: true` — no outlet name, article title, review count, or
+award title was invented anywhere. Did not use any of the 7
+AI-generated/unrelated images — confirmed neither referenced in any
+component nor reachable from any route. Did not give Girth Enhancement
+the full "most visually sophisticated page" treatment the brief asked
+for beyond the palette/texture/motion/pull-quote changes already
+listed — it received the same treatment as the other clinical pages,
+not a distinct flagship redesign; this is a known gap, not an oversight,
+and is the most likely candidate for a follow-up pass if the owner
+wants to push further.
