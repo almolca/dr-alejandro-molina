@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
+import { Faq } from "@/components/ui/Faq";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { TreatmentCtaSection } from "@/components/sections/TreatmentCtaSection";
 import { breadcrumbSchema } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
 
@@ -93,6 +95,33 @@ export default function SexualMedicinePage() {
           </StaggerGroup>
         </Container>
       </section>
+
+      <Faq
+        items={[
+          {
+            question: "Where do I start if I'm not sure what's causing the problem?",
+            answer:
+              "With an assessment. Erectile dysfunction can have several contributing causes, and treatment is matched to what's actually found — not assumed from symptoms alone.",
+          },
+          {
+            question: "Is Penile Doppler always required?",
+            answer:
+              "No. It's used when a vascular cause needs to be evaluated specifically, not as a routine step for every patient.",
+          },
+          {
+            question: "Is shockwave therapy a first-line treatment?",
+            answer:
+              "No. It's one option that may be considered for selected patients after assessment, not a stand-alone starting point.",
+          },
+        ]}
+      />
+
+      <TreatmentCtaSection
+        heading="Start With an Assessment, Not an Assumption"
+        sourcePage={PATH}
+        secondary={{ label: "Explore Erectile Dysfunction", href: "/erectile-dysfunction" }}
+        bookingLabel="Book a Confidential Consultation"
+      />
     </>
   );
 }
