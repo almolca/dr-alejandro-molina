@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { doctor } from "@/config/doctor";
+import { AuthorityBlock } from "@/components/ui/AuthorityBlock";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -22,29 +23,6 @@ export const metadata: Metadata = buildMetadata({
     "Specialist penile girth enhancement in Abu Dhabi with Dr. Alejandro Molina, Consultant Urologist & Andrologist — 500+ procedures performed, experience since 2018. Anatomy-led, hyaluronic acid and surgical options, realistic expectations.",
   path: PATH,
 });
-
-/**
- * Authority block — SEO_RESTRUCTURE_IMPLEMENTATION_PLAN.md Phase A4.
- * Order follows the owner-approved brief specifically for this page:
- * procedure-specific experience first, generic Urology years left to
- * the homepage/About strip. "Consultant" is not gated on any config
- * field — it's the doctor's title, already used sitewide.
- */
-const authorityMetrics = [
-  doctor.girthProcedureCount !== undefined && {
-    value: doctor.girthProcedureCount,
-    label: "Procedures Performed",
-  },
-  doctor.girthEnhancementSince !== undefined && {
-    value: `Since ${doctor.girthEnhancementSince}`,
-    label: "Penile Girth Enhancement Experience",
-  },
-  { value: "Consultant", label: "Urologist & Andrologist" },
-  doctor.medicalTrainer?.role !== undefined && {
-    value: "Medical Trainer",
-    label: "Penile Enhancement Techniques",
-  },
-].filter((metric): metric is { value: string; label: string } => Boolean(metric));
 
 const breadcrumbItems = [
   { name: "Home", href: "/" },
@@ -182,24 +160,11 @@ export default function PenileGirthEnhancementPage() {
       </section>
 
       {/* Authority block — procedure-specific experience first for this page (Phase A brief) */}
-      {authorityMetrics.length > 0 && (
-        <section className="border-t border-border bg-background py-14">
-          <Container>
-            <StaggerGroup className="grid grid-cols-2 gap-x-8 gap-y-10 lg:grid-cols-4 lg:gap-6">
-              {authorityMetrics.map((metric) => (
-                <StaggerItem key={metric.label} className="text-center lg:text-left">
-                  <p className="font-display text-display-md text-foreground">
-                    {metric.value}
-                  </p>
-                  <p className="mt-2 text-xs font-medium uppercase tracking-widest text-muted-foreground">
-                    {metric.label}
-                  </p>
-                </StaggerItem>
-              ))}
-            </StaggerGroup>
-          </Container>
-        </section>
-      )}
+      <section className="border-t border-border bg-background py-14">
+        <Container>
+          <AuthorityBlock />
+        </Container>
+      </section>
 
       {/* What patients want + consultation/anatomy */}
       <section className="border-t border-border bg-surface py-section-y">
