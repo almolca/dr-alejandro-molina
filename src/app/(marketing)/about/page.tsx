@@ -6,6 +6,7 @@ import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { TextureOverlay } from "@/components/ui/TextureOverlay";
 import { MaskedReveal } from "@/components/motion/MaskedReveal";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
@@ -200,7 +201,8 @@ export default function AboutPage() {
       )}
 
       {/* Structured credential list — spec §15: "use structured credential list separately" */}
-      <section className="section-dark bg-background py-section-y text-foreground">
+      <section className="section-dark relative bg-background py-section-y text-foreground">
+        <TextureOverlay />
         <Container>
           <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
             Background
