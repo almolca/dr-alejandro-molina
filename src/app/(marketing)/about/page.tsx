@@ -8,7 +8,7 @@ import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { PullQuote } from "@/components/ui/PullQuote";
-import { TextureOverlay } from "@/components/ui/TextureOverlay";
+import { EditorialTexture } from "@/components/ui/EditorialTexture";
 import { MaskedReveal } from "@/components/motion/MaskedReveal";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
@@ -221,7 +221,7 @@ export default function AboutPage() {
 
       {/* Structured credential list — spec §15: "use structured credential list separately" */}
       <section className="section-dark relative bg-background py-section-y text-foreground">
-        <TextureOverlay />
+        <EditorialTexture />
         <Container>
           <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
             Background

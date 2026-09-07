@@ -2,7 +2,7 @@ import Link from "next/link";
 import { AuthorityBlock } from "@/components/ui/AuthorityBlock";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { TextureOverlay } from "@/components/ui/TextureOverlay";
+import { EditorialTexture } from "@/components/ui/EditorialTexture";
 import { Reveal } from "@/components/motion/Reveal";
 
 /**
@@ -18,7 +18,7 @@ import { Reveal } from "@/components/motion/Reveal";
 export function FeaturedProcedureSection() {
   return (
     <section className="section-dark relative bg-background py-section-y text-foreground">
-      <TextureOverlay />
+      <EditorialTexture />
       <Container className="mx-auto max-w-2xl text-center">
         <Reveal>
           <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
