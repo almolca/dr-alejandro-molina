@@ -12,6 +12,8 @@
 
 **Known blocker, explicitly deferred:** the owner will save two real logo files (`public/brand/logo-full.png`, `public/brand/logo-symbol.png` — exact paths TBC) into the repo separately; this plan's Part A covers everything **except** wiring those files into Header/Footer/favicon, which is a short follow-up once the files exist (steps are specified at the end of Part A so they're ready to execute the moment the files land).
 
+**Implementation status (2026-09-07): Parts A-I all landed except Task A4 (logo wiring, blocked — no files on disk yet).** Branch `phase-r2-1-r3-visual-authority`. Full record: `IMPLEMENTATION_REPORT.md` Phase 12. Section 12 of the original brief (trust/authority logo strip) was not built — it depends on the same logo files plus verified media/award data, none of which exists yet; tracked in `BRAND_AUTHORITY_ASSET_REQUIREMENTS.md`.
+
 ## Global Constraints
 
 - No new routes.

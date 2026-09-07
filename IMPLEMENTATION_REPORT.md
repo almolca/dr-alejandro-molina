@@ -1987,3 +1987,131 @@ Peyronie's, Fertility, Insights index/template further polish) — those
 items in `POSITIONING_UX_REDESIGN_PLAN.md` remain open. Did not deploy
 or set `NEXT_PUBLIC_SITE_URL`. Did not merge `phase-r1-r2-positioning-
 redesign` to `main`.
+
+---
+
+## Phase 12 — Visual enrichment & authority architecture (Phase R2.1/R3, 2026-09-07)
+
+Implements the config-driven authority/media/review architecture, a
+navy/ink color layer, restrained texture, and text-wall reduction from
+the owner's "PHASE R2.1/R3" prompt, on branch
+`phase-r2-1-r3-visual-authority` (off `phase-r1-r2-positioning-
+redesign`). Full task-by-task detail:
+`docs/superpowers/plans/2026-09-07-phase-r2-1-r3-visual-authority.md`.
+Every commit verified clean (`tsc --noEmit` + `eslint` + `next build`)
+before landing.
+
+### Known blocker, explicitly deferred: real logo files
+
+The owner attached two logo images (full lockup, AM symbol) directly
+in conversation. **These could not be wired in this phase** — no tool
+available in this session can extract a pasted/inline image to a file
+on disk; only files that already exist at a path can be read. The
+owner is saving the files into the repo separately (suggested paths:
+`public/brand/logo-full.png`, `public/brand/logo-symbol.png`). Once
+they exist, wiring them into the favicon (`icon.tsx`/`apple-icon.tsx`),
+footer, and (space permitting) header is a short follow-up — steps are
+pre-specified in the plan document's Task A4 so it's ready to execute
+immediately once the files land. Nothing was drawn, reconstructed, or
+approximated from the images in their place.
+
+### 1. Config-driven authority/media/review architecture
+
+Three new gated components, all following the exact fail-safe pattern
+already established by `doctor.awards`/`RecognitionSection`:
+- `src/config/mediaAppearances.ts` + `MediaAppearancesSection` — ships
+  with an empty array; renders nothing until an entry has
+  `publishReady: true`.
+- `src/config/patientReviews.ts` + `PatientReviewsCta` — ships
+  `undefined`; renders nothing until a real, verified `profileUrl` is
+  configured with `publishReady: true`. Supports a rating/count once
+  verified, or a neutral "Read Verified Patient Reviews" CTA if not.
+- `RecognitionSection` restyled (more editorial, less "badge wall") —
+  still fully gated, still renders nothing today (both `doctor.awards`
+  entries remain `publishReady: false`).
+
+Verified via direct DOM inspection on `/about` (where all three are
+now placed): confirmed neither "Professional Recognition" nor "Media &"
+text appears anywhere on the rendered page — the gate works.
+
+### 2. Color system — navy/ink layer
+
+Added a new `ink` OKLCH color scale (`--color-ink-50` through `-950`)
+alongside the existing `stone`/`bronze`/`olive` scales, and repointed
+`.section-dark`'s background/foreground/surface/border/focus-ring from
+`stone` to `ink`. The bronze accent is unchanged — only the base
+ground tones shifted. Verified visually: the homepage's flagship band,
+the footer, and About's Credentials section now read as genuinely
+navy-toned rather than neutral near-black, with contrast unchanged
+(same high-contrast 50-on-950 structure as before).
+
+### 3. Restrained texture
+
+New `TextureOverlay` component — pure CSS (hairline diagonal pattern +
+soft radial glow, `opacity-[0.04]`, `pointer-events-none`,
+`aria-hidden`), no bitmap asset, no JS, no animation. Applied to
+exactly 2 sections (the homepage's flagship band, About's Credentials
+section) — deliberately not broader, per the brief's own "never feel
+like wallpaper" instruction.
+
+### 4. Text-wall reduction
+
+New `PullQuote` component, applied to About (after the narrative
+section — replaces nothing, new content), Men's Health (converted an
+existing plain paragraph into a styled quote rather than duplicating
+it), Penile Girth Enhancement (new, between Options and Expected
+Variability), and — going beyond the original plan — the Insights
+article template itself via a new optional `keyTakeaway` field,
+demonstrated on the "500+ procedures" article.
+
+### 5. About page authority sequence
+
+Reordered to: hero → **AuthorityBlock** (new) → narrative → **pull
+quote** (new) → Medical Education → Credentials (now textured + navy)
+→ Recognition → **Media Appearances** (new) → closing CTA — matching
+the brief's requested sequence, with the two new gated sections adding
+zero visible content today but completing the architecture.
+
+### 6. Homepage authority/media layer
+
+`MedicalTrainingSection` renamed to `AuthorityMediaSection` and
+extended to combine Recognition + Media Appearances + Medical Training
+in one section (per the brief's explicit request for "one compact
+section," not three). Today it renders exactly what
+`MedicalTrainingSection` rendered before (Recognition and Media both
+have zero publish-ready entries) — the homepage's length and section
+count are unaffected; the section is simply ready to grow.
+
+### 7. Iconography
+
+Added `lucide-react` icons (already a dependency, no new library) to
+two existing numbered-step sequences: Men's Health's 5-step diagnostic
+narrative (icon replaces the number — judged cleaner than stacking
+both for a 5-item simple list) and the Erectile Dysfunction treatment
+ladder's 7 steps (icon added above the existing number, since the
+ladder's ordering itself is meaningful and worth keeping visible).
+Icons are neutral/abstract where a literal one would be tasteless
+(e.g. a circle-dot for vacuum/device options, not a literal device).
+
+### 8. QA results
+
+`tsc --noEmit`, `eslint`, `next build` clean after every commit.
+Real-browser QA at 768px (the exact breakpoint that broke during
+Phase 11) and 390px across all 8 priority pages (Homepage, About, Male
+Aesthetics, Penile Girth Enhancement, Penile Filler Correction, Men's
+Health, Insights index, one Insight article), plus Erectile Dysfunction
+for the new iconography: zero overflow anywhere, exactly one `<h1>` per
+page, zero console errors beyond the pre-existing expected
+`NEXT_PUBLIC_SITE_URL` warning. No regression found this pass (unlike
+Phase 11, which caught a real 768px overflow bug).
+
+### What Phase R2.1/R3 explicitly did not do
+
+Did not wire the real logo (blocked — see above). Did not build the
+trust/authority logo strip (§12 of the brief — depends on the logo and
+verified media/award data, none of which exists yet). Did not populate
+any `mediaAppearances` entry, `patientReviews` profile, or flip any
+`doctor.awards` entry to `publishReady: true` — no outlet name,
+article title, review count, or award title was invented anywhere.
+Did not touch `features.prpPage`, `bookingUrl`, or
+`physicianProfileUrl`. Did not create any new route. Did not deploy.
