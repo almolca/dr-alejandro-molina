@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { doctor } from "@/config/doctor";
 import {
@@ -17,7 +18,13 @@ export function Footer() {
       <Container className="py-section-y">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
-            <p className="font-display text-2xl">{doctor.displayName}</p>
+            {/* The symbol is navy-on-transparent, so it disappears
+                against this section's own navy background — a light
+                chip gives it real contrast regardless of section theme. */}
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-stone-50 p-2">
+              <Image src="/brand/logo-symbol.png" alt="" width={28} height={28} />
+            </div>
+            <p className="mt-4 font-display text-2xl">{doctor.displayName}</p>
             <p className="mt-1 text-sm text-muted-foreground">{doctor.title}</p>
             <p className="mt-3 max-w-sm text-sm text-muted-foreground">
               Andrology · Men&rsquo;s Sexual Health · Male Genital Aesthetics
