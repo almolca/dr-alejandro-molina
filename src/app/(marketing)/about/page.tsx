@@ -2,15 +2,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { doctor } from "@/config/doctor";
 import { isPhysicianProfileConfigured, practice, practiceLocationLine } from "@/config/practice";
+import { AuthorityBlock } from "@/components/ui/AuthorityBlock";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { PullQuote } from "@/components/ui/PullQuote";
 import { TextureOverlay } from "@/components/ui/TextureOverlay";
 import { MaskedReveal } from "@/components/motion/MaskedReveal";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { MediaAppearancesSection } from "@/components/sections/MediaAppearancesSection";
 import { RecognitionSection } from "@/components/sections/RecognitionSection";
 import { breadcrumbSchema } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
@@ -128,6 +131,13 @@ export default function AboutPage() {
         </Container>
       </section>
 
+      {/* Authority block — Phase R2.1/R3, key facts right after the hero */}
+      <section className="border-t border-border bg-background py-14">
+        <Container>
+          <AuthorityBlock />
+        </Container>
+      </section>
+
       {/* Narrative — alternating editorial rows */}
       <section className="border-t border-border bg-surface py-section-y">
         <Container>
@@ -168,6 +178,15 @@ export default function AboutPage() {
           </div>
         </Container>
       </section>
+
+      {/* Pull quote — Phase R2.1/R3, breaks up the text-heavy narrative section */}
+      <Container className="max-w-2xl py-section-y">
+        <PullQuote>
+          Penile girth enhancement is approached within an andrology and
+          urology context — anatomy-led and medically supervised, never
+          as a standalone cosmetic service.
+        </PullQuote>
+      </Container>
 
       {/* Medical Education & Training — SEO_RESTRUCTURE_IMPLEMENTATION_
           PLAN.md Phase B4. Deliberately has no BookingCta or any
@@ -220,6 +239,7 @@ export default function AboutPage() {
       </section>
 
       <RecognitionSection />
+      <MediaAppearancesSection />
 
       {/* Closing CTA */}
       <section className="bg-surface py-section-y">
