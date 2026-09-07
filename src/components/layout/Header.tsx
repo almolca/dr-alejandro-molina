@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { doctor } from "@/config/doctor";
 import { BookingCta } from "@/components/ui/BookingCta";
@@ -23,12 +24,22 @@ export function Header() {
       )}
     >
       <Container className="flex h-20 items-center justify-between">
-        <Link href="/" className="flex flex-col leading-tight">
-          <span className="font-display text-lg tracking-tight text-foreground">
-            {doctor.displayName}
-          </span>
-          <span className="hidden text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-muted-foreground lg:block">
-            {doctor.title}
+        <Link href="/" className="flex items-center gap-2.5">
+          <Image
+            src="/brand/logo-symbol.png"
+            alt=""
+            width={26}
+            height={26}
+            className="shrink-0"
+            priority
+          />
+          <span className="flex flex-col leading-tight">
+            <span className="font-display text-lg tracking-tight text-foreground">
+              {doctor.displayName}
+            </span>
+            <span className="hidden text-[0.6875rem] font-medium uppercase tracking-[0.12em] text-muted-foreground xl:block">
+              {doctor.title}
+            </span>
           </span>
         </Link>
 
