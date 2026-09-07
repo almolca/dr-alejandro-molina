@@ -19,10 +19,14 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             {/* The symbol is navy-on-transparent, so it disappears
-                against this section's own navy background — a light
-                chip gives it real contrast regardless of section theme. */}
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-stone-50 p-2">
-              <Image src="/brand/logo-symbol.png" alt="" width={28} height={28} />
+                against this section's own dark background — a light
+                mark gives it real contrast. Squared (not circular) to
+                match the site's own editorial language, with a bronze
+                border rather than a plain white fill, so it reads as
+                an intentional part of the identity, not a patch
+                (Phase R3 correction). */}
+            <div className="flex h-12 w-12 items-center justify-center rounded-sm border border-accent-strong/40 bg-stone-50 p-2">
+              <Image src="/brand/logo-symbol.png" alt="" width={30} height={30} />
             </div>
             <p className="mt-4 font-display text-2xl">{doctor.displayName}</p>
             <p className="mt-1 text-sm text-muted-foreground">{doctor.title}</p>
