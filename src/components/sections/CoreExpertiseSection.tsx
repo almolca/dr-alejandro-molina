@@ -46,7 +46,7 @@ const secondaryLinks = [
   { label: "Peyronie's Disease", href: "/peyronies-disease" },
   { label: "Penile Doppler", href: "/erectile-dysfunction/penile-doppler" },
   { label: "Premature Ejaculation", href: "/sexual-medicine" },
-  { label: "Low Libido", href: "/mens-health/low-libido" },
+  { label: "Varicocele", href: "/male-fertility/varicocele" },
 ];
 
 export function CoreExpertiseSection() {

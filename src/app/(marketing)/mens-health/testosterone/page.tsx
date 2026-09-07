@@ -224,8 +224,8 @@ export default function TestosteronePage() {
       <RelatedTreatments
         items={[
           { label: "Erectile Dysfunction", href: "/erectile-dysfunction" },
-          { label: "Low Libido", href: "/mens-health/low-libido" },
           { label: "Male Fertility", href: "/male-fertility" },
+          { label: "Varicocele", href: "/male-fertility/varicocele" },
         ]}
       />
 

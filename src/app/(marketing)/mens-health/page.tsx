@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
+import { Faq } from "@/components/ui/Faq";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { TreatmentCtaSection } from "@/components/sections/TreatmentCtaSection";
 import { breadcrumbSchema } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
 
@@ -23,16 +25,52 @@ const breadcrumbItems = [
   { name: "Men's Health", href: PATH },
 ];
 
+const diagnosticSteps = [
+  "Symptoms",
+  "Hormonal assessment",
+  "Metabolic / medical contributors",
+  "Sexual function",
+  "Individual treatment strategy",
+];
+
+/**
+ * Phase R1-R2: "Low Libido" previously linked to `/mens-health/low-libido`,
+ * a route whose own status in `lib/seo/routes.ts` is `"planned"` — a
+ * live link to a page that doesn't exist. Removed; reduced libido is
+ * now folded into the Testosterone row's own description instead.
+ * Erectile Dysfunction added as the "contextually appropriate" second
+ * link (brief item 16).
+ */
 const areas = [
   {
     label: "Testosterone & Male Hormonal Health",
-    description: "Symptoms, diagnosis and when treatment is clinically appropriate.",
+    description:
+      "Symptoms, diagnosis and when treatment is clinically appropriate — including reduced libido, assessed alongside hormonal, medical and psychosexual factors.",
     href: "/mens-health/testosterone",
   },
   {
-    label: "Low Libido",
-    description: "Assessed alongside hormonal, medical and psychosexual factors.",
-    href: "/mens-health/low-libido",
+    label: "Erectile Dysfunction",
+    description:
+      "Sexual-function changes are assessed as part of the same hormonal and metabolic picture where relevant.",
+    href: "/erectile-dysfunction",
+  },
+];
+
+const faqItems = [
+  {
+    question: "Does every symptom mean I have low testosterone?",
+    answer:
+      "No. Fatigue, low libido and reduced performance can be associated with testosterone deficiency, but they can also have many other causes — assessment looks at the full picture before attributing symptoms to any one cause.",
+  },
+  {
+    question: "Will I automatically be offered treatment?",
+    answer:
+      "No. Treatment is considered only after appropriate clinical and biochemical assessment, and only when there's a clear indication for it.",
+  },
+  {
+    question: "Is erectile dysfunction always related to hormones?",
+    answer:
+      "Not always. It can have hormonal, vascular, metabolic, neurological, medication-related and psychosexual contributors — assessment identifies which are relevant for you specifically.",
   },
 ];
 
@@ -51,9 +89,9 @@ export default function MensHealthPage() {
             </p>
             <h1 className="mt-4 font-display text-display-xl text-foreground">Men&rsquo;s Health</h1>
             <p className="mt-6 max-w-2xl text-body-lg text-muted-foreground">
-              Specialist care for the hormonal and general health
-              concerns that matter to men — assessed individually,
-              before any treatment is considered.
+              Hormonal, metabolic and sexual-health assessment for men
+              experiencing low testosterone, reduced libido, fatigue or
+              changes in sexual function.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
@@ -61,6 +99,31 @@ export default function MensHealthPage() {
               <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg" />
             </div>
           </Reveal>
+        </Container>
+      </section>
+
+      {/* Diagnostic narrative — Phase R1-R2 */}
+      <section className="border-t border-border py-section-y">
+        <Container>
+          <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+            How assessment works
+          </p>
+          <StaggerGroup className="mt-8 grid grid-cols-1 gap-y-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-6">
+            {diagnosticSteps.map((step, index) => (
+              <StaggerItem key={step}>
+                <span className="font-display text-2xl text-accent-strong">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <p className="mt-2 max-w-[18ch] text-sm text-foreground">{step}</p>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+          <p className="mt-10 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            Not every symptom means low testosterone, and not every low
+            result automatically requires treatment — assessment
+            establishes which factors are actually relevant before any
+            treatment is discussed.
+          </p>
         </Container>
       </section>
 
@@ -81,6 +144,14 @@ export default function MensHealthPage() {
           </StaggerGroup>
         </Container>
       </section>
+
+      <Faq items={faqItems} />
+
+      <TreatmentCtaSection
+        heading="Begin With a Hormonal Health Assessment"
+        sourcePage={PATH}
+        secondary={{ label: "Explore Testosterone & Male Hormonal Health", href: "/mens-health/testosterone" }}
+      />
     </>
   );
 }
