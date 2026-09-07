@@ -5,6 +5,7 @@ import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Faq } from "@/components/ui/Faq";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { PullQuote } from "@/components/ui/PullQuote";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { MaskedReveal } from "@/components/motion/MaskedReveal";
@@ -252,6 +253,14 @@ export default function PenileImplantPage() {
           </Reveal>
         </Container>
       </section>
+
+      {/* Pull quote — Phase R3 correction */}
+      <Container className="max-w-2xl py-14">
+        <PullQuote>
+          The aim is a realistic understanding of what the device can
+          and cannot do — before proceeding, not after.
+        </PullQuote>
+      </Container>
 
       {/* Risks and when it's not appropriate */}
       <section className="border-t border-border bg-surface py-section-y">

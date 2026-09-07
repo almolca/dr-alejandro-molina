@@ -4,6 +4,7 @@ import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Faq } from "@/components/ui/Faq";
+import { PullQuote } from "@/components/ui/PullQuote";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
@@ -156,6 +157,15 @@ export default function TestosteronePage() {
           </StaggerGroup>
         </Container>
       </section>
+
+      {/* Pull quote — Phase R3 correction */}
+      <Container className="max-w-2xl py-14">
+        <PullQuote>
+          Treatment is considered only after appropriate clinical and
+          biochemical assessment — never as a default response to
+          symptoms alone.
+        </PullQuote>
+      </Container>
 
       {/* Obesity/sleep/fertility framing + when therapy may be considered */}
       <section className="border-t border-border bg-surface py-section-y">

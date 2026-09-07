@@ -3,6 +3,7 @@ import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Faq } from "@/components/ui/Faq";
+import { PullQuote } from "@/components/ui/PullQuote";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
@@ -258,6 +259,15 @@ export default function PenileFillerCorrectionPage() {
           </StaggerGroup>
         </Container>
       </section>
+
+      {/* Pull quote — Phase R3 correction */}
+      <Container className="max-w-2xl py-14">
+        <PullQuote>
+          Every presentation is evaluated on its own anatomy and
+          findings — never through criticism of any prior provider or
+          treatment.
+        </PullQuote>
+      </Container>
 
       {/* Realistic expectations — dark section, this page's one dark moment */}
       <section className="section-dark bg-background py-section-y text-foreground">
