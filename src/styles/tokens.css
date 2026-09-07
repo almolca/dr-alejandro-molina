@@ -31,20 +31,21 @@
 }
 
 /*
- * Spec §7 Section 4 — "Premium dark section". Phase R2.1/R3: switched
- * from neutral stone to the navy/ink scale so the site's dark moments
- * read as brand-navy rather than generic near-black. Bronze accent is
- * unchanged — only the base ink/ground tones shifted.
+ * Spec §7 Section 4 — "Premium dark section". Phase R3 correction:
+ * reverted from the navy `ink` scale (Phase R2.1) back to warm
+ * charcoal/near-black — explicit owner direction that navy is not the
+ * dominant brand color, even though the logo itself uses navy.
+ * `stone-950` is a warm, near-black neutral (not blue-tinted).
  */
 .section-dark {
-  --background: var(--color-ink-950);
-  --foreground: var(--color-ink-50);
-  --surface: var(--color-ink-900);
-  --muted-foreground: var(--color-ink-400);
-  --border: var(--color-ink-800);
+  --background: var(--color-stone-950);
+  --foreground: var(--color-stone-50);
+  --surface: var(--color-stone-900);
+  --muted-foreground: var(--color-stone-400);
+  --border: var(--color-stone-800);
   --accent: var(--color-bronze-400);
   --accent-strong: var(--color-bronze-300);
-  --focus-ring: var(--color-ink-50);
+  --focus-ring: var(--color-stone-50);
 }
 
 /* Spec §16 — "Optional dark olive/ink secondary". */
@@ -76,22 +77,6 @@
   --color-bronze-700: oklch(42% 0.07 60);
   --color-bronze-800: oklch(33% 0.052 58);
   --color-bronze-900: oklch(25% 0.036 56);
-
-  /*
-   * Deep navy/ink scale — Phase R2.1/R3 brand-color direction ("deep
-   * navy / ink blue" primary). Low-chroma, cool dark blue — applied to
-   * .section-dark below so the site's existing "premium dark section"
-   * moments read as navy-branded rather than neutral near-black stone.
-   * The light theme (background/surface/border) is unchanged — it
-   * already matches the requested "warm white / soft ivory / light
-   * stone" direction.
-   */
-  --color-ink-50: oklch(96% 0.012 255);
-  --color-ink-100: oklch(91% 0.024 255);
-  --color-ink-400: oklch(45% 0.05 255);
-  --color-ink-800: oklch(22% 0.045 255);
-  --color-ink-900: oklch(17% 0.04 255);
-  --color-ink-950: oklch(12% 0.035 255);
 }
 
 @theme inline {
