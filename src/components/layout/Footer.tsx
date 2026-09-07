@@ -18,8 +18,9 @@ export function Footer() {
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <p className="font-display text-2xl">{doctor.displayName}</p>
-            <p className="mt-2 max-w-sm text-sm text-muted-foreground">
-              {doctor.specialtyLine}
+            <p className="mt-1 text-sm text-muted-foreground">{doctor.title}</p>
+            <p className="mt-3 max-w-sm text-sm text-muted-foreground">
+              Andrology · Men&rsquo;s Sexual Health · Male Genital Aesthetics
             </p>
             <p className="mt-6 text-sm text-muted-foreground">
               Consultations at {practiceLocationLine}
