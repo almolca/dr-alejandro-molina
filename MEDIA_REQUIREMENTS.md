@@ -14,18 +14,26 @@ live site (it previously did, which real visitors could see; this was
 fixed as a P0 launch blocker), only a short generic accessibility
 label and the visual surface itself.
 
-**Current wiring, verified by grep, not assumed:** exactly one config
-value — `doctor.profileImage` (`src/config/doctor.ts`) — drives every
-doctor-portrait placeholder on the site. It's reused in 3 places (Home
-hero, Home About section, `/about` page), so **dropping one real
-portrait file at the path below updates all three simultaneously** —
-"config-driven" is already true for the portrait today, not just a
-future promise. The clinical diagram (Penile Implant page) and the
-editorial/material texture image (Male Aesthetics, used twice — home
-teaser + full page) are currently separate, page-local placeholders
-with no shared config value, since spec §18 doesn't call for them to be
-the same image, and neither had a natural shared config to slot into
-without inventing one for a still-hypothetical asset.
+**Current wiring, verified by grep, not assumed:** the config value
+`doctor.profileImage` (`src/config/doctor.ts`) is where the real
+portrait file belongs once supplied (`doctor.profileImage.src`), and
+its `alt` field should be updated at the same time. As of Phase R1-R2,
+every `ImagePlaceholder` caller passes its own short, static `label`
+string rather than reading `doctor.profileImage.alt` directly (a P0
+fix — see the note above), so the four portrait-placeholder locations
+below aren't literally wired to one shared config value the way they
+were before that change; dropping a real image in and wiring it
+through `next/image` (not yet used anywhere in this codebase) is a
+small, mechanical change at each of the four call sites, not a
+larger refactor. **Four places** now use the portrait placeholder:
+Home hero, Home About section, `/about` page, and — new in
+Phase R1-R2 — the Male Aesthetics hub's physician-presence section.
+The clinical diagram (Penile Implant page) and the editorial/material
+texture image (Male Aesthetics hub hero — the homepage's own former
+teaser section using this same image was removed in the Phase R1-R2
+homepage consolidation, so this is now a single-use placeholder, not
+two) remain separate, page-local placeholders with no shared config
+value, since spec §18 doesn't call for them to be the same image.
 
 ---
 
@@ -43,15 +51,20 @@ without inventing one for a still-hypothetical asset.
 | **Alt text intent** | Something like "Dr. Alejandro Molina, Consultant Urologist & Andrologist" — currently `doctor.profileImage.alt` is a placeholder-pending string; update it alongside the file, not before |
 | **Desktop/mobile behavior** | `MaskedReveal`-wrapped (the site's panel-wipe reveal-on-scroll), so it animates in once, respecting `prefers-reduced-motion` automatically via the site-wide `MotionConfig` |
 
-### 2. About page portrait
+### 2. About page portrait (and the Male Aesthetics hub's physician-presence portrait)
 
-Same file and config value as #1 (`doctor.profileImage`) — no separate
-asset required unless a genuinely different, more editorial portrait is
-wanted specifically for `/about` (spec §18 lists both a "hero portrait"
-and an "optional arms-crossed / editorial portrait" as distinct
-options). If a second image is provided, it needs a new config value
-added to `doctor.ts` and a one-line change in `about/page.tsx` and
-`AboutSection.tsx` to point at it — not a larger refactor.
+Same intended file as #1 (`doctor.profileImage`) — no separate asset
+required unless a genuinely different, more editorial portrait is
+wanted specifically for `/about` or `/male-aesthetics` (spec §18 lists
+both a "hero portrait" and an "optional arms-crossed / editorial
+portrait" as distinct options). The Male Aesthetics hub gained its own
+physician-presence portrait slot in Phase R1-R2 (item 15 of that
+phase's brief — "reserve a meaningful section" for Dr. Molina on that
+page), currently the same clean placeholder as everywhere else. If a
+second (or third) distinct image is provided for any of these
+locations, each needs a new config value added to `doctor.ts` and a
+one-line change at its own call site to point at it — not a larger
+refactor.
 
 ### 3. Environmental consultation portrait
 
@@ -95,8 +108,8 @@ Two distinct needs, already placeholder-slotted in code today:
 
 | | |
 |---|---|
-| **Penile Implant device diagram** | `components/sections` via `app/(marketing)/penile-implant/page.tsx` — currently `<ImagePlaceholder index="§8" caption="Clean medical diagram — device placement, for illustration only. Photography/diagram pending." />`. Aspect ratio: square on mobile, 4:5 at `lg`. Should be a clean, clinically accurate line diagram (spec §8: "Use anatomical diagrams only if clinically tasteful and compliant") — commissioned illustration, not a stock medical stock-photo, and should go through the same compliance review as the page's text content (`UAE_COMPLIANCE_REVIEW.md`) before publishing, since an inaccurate or tasteless diagram carries the same risk as inaccurate text. |
-| **Male Genital Aesthetics texture/material imagery** | `components/sections/MaleAestheticsSection.tsx` (home) and `app/(marketing)/male-aesthetics/page.tsx` (full page) — currently placeholder-captioned "Editorial / material texture imagery — anatomy-led, not a clinical photograph. No genital close-ups." Aspect ratio 4:5. Per spec §7 Section 6: "No genital close-ups in MVP. Use abstract anatomy, tasteful medical imagery, materials/textures, or portrait/environmental photography." This is intentionally abstract, not a specific clinical photograph — a texture/material or abstract-anatomy image, sourced or commissioned with that brief in mind. |
+| **Penile Implant device diagram** | `app/(marketing)/penile-implant/page.tsx` — currently `<ImagePlaceholder index="§8" label="Medical diagram pending" />` (the full photography brief for this slot lives here, not in the component — see the P0 fix noted above). Aspect ratio: square on mobile, 4:5 at `lg`. Should be a clean, clinically accurate line diagram (spec §8: "Use anatomical diagrams only if clinically tasteful and compliant") — commissioned illustration, not a stock medical stock-photo, and should go through the same compliance review as the page's text content (`UAE_COMPLIANCE_REVIEW.md`) before publishing, since an inaccurate or tasteless diagram carries the same risk as inaccurate text. |
+| **Male Genital Aesthetics texture/material imagery** | `app/(marketing)/male-aesthetics/page.tsx` hero — currently `<ImagePlaceholder index="§13" label="Editorial imagery pending" />`. Aspect ratio 4:5. Per spec §7 Section 6: "No genital close-ups in MVP. Use abstract anatomy, tasteful medical imagery, materials/textures, or portrait/environmental photography." This is intentionally abstract, not a specific clinical photograph — a texture/material or abstract-anatomy image, sourced or commissioned with that brief in mind. |
 
 ---
 
@@ -163,10 +176,11 @@ the mark itself needs to change.
 
 | # | Asset | Status | Config-driven today? |
 |---|---|---|---|
-| 1 | Home hero portrait | Placeholder | Yes — `doctor.profileImage` |
-| 2 | About page portrait | Placeholder (same file as #1) | Yes — shares `doctor.profileImage` |
+| 1 | Home hero portrait | Placeholder | Intended file: `doctor.profileImage` |
+| 2 | About page portrait | Placeholder (same intended file as #1) | Intended file: shares `doctor.profileImage` |
+| 2b | Male Aesthetics hub physician-presence portrait (new, Phase R1-R2) | Placeholder (same intended file as #1) | Intended file: shares `doctor.profileImage` |
 | 3 | Environmental consultation portrait | Not placed on any page yet | No — needs a new config value + a page to place it on |
 | 4 | Secondary/close-up portrait | Not placed on any page yet | No |
 | 5 | Hospital-context image (optional) | Not placed on any page yet | No |
 | 6a | Penile Implant device diagram | Placeholder, page-local | No (page-local placeholder, not shared config — appropriate, since it's the only use) |
-| 6b | Male Aesthetics texture image | Placeholder, used in 2 places | Partially — same static caption/index reused, but not a shared config value; could be promoted to one if a 3rd usage appears |
+| 6b | Male Aesthetics texture image | Placeholder, single use (`/male-aesthetics` hero only — the homepage's former duplicate teaser was removed in Phase R1-R2) | No (page-local placeholder) |
