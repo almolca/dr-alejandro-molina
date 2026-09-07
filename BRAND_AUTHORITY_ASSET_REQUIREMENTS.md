@@ -2,15 +2,14 @@
 
 Phase R2.1/R3. This document lists exactly which owner-supplied assets and verified facts are still needed to finish wiring the brand/authority architecture built this phase. Nothing below has been invented — every config module this phase added (`mediaAppearances`, `patientReviews`) ships empty, and `doctor.awards` stays `publishReady: false`, until the real values listed here are supplied. See `MEDIA_REQUIREMENTS.md` for photography specifically (not duplicated here).
 
-## 1. Logo files
+## 1. Logo files — DONE (2026-09-07)
 
 | | |
 |---|---|
-| **Status** | Owner is saving these into the repo directly (in progress as of this phase). |
-| **Expected paths** | `public/brand/logo-full.png` (full lockup: AM monogram + "Dr. Alejandro Molina" + "CONSULTANT UROLOGIST & ANDROLOGIST") and `public/brand/logo-symbol.png` (AM monogram only, for favicon/compact contexts) — confirm exact paths/filenames once saved, since this plan can't currently see them on disk. |
-| **Format** | PNG with transparent background, as supplied. |
-| **Once available** | Wire into: `src/app/icon.tsx` / `apple-icon.tsx` (replace the current code-generated typographic mark with the AM symbol), footer brand column (full lockup, restrained size, alongside — not replacing — the existing `doctor.displayName`/title/specialty text, per the accessibility/SEO requirement that text stays available), and re-evaluate whether the header's compact text lockup should gain the AM symbol (only if it fits without reintroducing the 768px overflow found and fixed in Phase 11's QA). |
-| **Constraint** | Do not redraw, reinterpret, distort, or recolor — use exactly as supplied. |
+| **Status** | Wired in. `public/brand/logo-symbol.png` (AM monogram, 1254×1254, transparent) and `public/brand/logo-full.png` (full lockup: AM monogram + "Dr. Alejandro Molina" + "CONSULTANT UROLOGIST & ANDROLOGIST", 1536×1024) — used exactly as supplied, not redrawn or recolored. |
+| **Wired into** | `src/app/icon.png` (64×64, favicon) and `src/app/apple-icon.jpg` (180×180, flattened onto white per Apple's convention — the source has a transparent background, which iOS would otherwise fill with black) — both replace the previous temporary code-generated typographic mark. Footer brand column: the symbol sits in a small light circular chip (the source is navy-on-transparent, invisible against the footer's own navy `.section-dark` background without one) above the existing `doctor.displayName`/title/specialty text, which is unchanged. |
+| **Not yet placed** | `logo-full.png` (the full lockup) isn't used anywhere yet — a natural future spot is the About page hero, once real photography also exists there, so the two aren't competing for the same visual moment. The header intentionally stays text-only (adding the symbol risks reintroducing the 768px overflow found and fixed in Phase 11's QA — the header lockup is already tight at that exact breakpoint). |
+| **Note on the source folder** | `public/brand/` also contained 5 (as of this check, 7) AI-generated "doctor" photographs and one apparently unrelated marketing asset, mixed in with the 2 real logo files. Per explicit owner instruction, none of those are used or committed — they remain on disk, untracked. Using any of them as if they were real photography of Dr. Molina would violate this project's standing rule against invented photography (`MEDIA_REQUIREMENTS.md`). If any of those 7 files should be removed or were added by mistake, that's an owner decision, not made here. |
 
 ## 2. Professional recognition — exact official titles
 
@@ -47,8 +46,8 @@ Section 12 of the Phase R2.1/R3 brief asks for a restrained logo strip of verifi
 
 | # | Asset | Status |
 |---|---|---|
-| 1 | Full logo file | Owner saving separately |
-| 1 | AM symbol file | Owner saving separately |
+| 1 | Full logo file | **Done** — supplied, not yet placed on a page (About page is the natural future spot) |
+| 1 | AM symbol file | **Done** — wired into favicon, apple-icon, and footer |
 | 2 | Top Doctors Spain 2020 — exact official title | Not yet verified |
 | 2 | Doctoralia Awards Spain 2022 — exact official title | Not yet verified |
 | 3 | Media appearance entries (outlet/title/year/url) | None supplied yet |

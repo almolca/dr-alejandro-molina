@@ -2001,19 +2001,52 @@ redesign`). Full task-by-task detail:
 Every commit verified clean (`tsc --noEmit` + `eslint` + `next build`)
 before landing.
 
-### Known blocker, explicitly deferred: real logo files
+### Logo — deferred, then completed (2026-09-07, same day)
 
 The owner attached two logo images (full lockup, AM symbol) directly
-in conversation. **These could not be wired in this phase** — no tool
+in conversation. These could not be wired at the time — no tool
 available in this session can extract a pasted/inline image to a file
-on disk; only files that already exist at a path can be read. The
-owner is saving the files into the repo separately (suggested paths:
-`public/brand/logo-full.png`, `public/brand/logo-symbol.png`). Once
-they exist, wiring them into the favicon (`icon.tsx`/`apple-icon.tsx`),
-footer, and (space permitting) header is a short follow-up — steps are
-pre-specified in the plan document's Task A4 so it's ready to execute
-immediately once the files land. Nothing was drawn, reconstructed, or
-approximated from the images in their place.
+on disk, only files that already exist at a path can be read — so the
+owner saved them into the repo separately. **Task A4 was then
+completed** once the files landed at `public/brand/`.
+
+**Important finding when the files arrived:** the `public/brand/`
+folder contained not just the 2 real logo files, but 5 (later 7)
+AI-generated "doctor" photographs and one apparently unrelated
+marketing asset, all with generic auto-generated filenames
+("ChatGPT Image ...", "Elegant 3D Ebook Mockup..."). The photographs
+show a different-looking face in each generation (confirming they're
+synthetic, not photos of one real person), and one even shows a coat
+badge reading "mmc" rather than "NMC." This was flagged directly to
+the owner before touching anything, per this project's standing,
+repeatedly-stated rule against inventing photography
+(`MEDIA_REQUIREMENTS.md`: "No photographs of Dr. Molina have been
+generated, sourced, or invented"). The owner confirmed: leave the 7
+files in place but do not use them anywhere. Only the 2 real logo
+files were renamed (to `logo-symbol.png` / `logo-full.png`), used, and
+committed; the other 7 remain on disk, untracked, unused.
+
+**What was wired:**
+- `src/app/icon.png` (favicon, 64×64) and `src/app/apple-icon.jpg`
+  (180×180, flattened onto white — the source has a transparent
+  background, which iOS otherwise fills with black) replace the
+  previous temporary code-generated "AM" typographic mark.
+- Footer brand column: the AM symbol, in a small light circular chip.
+  Without the chip, the symbol (navy-on-transparent) was confirmed via
+  screenshot to be nearly invisible against the footer's own
+  `.section-dark` navy background — the chip fix was verified visually
+  before committing, not assumed.
+- Header deliberately kept text-only — the header lockup is already
+  tight at the 768px breakpoint (the exact overflow bug found and
+  fixed earlier this phase), and adding an image there wasn't worth
+  the regression risk for a header that already communicates identity
+  clearly in text.
+- `logo-full.png` (the full lockup) is supplied but not yet placed
+  anywhere — a natural future spot is the About page hero, once real
+  photography also exists there.
+
+QA re-run after the logo changes: 0 overflow at 390px and 768px, `tsc`/
+`eslint`/`next build` all clean.
 
 ### 1. Config-driven authority/media/review architecture
 
@@ -2107,9 +2140,11 @@ Phase 11, which caught a real 768px overflow bug).
 
 ### What Phase R2.1/R3 explicitly did not do
 
-Did not wire the real logo (blocked — see above). Did not build the
-trust/authority logo strip (§12 of the brief — depends on the logo and
-verified media/award data, none of which exists yet). Did not populate
+Did not build the trust/authority logo strip (§12 of the brief — still
+depends on verified media/award data, none of which exists yet, even
+though the logo itself is now wired). Did not use any of the 7
+AI-generated/unrelated files found alongside the real logo, per
+explicit owner instruction. Did not populate
 any `mediaAppearances` entry, `patientReviews` profile, or flip any
 `doctor.awards` entry to `publishReady: true` — no outlet name,
 article title, review count, or award title was invented anywhere.
