@@ -4,11 +4,12 @@ import { doctor } from "@/config/doctor";
 import { isPhysicianProfileConfigured, practice, practiceLocationLine } from "@/config/practice";
 import { AuthorityBlock } from "@/components/ui/AuthorityBlock";
 import { BookingCta } from "@/components/ui/BookingCta";
+import { BrandCurve } from "@/components/ui/BrandCurve";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
+import { EditorialTexture } from "@/components/ui/EditorialTexture";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
 import { PullQuote } from "@/components/ui/PullQuote";
-import { EditorialTexture } from "@/components/ui/EditorialTexture";
 import { MaskedReveal } from "@/components/motion/MaskedReveal";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
@@ -104,6 +105,7 @@ export default function AboutPage() {
                 European Training. Surgical Background. Dedicated Focus
                 on Men&rsquo;s Health.
               </h1>
+              <BrandCurve className="mt-6 h-4 w-32 text-accent-strong" />
             </Reveal>
             <Reveal delay={0.1}>
               <div className="mt-8 border-t border-border pt-6">

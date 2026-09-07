@@ -3,6 +3,7 @@ import Link from "next/link";
 import { doctor } from "@/config/doctor";
 import { AuthorityBlock } from "@/components/ui/AuthorityBlock";
 import { BookingCta } from "@/components/ui/BookingCta";
+import { BrandCurve } from "@/components/ui/BrandCurve";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Faq } from "@/components/ui/Faq";
@@ -139,6 +140,7 @@ export default function PenileGirthEnhancementPage() {
             <h1 className="mt-4 font-display text-display-xl text-foreground">
               Penile Girth Enhancement
             </h1>
+            <BrandCurve className="mt-6 h-4 w-32 text-accent-strong" />
             <p className="mt-6 max-w-2xl text-body-lg text-muted-foreground">
               A specialist medical approach to penile augmentation, with
               treatment planning based on anatomy, goals and realistic

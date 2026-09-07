@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { doctor } from "@/config/doctor";
 import { AuthorityBlock } from "@/components/ui/AuthorityBlock";
 import { BookingCta } from "@/components/ui/BookingCta";
+import { BrandCurve } from "@/components/ui/BrandCurve";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Faq } from "@/components/ui/Faq";
@@ -195,6 +196,7 @@ export default function MaleAestheticsPage() {
       <section className="py-section-y">
         <Container>
           <SectionHeading eyebrow="Flagship procedure" heading="Penile Girth Enhancement" size="xl" />
+          <BrandCurve className="mt-2 h-4 w-32 text-accent-strong" />
           <Reveal delay={0.05}>
             <p className="mt-6 max-w-2xl text-body-lg text-muted-foreground">
               The flagship procedure at this practice, and the most
