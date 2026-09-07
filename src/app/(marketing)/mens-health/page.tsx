@@ -4,6 +4,7 @@ import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Faq } from "@/components/ui/Faq";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
+import { PullQuote } from "@/components/ui/PullQuote";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -118,12 +119,12 @@ export default function MensHealthPage() {
               </StaggerItem>
             ))}
           </StaggerGroup>
-          <p className="mt-10 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            Not every symptom means low testosterone, and not every low
-            result automatically requires treatment — assessment
-            establishes which factors are actually relevant before any
-            treatment is discussed.
-          </p>
+          <div className="mt-10 max-w-2xl">
+            <PullQuote>
+              Not every symptom means low testosterone, and not every low
+              result automatically requires treatment.
+            </PullQuote>
+          </div>
         </Container>
       </section>
 

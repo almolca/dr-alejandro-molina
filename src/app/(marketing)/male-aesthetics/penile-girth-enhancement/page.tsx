@@ -6,6 +6,7 @@ import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Faq } from "@/components/ui/Faq";
+import { PullQuote } from "@/components/ui/PullQuote";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
@@ -226,6 +227,14 @@ export default function PenileGirthEnhancementPage() {
           </StaggerGroup>
         </Container>
       </section>
+
+      {/* Pull quote — Phase R2.1/R3 */}
+      <Container className="max-w-2xl py-14">
+        <PullQuote>
+          Results depend on anatomy, technique and the option chosen —
+          outcomes are discussed individually, never promised in advance.
+        </PullQuote>
+      </Container>
 
       {/* Expected variability — dark section, this page's one dark moment, used to give the "no numbers" honesty real weight */}
       <section className="section-dark bg-background py-section-y text-foreground">
