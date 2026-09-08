@@ -1,10 +1,11 @@
-import { PhotoFrame } from "@/components/editorial/PhotoFrame";
 import visual from "@/components/editorial/VisualSystem.module.css";
 import { practiceLocationLine } from "@/config/practice";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { EditorialField } from "@/components/editorial/LayeredEditorialPanel";
+import { HeroAtmosphere } from "@/components/editorial/HeroAtmosphere";
+import { HeroPortrait } from "@/components/editorial/HeroPortrait";
 import { MaskedReveal } from "@/components/motion/MaskedReveal";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -16,7 +17,8 @@ import { Reveal } from "@/components/motion/Reveal";
 export function HeroSection() {
   return (
     <EditorialField>
-      <Container className={visual.heroGrid}>
+      <HeroAtmosphere align="right" />
+      <Container className={`${visual.heroGrid} relative z-10`}>
         <div>
           <Reveal>
             <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
@@ -70,8 +72,7 @@ export function HeroSection() {
         </div>
 
         <div className={visual.heroMedia}>
-          <MaskedReveal><PhotoFrame slot="homeHero" priority /></MaskedReveal>
-
+          <MaskedReveal><HeroPortrait slot="homeHero" priority objectPosition="center 4%" /></MaskedReveal>
         </div>
       </Container>
 

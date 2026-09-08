@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { doctor } from "@/config/doctor";
 import { ResponseThresholdDiagram } from "@/components/illustrations/ResponseThresholdDiagram";
 import { EditorialFrame } from "@/components/editorial/EditorialFrame";
+import { HeroAtmosphere } from "@/components/editorial/HeroAtmosphere";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -149,9 +150,10 @@ export default function PrematureEjaculationPage() {
 
       <Breadcrumb items={breadcrumbItems} />
 
-      {/* Hero */}
-      <section className="py-section-y">
-        <Container className="grid gap-12 lg:grid-cols-[1.1fr_0.7fr] lg:items-center lg:gap-16">
+      {/* Hero — the editorial image is part of the composition itself, not a separate block below */}
+      <section className="relative py-section-y">
+        <HeroAtmosphere align="right" restrained />
+        <Container className="relative z-10 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
           <div>
             <Reveal>
               <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
@@ -182,9 +184,9 @@ export default function PrematureEjaculationPage() {
               </div>
             </Reveal>
           </div>
-          <Reveal delay={0.1} className="hidden justify-self-center lg:flex">
-            <ResponseThresholdDiagram className="h-40 w-40 text-muted-foreground" />
-          </Reveal>
+          <MaskedReveal className="order-last w-full lg:order-none">
+            <EditorialFrame slot="peHero" landscape priority />
+          </MaskedReveal>
         </Container>
       </section>
 
@@ -214,20 +216,14 @@ export default function PrematureEjaculationPage() {
         </Container>
       </section>
 
-      {/* Editorial break — kept out of the hero so it never competes visually with the ResponseThresholdDiagram there */}
-      <section className="py-section-y">
-        <Container>
-          <MaskedReveal className="mx-auto max-w-4xl">
-            <EditorialFrame slot="peHero" landscape />
-          </MaskedReveal>
-        </Container>
-      </section>
-
-      {/* Contributing factors */}
+      {/* Contributing factors — ResponseThresholdDiagram lives here now, away from the hero's raster image */}
       <section className="border-t border-border py-section-y">
         <Container>
           <SectionHeading eyebrow="Why assessment matters" heading="Several Factors Can Contribute" />
-          <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          <Reveal delay={0.05} className="mt-10 flex justify-center sm:justify-start">
+            <ResponseThresholdDiagram className="h-24 w-24 text-muted-foreground" />
+          </Reveal>
+          <StaggerGroup className="mt-10 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {factors.map((factor) => (
               <StaggerItem key={factor.label} className="border-t border-border pt-6">
                 <h3 className="font-display text-lg text-foreground">{factor.label}</h3>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { AmpersandText } from "@/components/ui/AmpersandText";
 import { HormoneBalanceDiagram } from "@/components/illustrations/HormoneBalanceDiagram";
 import { EditorialFrame } from "@/components/editorial/EditorialFrame";
+import { HeroAtmosphere } from "@/components/editorial/HeroAtmosphere";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -98,30 +99,31 @@ export default function TestosteronePage() {
 
       <Breadcrumb items={breadcrumbItems} />
 
-      {/* Hero — centered, distinct rhythm from ED (left-aligned) and Implant (split) */}
-      <section className="py-section-y">
-        <Container className="mx-auto max-w-3xl text-center">
-          <Reveal>
-            <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
-              Men&rsquo;s Health
-            </p>
-            <h1 className="mt-4 font-display text-display-xl text-foreground">
-              <AmpersandText text="Testosterone & Male Hormonal Health" />
-            </h1>
-            <p className="mx-auto mt-6 max-w-xl text-body-lg text-muted-foreground">
-              Low energy, reduced libido and sexual symptoms can be
-              associated with testosterone deficiency — but they can
-              also have many other causes.
-            </p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-              <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg" />
-            </div>
-          </Reveal>
-        </Container>
-        <Container className="mt-14 max-w-4xl">
-          <MaskedReveal>
+      {/* Hero — left-aligned split, image beside copy in the first viewport (distinct rhythm from ED's narrower media column and Implant's split) */}
+      <section className="relative py-section-y">
+        <HeroAtmosphere align="right" restrained />
+        <Container className="relative z-10 grid gap-12 lg:grid-cols-[1fr_0.85fr] lg:items-center lg:gap-16">
+          <div>
+            <Reveal>
+              <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
+                Men&rsquo;s Health
+              </p>
+              <h1 className="mt-4 font-display text-display-xl text-foreground">
+                <AmpersandText text="Testosterone & Male Hormonal Health" />
+              </h1>
+              <p className="mt-6 max-w-xl text-body-lg text-muted-foreground">
+                Low energy, reduced libido and sexual symptoms can be
+                associated with testosterone deficiency — but they can
+                also have many other causes.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="mt-10 flex flex-wrap items-center gap-4">
+                <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg" />
+              </div>
+            </Reveal>
+          </div>
+          <MaskedReveal className="order-last w-full lg:order-none">
             <EditorialFrame slot="testosteroneHero" landscape priority />
           </MaskedReveal>
         </Container>

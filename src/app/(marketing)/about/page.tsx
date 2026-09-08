@@ -1,4 +1,6 @@
 import { PhotoFrame } from "@/components/editorial/PhotoFrame";
+import { HeroAtmosphere } from "@/components/editorial/HeroAtmosphere";
+import { HeroPortrait } from "@/components/editorial/HeroPortrait";
 import { FlagshipAuthorityFeature } from "@/components/editorial/FlagshipAuthorityFeature";
 import visual from "@/components/editorial/VisualSystem.module.css";
 import type { Metadata } from "next";
@@ -92,10 +94,11 @@ export default function AboutPage() {
 
       {/* Hero */}
       <EditorialField className="py-14">
-        <Container className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <HeroAtmosphere align="left" restrained />
+        <Container className="relative z-10 grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           {/* Identity precedes the physician portrait on mobile. */}
           <MaskedReveal className="order-last w-full lg:order-first lg:max-w-lg">
-            <PhotoFrame slot="aboutPortrait" priority />
+            <HeroPortrait slot="aboutPortrait" priority objectPosition="center 4%" />
           </MaskedReveal>
 
           <div>
