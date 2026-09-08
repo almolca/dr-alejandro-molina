@@ -1,4 +1,6 @@
+import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import type { Metadata } from "next";
+import { ConsultationPathwayDiagram } from "@/components/illustrations/ConsultationPathwayDiagram";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -16,7 +18,7 @@ const PATH = "/sexual-medicine";
 export const metadata: Metadata = buildMetadata({
   title: "Sexual Medicine",
   description:
-    "Specialist sexual medicine in Abu Dhabi — erectile dysfunction assessment, Penile Doppler and shockwave therapy, with treatment matched to the underlying cause.",
+    "Specialist sexual medicine in Abu Dhabi — erectile dysfunction and premature ejaculation assessment, Penile Doppler and shockwave therapy, with treatment matched to the underlying cause.",
   path: PATH,
 });
 
@@ -30,6 +32,11 @@ const areas = [
     label: "Erectile Dysfunction",
     description: "Diagnosis-first assessment and a treatment ladder matched to the cause.",
     href: "/erectile-dysfunction",
+  },
+  {
+    label: "Premature Ejaculation",
+    description: "Behavioural, psychosexual, medical and procedural options matched to the individual.",
+    href: "/sexual-medicine/premature-ejaculation",
   },
   {
     label: "Penile Doppler",
@@ -59,14 +66,17 @@ export default function SexualMedicinePage() {
             <h1 className="mt-4 font-display text-display-xl text-foreground">Sexual Medicine</h1>
             <p className="mt-6 max-w-2xl text-body-lg text-muted-foreground">
               Specialist assessment and treatment for erectile
-              dysfunction, matched to the underlying cause rather than a
-              single default approach.
+              dysfunction and premature ejaculation, matched to the
+              underlying cause rather than a single default approach.
             </p>
           </Reveal>
           <Reveal delay={0.1}>
             <div className="mt-10 flex flex-wrap gap-4">
               <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg" />
             </div>
+          </Reveal>
+          <Reveal delay={0.15}>
+            <ConsultationPathwayDiagram className="mt-14 h-16 w-full max-w-md text-muted-foreground" />
           </Reveal>
         </Container>
       </section>
@@ -96,12 +106,19 @@ export default function SexualMedicinePage() {
         </Container>
       </section>
 
+      <RelatedTreatments
+        items={[
+          { label: "Penile Girth Enhancement", href: "/male-aesthetics/penile-girth-enhancement" },
+          { label: "Testosterone & Hormonal Health", href: "/mens-health/testosterone" },
+        ]}
+      />
+
       <Faq
         items={[
           {
             question: "Where do I start if I'm not sure what's causing the problem?",
             answer:
-              "With an assessment. Erectile dysfunction can have several contributing causes, and treatment is matched to what's actually found — not assumed from symptoms alone.",
+              "With an assessment. Erectile dysfunction and premature ejaculation can each have several contributing causes, and treatment is matched to what's actually found — not assumed from symptoms alone.",
           },
           {
             question: "Is Penile Doppler always required?",
@@ -112,6 +129,13 @@ export default function SexualMedicinePage() {
             question: "Is shockwave therapy a first-line treatment?",
             answer:
               "No. It's one option that may be considered for selected patients after assessment, not a stand-alone starting point.",
+          },
+          {
+            question: "Do you also see premature ejaculation, not just erectile dysfunction?",
+            answer:
+              "Yes. Premature ejaculation is assessed with the same specialist approach, considering behavioural, psychosexual, medical and — in selected cases — procedural options.",
+            readMoreHref: "/sexual-medicine/premature-ejaculation",
+            readMoreLabel: "Explore Premature Ejaculation",
           },
         ]}
       />

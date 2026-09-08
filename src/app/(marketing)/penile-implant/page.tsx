@@ -5,6 +5,7 @@ import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Faq } from "@/components/ui/Faq";
 import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { ImplantDeviceDiagram } from "@/components/illustrations/ImplantDeviceDiagram";
 import { PullQuote } from "@/components/ui/PullQuote";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -196,6 +197,12 @@ export default function PenileImplantPage() {
       <section className="py-section-y">
         <Container>
           <SectionHeading eyebrow="Device options" heading="Inflatable vs. Malleable" />
+          <Reveal delay={0.05}>
+            <ImplantDeviceDiagram
+              className="mt-10 h-24 w-full max-w-xl text-muted-foreground"
+              title="Schematic of a three-piece inflatable prosthesis: cylinder, pump and reservoir"
+            />
+          </Reveal>
           <div className="mt-14 grid gap-x-16 gap-y-14 border-t border-border pt-14 md:grid-cols-2">
             {prosthesisTypes.map((type) => (
               <Reveal key={type.name}>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Activity, CircleDot, Pill, Stethoscope, Syringe, TestTube, Zap } from "lucide-react";
 import { AmpersandText } from "@/components/ui/AmpersandText";
+import { VascularFlowDiagram } from "@/components/illustrations/VascularFlowDiagram";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -163,32 +164,37 @@ export default function ErectileDysfunctionPage() {
 
       {/* Hero */}
       <section className="py-section-y">
-        <Container>
-          <Reveal>
-            <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
-              Sexual Medicine
-            </p>
-            <h1 className="mt-4 max-w-3xl font-display text-display-xl text-foreground">
-              <AmpersandText text="Erectile Dysfunction Assessment & Treatment" />
-            </h1>
-            <p className="mt-6 max-w-2xl text-body-lg text-muted-foreground">
-              Treatment is selected according to the underlying cause,
-              medical history and individual priorities — not a single
-              default prescription.
-            </p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg">
-                Book a Confidential Consultation
-              </BookingCta>
-              <a
-                href="#treatment-ladder"
-                className="inline-flex h-13 items-center px-6 text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
-              >
-                See the treatment ladder
-              </a>
-            </div>
+        <Container className="grid gap-12 lg:grid-cols-[1.1fr_0.7fr] lg:items-center lg:gap-16">
+          <div>
+            <Reveal>
+              <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
+                Sexual Medicine
+              </p>
+              <h1 className="mt-4 max-w-3xl font-display text-display-xl text-foreground">
+                <AmpersandText text="Erectile Dysfunction Assessment & Treatment" />
+              </h1>
+              <p className="mt-6 max-w-2xl text-body-lg text-muted-foreground">
+                Treatment is selected according to the underlying cause,
+                medical history and individual priorities — not a single
+                default prescription.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg">
+                  Book a Confidential Consultation
+                </BookingCta>
+                <a
+                  href="#treatment-ladder"
+                  className="inline-flex h-13 items-center px-6 text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
+                >
+                  See the treatment ladder
+                </a>
+              </div>
+            </Reveal>
+          </div>
+          <Reveal delay={0.1} className="hidden justify-self-center lg:flex">
+            <VascularFlowDiagram className="h-32 w-full max-w-xs text-muted-foreground" />
           </Reveal>
         </Container>
       </section>

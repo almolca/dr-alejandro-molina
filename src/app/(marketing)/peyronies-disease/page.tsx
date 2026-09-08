@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CurvatureAssessmentDiagram } from "@/components/illustrations/CurvatureAssessmentDiagram";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -165,6 +166,7 @@ export default function PeyroniesDiseasePage() {
               are assessed together, since they can influence treatment
               planning.
             </p>
+            <CurvatureAssessmentDiagram className="mt-8 h-32 w-40 text-muted-foreground" />
           </div>
           <div>
             <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">

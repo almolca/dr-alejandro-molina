@@ -5,11 +5,8 @@ import { features } from "./features";
  *
  * Spec: DR_ALEJANDRO_MOLINA_UAE_WEBSITE_MASTER_SPEC.md §5, §6
  *
- * Primary nav mirrors the six top-level items specified in §6. Hrefs
- * point at the MVP site map (§5) even before every page exists — the
- * global not-found page renders gracefully for anything not yet built.
- * As Phase 2+ pages ship, no changes are needed here; only new subpages
- * get added to `serviceLinks` / the sitemap registry.
+ * R4 primary hierarchy: the flagship procedure has a direct link to its
+ * existing canonical route. Fertility remains in care areas and the footer.
  */
 
 export type NavItem = {
@@ -20,9 +17,9 @@ export type NavItem = {
 export const primaryNav: NavItem[] = [
   { label: "Men's Health", href: "/mens-health" },
   { label: "Sexual Medicine", href: "/sexual-medicine" },
+  { label: "Penile Girth Enhancement", href: "/male-aesthetics/penile-girth-enhancement" },
   { label: "Penile Surgery", href: "/penile-surgery" },
   { label: "Male Aesthetics", href: "/male-aesthetics" },
-  { label: "Male Fertility", href: "/male-fertility" },
   { label: "About", href: "/about" },
 ];
 
@@ -53,6 +50,7 @@ export const footerServiceLinks: NavItem[] = [
   { label: "Penile Girth Enhancement", href: "/male-aesthetics/penile-girth-enhancement" },
   { label: "Male Genital Aesthetics", href: "/male-aesthetics" },
   { label: "Erectile Dysfunction", href: "/erectile-dysfunction" },
+  { label: "Premature Ejaculation", href: "/sexual-medicine/premature-ejaculation" },
   { label: "Penile Implant Surgery", href: "/penile-implant" },
   { label: "Testosterone & Hormonal Health", href: "/mens-health/testosterone" },
   { label: "Peyronie's Disease", href: "/peyronies-disease" },

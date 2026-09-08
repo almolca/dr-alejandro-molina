@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { AmpersandText } from "@/components/ui/AmpersandText";
+import { HormoneBalanceDiagram } from "@/components/illustrations/HormoneBalanceDiagram";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -115,6 +116,9 @@ export default function TestosteronePage() {
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg" />
             </div>
+          </Reveal>
+          <Reveal delay={0.15} className="mt-12 flex justify-center">
+            <HormoneBalanceDiagram className="h-32 w-32 text-muted-foreground" />
           </Reveal>
         </Container>
       </section>

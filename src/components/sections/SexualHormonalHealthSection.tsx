@@ -1,3 +1,6 @@
+import { ClinicalDecisionFlow } from "@/components/editorial/ClinicalDecisionFlow";
+import visual from "@/components/editorial/VisualSystem.module.css";
+import { VascularFlowDiagram } from "@/components/illustrations/VascularFlowDiagram";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -32,11 +35,13 @@ const pillars = [
  */
 export function SexualHormonalHealthSection() {
   return (
-    <section className="py-section-y">
+    <section className={`${visual.clinicalBand} py-section-y`}>
       <Container>
         <SectionHeading eyebrow="Sexual & Hormonal Health" heading="Diagnosis Before Treatment, in Both Directions" />
 
-        <div className="mt-16 grid gap-16 border-t border-border pt-14 lg:grid-cols-2 lg:gap-24">
+        <ClinicalDecisionFlow />
+
+        <div className="mt-10 grid gap-16 border-t border-border pt-10 lg:grid-cols-2 lg:gap-24">
           <Reveal>
             <h3 className="font-display text-display-md text-foreground">
               Erectile Dysfunction Deserves a Diagnosis, Not Just a Prescription
@@ -63,6 +68,7 @@ export function SexualHormonalHealthSection() {
                 Explore Erectile Dysfunction
               </Link>
             </div>
+            <VascularFlowDiagram className="mt-10 h-20 w-32 text-muted-foreground" />
           </Reveal>
 
           <Reveal delay={0.05}>
@@ -78,7 +84,7 @@ export function SexualHormonalHealthSection() {
               {pillars.map((pillar) => (
                 <li
                   key={pillar}
-                  className="rounded-full border border-border px-4 py-2 text-sm text-foreground"
+                  className="border-b border-border px-1 py-2 text-sm text-foreground"
                 >
                   {pillar}
                 </li>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ContourReviewDiagram } from "@/components/illustrations/ContourReviewDiagram";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -186,7 +187,13 @@ export default function PenileFillerCorrectionPage() {
       <section className="border-t border-border bg-surface py-section-y">
         <Container>
           <SectionHeading eyebrow="Common presentations" heading="What May Prompt an Assessment" />
-          <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 border-t border-border pt-10 sm:grid-cols-2 lg:grid-cols-3">
+          <Reveal delay={0.05}>
+            <ContourReviewDiagram
+              className="mt-10 h-28 w-28 text-muted-foreground"
+              title="Original contour compared against current presentation, marking where they diverge"
+            />
+          </Reveal>
+          <StaggerGroup className="mt-10 grid grid-cols-1 gap-x-10 gap-y-10 border-t border-border pt-10 sm:grid-cols-2 lg:grid-cols-3">
             {presentations.map((item) => (
               <StaggerItem key={item.label}>
                 <h3 className="font-display text-lg text-foreground">{item.label}</h3>

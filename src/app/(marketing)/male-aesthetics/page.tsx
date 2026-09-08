@@ -1,12 +1,15 @@
+import { PhotoFrame } from "@/components/editorial/PhotoFrame";
+import { ContourPlanningDiagram } from "@/components/illustrations/ContourPlanningDiagram";
+import { Button } from "@/components/ui/Button";
+import visual from "@/components/editorial/VisualSystem.module.css";
 import type { Metadata } from "next";
 import { doctor } from "@/config/doctor";
 import { AuthorityBlock } from "@/components/ui/AuthorityBlock";
 import { BookingCta } from "@/components/ui/BookingCta";
-import { BrandCurve } from "@/components/ui/BrandCurve";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Faq } from "@/components/ui/Faq";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { EditorialField } from "@/components/editorial/LayeredEditorialPanel";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -95,7 +98,7 @@ const faqItems = [
 
 export default function MaleAestheticsPage() {
   return (
-    <>
+    <div className={visual.scope}>
       <JsonLd
         data={[
           breadcrumbSchema(breadcrumbItems.map((i) => ({ name: i.name, path: i.href }))),
@@ -113,10 +116,10 @@ export default function MaleAestheticsPage() {
       {/* Hero — image left this time, for rhythm distinct from the Implant page's image-right split.
           order-last on mobile: H1/positioning before the placeholder image, even though the
           image sits left on desktop (lg:order-first) — found in the Phase 5 UX audit. */}
-      <section className="py-section-y">
+      <EditorialField className="py-14">
         <Container className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
-          <MaskedReveal className="order-last aspect-[4/5] w-full border border-border bg-surface lg:order-first">
-            <ImagePlaceholder index="§13" label="Editorial imagery pending" />
+          <MaskedReveal className="order-last w-full lg:order-first">
+            <PhotoFrame slot="aestheticsClinical" landscape priority />
           </MaskedReveal>
 
           <div>
@@ -132,6 +135,7 @@ export default function MaleAestheticsPage() {
                 combining specialist urological anatomy, procedural
                 experience and individual treatment planning.
               </p>
+              <Link href="/male-aesthetics/penile-girth-enhancement" className="mt-6 inline-flex text-sm underline decoration-accent-strong underline-offset-4">Explore Penile Girth Enhancement</Link>
             </Reveal>
             <Reveal delay={0.1}>
               <div className="mt-10 flex flex-wrap gap-4">
@@ -140,16 +144,62 @@ export default function MaleAestheticsPage() {
                 </BookingCta>
               </div>
             </Reveal>
+          <div className={visual.physicianIdentity}><p>{doctor.displayName}</p><span>{doctor.title}</span></div>
           </div>
+        </Container>
+      </EditorialField>
+
+      {/* Flagship — standalone, larger-scale treatment (Phase R1-R2),
+          distinct from the secondary pair below rather than three
+          equal-weight rows. */}
+      <section className="section-dark bg-background py-section-y text-foreground">
+        <Container className="grid gap-12 lg:grid-cols-[1.1fr_0.6fr] lg:items-center lg:gap-16">
+          <div>
+          <SectionHeading eyebrow="Flagship procedure" heading="Penile Girth Enhancement" size="xl" />
+          <div className="my-8"><AuthorityBlock /></div>
+          <Reveal delay={0.05}>
+            <p className="mt-6 max-w-2xl text-body-lg text-muted-foreground">
+              The flagship procedure at this practice, and the most
+              common goal raised at consultation. Hyaluronic acid
+              penile augmentation is the more commonly discussed
+              starting point, planned around individual anatomy — not
+              a walk-in cosmetic procedure — with surgical approaches
+              considered only where appropriate.
+              {girthAuthorityLine ? ` Dr. Molina's ${girthAuthorityLine}.` : ""}
+            </p>
+            <Button asChild size="lg" className="mt-8"><Link href="/male-aesthetics/penile-girth-enhancement">Explore Penile Girth Enhancement</Link></Button>
+          </Reveal>
+          </div>
+          <Reveal delay={0.1} className="hidden justify-self-center lg:flex">
+            <ContourPlanningDiagram className="h-40 w-40 text-muted-foreground" />
+          </Reveal>
         </Container>
       </section>
 
-      {/* Authority block — Phase R1-R2, immediately after the hero */}
-      <section className="border-t border-border bg-background py-14">
+      {/* Also available — visually secondary pair (Phase R1-R2), warm tonal gradient (Phase R3) */}
+      <TonalSection tone="warm" className="border-t border-border">
         <Container>
-          <AuthorityBlock />
+          <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+            Also available
+          </p>
+          <div className="mt-8 grid grid-cols-1 gap-x-16 gap-y-12 border-t border-border pt-10 md:grid-cols-2">
+            {secondaryAreas.map((area) => (
+              <Reveal key={area.title}>
+                <h3 className="font-display text-xl text-foreground">{area.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {area.description}
+                </p>
+                <Link
+                  href={area.cta.href}
+                  className="mt-4 inline-flex text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
+                >
+                  {area.cta.label}
+                </Link>
+              </Reveal>
+            ))}
+          </div>
         </Container>
-      </section>
+      </TonalSection>
 
       {/* Why specialist assessment matters — moved earlier (Phase R1-R2):
           this concept is central to positioning and previously sat near
@@ -191,64 +241,11 @@ export default function MaleAestheticsPage() {
         </Container>
       </section>
 
-      {/* Flagship — standalone, larger-scale treatment (Phase R1-R2),
-          distinct from the secondary pair below rather than three
-          equal-weight rows. */}
-      <section className="py-section-y">
-        <Container>
-          <SectionHeading eyebrow="Flagship procedure" heading="Penile Girth Enhancement" size="xl" />
-          <BrandCurve className="mt-2 h-4 w-32 text-accent-strong" />
-          <Reveal delay={0.05}>
-            <p className="mt-6 max-w-2xl text-body-lg text-muted-foreground">
-              The flagship procedure at this practice, and the most
-              common goal raised at consultation. Hyaluronic acid
-              penile augmentation is the more commonly discussed
-              starting point, planned around individual anatomy — not
-              a walk-in cosmetic procedure — with surgical approaches
-              considered only where appropriate.
-              {girthAuthorityLine ? ` Dr. Molina's ${girthAuthorityLine}.` : ""}
-            </p>
-            <Link
-              href="/male-aesthetics/penile-girth-enhancement"
-              className="mt-6 inline-flex text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
-            >
-              Explore Penile Girth Enhancement
-            </Link>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* Also available — visually secondary pair (Phase R1-R2), warm tonal gradient (Phase R3) */}
-      <TonalSection tone="warm" className="border-t border-border">
-        <Container>
-          <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-            Also available
-          </p>
-          <div className="mt-8 grid grid-cols-1 gap-x-16 gap-y-12 border-t border-border pt-10 md:grid-cols-2">
-            {secondaryAreas.map((area) => (
-              <Reveal key={area.title}>
-                <h3 className="font-display text-xl text-foreground">{area.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {area.description}
-                </p>
-                <Link
-                  href={area.cta.href}
-                  className="mt-4 inline-flex text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
-                >
-                  {area.cta.label}
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </Container>
-      </TonalSection>
 
       {/* Physician presence — Phase R1-R2 */}
       <section className="border-t border-border bg-surface py-section-y">
-        <Container className="grid items-center gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-24">
-          <MaskedReveal className="aspect-[3/4] w-full border border-border bg-surface">
-            <ImagePlaceholder index={doctor.displayName} label="Portrait of Dr. Alejandro Molina" />
-          </MaskedReveal>
+        <Container className="max-w-3xl">
+
           <div>
             <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
               About
@@ -295,6 +292,6 @@ export default function MaleAestheticsPage() {
           href: "/male-aesthetics/penile-girth-enhancement",
         }}
       />
-    </>
+    </div>
   );
 }

@@ -1,5 +1,10 @@
+import { PhotoFrame } from "@/components/editorial/PhotoFrame";
+import { ClinicalDecisionFlow } from "@/components/editorial/ClinicalDecisionFlow";
+import { ConsultationPathwayDiagram } from "@/components/illustrations/ConsultationPathwayDiagram";
+import { doctor } from "@/config/doctor";
+import visual from "@/components/editorial/VisualSystem.module.css";
+import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import type { Metadata } from "next";
-import { Activity, ClipboardList, HeartPulse, Stethoscope, TestTube } from "lucide-react";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -7,7 +12,6 @@ import { Faq } from "@/components/ui/Faq";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { PullQuote } from "@/components/ui/PullQuote";
 import { Reveal } from "@/components/motion/Reveal";
-import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { TreatmentCtaSection } from "@/components/sections/TreatmentCtaSection";
 import { breadcrumbSchema } from "@/lib/seo/json-ld";
@@ -25,14 +29,6 @@ export const metadata: Metadata = buildMetadata({
 const breadcrumbItems = [
   { name: "Home", href: "/" },
   { name: "Men's Health", href: PATH },
-];
-
-const diagnosticSteps = [
-  { label: "Symptoms", icon: Stethoscope },
-  { label: "Hormonal assessment", icon: TestTube },
-  { label: "Metabolic / medical contributors", icon: Activity },
-  { label: "Sexual function", icon: HeartPulse },
-  { label: "Individual treatment strategy", icon: ClipboardList },
 ];
 
 /**
@@ -78,13 +74,14 @@ const faqItems = [
 
 export default function MensHealthPage() {
   return (
-    <>
+    <div className={visual.scope}>
       <JsonLd data={breadcrumbSchema(breadcrumbItems.map((i) => ({ name: i.name, path: i.href })))} />
 
       <Breadcrumb items={breadcrumbItems} />
 
-      <section className="py-section-y">
-        <Container className="max-w-3xl">
+      <section className={visual.hero}>
+        <Container className={visual.heroGrid}>
+          <div>
           <Reveal>
             <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
               Men&rsquo;s Health
@@ -101,49 +98,54 @@ export default function MensHealthPage() {
               <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg" />
             </div>
           </Reveal>
+          <div className={visual.physicianIdentity}><p>{doctor.displayName}</p><span>{doctor.title} · FEBU · Abu Dhabi</span></div>
+          </div>
+          <PhotoFrame slot="mensHealthConsultation" landscape priority />
         </Container>
       </section>
 
-      {/* Diagnostic narrative — Phase R1-R2 */}
-      <section className="border-t border-border py-section-y">
+      <section className="section-dark bg-background py-section-y text-foreground">
         <Container>
-          <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-            How assessment works
-          </p>
-          <StaggerGroup className="mt-8 grid grid-cols-1 gap-y-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-x-6">
-            {diagnosticSteps.map((step) => (
-              <StaggerItem key={step.label}>
-                <step.icon aria-hidden size={20} className="text-accent-strong" />
-                <p className="mt-3 max-w-[18ch] text-sm text-foreground">{step.label}</p>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
-          <div className="mt-10 max-w-2xl">
-            <PullQuote>
-              Not every symptom means low testosterone, and not every low
-              result automatically requires treatment.
-            </PullQuote>
+          <div className="grid gap-10 lg:grid-cols-[1fr_1.3fr]">
+            <div>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">How assessment works</p>
+              <h2 className="mt-4 font-display text-display-lg">Understand the full picture before choosing treatment.</h2>
+              <div className="mt-8"><PullQuote>Not every symptom means low testosterone, and not every low result automatically requires treatment.</PullQuote></div>
+            </div>
+            <div className="bg-surface p-6 lg:p-8">
+              <ClinicalDecisionFlow />
+              <p className="mt-4 text-sm text-muted-foreground">Hormonal assessment · Metabolic / medical contributors · Sexual function</p>
+            </div>
           </div>
         </Container>
       </section>
 
-      <section className="border-t border-border bg-surface py-section-y">
+      <section className="py-section-y">
         <Container>
-          <StaggerGroup className="border-t border-border">
-            {areas.map((area) => (
-              <StaggerItem key={area.href}>
-                <Link
-                  href={area.href}
-                  className="group flex flex-col gap-2 border-b border-border py-8 sm:flex-row sm:items-center sm:justify-between sm:gap-8"
-                >
-                  <span className="font-display text-2xl text-foreground">{area.label}</span>
-                  <span className="max-w-sm text-sm text-muted-foreground">{area.description}</span>
-                </Link>
-              </StaggerItem>
-            ))}
-          </StaggerGroup>
+          <div className={visual.split}>
+            <div>
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">Connected areas of care</p>
+              <h2 className="mt-4 font-display text-display-md">Symptoms in context.</h2>
+              <p className="mt-6 max-w-md text-sm text-muted-foreground">Sexual health, hormonal health, fertility and urinary / andrology concerns inform targeted assessment and individual treatment planning.</p>
+              <ConsultationPathwayDiagram className="mt-8 h-14 w-full max-w-xs text-muted-foreground" />
+              <div className={visual.clinicalAreas}>
+                <Link href="/sexual-medicine"><span>01</span>Sexual health</Link>
+                <Link href="/mens-health/testosterone"><span>02</span>Hormonal health</Link>
+                <Link href="/male-fertility"><span>03</span>Fertility</Link>
+                <Link href="/book"><span>04</span>Urinary / andrology concerns</Link>
+              </div>
+            </div>
+            <div className="bg-surface p-8">
+              {areas.map((area) => <div className="py-6 first:pt-0 last:pb-0" key={area.href}>
+                <h3 className="font-display text-2xl"><Link className="underline decoration-border underline-offset-4" href={area.href}>{area.label}</Link></h3>
+                <p className="mt-4 text-sm text-muted-foreground">{area.description}</p>
+              </div>)}
+            </div>
+          </div>
         </Container>
       </section>
+
+      <RelatedTreatments items={[{ label: "Penile Girth Enhancement", href: "/male-aesthetics/penile-girth-enhancement" }]} />
 
       <Faq items={faqItems} />
 
@@ -152,6 +154,6 @@ export default function MensHealthPage() {
         sourcePage={PATH}
         secondary={{ label: "Explore Testosterone & Male Hormonal Health", href: "/mens-health/testosterone" }}
       />
-    </>
+    </div>
   );
 }

@@ -1,9 +1,10 @@
+import visual from "@/components/editorial/VisualSystem.module.css";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { ArrowUpRight } from "lucide-react";
 import { AmpersandText } from "@/components/ui/AmpersandText";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
+
 
 /**
  * Spec §7 Section 2 — Core Expertise. Deliberately not a card grid
@@ -45,7 +46,7 @@ const primaryAreas = [
 const secondaryLinks = [
   { label: "Peyronie's Disease", href: "/peyronies-disease" },
   { label: "Penile Doppler", href: "/erectile-dysfunction/penile-doppler" },
-  { label: "Premature Ejaculation", href: "/sexual-medicine" },
+  { label: "Premature Ejaculation", href: "/sexual-medicine/premature-ejaculation" },
   { label: "Varicocele", href: "/male-fertility/varicocele" },
 ];
 
@@ -58,33 +59,22 @@ export function CoreExpertiseSection() {
           heading="Specialist Care for Men’s Health"
         />
 
-        <StaggerGroup className="mt-16 border-t border-border">
-          {primaryAreas.map((area) => (
-            <StaggerItem key={area.number}>
-              <Link
-                href={area.href}
-                className="group grid grid-cols-[auto_1fr] items-baseline gap-x-6 gap-y-3 border-b border-border py-8 sm:grid-cols-[5rem_1fr_auto] sm:items-center sm:gap-x-10"
-              >
-                <span className="font-display text-2xl text-accent-strong sm:text-3xl">
-                  {area.number}
-                </span>
-                <span className="col-span-2 sm:col-span-1">
-                  <span className="block font-display text-2xl text-foreground transition-colors sm:text-3xl">
-                    <AmpersandText text={area.title} />
-                  </span>
-                  <span className="mt-2 block max-w-lg text-sm text-muted-foreground sm:text-base">
-                    {area.description}
-                  </span>
-                </span>
-                <ArrowUpRight
-                  aria-hidden
-                  size={22}
-                  className="hidden shrink-0 text-muted-foreground transition-all duration-300 ease-out group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent-strong sm:block"
-                />
+        <div className={visual.services}>
+          <Link href="/male-aesthetics/penile-girth-enhancement" className={visual.serviceFeature}>
+            <span className="text-xs uppercase tracking-widest">Flagship procedure</span>
+            <div><h3 className="font-display text-3xl">Penile Girth Enhancement</h3><p className="mt-4 text-sm text-stone-200">Anatomy-led planning within a Consultant Urologist &amp; Andrologist&rsquo;s practice.</p></div>
+            <span className="mt-6 text-sm">Explore the procedure <span aria-hidden="true">↗</span></span>
+          </Link>
+          <div className={visual.serviceList}>
+            {primaryAreas.map((area) => (
+              <Link key={area.number} href={area.href} className={visual.serviceLink}>
+                <span className={visual.serviceNumber} aria-hidden="true">{area.number}</span>
+                <span><span className="block font-display text-xl"><AmpersandText text={area.title} /></span><span className="mt-2 block max-w-lg text-sm text-muted-foreground">{area.description}</span></span>
+                <ArrowUpRight aria-hidden size={18} />
               </Link>
-            </StaggerItem>
-          ))}
-        </StaggerGroup>
+            ))}
+          </div>
+        </div>
 
         <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3">
           <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">

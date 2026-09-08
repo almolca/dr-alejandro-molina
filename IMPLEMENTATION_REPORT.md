@@ -2327,3 +2327,27 @@ listed — it received the same treatment as the other clinical pages,
 not a distinct flagship redesign; this is a known gap, not an oversight,
 and is the most likely candidate for a follow-up pass if the owner
 wants to push further.
+
+
+## Phase R4 — Strategic visual and product correction (2026-09-07)
+
+Implemented the owner-provided `CODEX_R4_STRATEGIC_VISUAL_PRODUCT_CORRECTION.md` on the existing `phase-r3-correction-visual-brand` branch. Full detail, file inventory and final QA: [R4_IMPLEMENTATION_REPORT.md](R4_IMPLEMENTATION_REPORT.md). Before/after evidence: [visual comparison gallery](qa/r4-visual-review.html).
+
+- Direct primary navigation to the existing flagship canonical, plus contextual hub links.
+- Approved full logo in header/footer at responsive sizes; no HTML recreation of the lockup.
+- Layered ivory/stone editorial heroes, visible contour geometry, scannable physician authority and an alternating About timeline.
+- Dedicated flagship pathway, abstract planning visual, variability factors and stepped risks/aftercare/correction presentation.
+- Owner-approved Men's Health Spain contribution now has a separate config-driven publication gate, without inventing a dated appearance. Awards, dated media and reviews keep their existing gates.
+- No deployment, merge, new route, SEO article or PRP activation. Approved photography remains outstanding.
+
+## R4.2 — 2026-09-07
+
+Completed the five-page visual system correction and shared footer. See [R4.2 implementation report](R4_2_IMPLEMENTATION_REPORT.md) and [before/after gallery](qa/r4-2/index.html). Typecheck, lint, build and 40 responsive browser checks pass. Owner-confirmed awards remain public. Photography slots await approved files. Stopped for owner visual review without merge or deployment.
+
+## R4.3 — 2026-09-07
+
+Focused brand/authority final pass completed. Transparent full logo, refined header/footer, clearer recognition/media/education and a stronger charcoal Girth hero. Nine existing photo slots remain ready for approved assets. [R4.3 report](R4_3_IMPLEMENTATION_REPORT.md) · [R4.2/R4.3 comparison](qa/r4-3/index.html). Typecheck, lint, build and 40 responsive checks pass. Stopped for owner review without merge or deployment.
+
+## R5 — SVG illustration system + Premature Ejaculation (2026-09-08)
+
+Added a reusable, componentized SVG illustration system (`src/components/illustrations/`, 9 abstract line-art diagrams — no stock icons, no explicit imagery) and integrated it across Home, About (light use), Men's Health, Sexual Medicine, Erectile Dysfunction, Testosterone, Penile Implant, Peyronie's Disease, Male Aesthetics and Penile Filler Correction. Added Premature Ejaculation as a proper, dedicated route (`/sexual-medicine/premature-ejaculation`) with its own condition-page structure, including a restrained, clinically-gated section on hyaluronic acid treatment at the glans in selected cases — deliberately under-styled so it doesn't read as promoted. Updated navigation, footer links, the homepage's existing (previously dead-ended) Premature Ejaculation link, and the sitemap route registry accordingly. Full detail, illustration inventory and QA: [R5 implementation report](R5_ILLUSTRATION_SYSTEM_IMPLEMENTATION_REPORT.md). Typecheck, lint, build and responsive browser QA (390/768/1440px, 11 pages) all pass. Stopped for owner review without merge or deployment.
