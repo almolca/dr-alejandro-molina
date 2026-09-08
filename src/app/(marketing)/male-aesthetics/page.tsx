@@ -1,4 +1,5 @@
 import { EditorialFrame } from "@/components/editorial/EditorialFrame";
+import { HeroAtmosphere } from "@/components/editorial/HeroAtmosphere";
 import { ContourPlanningDiagram } from "@/components/illustrations/ContourPlanningDiagram";
 import { Button } from "@/components/ui/Button";
 import visual from "@/components/editorial/VisualSystem.module.css";
@@ -117,7 +118,8 @@ export default function MaleAestheticsPage() {
           order-last on mobile: H1/positioning before the placeholder image, even though the
           image sits left on desktop (lg:order-first) — found in the Phase 5 UX audit. */}
       <EditorialField className="py-14">
-        <Container className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
+        <HeroAtmosphere align="left" restrained />
+        <Container className="relative z-10 grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <MaskedReveal className="order-last w-full lg:order-first">
             <EditorialFrame slot="aestheticsHero" landscape priority />
           </MaskedReveal>

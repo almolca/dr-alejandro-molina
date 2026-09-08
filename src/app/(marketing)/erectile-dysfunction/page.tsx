@@ -3,6 +3,7 @@ import { Activity, CircleDot, Pill, Stethoscope, Syringe, TestTube, Zap } from "
 import { AmpersandText } from "@/components/ui/AmpersandText";
 import { VascularFlowDiagram } from "@/components/illustrations/VascularFlowDiagram";
 import { EditorialFrame } from "@/components/editorial/EditorialFrame";
+import { HeroAtmosphere } from "@/components/editorial/HeroAtmosphere";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -165,8 +166,9 @@ export default function ErectileDysfunctionPage() {
       <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero */}
-      <section className="py-section-y">
-        <Container className="grid gap-12 lg:grid-cols-[1.1fr_0.7fr] lg:items-center lg:gap-16">
+      <section className="relative py-section-y">
+        <HeroAtmosphere align="right" restrained />
+        <Container className="relative z-10 grid gap-12 lg:grid-cols-[1.1fr_0.7fr] lg:items-center lg:gap-16">
           <div>
             <Reveal>
               <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">

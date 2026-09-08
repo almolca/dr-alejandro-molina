@@ -3,6 +3,9 @@ import { AmpersandText } from "@/components/ui/AmpersandText";
 import { HormoneBalanceDiagram } from "@/components/illustrations/HormoneBalanceDiagram";
 import { EditorialFrame } from "@/components/editorial/EditorialFrame";
 import { HeroAtmosphere } from "@/components/editorial/HeroAtmosphere";
+import { AuthorityMetric } from "@/components/editorial/PhysicianAuthority";
+import editorialStyles from "@/components/editorial/Editorial.module.css";
+import { doctor } from "@/config/doctor";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -126,6 +129,30 @@ export default function TestosteronePage() {
           <MaskedReveal className="order-last w-full lg:order-none">
             <EditorialFrame slot="testosteroneHero" landscape priority />
           </MaskedReveal>
+        </Container>
+      </section>
+
+      {/* Physician authority — hormonal health assessment led by a Consultant, not a generic TRT clinic */}
+      <section className="border-t border-border bg-background py-14">
+        <Container>
+          <div className={editorialStyles.authority}>
+            <p className="mb-6 text-xs font-medium uppercase tracking-widest">{doctor.title}</p>
+            <dl className={editorialStyles.metrics}>
+              {doctor.yearsOfExperience !== undefined && (
+                <AuthorityMetric value={`${doctor.yearsOfExperience}+`} label="Years in Urology" />
+              )}
+              <AuthorityMetric value="FEBU" label="Fellow of the European Board of Urology" />
+              <AuthorityMetric value="Consultant" label="Urologist & Andrologist" />
+            </dl>
+            <div className={editorialStyles.rail}>
+              <p>Hormonal, metabolic and sexual-health assessment — not a performance-enhancement clinic</p>
+              {doctor.medicalTrainer && (
+                <p>
+                  <strong>Medical Trainer</strong> · {doctor.medicalTrainer.program}
+                </p>
+              )}
+            </div>
+          </div>
         </Container>
       </section>
 

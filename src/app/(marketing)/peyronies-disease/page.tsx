@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CurvatureAssessmentDiagram } from "@/components/illustrations/CurvatureAssessmentDiagram";
 import { EditorialFrame } from "@/components/editorial/EditorialFrame";
+import { HeroAtmosphere } from "@/components/editorial/HeroAtmosphere";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -107,36 +108,33 @@ export default function PeyroniesDiseasePage() {
 
       <Breadcrumb items={breadcrumbItems} />
 
-      {/* Hero */}
-      <section className="py-section-y">
-        <Container className="max-w-3xl">
-          <Reveal>
-            <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
-              Penile Surgery
-            </p>
-            <h1 className="mt-4 font-display text-display-xl text-foreground">
-              Peyronie&rsquo;s Disease
-            </h1>
-            <p className="mt-6 max-w-2xl text-body-lg text-muted-foreground">
-              Specialist assessment for penile curvature, plaque and its
-              effects on erectile function — with treatment matched to
-              phase and severity.
-            </p>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg">
-                Book a Confidential Consultation
-              </BookingCta>
-            </div>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* Editorial break — the one large raster image for this page; CurvatureAssessmentDiagram stays in its own section below, never sharing this frame */}
-      <section className="py-section-y">
-        <Container>
-          <MaskedReveal className="mx-auto max-w-4xl">
+      {/* Hero — two-column, image lateral and integrated (R6.2), matching Home/About/PE/Testosterone. CurvatureAssessmentDiagram stays in its own section below, never sharing this frame */}
+      <section className="relative py-section-y">
+        <HeroAtmosphere align="right" restrained />
+        <Container className="relative z-10 grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-16">
+          <div>
+            <Reveal>
+              <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
+                Penile Surgery
+              </p>
+              <h1 className="mt-4 font-display text-display-xl text-foreground">
+                Peyronie&rsquo;s Disease
+              </h1>
+              <p className="mt-6 max-w-2xl text-body-lg text-muted-foreground">
+                Specialist assessment for penile curvature, plaque and its
+                effects on erectile function — with treatment matched to
+                phase and severity.
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <div className="mt-10 flex flex-wrap gap-4">
+                <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg">
+                  Book a Confidential Consultation
+                </BookingCta>
+              </div>
+            </Reveal>
+          </div>
+          <MaskedReveal className="order-last w-full lg:order-none">
             <EditorialFrame slot="peyroniesHero" landscape priority />
           </MaskedReveal>
         </Container>

@@ -5,6 +5,11 @@ import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Faq } from "@/components/ui/Faq";
 import { PhotoFrame } from "@/components/editorial/PhotoFrame";
+import { HeroAtmosphere } from "@/components/editorial/HeroAtmosphere";
+import { AuthorityMetric } from "@/components/editorial/PhysicianAuthority";
+import { CandidateCheck } from "@/components/editorial/CandidateCheck";
+import editorialStyles from "@/components/editorial/Editorial.module.css";
+import { doctor } from "@/config/doctor";
 import { ImplantDeviceDiagram } from "@/components/illustrations/ImplantDeviceDiagram";
 import { PullQuote } from "@/components/ui/PullQuote";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
@@ -84,6 +89,12 @@ const notAppropriate = [
   "Certain anatomical or medical factors identified at assessment",
 ];
 
+const candidateGoodIf = [
+  "Erectile dysfunction is severe or refractory",
+  "Oral medication, vacuum devices or injectable therapy have not provided reliable results",
+  "The underlying cause has already been appropriately assessed",
+];
+
 const faqItems = [
   {
     question: "Is a penile implant permanent?",
@@ -110,6 +121,13 @@ const faqItems = [
     answer:
       "Candidacy depends on the cause and severity of erectile dysfunction, previous treatments tried, and overall health — assessed individually at consultation.",
   },
+  {
+    question: "What are the alternatives to a penile implant?",
+    answer:
+      "A penile implant sits at the end of the erectile dysfunction treatment ladder, not the start. Alternatives explored first typically include lifestyle and risk-factor management, PDE5 inhibitors, hormonal treatment where indicated, vacuum devices, shockwave therapy and intracavernosal injection therapy — an implant is considered once these no longer give reliable results.",
+    readMoreHref: "/erectile-dysfunction",
+    readMoreLabel: "See the full Erectile Dysfunction treatment ladder",
+  },
 ];
 
 export default function PenileImplantPage() {
@@ -132,8 +150,9 @@ export default function PenileImplantPage() {
       <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero — asymmetric split, distinct from the ED page's centered text-only hero */}
-      <section className="py-section-y">
-        <Container className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
+      <section className="relative py-section-y">
+        <HeroAtmosphere align="right" restrained />
+        <Container className="relative z-10 grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:gap-16">
           <div>
             <Reveal>
               <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
@@ -168,28 +187,50 @@ export default function PenileImplantPage() {
         </Container>
       </section>
 
+      {/* Physician authority — Consultant-level expertise, not a generic surgical listing */}
+      <section className="border-t border-border bg-background py-14">
+        <Container>
+          <div className={editorialStyles.authority}>
+            <p className="mb-6 text-xs font-medium uppercase tracking-widest">{doctor.title}</p>
+            <dl className={editorialStyles.metrics}>
+              {doctor.yearsOfExperience !== undefined && (
+                <AuthorityMetric value={`${doctor.yearsOfExperience}+`} label="Years in Urology" />
+              )}
+              <AuthorityMetric value="FEBU" label="Fellow of the European Board of Urology" />
+              <AuthorityMetric value="Consultant" label="Urologist & Andrologist" />
+            </dl>
+            <div className={editorialStyles.rail}>
+              <p>Advanced laparoscopic surgery · tertiary hospital experience</p>
+              {doctor.medicalTrainer && (
+                <p>
+                  <strong>Medical Trainer</strong> · {doctor.medicalTrainer.program}
+                </p>
+              )}
+            </div>
+          </div>
+        </Container>
+      </section>
+
       {/* What is it / candidacy */}
       <section id="candidacy" className="border-t border-border bg-surface py-section-y">
-        <Container className="grid gap-16 lg:grid-cols-2 lg:gap-24">
+        <Container>
           <SectionHeading
             eyebrow="What is a penile implant?"
             heading="A Device Placed Within the Penis to Restore Rigidity"
             size="md"
             description="A penile prosthesis is a surgically implanted device, placed within the erectile chambers of the penis, designed to allow a man to achieve a rigid erection when desired."
           />
-          <Reveal delay={0.1}>
+          <div className="mt-4">
             <p className="text-sm font-medium uppercase tracking-widest text-muted-foreground">
-              Who may be a candidate
+              Candidacy — reviewed individually, never assumed
             </p>
-            <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted-foreground">
-              Penile implant surgery is typically considered for men
-              with severe or refractory erectile dysfunction — where
-              other treatments, including oral medication, vacuum
-              devices or injectable therapy, have not provided reliable
-              results, and where the cause has been appropriately
-              assessed beforehand.
-            </p>
-          </Reveal>
+            <CandidateCheck
+              goodHeading="Often considered once"
+              goodIf={candidateGoodIf}
+              notHeading="Addressed or reassessed first"
+              notIf={notAppropriate}
+            />
+          </div>
         </Container>
       </section>
 
@@ -275,47 +316,31 @@ export default function PenileImplantPage() {
         </PullQuote>
       </Container>
 
-      {/* Risks and when it's not appropriate */}
+      {/* Risks — "not appropriate" cases already covered in the candidacy check above, not repeated here */}
       <section className="border-t border-border bg-surface py-section-y">
-        <Container className="grid gap-16 lg:grid-cols-2 lg:gap-24">
-          <div>
-            <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
-              Realistic expectations
-            </p>
-            <h2 className="mt-4 font-display text-display-md text-foreground">
-              Risks and Complications
-            </h2>
-            <ul className="mt-8 space-y-3">
-              {risks.map((risk) => (
-                <li key={risk} className="flex gap-4 text-sm text-muted-foreground">
-                  <span aria-hidden className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent-strong" />
-                  {risk}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
-              Not for everyone
-            </p>
-            <h2 className="mt-4 font-display text-display-md text-foreground">
-              When an Implant May Not Be Appropriate
-            </h2>
-            <ul className="mt-8 space-y-3">
-              {notAppropriate.map((item) => (
-                <li key={item} className="flex gap-4 text-sm text-muted-foreground">
-                  <span aria-hidden className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent-strong" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+        <Container className="max-w-2xl">
+          <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
+            Realistic expectations
+          </p>
+          <h2 className="mt-4 font-display text-display-md text-foreground">
+            Risks and Complications
+          </h2>
+          <ul className="mt-8 space-y-3">
+            {risks.map((risk) => (
+              <li key={risk} className="flex gap-4 text-sm text-muted-foreground">
+                <span aria-hidden className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent-strong" />
+                {risk}
+              </li>
+            ))}
+          </ul>
         </Container>
       </section>
 
       <RelatedTreatments
         items={[
           { label: "Erectile Dysfunction", href: "/erectile-dysfunction" },
+          { label: "Shockwave Therapy", href: "/erectile-dysfunction/shockwave-therapy" },
+          { label: "Penile Doppler", href: "/erectile-dysfunction/penile-doppler" },
           { label: "Testosterone & Hormonal Health", href: "/mens-health/testosterone" },
           { label: "Peyronie's Disease", href: "/peyronies-disease" },
         ]}

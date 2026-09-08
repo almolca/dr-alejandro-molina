@@ -1,4 +1,5 @@
 import { EditorialFrame } from "@/components/editorial/EditorialFrame";
+import { HeroAtmosphere } from "@/components/editorial/HeroAtmosphere";
 import { ClinicalDecisionFlow } from "@/components/editorial/ClinicalDecisionFlow";
 import { ConsultationPathwayDiagram } from "@/components/illustrations/ConsultationPathwayDiagram";
 import { doctor } from "@/config/doctor";
@@ -80,7 +81,8 @@ export default function MensHealthPage() {
       <Breadcrumb items={breadcrumbItems} />
 
       <section className={visual.hero}>
-        <Container className={visual.heroGrid}>
+        <HeroAtmosphere align="right" restrained />
+        <Container className={`${visual.heroGrid} relative z-10`}>
           <div>
           <Reveal>
             <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
