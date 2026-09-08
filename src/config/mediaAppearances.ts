@@ -1,12 +1,7 @@
 /**
- * Media & editorial appearances — Phase R2.1/R3. The owner has stated
- * Dr. Molina collaborates with Men's Health and has participated in
- * other media outlets, but no outlet name, article title, or URL has
- * been verified yet. This array ships empty — populate each entry only
- * once the owner supplies the real outlet, title, year and URL; never
- * invent any of these fields. `publishReady` gates rendering exactly
- * like `doctor.awards` does — an entry can exist here as a draft
- * without ever reaching the live page.
+ * Dated media appearances remain empty until their title/year/source are
+ * verified. R4 owner-approved relationship wording is stored separately
+ * below; it does not imply an approved article, date, logo or partnership.
  */
 export type MediaAppearanceType =
   | "Editorial Contributor"
@@ -26,3 +21,16 @@ export type MediaAppearance = {
 };
 
 export const mediaAppearances: MediaAppearance[] = [];
+
+/** Relationship wording approved by the owner in CODEX_R4 §3/§11.
+ * Kept separate from dated appearances: no article, date or URL was supplied.
+ */
+export const editorialContributions: {
+  outletName: string;
+  wording: string;
+  publishReady: boolean;
+}[] = [{
+  outletName: "Men's Health Spain",
+  wording: "Contributor to Men's Health Spain",
+  publishReady: true,
+}];

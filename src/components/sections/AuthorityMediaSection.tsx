@@ -1,22 +1,9 @@
-import Image from "next/image";
 import { doctor } from "@/config/doctor";
 import { mediaAppearances } from "@/config/mediaAppearances";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 
-/**
- * Compact homepage authority layer — Phase R2.1/R3. Combines
- * Professional Recognition + Media/Editorial Contributions + Medical
- * Training in one section, rather than three separate homepage
- * sections (which would re-lengthen the page the Phase R1-R2
- * consolidation just shortened). Today, Recognition and Media both
- * have zero publish-ready entries, so this renders exactly the Medical
- * Training content alone (unchanged from the section this replaced,
- * `MedicalTrainingSection`) — the structure is ready to grow the
- * moment real, verified Recognition/Media data exists, without
- * another homepage restructure. Renders nothing at all if none of the
- * three has anything to show.
- */
+/** Compact education section with optional publish-ready recognition and media. */
 export function AuthorityMediaSection() {
   const publishableAwards = doctor.awards.filter((a) => a.publishReady);
   const publishableMedia = mediaAppearances.filter((m) => m.publishReady);
@@ -27,19 +14,12 @@ export function AuthorityMediaSection() {
   }
 
   return (
-    <section className="border-t border-border py-section-y">
+    <section className="border-t border-border bg-surface py-section-y">
       <Container className="mx-auto max-w-2xl text-center">
         <Reveal>
-          <Image
-            src="/brand/logo-full.png"
-            alt=""
-            width={1536}
-            height={1024}
-            className="mx-auto mb-8 h-auto w-36 opacity-90"
-          />
           {publishableAwards.length > 0 && (
-            <p className="text-sm text-foreground">
-              {publishableAwards.map((a) => `${a.officialTitle} — ${a.issuer}, ${a.year}`).join(" · ")}
+            <p className="mb-6 text-sm text-foreground">
+              {publishableAwards.map((a) => a.officialTitle).join(" · ")}
             </p>
           )}
           {publishableMedia.length > 0 && (
@@ -52,6 +32,7 @@ export function AuthorityMediaSection() {
               <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
                 Medical Education &amp; Training
               </p>
+              <h2 className="mt-4 font-display text-display-md">{doctor.medicalTrainer.program}</h2>
               <p className="mt-6 text-body-lg text-muted-foreground">
                 {doctor.medicalTrainer!.description}
               </p>

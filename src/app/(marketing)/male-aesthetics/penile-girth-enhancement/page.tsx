@@ -1,9 +1,12 @@
+import { PhotoFrame } from "@/components/editorial/PhotoFrame";
+import visual from "@/components/editorial/VisualSystem.module.css";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { doctor } from "@/config/doctor";
-import { AuthorityBlock } from "@/components/ui/AuthorityBlock";
+import { PhysicianAuthority } from "@/components/editorial/PhysicianAuthority";
+import { EditorialField } from "@/components/editorial/LayeredEditorialPanel";
+import { ClinicalPathway, ProcedureFramework, VariabilityFactors, CareStages } from "@/components/editorial/ProcedureFramework";
 import { BookingCta } from "@/components/ui/BookingCta";
-import { BrandCurve } from "@/components/ui/BrandCurve";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { EditorialTexture } from "@/components/ui/EditorialTexture";
@@ -114,7 +117,7 @@ const faqItems = [
 
 export default function PenileGirthEnhancementPage() {
   return (
-    <>
+    <div className={visual.scope}>
       <JsonLd
         data={[
           breadcrumbSchema(breadcrumbItems.map((i) => ({ name: i.name, path: i.href }))),
@@ -132,16 +135,17 @@ export default function PenileGirthEnhancementPage() {
       <Breadcrumb items={breadcrumbItems} />
 
       {/* Hero */}
-      <section className="py-section-y">
-        <Container className="max-w-3xl">
+      <EditorialField className={`${visual.flagshipHero} py-14`}>
+        <Container className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
+          <div>
           <Reveal>
             <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
-              Male Genital Aesthetics
+              Flagship procedure · Abu Dhabi
             </p>
-            <h1 className="mt-4 font-display text-display-xl text-foreground">
+            <h1 className="mt-4 max-w-2xl font-display text-display-2xl text-foreground">
               Penile Girth Enhancement
             </h1>
-            <BrandCurve className="mt-6 h-4 w-32 text-accent-strong" />
+            <div className={visual.flagshipMetrics}><p><strong>{doctor.girthProcedureCount}</strong><span>Procedures performed</span></p><p><strong>Since {doctor.girthEnhancementSince}</strong><span>Penile Girth Enhancement</span></p></div>
             <p className="mt-6 max-w-2xl text-body-lg text-muted-foreground">
               A specialist medical approach to penile augmentation, with
               treatment planning based on anatomy, goals and realistic
@@ -162,19 +166,33 @@ export default function PenileGirthEnhancementPage() {
               </BookingCta>
             </div>
           </Reveal>
+          <p className="mt-6 text-sm text-muted-foreground">{doctor.displayName}<br />{doctor.title} · Medical Trainer</p>
+          </div>
+          <PhotoFrame slot="girthClinical" landscape priority />
         </Container>
-      </section>
+      </EditorialField>
 
       {/* Authority block — procedure-specific experience first for this page (Phase A brief) */}
       <section className="border-t border-border bg-background py-14">
         <Container>
-          <AuthorityBlock />
+          <PhysicianAuthority dark />
+        </Container>
+      </section>
+
+      <section className="py-section-y">
+        <Container>
+          <SectionHeading eyebrow="Your clinical pathway" heading="From the first conversation to follow-up" />
+          <ClinicalPathway />
         </Container>
       </section>
 
       {/* What patients want + consultation/anatomy */}
       <section className="border-t border-border bg-surface py-section-y">
         <Container className="grid gap-16 lg:grid-cols-2 lg:gap-24">
+          <div>
+            <ProcedureFramework />
+          </div>
+          <div>
           <div>
             <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
               Common goals
@@ -189,7 +207,7 @@ export default function PenileGirthEnhancementPage() {
               consultation.
             </p>
           </div>
-          <div>
+          <div className="mt-10">
             <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
               Consultation and anatomy
             </p>
@@ -201,6 +219,7 @@ export default function PenileGirthEnhancementPage() {
               anatomy, medical history and goals. What may be suitable
               varies significantly from one patient to another.
             </p>
+          </div>
           </div>
         </Container>
       </section>
@@ -242,7 +261,7 @@ export default function PenileGirthEnhancementPage() {
       {/* Expected variability — dark section, this page's one dark moment, used to give the "no numbers" honesty real weight */}
       <section className="section-dark relative bg-background py-section-y text-foreground">
         <EditorialTexture watermark={false} />
-        <Container className="mx-auto max-w-2xl text-center">
+        <Container className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-24">
           <Reveal>
             <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
               Expected variability
@@ -257,6 +276,7 @@ export default function PenileGirthEnhancementPage() {
               consultation, rather than promised in advance.
             </p>
           </Reveal>
+          <VariabilityFactors />
         </Container>
       </section>
 
@@ -264,30 +284,17 @@ export default function PenileGirthEnhancementPage() {
       <section className="py-section-y">
         <Container>
           <SectionHeading eyebrow="Before and after" heading="Risks, Aftercare and Revision" />
-          <div className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 border-t border-border pt-10 md:grid-cols-3">
-            {afterConsiderations.map((item) => (
-              <Reveal key={item.title}>
-                <h3 className="font-display text-lg text-foreground">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {item.description}
-                </p>
-                {item.href && item.linkLabel && (
-                  <Link
-                    href={item.href}
-                    className="mt-3 inline-flex text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
-                  >
-                    {item.linkLabel}
-                  </Link>
-                )}
-              </Reveal>
-            ))}
-          </div>
+          <CareStages items={afterConsiderations} />
         </Container>
       </section>
 
       {/* About Dr. Molina — brief §11: performed by a Consultant, not a generic injector */}
       <section className="border-t border-border bg-surface py-section-y">
-        <Container className="grid gap-16 lg:grid-cols-[1fr_1.4fr] lg:gap-24">
+        <Container className={visual.split}>
+          <div>
+            <PhotoFrame slot="girthConsultation" landscape />
+          </div>
+          <div>
           <div>
             <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
               About
@@ -314,6 +321,7 @@ export default function PenileGirthEnhancementPage() {
               About {doctor.displayName}
             </Link>
           </div>
+          </div>
         </Container>
       </section>
 
@@ -334,6 +342,6 @@ export default function PenileGirthEnhancementPage() {
         bookingLabel="Book a Confidential Consultation"
         secondary={{ label: "Back to Male Genital Aesthetics", href: "/male-aesthetics" }}
       />
-    </>
+    </div>
   );
 }

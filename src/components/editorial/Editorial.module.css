@@ -1,0 +1,62 @@
+.authority {
+  --authority-muted: #575f51;
+  background: #f0f1eb;
+  color: #272e24;
+  padding: clamp(1.5rem,4vw,3rem);
+}
+.authorityDark {
+  --authority-muted: #c8cec0;
+  background: #292d27;
+  color: #f9faf5;
+}
+.metrics { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 2rem; }
+.metric { margin: 0; min-width: 0; display: flex; flex-direction: column; }
+.metric dt { margin-top: .65rem; font-size: .75rem; line-height: 1.5; letter-spacing: .06em; text-transform: uppercase; color: var(--authority-muted); }
+.metric dd { order: -1; margin: 0; font-family: var(--font-display); font-size: clamp(2rem,4vw,3.5rem); line-height: 1.08; }
+.rail { display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid #89957f70; font-size: .9rem; color: var(--authority-muted); }
+.recognitionRail { display: flex; flex-wrap: wrap; gap: .5rem 2rem; margin-top: 1.25rem; padding: 0; list-style: none; font-family: var(--font-display); font-size: clamp(1.25rem,1.8vw,1.6rem); font-weight: 400; border-top: 1px solid #aeb5a480; padding-top: 1.25rem; }
+.timeline { list-style: none; padding: 0; margin: 3rem 0 0; display: grid; gap: 2rem 4rem; }
+.milestone { display: grid; grid-template-columns: 3rem 1fr; gap: 1rem; padding-top: 1.5rem; border-top: 1px solid #ccd2c4; }
+.marker { font-family: var(--font-display); font-size: 2rem; color: #656d5d; }
+.story { min-width: 0; }
+.story p { max-width: 62ch; }
+.story details { margin-top: 1.25rem; }
+.story summary { cursor: pointer; width: fit-content; font-size: .8rem; text-decoration: underline; text-underline-offset: 4px; }
+.story details[open] summary { margin-bottom: 1rem; }
+.pathway { list-style: none; padding: 0; margin: 3rem 0 0; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 1.5rem; }
+.step { position: relative; padding: 1.5rem; background: #f3f3ee; border-top: 1px solid #a5af99; }
+.step:nth-child(4), .step:nth-child(5), .step:nth-child(6) { background: #eaede3; }
+.stepNumber { color: #626d57; font-family: var(--font-display); font-size: 2.5rem; font-variant-numeric: tabular-nums; }
+.framework { padding: clamp(1.5rem,4vw,3rem); background: #252d25; color: #eef2e9; }
+.framework p, .framework figcaption { color: #d0d8c7; }
+.contour { display: block; width: 100%; max-height: 24rem; color: #bac5ad; }
+.variables { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 0; margin-top: 2rem; }
+.variables li { padding: 1.25rem 0; border-top: 1px solid #7d8872; display: flex; align-items: baseline; gap: 1rem; }
+.variables span { opacity: .75; font-size: .75rem; }
+.care { list-style: none; padding: 0; margin-top: 3rem; display: grid; gap: 1rem; }
+.care li { display: grid; grid-template-columns: 4rem 1fr; gap: 1rem; padding: clamp(1.25rem,3vw,2.5rem); background: #f0f2eb; border-left: 2px solid #87947a; }
+.care li:nth-child(2) { background: #e5e9df; }
+.care li:nth-child(3) { background: #d9dfd1; }
+.care p { max-width: 65ch; }
+@media(min-width:768px) {
+  .timeline { grid-template-columns: 1fr 1fr; }
+  .milestone:first-child { grid-column: 1 / -1; max-width: 54rem; }
+  .milestone:last-child { grid-column: 1 / -1; background: #f0f2eb; padding: 2rem; }
+  .care li:nth-child(2) { margin-left: 3rem; }
+  .care li:nth-child(3) { margin-left: 6rem; }
+}
+@media(max-width:639px) {
+  .metrics { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 1.5rem; }
+  .pathway { grid-template-columns: 1fr; }
+  .step { display: grid; grid-template-columns: 2.5rem 1fr; gap: .5rem 1rem; padding: 1.25rem; }
+  .step p { grid-column: 2; }
+  .step h3 { align-self: center; margin-top: 0; }
+  .care li { grid-template-columns: 2.25rem 1fr; }
+}
+
+.stepNumber { display: inline-flex; align-items: center; gap: .7rem; }
+.step .stepNumber::after { content: ''; width: .35rem; height: .35rem; background: #8b967c; border-radius: 50%; }
+.variables li { align-items: center; gap: 1.25rem; }
+.variables svg { width: 1.75rem; height: 1.75rem; flex-shrink: 0; color: #c0c7b4; }
+.variables li > span { display: none; }
+@media(max-width:639px) { .step .stepNumber::after { display: none; } }

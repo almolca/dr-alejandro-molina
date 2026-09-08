@@ -1,3 +1,4 @@
+import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import type { Metadata } from "next";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
@@ -84,6 +85,8 @@ export default function PenileSurgeryPage() {
           </StaggerGroup>
         </Container>
       </section>
+
+      <RelatedTreatments items={[{ label: "Penile Girth Enhancement", href: "/male-aesthetics/penile-girth-enhancement" }]} />
 
       <Faq
         items={[

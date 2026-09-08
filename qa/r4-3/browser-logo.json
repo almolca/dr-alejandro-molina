@@ -1,0 +1,170 @@
+[
+  {
+    "width": 375,
+    "logos": [
+      {
+        "source": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full-transparent.png&w=256&q=75",
+        "cornerAlpha": 0,
+        "width": 180,
+        "height": 120,
+        "filter": "none",
+        "blendMode": "normal"
+      },
+      {
+        "source": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full-transparent.png&w=384&q=75",
+        "cornerAlpha": 0,
+        "width": 296,
+        "height": 197,
+        "filter": "none",
+        "blendMode": "normal"
+      }
+    ]
+  },
+  {
+    "width": 390,
+    "logos": [
+      {
+        "source": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full-transparent.png&w=384&q=75",
+        "cornerAlpha": 0,
+        "width": 180,
+        "height": 120,
+        "filter": "none",
+        "blendMode": "normal"
+      },
+      {
+        "source": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full-transparent.png&w=384&q=75",
+        "cornerAlpha": 0,
+        "width": 310,
+        "height": 207,
+        "filter": "none",
+        "blendMode": "normal"
+      }
+    ]
+  },
+  {
+    "width": 430,
+    "logos": [
+      {
+        "source": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full-transparent.png&w=384&q=75",
+        "cornerAlpha": 0,
+        "width": 180,
+        "height": 120,
+        "filter": "none",
+        "blendMode": "normal"
+      },
+      {
+        "source": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full-transparent.png&w=384&q=75",
+        "cornerAlpha": 0,
+        "width": 320,
+        "height": 213,
+        "filter": "none",
+        "blendMode": "normal"
+      }
+    ]
+  },
+  {
+    "width": 768,
+    "logos": [
+      {
+        "source": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full-transparent.png&w=384&q=75",
+        "cornerAlpha": 0,
+        "width": 200,
+        "height": 133,
+        "filter": "none",
+        "blendMode": "normal"
+      },
+      {
+        "source": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full-transparent.png&w=384&q=75",
+        "cornerAlpha": 0,
+        "width": 254,
+        "height": 169,
+        "filter": "none",
+        "blendMode": "normal"
+      }
+    ]
+  },
+  {
+    "width": 1024,
+    "logos": [
+      {
+        "source": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full-transparent.png&w=384&q=75",
+        "cornerAlpha": 0,
+        "width": 200,
+        "height": 133,
+        "filter": "none",
+        "blendMode": "normal"
+      },
+      {
+        "source": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full-transparent.png&w=384&q=75",
+        "cornerAlpha": 0,
+        "width": 320,
+        "height": 213,
+        "filter": "none",
+        "blendMode": "normal"
+      }
+    ]
+  },
+  {
+    "width": 1280,
+    "logos": [
+      {
+        "source": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full-transparent.png&w=384&q=75",
+        "cornerAlpha": 0,
+        "width": 210,
+        "height": 140,
+        "filter": "none",
+        "blendMode": "normal"
+      },
+      {
+        "source": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full-transparent.png&w=384&q=75",
+        "cornerAlpha": 0,
+        "width": 320,
+        "height": 213,
+        "filter": "none",
+        "blendMode": "normal"
+      }
+    ]
+  },
+  {
+    "width": 1440,
+    "logos": [
+      {
+        "source": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full-transparent.png&w=384&q=75",
+        "cornerAlpha": 0,
+        "width": 210,
+        "height": 140,
+        "filter": "none",
+        "blendMode": "normal"
+      },
+      {
+        "source": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full-transparent.png&w=384&q=75",
+        "cornerAlpha": 0,
+        "width": 320,
+        "height": 213,
+        "filter": "none",
+        "blendMode": "normal"
+      }
+    ]
+  },
+  {
+    "width": 1728,
+    "logos": [
+      {
+        "source": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full-transparent.png&w=384&q=75",
+        "cornerAlpha": 0,
+        "width": 210,
+        "height": 140,
+        "filter": "none",
+        "blendMode": "normal"
+      },
+      {
+        "source": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full-transparent.png&w=384&q=75",
+        "cornerAlpha": 0,
+        "width": 320,
+        "height": 213,
+        "filter": "none",
+        "blendMode": "normal"
+      }
+    ]
+  }
+]

@@ -1,0 +1,42 @@
+[
+  {
+    "route": "/",
+    "width": 390,
+    "violations": []
+  },
+  {
+    "route": "/",
+    "width": 1440,
+    "violations": []
+  },
+  {
+    "route": "/about",
+    "width": 390,
+    "violations": []
+  },
+  {
+    "route": "/about",
+    "width": 1440,
+    "violations": []
+  },
+  {
+    "route": "/male-aesthetics",
+    "width": 390,
+    "violations": []
+  },
+  {
+    "route": "/male-aesthetics",
+    "width": 1440,
+    "violations": []
+  },
+  {
+    "route": "/male-aesthetics/penile-girth-enhancement",
+    "width": 390,
+    "violations": []
+  },
+  {
+    "route": "/male-aesthetics/penile-girth-enhancement",
+    "width": 1440,
+    "violations": []
+  }
+]

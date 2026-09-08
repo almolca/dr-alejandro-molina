@@ -1,0 +1,1691 @@
+{
+  "results": [
+    {
+      "route": "/",
+      "width": 375,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=256&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "homeHero",
+          "width": 314.109375,
+          "height": 251.28125,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "homeClinical",
+          "width": 328,
+          "height": 218.65625,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": true,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "homeHero",
+          "width": 318.40625,
+          "height": 254.71875,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "homeClinical",
+          "width": 342.40625,
+          "height": 228.265625,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": true,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "width": 430,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "homeHero",
+          "width": 356.8125,
+          "height": 285.4375,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "homeClinical",
+          "width": 380.8125,
+          "height": 253.875,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": true,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 254,
+          "height": 169
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "homeHero",
+          "width": 673.28125,
+          "height": 841.59375,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "homeClinical",
+          "width": 705.28125,
+          "height": 470.1875,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": true,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "homeHero",
+          "width": 381.75,
+          "height": 477.1875,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "homeClinical",
+          "width": 384.765625,
+          "height": 256.5,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": true,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "width": 1280,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 180,
+          "height": 120
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "homeHero",
+          "width": 464,
+          "height": 580,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "homeClinical",
+          "width": 495.359375,
+          "height": 330.234375,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": true,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 180,
+          "height": 120
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "homeHero",
+          "width": 464,
+          "height": 580,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "homeClinical",
+          "width": 564.46875,
+          "height": 376.3125,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": true,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/",
+      "width": 1728,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 180,
+          "height": 120
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "homeHero",
+          "width": 464,
+          "height": 580,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "homeClinical",
+          "width": 561.59375,
+          "height": 374.390625,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": true,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/about",
+      "width": 375,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "aboutPortrait",
+          "width": 328,
+          "height": 262.390625,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "aboutConsultation",
+          "width": 328,
+          "height": 218.65625,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "aboutTraining",
+          "width": 328,
+          "height": 218.65625,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": true,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/about",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "aboutPortrait",
+          "width": 342.40625,
+          "height": 273.921875,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "aboutConsultation",
+          "width": 342.40625,
+          "height": 228.265625,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "aboutTraining",
+          "width": 342.40625,
+          "height": 228.265625,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": true,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/about",
+      "width": 430,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "aboutPortrait",
+          "width": 380.8125,
+          "height": 304.640625,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "aboutConsultation",
+          "width": 380.8125,
+          "height": 253.875,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "aboutTraining",
+          "width": 380.8125,
+          "height": 253.875,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": true,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/about",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 254,
+          "height": 169
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "aboutPortrait",
+          "width": 705.28125,
+          "height": 881.59375,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "aboutConsultation",
+          "width": 705.28125,
+          "height": 470.1875,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "aboutTraining",
+          "width": 705.28125,
+          "height": 470.1875,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": true,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/about",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "aboutPortrait",
+          "width": 399.171875,
+          "height": 498.953125,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "aboutConsultation",
+          "width": 435.53125,
+          "height": 290.34375,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "aboutTraining",
+          "width": 435.53125,
+          "height": 290.34375,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": true,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/about",
+      "width": 1280,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 180,
+          "height": 120
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "aboutPortrait",
+          "width": 509.765625,
+          "height": 637.203125,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "aboutConsultation",
+          "width": 558.40625,
+          "height": 372.265625,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "aboutTraining",
+          "width": 558.40625,
+          "height": 372.265625,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": true,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/about",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 180,
+          "height": 120
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "aboutPortrait",
+          "width": 512,
+          "height": 640,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "aboutConsultation",
+          "width": 635.203125,
+          "height": 423.46875,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "aboutTraining",
+          "width": 635.203125,
+          "height": 423.46875,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": true,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/about",
+      "width": 1728,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 180,
+          "height": 120
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "aboutPortrait",
+          "width": 512,
+          "height": 640,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "aboutConsultation",
+          "width": 632,
+          "height": 421.328125,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "aboutTraining",
+          "width": 632,
+          "height": 421.328125,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": true,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/male-aesthetics",
+      "width": 375,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "aestheticsClinical",
+          "width": 328,
+          "height": 218.65625,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/male-aesthetics",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "aestheticsClinical",
+          "width": 342.40625,
+          "height": 228.265625,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/male-aesthetics",
+      "width": 430,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "aestheticsClinical",
+          "width": 380.8125,
+          "height": 253.875,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/male-aesthetics",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 254,
+          "height": 169
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "aestheticsClinical",
+          "width": 705.28125,
+          "height": 470.1875,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/male-aesthetics",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "aestheticsClinical",
+          "width": 399.171875,
+          "height": 266.109375,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/male-aesthetics",
+      "width": 1280,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 180,
+          "height": 120
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "aestheticsClinical",
+          "width": 509.765625,
+          "height": 339.84375,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/male-aesthetics",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 180,
+          "height": 120
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "aestheticsClinical",
+          "width": 578.875,
+          "height": 385.90625,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/male-aesthetics",
+      "width": 1728,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 180,
+          "height": 120
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "aestheticsClinical",
+          "width": 576,
+          "height": 384,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/male-aesthetics/penile-girth-enhancement",
+      "width": 375,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "girthClinical",
+          "width": 328,
+          "height": 218.65625,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "girthConsultation",
+          "width": 328,
+          "height": 218.65625,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/male-aesthetics/penile-girth-enhancement",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "girthClinical",
+          "width": 342.40625,
+          "height": 228.265625,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "girthConsultation",
+          "width": 342.40625,
+          "height": 228.265625,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/male-aesthetics/penile-girth-enhancement",
+      "width": 430,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "girthClinical",
+          "width": 380.8125,
+          "height": 253.875,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "girthConsultation",
+          "width": 380.8125,
+          "height": 253.875,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/male-aesthetics/penile-girth-enhancement",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 254,
+          "height": 169
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "girthClinical",
+          "width": 705.28125,
+          "height": 470.1875,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "girthConsultation",
+          "width": 705.28125,
+          "height": 470.1875,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/male-aesthetics/penile-girth-enhancement",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "girthClinical",
+          "width": 383.8125,
+          "height": 255.875,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "girthConsultation",
+          "width": 435.53125,
+          "height": 290.34375,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/male-aesthetics/penile-girth-enhancement",
+      "width": 1280,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 180,
+          "height": 120
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "girthClinical",
+          "width": 488.25,
+          "height": 325.5,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "girthConsultation",
+          "width": 558.40625,
+          "height": 372.265625,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/male-aesthetics/penile-girth-enhancement",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 180,
+          "height": 120
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "girthClinical",
+          "width": 553.53125,
+          "height": 369.015625,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "girthConsultation",
+          "width": 635.203125,
+          "height": 423.46875,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/male-aesthetics/penile-girth-enhancement",
+      "width": 1728,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 180,
+          "height": 120
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "girthClinical",
+          "width": 550.8125,
+          "height": 367.203125,
+          "emptyText": true,
+          "insideViewport": true
+        },
+        {
+          "slot": "girthConsultation",
+          "width": 632,
+          "height": 421.328125,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/mens-health",
+      "width": 375,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "mensHealthConsultation",
+          "width": 328,
+          "height": 218.65625,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/mens-health",
+      "width": 390,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "mensHealthConsultation",
+          "width": 342.40625,
+          "height": 228.265625,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/mens-health",
+      "width": 430,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "mensHealthConsultation",
+          "width": 380.8125,
+          "height": 253.875,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/mens-health",
+      "width": 768,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 254,
+          "height": 169
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "mensHealthConsultation",
+          "width": 705.28125,
+          "height": 470.1875,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/mens-health",
+      "width": 1024,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 150,
+          "height": 100
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "mensHealthConsultation",
+          "width": 413.75,
+          "height": 275.828125,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/mens-health",
+      "width": 1280,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 180,
+          "height": 120
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "mensHealthConsultation",
+          "width": 530.484375,
+          "height": 353.65625,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/mens-health",
+      "width": 1440,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 180,
+          "height": 120
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "mensHealthConsultation",
+          "width": 603.4375,
+          "height": 402.28125,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    },
+    {
+      "route": "/mens-health",
+      "width": 1728,
+      "status": 200,
+      "overflow": false,
+      "h1": 1,
+      "logo": [
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 180,
+          "height": 120
+        },
+        {
+          "src": "http://localhost:3502/_next/image?url=%2Fbrand%2Flogo-full.png&w=384&q=75",
+          "loaded": true,
+          "width": 280,
+          "height": 187
+        }
+      ],
+      "gated": false,
+      "photoFrames": [
+        {
+          "slot": "mensHealthConsultation",
+          "width": 600.390625,
+          "height": 400.25,
+          "emptyText": true,
+          "insideViewport": true
+        }
+      ],
+      "approvedRecognition": false,
+      "links": true,
+      "errors": []
+    }
+  ],
+  "interactions": [
+    {
+      "width": 390,
+      "navigation": true,
+      "drawerClosed": true
+    },
+    {
+      "width": 390,
+      "escapeCloses": true,
+      "focusReturns": true
+    },
+    {
+      "width": 768,
+      "navigation": true,
+      "drawerClosed": true
+    },
+    {
+      "width": 768,
+      "escapeCloses": true,
+      "focusReturns": true
+    },
+    {
+      "width": 1024,
+      "navigation": true,
+      "drawerClosed": true
+    },
+    {
+      "width": 1024,
+      "escapeCloses": true,
+      "focusReturns": true
+    },
+    {
+      "width": 1440,
+      "navigation": true
+    },
+    {
+      "faqExpanded": true
+    },
+    {
+      "bookingHandoff": true
+    },
+    {
+      "biographyOpens": true,
+      "biographyPreserved": true
+    }
+  ],
+  "accessibility": [
+    {
+      "route": "/",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "route": "/",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "route": "/about",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "route": "/about",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "route": "/male-aesthetics",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "route": "/male-aesthetics",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "route": "/male-aesthetics/penile-girth-enhancement",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "route": "/male-aesthetics/penile-girth-enhancement",
+      "width": 1440,
+      "violations": []
+    },
+    {
+      "route": "/mens-health",
+      "width": 390,
+      "violations": []
+    },
+    {
+      "route": "/mens-health",
+      "width": 1440,
+      "violations": []
+    }
+  ],
+  "reducedMotion": {
+    "matches": true,
+    "h1Visible": true,
+    "horizontalOverflow": false
+  }
+}

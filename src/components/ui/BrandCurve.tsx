@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { defaultViewport, durations, easeSoft } from "@/components/motion/motion-config";
 
 /**
@@ -11,6 +11,7 @@ import { defaultViewport, durations, easeSoft } from "@/components/motion/motion
  * Purely decorative — `aria-hidden`.
  */
 export function BrandCurve({ className }: { className?: string }) {
+  const reduceMotion = useReducedMotion();
   return (
     <svg
       aria-hidden
@@ -23,10 +24,10 @@ export function BrandCurve({ className }: { className?: string }) {
         stroke="currentColor"
         strokeWidth="2"
         strokeLinecap="round"
-        initial={{ pathLength: 0, opacity: 0 }}
-        whileInView={{ pathLength: 1, opacity: 1 }}
+        initial={false}
         viewport={defaultViewport}
-        transition={{ duration: durations.slow, ease: easeSoft }}
+        whileInView={reduceMotion === false ? { pathLength: [0, 1], opacity: [0, 1] } : { pathLength: 1, opacity: 1 }}
+        transition={{ duration: reduceMotion ? 0 : durations.slow, ease: easeSoft }}
       />
     </svg>
   );

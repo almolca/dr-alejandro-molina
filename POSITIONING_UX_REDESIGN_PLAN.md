@@ -13,6 +13,8 @@ This plan does not resolve `NEXT_PUBLIC_SITE_URL` / deployment — that remains 
 
 **Visual enrichment layer (2026-09-07):** a separate initiative — not itemized in this document — added a real logo, a charcoal (not navy) dark-section palette, reusable texture/curve/tonal-section primitives, additional motion, and further text-wall breaks across several of the pages this plan already touched. Full detail in `IMPLEMENTATION_REPORT.md` Phase 12 (first pass, judged incomplete by the owner) and Phase 13 (the correction pass that actually completed it, including a real before/after screenshot comparison). Notably this strengthens R1.4 (header identity) beyond what's described below — the header now carries the actual AM logo mark, not just text — and touches R2.1 (Homepage), R2.2 (Male Aesthetics), R2.9 (About) again with palette/texture/motion changes layered on top of the positioning/copy work already recorded as done. It does not change any of the "Not done" items listed above; those remain open.
 
+**R4 correction (2026-09-07):** the dedicated flagship treatment in R2.3 is now implemented: anatomy-planning artwork, six-step clinical pathway, variability factors and a staged care/revision system. Home and About now have scannable clinical/education/editorial authority; About has an alternating connected timeline. Full logo lockups replace the header/footer symbol-and-text treatment. The primary navigation exposes the existing Girth Enhancement canonical route directly. See `R4_IMPLEMENTATION_REPORT.md` and `qa/r4-visual-review.html` for evidence. Other unrelated open items above retain their prior status.
+
 Read each item below for its original, unedited recommendation; this status note is the single place tracking what's actually landed versus still open.
 
 ---
@@ -291,3 +293,11 @@ Ordered per the brief's stated priority.
 ## Sequencing note
 
 R1 items should land before R2/R3 wherever a dependency exists (R1.5's `AuthorityBlock` before R2.7; R1.7's filtering before R3.5; R1.3's photography before R2.9/R2.2/R2.8's placeholder replacements can fully close out — though the layout/copy portions of those page-level items can proceed independently of photography timing). R1.1 (cookie banner) and R1.9 (confirmed bugs) have no dependencies and are the lowest-complexity, highest-clarity fixes in this entire plan — they are the natural starting point for any execution phase that follows.
+
+## R4.2 status — 2026-09-07
+
+The global visual correction is implemented on the five requested pages. [Report and validation](R4_2_IMPLEMENTATION_REPORT.md); [before/after gallery](qa/r4-2/index.html). Awaiting owner visual review and approved photography. No deployment or merge.
+
+## R4.3 status — 2026-09-07
+
+Focused transparent-logo, header/footer, physician identity, recognition/education and flagship hierarchy refinements completed. [Report](R4_3_IMPLEMENTATION_REPORT.md); [visual comparison](qa/r4-3/index.html). Await owner visual review and approved photography. No merge or deployment.

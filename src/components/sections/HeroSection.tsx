@@ -1,18 +1,12 @@
+import { PhotoFrame } from "@/components/editorial/PhotoFrame";
+import visual from "@/components/editorial/VisualSystem.module.css";
 import { practiceLocationLine } from "@/config/practice";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { EditorialField } from "@/components/editorial/LayeredEditorialPanel";
 import { MaskedReveal } from "@/components/motion/MaskedReveal";
 import { Reveal } from "@/components/motion/Reveal";
-
-/** Spec §7 Section 1 — verbatim trust-strip credentials only (no invented claims). */
-const trustStrip = [
-  "European-trained",
-  "Andrology & Sexual Medicine",
-  "Penile Surgery",
-  "Male Genital Aesthetics",
-];
 
 /**
  * Phase R1-R2: H1 now carries the physician's name directly (was a
@@ -21,8 +15,8 @@ const trustStrip = [
  */
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden">
-      <Container className="grid min-h-[85vh] items-center gap-12 py-section-y lg:grid-cols-2 lg:gap-16">
+    <EditorialField>
+      <Container className={visual.heroGrid}>
         <div>
           <Reveal>
             <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
@@ -53,7 +47,7 @@ export function HeroSection() {
           <Reveal delay={0.15}>
             <div className="mt-10 border-t border-border pt-6">
               <p className="text-sm text-muted-foreground">
-                Consultant Urologist &amp; Andrologist
+                FEBU · Fellow of the European Board of Urology
               </p>
               <p className="mt-1 text-sm text-muted-foreground">
                 {practiceLocationLine}
@@ -75,22 +69,12 @@ export function HeroSection() {
           </Reveal>
         </div>
 
-        <MaskedReveal className="aspect-[4/5] w-full border border-border bg-surface lg:aspect-[3/4]">
-          <ImagePlaceholder index="01" label="Portrait of Dr. Alejandro Molina" />
-        </MaskedReveal>
+        <div className={visual.heroMedia}>
+          <MaskedReveal><PhotoFrame slot="homeHero" priority /></MaskedReveal>
+
+        </div>
       </Container>
 
-      <div className="border-t border-border bg-surface">
-        <Container>
-          <Reveal>
-            <ul className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4 py-6 text-center text-xs font-medium uppercase tracking-widest text-muted-foreground">
-              {trustStrip.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </Reveal>
-        </Container>
-      </div>
-    </section>
+    </EditorialField>
   );
 }

@@ -1,0 +1,122 @@
+/* Scoped to the five R4.2 pages. Supporting routes keep their existing layouts. */
+.scope {
+  --accent-strong: #555653;
+  --surface: #f0efec;
+}
+.scope :global(.text-eyebrow) { color: var(--muted-foreground); }
+.scope h1, .scope h2, .scope h3 { text-wrap: balance; }
+.scope :global(.section-dark) {
+  --background: #232523;
+  --foreground: #fafaf7;
+  --muted-foreground: #c9cac6;
+  --border: #50524e;
+  --accent-strong: #d2d1cb;
+}
+.hero { background: #fafaf7; position: relative; overflow: hidden; }
+.heroGrid { display: grid; align-items: center; gap: 3rem; padding-block: clamp(2rem, 4vw, 4rem); }
+.heroCopy { max-width: 42rem; }
+.media {
+  position: relative;
+  isolation: isolate;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  background: linear-gradient(180deg, #f0f0ec, #e7e8e2);
+  border: 1px solid #dedfd8;
+  overflow: hidden;
+}
+
+.mediaLandscape { aspect-ratio: 3 / 2; }
+.media img { object-fit: cover; object-position: center 35%; }
+.mediaCaption { padding-block: 1rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: .4rem 1rem; font-size: .75rem; color: #585e54; }
+.heroMedia { position: relative; }
+
+.heroMedia > * { position: relative; }
+.recognition { background: #252725; color: #f8f8f5; }
+.recognition h2 { color: #c8c9c3; }
+.recognition li { color: #fafaf7; }
+.recognitionGrid { display: grid; gap: 3rem; }
+.recognitionColumn { border-top: 1px solid #656864; padding-top: 1.25rem; }
+.services { display: grid; gap: 2rem; margin-top: 3rem; }
+.serviceFeature { display: flex; flex-direction: column; justify-content: space-between; min-height: 23rem; padding: 2rem; color: #fafaf6; background: #292c29; }
+.serviceFeature:hover, .serviceFeature:focus-visible { background: #3b3f3b; }
+.serviceFeature p { max-width: 30ch; }
+.serviceList { display: grid; }
+.serviceLink { display: grid; grid-template-columns: 3rem 1fr 1rem; gap: 1rem; padding: 1.5rem 1rem; border-top: 1px solid #d5d6d1; transition: background 180ms ease, padding 180ms ease; }
+.serviceLink:hover, .serviceLink:focus-visible { background: #eeefeb; padding-inline: 1.4rem; }
+.serviceNumber { font-size: 2rem; font-family: var(--font-display); color: #6c716a; }
+.flow { margin-top: 2.5rem; list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); }
+.flow li { position: relative; border-top: 1px solid #a8aca4; padding: 1.5rem 1.5rem 2rem 0; }
+.flow li::before { content: ''; position: absolute; left: 0; top: -.2rem; width: .4rem; height: .4rem; background: #898e82; border-radius: 50%; }
+.flow span { font-size: .75rem; color: #64685f; }
+.flow strong { display: block; font-weight: 500; font-size: 1rem; margin-top: .7rem; }
+.clinicalBand { background: #f0f0eb; }
+.insight { border-left: 3px solid #878b80; padding-left: 1.5rem; max-width: 42rem; }
+.split { display: grid; gap: 3rem; align-items: center; }
+.feature { background: #252725; color: #f7f8f3; padding: clamp(2rem,5vw,5rem); position: relative; overflow: hidden; }
+.feature p { color: #d3d5cd; }
+.featureNumbers { display: flex; flex-wrap: wrap; gap: 2rem 4rem; margin-block: 2rem; }
+.featureNumbers strong { display: block; font-family: var(--font-display); font-size: clamp(2.5rem,5vw,4rem); font-weight: 400; color: #fff; }
+.featureNumbers span { display: block; font-size: .8rem; margin-top: .3rem; color: #d3d5cd; }
+.featureLink { display: inline-flex; padding: .85rem 1.25rem; background: #f5f6ef; color: #252725; font-size: .9rem; font-weight: 500; transition: background 180ms; }
+.featureLink:hover { background: #e5e7df; }
+.clinicalAreas { display: grid; gap: 0; margin-top: 2rem; }
+.clinicalAreas a { display: flex; align-items: center; gap: 1rem; padding: 1.2rem 0; border-bottom: 1px solid #bec3b8; font-family: var(--font-display); font-size: 1.5rem; }
+.clinicalAreas a:hover { color: #6b573d; }
+.clinicalAreas a span { font-family: var(--font-sans); font-size: .75rem; color: #666d5f; }
+.footer { background: #f0f0eb; border-top: 1px solid #d0d3c9; }
+.footerBrand { padding-right: 2rem; }
+.footerIntro { max-width: 24rem; font-family: var(--font-display); font-size: 1.6rem; line-height: 1.3; margin-top: 1.5rem; }
+@media(min-width:768px) {
+  .recognitionGrid { grid-template-columns: 1fr 1fr; }
+  .recognitionColumn:last-child { grid-column: 1 / -1; }
+  .services { grid-template-columns: .85fr 1.15fr; gap: 3rem; }
+  .clinicalAreas { grid-template-columns: 1fr 1fr; column-gap: 2rem; }
+}
+@media(min-width:1024px) {
+  .heroGrid { grid-template-columns: 1.05fr .95fr; gap: 5rem; }
+  .heroMedia { max-width: 30rem; justify-self: end; width: 100%; }
+  .recognitionGrid { grid-template-columns: 1.2fr 1.1fr 1fr; gap: 2.5rem; }
+  .recognitionColumn:last-child { grid-column: auto; }
+  .split { grid-template-columns: 1fr 1fr; gap: 5rem; }
+}
+@media(max-width:639px) {
+  .media { aspect-ratio: 5 / 4; }
+  .mediaLandscape { aspect-ratio: 3 / 2; }
+  
+  
+  .flow { grid-template-columns: 1fr 1fr; }
+  .flow strong { font-size: .9375rem; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .serviceLink, .serviceFeature, .featureLink { transition: none; }
+}
+.scope :global(.section-dark) .flow span { color: #cbcec5; }
+.scope :global(.section-olive) {
+  --background: #30332e;
+  --foreground: #f6f8f0;
+  --muted-foreground: #c7cdbf;
+  --border: #656b5e;
+  --accent-strong: #d2d1cb;
+}
+
+/* R4.3: flagship carries its own charcoal hero, with reserved clinical media. */
+.flagshipHero {
+  --foreground: #fafaf6;
+  --muted-foreground: #c9ccc2;
+  --border: #565d4e;
+  --accent-strong: #cccec5;
+  --focus-ring: #fafaf6;
+  background: #242824;
+  color: var(--foreground);
+}
+.flagshipHero :global(.bg-foreground) { background: #f5f5ed; color: #242824; }
+.flagshipHero :global(.bg-foreground):hover { background: #e4e8dc; }
+.flagshipMetrics { display: flex; flex-wrap: wrap; gap: 1rem 2.5rem; margin-top: 2rem; }
+.flagshipMetrics strong { display: block; font-family: var(--font-display); font-size: clamp(2rem,3vw,3rem); font-weight: 400; }
+.flagshipMetrics span { display: block; color: #c9ccc2; margin-top: .25rem; font-size: .75rem; }
+.footerBrand::before { content: ''; display: block; width: 4rem; border-top: 1px solid #ad9063; margin-bottom: 1.5rem; }
+.footer :global(nav[aria-label="Services"]), .footer :global(nav[aria-label="Site"]) { border-top: 1px solid #c5cabd; padding-top: 1.5rem; }
+
+.physicianIdentity { margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid #d5d8ce; }
+.physicianIdentity p { font-family: var(--font-display); font-size: 1.4rem; }
+.physicianIdentity span { display: block; margin-top: .3rem; font-size: .8rem; color: #60665a; }

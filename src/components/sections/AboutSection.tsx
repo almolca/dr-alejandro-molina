@@ -1,7 +1,7 @@
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { doctor } from "@/config/doctor";
 import { Container } from "@/components/ui/Container";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { PhotoFrame } from "@/components/editorial/PhotoFrame";
 import { MaskedReveal } from "@/components/motion/MaskedReveal";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -26,11 +26,8 @@ export function AboutSection() {
             placeholder image does, even though the image sits in the
             left column on desktop (lg:order-first) — found in the
             Phase 5 UX audit. */}
-        <MaskedReveal className="order-last aspect-[3/4] w-full border border-border bg-surface lg:order-first">
-          <ImagePlaceholder
-            index={doctor.displayName}
-            label="Portrait of Dr. Alejandro Molina"
-          />
+        <MaskedReveal className="order-last w-full lg:order-first">
+          <PhotoFrame slot="homeClinical" landscape />
         </MaskedReveal>
 
         <div>

@@ -1,3 +1,4 @@
+import visual from "@/components/editorial/VisualSystem.module.css";
 import type { Metadata } from "next";
 import { siteUrl } from "@/config/site";
 import { AboutSection } from "@/components/sections/AboutSection";
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
  */
 export default function HomePage() {
   return (
-    <>
+    <div className={visual.scope}>
       <HeroSection />
       <AuthorityStripSection />
       <FeaturedProcedureSection />
@@ -45,6 +46,6 @@ export default function HomePage() {
       <AuthorityMediaSection />
       <InsightsSection />
       <BookingSection />
-    </>
+    </div>
   );
 }
