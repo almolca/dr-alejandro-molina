@@ -1,20 +1,20 @@
 import Image from "next/image";
-import { photography } from "@/config/photography";
+import { editorialMedia } from "@/config/editorial-media";
 import styles from "./VisualSystem.module.css";
 
-/** A reserved photograph surface, never a synthetic portrait or decorative text panel. */
-export function PhotoFrame({ slot, landscape = false, priority = false, tone = "light" }: {
-  slot: keyof typeof photography;
+/** A reserved editorial/treatment imagery surface — conceptual visuals, distinct from physician photography (see PhotoFrame). */
+export function EditorialFrame({ slot, landscape = false, priority = false, tone = "light" }: {
+  slot: keyof typeof editorialMedia;
   landscape?: boolean;
   priority?: boolean;
   /** "dark" sits this frame on a charcoal section — avoids a bright box pasted on a dark background. */
   tone?: "light" | "dark";
 }) {
-  const asset = photography[slot];
+  const asset = editorialMedia[slot];
   const ready = asset.approved && asset.src?.startsWith("/images/");
   return (
     <div
-      data-photo-slot={slot}
+      data-editorial-slot={slot}
       className={`${styles.media} ${landscape ? styles.mediaLandscape : ""} ${tone === "dark" ? styles.mediaDark : ""}`}
       aria-hidden={!ready || undefined}
     >

@@ -4,7 +4,7 @@ import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Faq } from "@/components/ui/Faq";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { PhotoFrame } from "@/components/editorial/PhotoFrame";
 import { ImplantDeviceDiagram } from "@/components/illustrations/ImplantDeviceDiagram";
 import { PullQuote } from "@/components/ui/PullQuote";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
@@ -162,8 +162,8 @@ export default function PenileImplantPage() {
             </Reveal>
           </div>
 
-          <MaskedReveal className="aspect-square w-full self-start border border-border bg-surface lg:aspect-[4/5]">
-            <ImagePlaceholder index="§8" label="Medical diagram pending" />
+          <MaskedReveal className="w-full self-start">
+            <PhotoFrame slot="implantPhysician" priority />
           </MaskedReveal>
         </Container>
       </section>
@@ -203,6 +203,9 @@ export default function PenileImplantPage() {
               title="Schematic of a three-piece inflatable prosthesis: cylinder, pump and reservoir"
             />
           </Reveal>
+          <MaskedReveal className="mt-10 max-w-xl">
+            <PhotoFrame slot="implantDevice" landscape />
+          </MaskedReveal>
           <div className="mt-14 grid gap-x-16 gap-y-14 border-t border-border pt-14 md:grid-cols-2">
             {prosthesisTypes.map((type) => (
               <Reveal key={type.name}>
@@ -225,6 +228,9 @@ export default function PenileImplantPage() {
       <section className="section-dark bg-background py-section-y text-foreground">
         <Container>
           <SectionHeading eyebrow="The surgical pathway" heading="Assessment, Surgery, Recovery" />
+          <MaskedReveal className="mt-10 max-w-2xl">
+            <PhotoFrame slot="implantSurgical" landscape tone="dark" />
+          </MaskedReveal>
           <StaggerGroup className="mt-14 grid grid-cols-1 gap-10 border-t border-border pt-10 md:grid-cols-3">
             {pathway.map((step, index) => (
               <StaggerItem key={step.phase} className="border-t border-border pt-6 md:border-t-0 md:pt-0 md:[&:not(:first-child)]:border-l md:[&:not(:first-child)]:border-border md:[&:not(:first-child)]:pl-8">

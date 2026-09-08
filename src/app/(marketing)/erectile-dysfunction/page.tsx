@@ -2,12 +2,14 @@ import type { Metadata } from "next";
 import { Activity, CircleDot, Pill, Stethoscope, Syringe, TestTube, Zap } from "lucide-react";
 import { AmpersandText } from "@/components/ui/AmpersandText";
 import { VascularFlowDiagram } from "@/components/illustrations/VascularFlowDiagram";
+import { EditorialFrame } from "@/components/editorial/EditorialFrame";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Faq } from "@/components/ui/Faq";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { MaskedReveal } from "@/components/motion/MaskedReveal";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -193,9 +195,9 @@ export default function ErectileDysfunctionPage() {
               </div>
             </Reveal>
           </div>
-          <Reveal delay={0.1} className="hidden justify-self-center lg:flex">
-            <VascularFlowDiagram className="h-32 w-full max-w-xs text-muted-foreground" />
-          </Reveal>
+          <MaskedReveal className="order-last w-full lg:order-none">
+            <EditorialFrame slot="edHero" landscape priority />
+          </MaskedReveal>
         </Container>
       </section>
 
@@ -220,6 +222,7 @@ export default function ErectileDysfunctionPage() {
               is only selected once that picture is clear — not the
               other way around.
             </p>
+            <VascularFlowDiagram className="mt-8 h-24 w-full max-w-xs text-muted-foreground" />
           </Reveal>
         </Container>
       </section>

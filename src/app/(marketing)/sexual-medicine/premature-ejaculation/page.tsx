@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { doctor } from "@/config/doctor";
 import { ResponseThresholdDiagram } from "@/components/illustrations/ResponseThresholdDiagram";
+import { EditorialFrame } from "@/components/editorial/EditorialFrame";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -8,6 +9,7 @@ import { Faq } from "@/components/ui/Faq";
 import { PullQuote } from "@/components/ui/PullQuote";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { MaskedReveal } from "@/components/motion/MaskedReveal";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -212,8 +214,17 @@ export default function PrematureEjaculationPage() {
         </Container>
       </section>
 
-      {/* Contributing factors */}
+      {/* Editorial break — kept out of the hero so it never competes visually with the ResponseThresholdDiagram there */}
       <section className="py-section-y">
+        <Container>
+          <MaskedReveal className="mx-auto max-w-4xl">
+            <EditorialFrame slot="peHero" landscape />
+          </MaskedReveal>
+        </Container>
+      </section>
+
+      {/* Contributing factors */}
+      <section className="border-t border-border py-section-y">
         <Container>
           <SectionHeading eyebrow="Why assessment matters" heading="Several Factors Can Contribute" />
           <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">

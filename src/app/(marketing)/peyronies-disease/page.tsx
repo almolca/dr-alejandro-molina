@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { CurvatureAssessmentDiagram } from "@/components/illustrations/CurvatureAssessmentDiagram";
+import { EditorialFrame } from "@/components/editorial/EditorialFrame";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Faq } from "@/components/ui/Faq";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { MaskedReveal } from "@/components/motion/MaskedReveal";
 import { Reveal } from "@/components/motion/Reveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { TreatmentCtaSection } from "@/components/sections/TreatmentCtaSection";
@@ -128,6 +130,15 @@ export default function PeyroniesDiseasePage() {
               </BookingCta>
             </div>
           </Reveal>
+        </Container>
+      </section>
+
+      {/* Editorial break — the one large raster image for this page; CurvatureAssessmentDiagram stays in its own section below, never sharing this frame */}
+      <section className="py-section-y">
+        <Container>
+          <MaskedReveal className="mx-auto max-w-4xl">
+            <EditorialFrame slot="peyroniesHero" landscape priority />
+          </MaskedReveal>
         </Container>
       </section>
 

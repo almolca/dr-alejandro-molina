@@ -27,6 +27,10 @@
 
 .mediaLandscape { aspect-ratio: 3 / 2; }
 .media img { object-fit: cover; object-position: center 35%; }
+/* Sits a media frame on a charcoal section (e.g. the Girth flagship hero) without a bright box pasted on the dark background. The image sits inset within a dark matte, softened at its own edges, rather than touching the frame edge. */
+.mediaDark { background: linear-gradient(180deg, #2b2d28, #1e201d); border: 1px solid #4b4e46; }
+.mediaInset { position: absolute; inset: clamp(1rem, 3vw, 2.25rem); overflow: hidden; }
+.mediaInset::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 0 3rem 0.75rem rgba(20, 22, 18, 0.55); pointer-events: none; }
 .mediaCaption { padding-block: 1rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: .4rem 1rem; font-size: .75rem; color: #585e54; }
 .heroMedia { position: relative; }
 

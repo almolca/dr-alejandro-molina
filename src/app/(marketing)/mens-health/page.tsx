@@ -1,4 +1,4 @@
-import { PhotoFrame } from "@/components/editorial/PhotoFrame";
+import { EditorialFrame } from "@/components/editorial/EditorialFrame";
 import { ClinicalDecisionFlow } from "@/components/editorial/ClinicalDecisionFlow";
 import { ConsultationPathwayDiagram } from "@/components/illustrations/ConsultationPathwayDiagram";
 import { doctor } from "@/config/doctor";
@@ -100,7 +100,7 @@ export default function MensHealthPage() {
           </Reveal>
           <div className={visual.physicianIdentity}><p>{doctor.displayName}</p><span>{doctor.title} · FEBU · Abu Dhabi</span></div>
           </div>
-          <PhotoFrame slot="mensHealthConsultation" landscape priority />
+          <EditorialFrame slot="mensHealthHero" landscape priority />
         </Container>
       </section>
 

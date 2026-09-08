@@ -1,4 +1,5 @@
 import { PhotoFrame } from "@/components/editorial/PhotoFrame";
+import { EditorialFrame } from "@/components/editorial/EditorialFrame";
 import visual from "@/components/editorial/VisualSystem.module.css";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -168,7 +169,7 @@ export default function PenileGirthEnhancementPage() {
           </Reveal>
           <p className="mt-6 text-sm text-muted-foreground">{doctor.displayName}<br />{doctor.title} · Medical Trainer</p>
           </div>
-          <PhotoFrame slot="girthClinical" landscape priority />
+          <EditorialFrame slot="girthFlagship" landscape priority tone="dark" />
         </Container>
       </EditorialField>
 

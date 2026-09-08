@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AmpersandText } from "@/components/ui/AmpersandText";
 import { HormoneBalanceDiagram } from "@/components/illustrations/HormoneBalanceDiagram";
+import { EditorialFrame } from "@/components/editorial/EditorialFrame";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -8,6 +9,7 @@ import { Faq } from "@/components/ui/Faq";
 import { PullQuote } from "@/components/ui/PullQuote";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { MaskedReveal } from "@/components/motion/MaskedReveal";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -117,9 +119,11 @@ export default function TestosteronePage() {
               <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg" />
             </div>
           </Reveal>
-          <Reveal delay={0.15} className="mt-12 flex justify-center">
-            <HormoneBalanceDiagram className="h-32 w-32 text-muted-foreground" />
-          </Reveal>
+        </Container>
+        <Container className="mt-14 max-w-4xl">
+          <MaskedReveal>
+            <EditorialFrame slot="testosteroneHero" landscape priority />
+          </MaskedReveal>
         </Container>
       </section>
 
@@ -149,6 +153,9 @@ export default function TestosteronePage() {
             heading="A Full Hormonal and Metabolic Picture"
             description="Assessment looks beyond a single number, considering how these markers relate to one another and to your symptoms."
           />
+          <Reveal delay={0.05}>
+            <HormoneBalanceDiagram className="mt-10 h-24 w-24 text-muted-foreground" />
+          </Reveal>
           <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
             {panel.map((item) => (
               <StaggerItem key={item.label} className="border-t border-border pt-5">

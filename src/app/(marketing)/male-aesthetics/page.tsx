@@ -1,4 +1,4 @@
-import { PhotoFrame } from "@/components/editorial/PhotoFrame";
+import { EditorialFrame } from "@/components/editorial/EditorialFrame";
 import { ContourPlanningDiagram } from "@/components/illustrations/ContourPlanningDiagram";
 import { Button } from "@/components/ui/Button";
 import visual from "@/components/editorial/VisualSystem.module.css";
@@ -119,7 +119,7 @@ export default function MaleAestheticsPage() {
       <EditorialField className="py-14">
         <Container className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <MaskedReveal className="order-last w-full lg:order-first">
-            <PhotoFrame slot="aestheticsClinical" landscape priority />
+            <EditorialFrame slot="aestheticsHero" landscape priority />
           </MaskedReveal>
 
           <div>
