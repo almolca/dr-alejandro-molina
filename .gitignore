@@ -15,3 +15,32 @@ out/
 # of Dr. Molina). Real brand assets (logo-*.png) are not covered by this.
 public/brand/ChatGPT Image*.png
 public/brand/Elegant 3D Ebook Mockup*.png
+
+# 2026-09-08: found renamed/relocated into public/images/ and
+# public/images/doctor/ — byte-identical (verified via md5) to the
+# ChatGPT/Ebook-Mockup files above, i.e. the SAME unapproved
+# AI-generated images, now disguised with real-sounding filenames like
+# "doctor molina in ot.png". None are referenced by src/config/
+# photography.ts (every slot there is still src: null, approved:
+# false) or doctor.ts (profileImage still points at an unresolved
+# placeholder path) — nothing renders them today, but they must never
+# be committed or wired up as if they were real. Flagged for owner
+# review; not deleted here.
+public/images/doctor/docotr molina with scrub.png
+public/images/doctor/doctor molina hero 2.png
+public/images/doctor/doctor molina in ot.png
+public/images/doctor/doctor molina inicio hero.png
+public/images/doctor/doctor molina with prosthesis.png
+public/images/doctor/explaining.png
+public/images/doctor/penile prosthesis.png
+
+# Same date: unattributed AI-generated topic imagery, not photography
+# of Dr. Molina but not owner-approved or referenced by any component
+# either. Excluded until their provenance/approval is confirmed.
+public/images/aesthetics.png
+public/images/engirthment.png
+public/images/erectile dysfunction.jpeg
+public/images/mens health.png
+public/images/peyronie.jpeg
+public/images/premature ejaculation.jpeg
+public/images/testosterone.jpeg
