@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/Container";
 import { Faq } from "@/components/ui/Faq";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { DopplerWaveformPanel } from "@/components/illustrations";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -185,6 +186,17 @@ export default function PenileDopplerPage() {
         </Container>
       </section>
 
+      {/* Illustrative Doppler visual — spec R7.1.1 §8: clearly labeled as educational, never a real patient study */}
+      <section className="border-t border-border py-section-y">
+        <Container className="max-w-2xl">
+          <DopplerWaveformPanel
+            pattern="normal"
+            label="Illustrative Doppler Example"
+            description="Educational representation of a normal spectral Doppler trace — not a real patient study. Actual scans vary between individuals."
+          />
+        </Container>
+      </section>
+
       {/* When indicated */}
       <section className="border-t border-border bg-surface py-section-y">
         <Container className="max-w-3xl">
@@ -274,6 +286,35 @@ export default function PenileDopplerPage() {
               structural venous leak.
             </p>
           </Reveal>
+        </Container>
+      </section>
+
+      {/* Three-pattern Doppler comparison — spec R7.1.1 §9 */}
+      <section className="border-t border-border bg-surface py-section-y">
+        <Container>
+          <SectionHeading
+            eyebrow="Comparing patterns"
+            heading="Three Doppler Response Patterns"
+            size="md"
+            description="Schematic, educational waveforms — not real diagnostic scans — illustrating how the three mechanisms discussed above can look on a spectral Doppler trace."
+          />
+          <div className="mt-14 grid grid-cols-1 gap-8 lg:grid-cols-3">
+            <DopplerWaveformPanel
+              pattern="normal"
+              label="A. Normal Response"
+              description="Adequate arterial inflow. PSV rises appropriately and EDV falls towards zero as full rigidity is reached."
+            />
+            <DopplerWaveformPanel
+              pattern="arterial-insufficiency"
+              label="B. Arterial Insufficiency"
+              description="Reduced arterial inflow, reflected in a lower PSV response."
+            />
+            <DopplerWaveformPanel
+              pattern="veno-occlusive"
+              label="C. Veno-Occlusive Dysfunction (Venous Leak)"
+              description="Arterial inflow may be adequate, but outflow is incompletely suppressed — EDV remains persistently elevated despite erection."
+            />
+          </div>
         </Container>
       </section>
 
