@@ -1,6 +1,6 @@
 import { doctor } from "@/config/doctor";
 import { mediaAppearances, editorialContributions } from "@/config/mediaAppearances";
-import { reviewPlatforms, verifiedReviewTotal } from "@/config/reputation";
+import { verifiedReviewTotal, publicReviewHeadline } from "@/config/reputation";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -27,7 +27,7 @@ export function AuthorityMediaSection() {
           )}
           {hasReviews && (
             <p className="mb-3 text-sm text-foreground">
-              {verifiedReviewTotal}+ patient reviews across {new Set(reviewPlatforms.filter((p) => p.verified).map((p) => p.platform)).size} independent platforms
+              {publicReviewHeadline}
             </p>
           )}
           {publishableMedia.length > 0 && (

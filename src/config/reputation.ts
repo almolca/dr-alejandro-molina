@@ -105,6 +105,31 @@ export const verifiedReviewTotal = reviewPlatforms
   .filter((p) => p.verified && p.reviewCount !== null)
   .reduce((sum, p) => sum + (p.reviewCount ?? 0), 0);
 
+/**
+ * UI-simplicity aggregate of the two separate Top Doctors profiles
+ * (Urología 147 + Andrología 14 = 161), per the R7.1.1 correction —
+ * the public review card shows one combined Top Doctors figure while
+ * `reviewPlatforms` above still keeps both profiles/links available
+ * individually. Never hand-typed: derived from the same verified
+ * per-platform data.
+ */
+export const topDoctorsAggregate = {
+  rating: 5,
+  reviewCount: reviewPlatforms
+    .filter((p) => p.platform === "Top Doctors" && p.verified && p.reviewCount !== null)
+    .reduce((sum, p) => sum + (p.reviewCount ?? 0), 0),
+};
+
+/**
+ * The approved public-facing headline (R7.1.1 correction). Deliberately
+ * a fixed, owner-approved string rather than `${verifiedReviewTotal}+`
+ * — the live sum is 456, but the approved wording rounds down to
+ * "450+" rather than restating the exact figure. If `verifiedReviewTotal`
+ * ever drops below 450, this constant must be revisited by the owner
+ * before publishing — it is intentionally not auto-derived.
+ */
+export const publicReviewHeadline = "450+ patient reviews across independent platforms";
+
 /** Logo asset path per award, keyed by the exact `officialTitle` in `doctor.awards`. Both approved and supplied by the owner (R7.1). */
 export const awardLogos: Record<string, string> = {
   "Top Doctors Spain 2020": "/brand/authority/top-doctors-awards-2020.png",

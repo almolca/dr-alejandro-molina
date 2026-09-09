@@ -1,4 +1,4 @@
-import { reviewPlatforms, verifiedReviewTotal } from "@/config/reputation";
+import { reviewPlatforms, topDoctorsAggregate, publicReviewHeadline } from "@/config/reputation";
 import editorialStyles from "@/components/editorial/Editorial.module.css";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -22,11 +22,7 @@ export function PatientFeedbackSection() {
         <SectionHeading
           eyebrow="Patient Feedback"
           heading="Independently Reviewed"
-          description={
-            verifiedReviewTotal > 0
-              ? `${verifiedReviewTotal}+ patient reviews across independent platforms.`
-              : undefined
-          }
+          description={topDoctors.length > 0 ? publicReviewHeadline : undefined}
         />
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3">
           {google && (
@@ -68,31 +64,24 @@ export function PatientFeedbackSection() {
           {topDoctors.length > 0 && (
             <div className={`${editorialStyles.candidateColumn} ${editorialStyles.candidateColumnAlt}`}>
               <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Top Doctors</p>
-              <div className="mt-3 flex flex-col gap-4">
-                {topDoctors.map((entry) => (
-                  <div key={entry.label}>
-                    {entry.verified ? (
-                      <p className="font-display text-xl text-foreground">
-                        {entry.rating} / 5{" "}
-                        <span className="font-sans text-sm font-normal text-muted-foreground">
-                          · {entry.reviewCount} reviews{entry.label ? ` (${entry.label})` : ""}
-                        </span>
-                      </p>
-                    ) : (
-                      <p className="text-sm text-muted-foreground">{entry.label ?? "Verified profile"}</p>
-                    )}
-                    {entry.profileUrl && (
-                      <a
-                        href={entry.profileUrl}
-                        target="_blank"
-                        rel="noopener noreferrer nofollow"
-                        className="mt-1 inline-flex text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
-                      >
-                        {entry.label ? `View ${entry.label} profile` : "View profile"}
-                      </a>
-                    )}
-                  </div>
-                ))}
+              <p className="mt-3 font-display text-3xl text-foreground">
+                {topDoctorsAggregate.rating} / 5
+              </p>
+              <p className="mt-1 text-sm text-muted-foreground">{topDoctorsAggregate.reviewCount} verified reviews</p>
+              <div className="mt-4 flex flex-col gap-1">
+                {topDoctors.map((entry) =>
+                  entry.profileUrl ? (
+                    <a
+                      key={entry.label}
+                      href={entry.profileUrl}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow"
+                      className="inline-flex text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
+                    >
+                      {entry.label ? `View ${entry.label} profile` : "View profile"}
+                    </a>
+                  ) : null,
+                )}
               </div>
             </div>
           )}
