@@ -186,14 +186,14 @@ export default function MaleAestheticsPage() {
           </p>
           <div className="mt-8 grid grid-cols-1 gap-x-16 gap-y-12 border-t border-border pt-10 md:grid-cols-2">
             {secondaryAreas.map((area) => (
-              <Reveal key={area.title}>
+              <Reveal key={area.title} className="card-hover border-t border-border pt-6">
                 <h3 className="font-display text-xl text-foreground">{area.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   {area.description}
                 </p>
                 <Link
                   href={area.cta.href}
-                  className="mt-4 inline-flex text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
+                  className="mt-4 inline-flex text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4 hover:decoration-accent"
                 >
                   {area.cta.label}
                 </Link>

@@ -265,7 +265,7 @@ export default function PenileImplantPage() {
           />
           <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {pathwayPrinciples.map((item) => (
-              <StaggerItem key={item.title} className="border-t border-border pt-6">
+              <StaggerItem key={item.title} className="card-hover border-t border-border pt-6">
                 <h3 className="font-display text-lg text-foreground">{item.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
               </StaggerItem>
@@ -319,7 +319,7 @@ export default function PenileImplantPage() {
           </MaskedReveal>
           <div className="mt-14 grid gap-x-16 gap-y-14 border-t border-border pt-14 md:grid-cols-2">
             {prosthesisTypes.map((type) => (
-              <Reveal key={type.name}>
+              <Reveal key={type.name} className="card-hover border border-border p-6">
                 <h3 className="font-display text-2xl text-foreground">{type.name}</h3>
                 <ul className="mt-6 space-y-4">
                   {type.points.map((point) => (
@@ -344,7 +344,7 @@ export default function PenileImplantPage() {
           </MaskedReveal>
           <StaggerGroup className="mt-14 grid grid-cols-1 gap-10 border-t border-border pt-10 md:grid-cols-3">
             {pathway.map((step, index) => (
-              <StaggerItem key={step.phase} className="border-t border-border pt-6 md:border-t-0 md:pt-0 md:[&:not(:first-child)]:border-l md:[&:not(:first-child)]:border-border md:[&:not(:first-child)]:pl-8">
+              <StaggerItem key={step.phase} className="card-hover border-t border-border pt-6 md:border-t-0 md:pt-0 md:[&:not(:first-child)]:border-l md:[&:not(:first-child)]:border-border md:[&:not(:first-child)]:pl-8">
                 <span className="font-display text-sm text-accent-strong">
                   {String(index + 1).padStart(2, "0")}
                 </span>
