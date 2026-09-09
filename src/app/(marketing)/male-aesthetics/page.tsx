@@ -184,7 +184,7 @@ export default function MaleAestheticsPage() {
           <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
             Also available
           </p>
-          <div className="mt-8 grid grid-cols-1 gap-x-16 gap-y-12 border-t border-border pt-10 md:grid-cols-2">
+          <div className="mt-8 grid grid-cols-1 gap-x-16 gap-y-12 pt-10 md:grid-cols-2">
             {secondaryAreas.map((area) => (
               <Reveal key={area.title} className="card-hover border-t border-border pt-6">
                 <h3 className="font-display text-xl text-foreground">{area.title}</h3>
