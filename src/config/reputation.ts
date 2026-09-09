@@ -1,0 +1,177 @@
+/**
+ * Central reputation configuration (R7.1) — the single source of truth
+ * for review-platform data, external publications and the AndroMax
+ * training reference. Supersedes the earlier `config/reviews.ts`
+ * scaffold (never consumed by any component, safely replaced).
+ *
+ * Deliberately does NOT duplicate `doctor.awards` or
+ * `config/mediaAppearances.ts` — those already centralize the
+ * owner-confirmed awards (Top Doctors Spain 2020, Doctoralia Awards
+ * Spain 2022) and the Men's Health Spain contributor wording, and are
+ * already consumed correctly by RecognitionSection / AuthorityStripSection
+ * / AuthorityMediaSection. `awardLogos` below only adds the logo asset
+ * path for each, keyed by the exact `officialTitle` already in doctor.ts.
+ *
+ * Verification provenance (R7.1, checked 2026-09-09):
+ * - Google: rating/count owner-confirmed directly (not independently
+ *   re-verified by fetch — Google profiles aren't reliably fetchable
+ *   without an API key).
+ * - Doctoralia: independently re-verified via a live fetch of the
+ *   profile URL. Fetched via an automated tool, not a manual
+ *   screenshot — a human spot-check before relying on this further is
+ *   still recommended.
+ * - Top Doctors: the profile URL was confirmed real (indexed, and the
+ *   page title matches) via web search, but the page itself blocks
+ *   automated fetching, so its own rating/review count could NOT be
+ *   independently verified. Per the "if uncertain, don't invent it"
+ *   principle, rating/reviewCount are left null — render the profile
+ *   link only, no number.
+ *
+ * Also surfaced during verification but NOT added here, pending
+ * explicit owner sign-off (only the two awards below are owner-
+ * approved for publication): Doctoralia "Certificates of Excellence"
+ * 2016–2020, Doctoralia Awards nominations 2020/2021, and a "Spain
+ * Prestige Awards 2021" listed on Doctoralia's own profile page.
+ * Also NOT used: a "22 years of experience" figure and a "2,000+
+ * procedures" figure surfaced on third-party/marketing sources — both
+ * conflict with the owner-confirmed figures already in doctor.ts
+ * (15+ years, 500+ Girth Enhancement procedures) and are not used.
+ */
+
+export type ReviewPlatform = {
+  platform: "Google" | "Doctoralia" | "Top Doctors";
+  /** Distinguishes multiple profiles on the same platform (e.g. Top Doctors' separate Urología/Andrología profiles). */
+  label?: string;
+  profileUrl: string | null;
+  rating: number | null;
+  reviewCount: number | null;
+  lastVerified: string | null;
+  verificationMethod?: string;
+  /** True only once profileUrl + rating + reviewCount + lastVerified are all real. */
+  verified: boolean;
+};
+
+export const reviewPlatforms: ReviewPlatform[] = [
+  {
+    platform: "Google",
+    profileUrl: null, // TODO(owner): supply the public Google Business Profile / review URL to link out to.
+    rating: 4.9,
+    reviewCount: 58,
+    lastVerified: "2026-09-09",
+    verificationMethod: "Owner-confirmed",
+    verified: true,
+  },
+  {
+    platform: "Doctoralia",
+    profileUrl: "https://www.doctoralia.es/alejandro-molina-cabeza/urologo-andrologo/valencia",
+    rating: 5,
+    reviewCount: 237,
+    lastVerified: "2026-09-09",
+    verificationMethod: "Live automated fetch of the profile page",
+    verified: true,
+  },
+  {
+    platform: "Top Doctors",
+    label: "Andrología",
+    profileUrl: "https://www.topdoctors.es/doctor/alejandro-molina-cabeza-doctor/",
+    rating: null,
+    reviewCount: null,
+    lastVerified: null,
+    verified: false,
+  },
+  {
+    platform: "Top Doctors",
+    label: "Urología",
+    profileUrl: "https://www.topdoctors.es/doctor/alejandro-molina-cabeza/",
+    rating: null,
+    reviewCount: null,
+    lastVerified: null,
+    verified: false,
+  },
+];
+
+/**
+ * A rounded aggregate headline is only safe to publish once the sum of
+ * *verified* platform counts actually supports it. As of this file's
+ * creation that's 58 (Google) + 237 (Doctoralia) = 295 — Top Doctors'
+ * count is unverified and excluded from the sum. The brief's suggested
+ * "450+ across independent platforms" headline is NOT currently
+ * supported and must not be published until Top Doctors is verified
+ * (or the copy is adjusted to match the real sum).
+ */
+export const verifiedReviewTotal = reviewPlatforms
+  .filter((p) => p.verified && p.reviewCount !== null)
+  .reduce((sum, p) => sum + (p.reviewCount ?? 0), 0);
+
+/** Logo asset path per award, keyed by the exact `officialTitle` in `doctor.awards`. Both approved and supplied by the owner (R7.1). */
+export const awardLogos: Record<string, string> = {
+  "Top Doctors Spain 2020": "/brand/authority/top-doctors-awards-2020.png",
+  "Doctoralia Awards Spain 2022": "/brand/authority/doctoralia-awards-2022.jpg",
+};
+
+export type Publication = {
+  /** A topic-based label, not a claimed verbatim headline — see file header on Men's Health verification. */
+  label: string;
+  outletName: string;
+  date: string | null;
+  url: string;
+  logoSrc: string | null;
+  approved: boolean;
+};
+
+/**
+ * Owner-supplied Men's Health Spain author profile + selected articles
+ * (R7.1). The exact published headlines could not be independently
+ * verified — menshealth.com blocks automated fetching and the URLs
+ * don't yet appear in search indexes — so `label` below is a topic
+ * description, not a claimed exact title. URLs are used as supplied by
+ * the owner. Recommend a manual click-through check before relying on
+ * these further.
+ */
+export const mensHealthAuthorProfileUrl =
+  "https://www.menshealth.com/es/author/285057/alejandro-molina-medico-urologo-andrologo/";
+
+export const publications: Publication[] = [
+  {
+    label: "Testosterone and the body's daily rhythm",
+    outletName: "Men's Health Spain",
+    date: null,
+    url: "https://www.menshealth.com/es/salud-bienestar/a70935311/testosterona-ritmo-diario-alta-manana/",
+    logoSrc: "/brand/authority/mens-health.jpg",
+    approved: true,
+  },
+  {
+    label: "Testosterone, explained by an andrologist",
+    outletName: "Men's Health Spain",
+    date: null,
+    url: "https://www.menshealth.com/es/salud-bienestar/a70119367/testosterona-andrologo-hormona-testiculos/",
+    logoSrc: "/brand/authority/mens-health.jpg",
+    approved: true,
+  },
+  {
+    label: "What testosterone actually does",
+    outletName: "Men's Health Spain",
+    date: null,
+    url: "https://www.menshealth.com/es/salud-bienestar/a32810591/testosterona-que-hace/",
+    logoSrc: "/brand/authority/mens-health.jpg",
+    approved: true,
+  },
+];
+
+export type TrainingProgram = {
+  program: string;
+  role: string;
+  positioningLine: string;
+  logoSrc: string | null;
+  url?: string;
+};
+
+/** AndroMax — used as a teaching-authority signal, never as a channel for proprietary technique (R7.1 §C). */
+export const trainingPrograms: TrainingProgram[] = [
+  {
+    program: "AndroMax Training",
+    role: "Medical Trainer in Penile Girth Enhancement",
+    positioningLine: "An approach refined through years of clinical practice and now taught to other doctors.",
+    logoSrc: "/brand/authority/andromax-training.png",
+  },
+];

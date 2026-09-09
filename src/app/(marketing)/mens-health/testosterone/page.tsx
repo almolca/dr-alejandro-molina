@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { AmpersandText } from "@/components/ui/AmpersandText";
 import { HormoneBalanceDiagram } from "@/components/illustrations/HormoneBalanceDiagram";
 import { EditorialFrame } from "@/components/editorial/EditorialFrame";
@@ -6,6 +7,7 @@ import { HeroAtmosphere } from "@/components/editorial/HeroAtmosphere";
 import { AuthorityMetric } from "@/components/editorial/PhysicianAuthority";
 import editorialStyles from "@/components/editorial/Editorial.module.css";
 import { doctor } from "@/config/doctor";
+import { publications } from "@/config/reputation";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -347,6 +349,27 @@ export default function TestosteronePage() {
           </Reveal>
         </Container>
       </section>
+
+      {/* Restrained authorship reference — clinical content stays primary, this is a footnote-weight credential, not a media feature */}
+      {publications.length > 0 && (
+        <section className="border-t border-border py-14">
+          <Container className="flex flex-wrap items-center gap-6">
+            <Image src="/brand/authority/mens-health.jpg" alt="Men's Health Spain" width={100} height={44} style={{ height: "1.5rem", width: "auto" }} className="opacity-80" />
+            <p className="text-sm text-muted-foreground">
+              <span className="text-foreground">Contributor &amp; Author — Men&rsquo;s Health Spain.</span>{" "}
+              Selected articles:{" "}
+              {publications.map((item, index) => (
+                <span key={item.url}>
+                  <a href={item.url} target="_blank" rel="noopener noreferrer nofollow" className="underline decoration-border underline-offset-4 hover:decoration-accent-strong">
+                    {item.label}
+                  </a>
+                  {index < publications.length - 1 ? " · " : ""}
+                </span>
+              ))}
+            </p>
+          </Container>
+        </section>
+      )}
 
       <RelatedTreatments
         items={[

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Activity, CircleDot, Pill, Stethoscope, Syringe, TestTube, Zap } from "lucide-react";
 import { AmpersandText } from "@/components/ui/AmpersandText";
 import { VascularFlowDiagram } from "@/components/illustrations/VascularFlowDiagram";
@@ -31,6 +32,26 @@ const breadcrumbItems = [
   { name: "Home", href: "/" },
   { name: "Sexual Medicine", href: "/sexual-medicine" },
   { name: "Erectile Dysfunction", href: PATH },
+];
+
+/** R7.1 — the physiology behind the cause matrix below, deliberately more than "not enough blood in" or "the veins leak". */
+const erectionStages = [
+  {
+    title: "Arterial inflow",
+    description: "Adequate blood must flow into the penis through the arteries supplying it — the first requirement, and the one most people already associate with erections.",
+  },
+  {
+    title: "Cavernosal smooth-muscle relaxation",
+    description: "The smooth muscle within the erectile tissue (the corpora cavernosa) must relax, allowing that tissue to expand and fill with blood.",
+  },
+  {
+    title: "Veno-occlusion",
+    description: "As the corpora cavernosa expand against their surrounding sheath, the veins that normally drain blood out of the penis are compressed against it, reducing outflow — a mechanical consequence of full expansion, not a separate valve switching shut.",
+  },
+  {
+    title: "Rigidity",
+    description: "Adequate inflow, full expansion and reduced outflow together maintain rigidity. If any one stage is incomplete, the erection can be reduced or difficult to sustain.",
+  },
 ];
 
 /** Spec §10 cause matrix, with brief patient-education-level context per cause. */
@@ -225,6 +246,41 @@ export default function ErectileDysfunctionPage() {
               other way around.
             </p>
             <VascularFlowDiagram className="mt-8 h-24 w-full max-w-xs text-muted-foreground" />
+          </Reveal>
+        </Container>
+      </section>
+
+      {/* How an erection is maintained — the physiology behind the cause matrix below */}
+      <section className="border-t border-border py-section-y">
+        <Container>
+          <SectionHeading
+            eyebrow="Understanding the mechanism"
+            heading="How an Erection Is Maintained"
+            description="Four stages, not one mechanism — which is why erectile dysfunction is rarely explained fully by a single phrase like 'not enough blood' or 'the veins leak'."
+          />
+          <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+            {erectionStages.map((stage, index) => (
+              <StaggerItem key={stage.title} className="border-t border-border pt-6">
+                <span className="font-display text-sm text-accent-strong">{String(index + 1).padStart(2, "0")}</span>
+                <h3 className="mt-3 font-display text-lg text-foreground">{stage.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{stage.description}</p>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+          <Reveal delay={0.1}>
+            <p className="mt-14 max-w-3xl border-t border-border pt-8 text-sm leading-relaxed text-muted-foreground">
+              A problem at any one of these stages can reduce rigidity —
+              which is why the causes below are grouped by which stage
+              they tend to affect, rather than treated as one
+              undifferentiated list. Reduced <strong className="text-foreground">arterial inflow</strong>,
+              incomplete <strong className="text-foreground">cavernosal relaxation and expansion</strong>,
+              and impaired <strong className="text-foreground">veno-occlusion</strong> are three
+              genuinely different mechanisms — see our{" "}
+              <Link href="/erectile-dysfunction/penile-doppler" className="text-foreground underline decoration-accent-strong underline-offset-4">
+                Penile Doppler
+              </Link>{" "}
+              page for how assessment distinguishes between them.
+            </p>
           </Reveal>
         </Container>
       </section>

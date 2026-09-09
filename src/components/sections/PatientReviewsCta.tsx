@@ -1,29 +1,31 @@
-import { patientReviews } from "@/config/patientReviews";
+import { reviewPlatforms } from "@/config/reputation";
 
 /**
- * Renders nothing until `patientReviews` is configured with
- * `publishReady: true` and a real `profileUrl`. If a rating/count is
- * ever configured but not yet verified, still show only a neutral CTA
- * linking to the verified profile — never a star rating or count
- * without verification. Today this always renders nothing, since no
- * profile is configured at all.
+ * Compact single-line review CTA, used near the booking CTA — the
+ * fuller multi-platform breakdown lives in PatientFeedbackSection.
+ * Reads from the same centralized `reputation.ts` config (R7.1),
+ * replacing the old single-platform `config/patientReviews.ts` scaffold
+ * (retired — it was never populated). Prefers Google since that's the
+ * owner-verified primary platform; falls back to the first verified
+ * platform found, or renders nothing if none are verified.
  */
 export function PatientReviewsCta() {
-  if (!patientReviews?.publishReady || !patientReviews.profileUrl) return null;
+  const platform =
+    reviewPlatforms.find((p) => p.platform === "Google" && p.verified && p.profileUrl) ??
+    reviewPlatforms.find((p) => p.verified && p.profileUrl);
 
-  const showRating =
-    patientReviews.rating !== undefined && patientReviews.reviewCount !== undefined;
+  if (!platform?.profileUrl) return null;
 
   return (
     <a
-      href={patientReviews.profileUrl}
+      href={platform.profileUrl}
       target="_blank"
-      rel="noopener noreferrer"
+      rel="noopener noreferrer nofollow"
       className="inline-flex items-center text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
     >
-      {showRating
-        ? `${patientReviews.rating} · ${patientReviews.reviewCount} reviews on ${patientReviews.platformName}`
-        : `Read Verified Patient Reviews on ${patientReviews.platformName}`}
+      {platform.rating !== null && platform.reviewCount !== null
+        ? `${platform.rating} · ${platform.reviewCount} reviews on ${platform.platform}`
+        : `Read Verified Patient Reviews on ${platform.platform}`}
     </a>
   );
 }

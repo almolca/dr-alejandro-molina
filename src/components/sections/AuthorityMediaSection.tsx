@@ -1,15 +1,18 @@
 import { doctor } from "@/config/doctor";
-import { mediaAppearances } from "@/config/mediaAppearances";
+import { mediaAppearances, editorialContributions } from "@/config/mediaAppearances";
+import { reviewPlatforms, verifiedReviewTotal } from "@/config/reputation";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 
-/** Compact education section with optional publish-ready recognition and media. */
+/** Compact Home trust layer: awards, verified review summary, editorial contribution and training — restrained, text-led (the full card breakdown lives in PatientFeedbackSection / RecognitionSection on About). */
 export function AuthorityMediaSection() {
   const publishableAwards = doctor.awards.filter((a) => a.publishReady);
   const publishableMedia = mediaAppearances.filter((m) => m.publishReady);
+  const publishableEditorial = editorialContributions.filter((e) => e.publishReady);
   const hasTraining = Boolean(doctor.medicalTrainer?.description);
+  const hasReviews = verifiedReviewTotal > 0;
 
-  if (!hasTraining && publishableAwards.length === 0 && publishableMedia.length === 0) {
+  if (!hasTraining && publishableAwards.length === 0 && publishableMedia.length === 0 && !hasReviews) {
     return null;
   }
 
@@ -18,8 +21,13 @@ export function AuthorityMediaSection() {
       <Container className="mx-auto max-w-2xl text-center">
         <Reveal>
           {publishableAwards.length > 0 && (
-            <p className="mb-6 text-sm text-foreground">
+            <p className="mb-3 text-sm text-foreground">
               {publishableAwards.map((a) => a.officialTitle).join(" · ")}
+            </p>
+          )}
+          {hasReviews && (
+            <p className="mb-3 text-sm text-foreground">
+              {verifiedReviewTotal}+ verified patient reviews across {reviewPlatforms.filter((p) => p.verified).length} independent platforms
             </p>
           )}
           {publishableMedia.length > 0 && (
@@ -27,9 +35,14 @@ export function AuthorityMediaSection() {
               {publishableMedia.map((m) => `${m.title} — ${m.outletName}`).join(" · ")}
             </p>
           )}
+          {publishableEditorial.length > 0 && (
+            <p className="mt-3 text-sm text-foreground">
+              {publishableEditorial.map((e) => e.wording).join(" · ")}
+            </p>
+          )}
           {hasTraining && (
             <>
-              <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
+              <p className="mt-8 text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
                 Medical Education &amp; Training
               </p>
               <h2 className="mt-4 font-display text-display-md">{doctor.medicalTrainer.program}</h2>

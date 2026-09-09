@@ -21,7 +21,9 @@ import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { MediaAppearancesSection } from "@/components/sections/MediaAppearancesSection";
 import { PatientReviewsCta } from "@/components/sections/PatientReviewsCta";
+import { PatientFeedbackSection } from "@/components/sections/PatientFeedbackSection";
 import { RecognitionSection } from "@/components/sections/RecognitionSection";
+import { publications } from "@/config/reputation";
 import { breadcrumbSchema } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
 
@@ -221,6 +223,35 @@ export default function AboutPage() {
       </section>
 
       <MediaAppearancesSection />
+
+      {publications.length > 0 && (
+        <section className="border-t border-border py-section-y">
+          <Container>
+            <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
+              Selected Publications
+            </p>
+            <h2 className="mt-4 font-display text-display-md text-foreground">Contributor &amp; Author — Men&rsquo;s Health Spain</h2>
+            <div className="mt-10 grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-3">
+              {publications.map((item) => (
+                <a
+                  key={item.url}
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  className="group block border-t border-border pt-6"
+                >
+                  <p className="text-xs uppercase tracking-widest text-muted-foreground">{item.outletName}</p>
+                  <p className="mt-3 font-display text-lg text-foreground underline decoration-transparent underline-offset-4 group-hover:decoration-accent-strong">
+                    {item.label}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )}
+
+      <PatientFeedbackSection />
 
       {/* Closing CTA */}
       <section className="bg-surface py-section-y">

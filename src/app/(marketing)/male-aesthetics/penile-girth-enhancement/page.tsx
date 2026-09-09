@@ -2,8 +2,10 @@ import { PhotoFrame } from "@/components/editorial/PhotoFrame";
 import { EditorialFrame } from "@/components/editorial/EditorialFrame";
 import visual from "@/components/editorial/VisualSystem.module.css";
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { doctor } from "@/config/doctor";
+import { trainingPrograms } from "@/config/reputation";
 import { PhysicianAuthority } from "@/components/editorial/PhysicianAuthority";
 import { EditorialField } from "@/components/editorial/LayeredEditorialPanel";
 import { ClinicalPathway, ProcedureFramework, VariabilityFactors, CareStages } from "@/components/editorial/ProcedureFramework";
@@ -179,6 +181,7 @@ const faqItems = [
 ];
 
 export default function PenileGirthEnhancementPage() {
+  const training = trainingPrograms[0];
   return (
     <div className={visual.scope}>
       <JsonLd
@@ -297,6 +300,19 @@ export default function PenileGirthEnhancementPage() {
               </StaggerItem>
             ))}
           </StaggerGroup>
+          {training && (
+            <Reveal delay={0.1}>
+              <div className="mt-14 flex flex-wrap items-center gap-6 border-t border-border pt-10">
+                {training.logoSrc && (
+                  <Image src={training.logoSrc} alt={training.program} width={140} height={44} style={{ height: "2rem", width: "auto" }} />
+                )}
+                <p className="max-w-xl text-sm leading-relaxed text-muted-foreground">
+                  <strong className="text-foreground">{training.role}.</strong>{" "}
+                  {training.positioningLine}
+                </p>
+              </div>
+            </Reveal>
+          )}
         </Container>
       </section>
 
