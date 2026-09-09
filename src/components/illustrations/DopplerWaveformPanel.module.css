@@ -1,0 +1,13 @@
+.panel {
+  background: linear-gradient(180deg, #1c1e1a 0%, #121310 100%);
+  border: 1px solid #3a3c36;
+  padding: 1rem 1rem 1.25rem;
+}
+.trace { display: block; width: 100%; height: auto; }
+.panelBg { fill: #0d0e0c; }
+.gridLine { stroke: #ffffff; stroke-width: 0.5; opacity: 0.08; }
+.floorLine { stroke: #ffffff; stroke-width: 0.75; opacity: 0.22; fill: none; }
+.wave { stroke: #cba876; stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.annotation { font-family: var(--font-sans); font-size: 11px; fill: #d8dad2; opacity: 0.85; }
+.panelLabel { margin-top: 0.85rem; font-family: var(--font-display); font-size: 1.05rem; color: #fafaf7; }
+.panelCaption { margin-top: 0.35rem; font-size: 0.8125rem; line-height: 1.5; color: #b6b8b1; max-width: 40ch; }
