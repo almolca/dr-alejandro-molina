@@ -90,6 +90,8 @@ export const doctor = {
   yearsOfExperience: 15,
   girthEnhancementSince: 2018,
   girthProcedureCount: "500+",
+  /** Numeric form of `girthProcedureCount` above, for the count-up animation on the main authority stats block (R7.1.2 §2) — kept in sync manually since the string carries a "+" the animation target must not. */
+  girthProcedureCountValue: 500,
 
   /**
    * B2B medical-education activity — kept as its own field, deliberately
