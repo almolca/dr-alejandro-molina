@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -284,6 +285,11 @@ export default function PenileDopplerPage() {
               an elevated end-diastolic velocity (EDV) should not be
               interpreted automatically, in isolation, as a fixed
               structural venous leak.
+            </p>
+            <p className="mt-6 text-sm">
+              <Link href="/insights/venous-leak-erectile-dysfunction" className="text-foreground underline decoration-accent-strong underline-offset-4">
+                Read the full article: Venous Leak and Erectile Dysfunction
+              </Link>
             </p>
           </Reveal>
         </Container>

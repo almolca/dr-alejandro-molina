@@ -282,6 +282,14 @@ export default function ErectileDysfunctionPage() {
               page for how assessment distinguishes between them.
             </p>
           </Reveal>
+          <Reveal delay={0.15}>
+            <p className="mt-4 max-w-3xl text-sm text-muted-foreground">
+              For a deeper look at one of these mechanisms specifically, see{" "}
+              <Link href="/insights/venous-leak-erectile-dysfunction" className="text-foreground underline decoration-accent-strong underline-offset-4">
+                Venous Leak and Erectile Dysfunction: What Penile Doppler Really Shows
+              </Link>.
+            </p>
+          </Reveal>
         </Container>
       </section>
 

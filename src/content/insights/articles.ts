@@ -229,6 +229,59 @@ export const insightArticles: InsightArticle[] = [
     ],
   },
   {
+    slug: "venous-leak-erectile-dysfunction",
+    title: "Venous Leak and Erectile Dysfunction: What Penile Doppler Really Shows",
+    category: "Erectile Dysfunction",
+    excerpt:
+      "\"Venous leak\" is a patient-friendly shorthand for something more nuanced — veno-occlusive dysfunction. Here's what Penile Doppler can and can't tell you about it.",
+    datePublished: PUBLISHED_R7,
+    clinicalReviewRequired: true,
+    relatedHref: "/erectile-dysfunction/penile-doppler",
+    relatedLabel: "Penile Doppler",
+    secondaryRelatedHref: "/erectile-dysfunction",
+    secondaryRelatedLabel: "Erectile Dysfunction",
+    relatedArticleSlugs: ["penile-implant-when-considered"],
+    keyTakeaway:
+      "A Doppler result — including an elevated EDV — should be interpreted alongside the erection quality actually achieved during the study, not read from a single number in isolation.",
+    sections: [
+      {
+        heading: "What people mean by \"venous leak\"",
+        body: [
+          "Patients often describe \"venous leak\" as blood draining out of the penis too quickly to sustain an erection. The description is intuitive, but the underlying physiology is more precise — the clinical term is veno-occlusive dysfunction, and it describes a failure of a mechanical process, not a permanently faulty valve.",
+          "A normal erection depends on a short sequence: adequate arterial inflow, relaxation of the smooth muscle within the erectile tissue (the corpora cavernosa), full expansion of that tissue, and — as a direct mechanical result of that expansion — compression of the veins that would otherwise drain blood out. Rigidity is maintained because outflow is reduced, not because a valve has been consciously shut.",
+        ],
+      },
+      {
+        heading: "PSV and EDV — what a Doppler actually measures",
+        body: [
+          "Penile Doppler ultrasound measures blood-flow velocities during a pharmacologically stimulated erection. Peak systolic velocity (PSV) primarily reflects arterial inflow — how well blood is reaching the penis. End-diastolic velocity (EDV) helps assess how much outflow persists once the erection is established.",
+          "A pattern of adequate PSV together with a persistently elevated EDV, in an erection that reached sufficient rigidity during the study, may suggest impaired veno-occlusion. But EDV is only informative in that context — it is not a stand-alone diagnostic number.",
+        ],
+      },
+      {
+        heading: "Why erection quality during the study matters",
+        body: [
+          "Full cavernosal expansion is what allows venous compression to happen at all. If rigidity during the scan is incomplete — because of insufficient stimulation, anxiety, heightened sympathetic tone, or a suboptimal response to the test injection — outflow can appear elevated simply because full compression was never mechanically achieved, independent of whether the veins themselves are structurally normal.",
+          "This is why a single elevated EDV reading is not, on its own, evidence of a fixed structural venous leak. The erection quality actually reached during the study has to be part of how the number is read.",
+        ],
+      },
+      {
+        heading: "Functional patterns versus a structural venous leak",
+        body: [
+          "Not every apparent venous pattern represents a fixed structural venous leak. In some men, an apparent veno-occlusive pattern may reflect incomplete cavernosal relaxation or incomplete rigidity rather than a fixed structural defect — contributors can include insufficient stimulation, performance anxiety, metabolic factors, or hormonal factors.",
+          "Distinguishing a functional pattern from a genuinely structural one matters directly for treatment: a functional pattern points toward addressing the underlying contributor, while a structural pattern is what would make surgical options a relevant conversation. Arterial insufficiency (reduced inflow, reflected in a lower PSV) is a separate mechanism again, and Doppler assessment is part of how the two are distinguished.",
+        ],
+      },
+      {
+        heading: "How the result is interpreted in context",
+        body: [
+          "A Penile Doppler result is read alongside clinical history, the erection quality achieved during the study, PSV, EDV, whether spontaneous or masturbatory erections differ from those with a partner, and relevant metabolic, hormonal and psychological context — not from a single velocity value taken in isolation.",
+          "Treatment follows the mechanism actually identified. That may mean addressing a contributing factor rather than surgery — surgical options are only relevant for a genuinely confirmed structural pattern, discussed individually at consultation.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "peyronies-disease-when-to-seek-assessment",
     title: "Peyronie's Disease: When Should You Seek Specialist Assessment?",
     category: "Peyronie's Disease",
