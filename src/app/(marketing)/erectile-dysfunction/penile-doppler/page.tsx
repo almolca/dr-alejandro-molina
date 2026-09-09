@@ -6,7 +6,7 @@ import { Container } from "@/components/ui/Container";
 import { Faq } from "@/components/ui/Faq";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { DopplerWaveformPanel } from "@/components/illustrations";
+import { DopplerWaveformPanel, UltrasoundEchoFan } from "@/components/illustrations";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -187,14 +187,20 @@ export default function PenileDopplerPage() {
         </Container>
       </section>
 
-      {/* Illustrative Doppler visual — spec R7.1.1 §8: clearly labeled as educational, never a real patient study */}
+      {/* Illustrative Doppler visual — spec R7.1.1 §8 / R7.1.3 §2A: clearly labeled as educational/simulated, never a real patient study */}
       <section className="border-t border-border py-section-y">
-        <Container className="max-w-2xl">
-          <DopplerWaveformPanel
-            pattern="normal"
-            label="Illustrative Doppler Example"
-            description="Educational representation of a normal spectral Doppler trace — not a real patient study. Actual scans vary between individuals."
-          />
+        <Container className="max-w-3xl">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-[minmax(0,11rem)_1fr] sm:items-start">
+            <div>
+              <UltrasoundEchoFan className="w-full max-w-[11rem]" />
+              <p className="mt-3 text-xs text-muted-foreground">Illustrative simulated ultrasound image</p>
+            </div>
+            <DopplerWaveformPanel
+              pattern="normal"
+              label="Illustrative Doppler Example"
+              description="Educational simulated Doppler visual of a normal spectral trace — not a real patient study. Actual scans vary between individuals."
+            />
+          </div>
         </Container>
       </section>
 

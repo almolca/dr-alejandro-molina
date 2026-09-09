@@ -10,3 +10,4 @@ export { MedicalEducationDiagram } from "./MedicalEducationDiagram";
 export type { IllustrationProps } from "./illustration-base";
 export { DopplerWaveformPanel } from "./DopplerWaveformPanel";
 export type { DopplerPattern } from "./DopplerWaveformPanel";
+export { UltrasoundEchoFan } from "./UltrasoundEchoFan";
