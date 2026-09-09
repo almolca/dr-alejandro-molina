@@ -28,6 +28,8 @@
 .metric dt { margin-top: .65rem; font-size: .75rem; line-height: 1.5; letter-spacing: .06em; text-transform: uppercase; color: var(--authority-muted); }
 .metric dd { order: -1; margin: 0; font-family: var(--font-display); font-size: clamp(2rem,4vw,3.5rem); line-height: 1.08; }
 .rail { display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid #89957f70; font-size: .9rem; color: var(--authority-muted); }
+.railItem { display: inline-flex; align-items: center; gap: 0.6rem; }
+.railLogo { display: block; height: 1.35rem; width: auto; object-fit: contain; opacity: 0.92; }
 .recognitionRail { display: flex; flex-wrap: wrap; gap: .5rem 2rem; margin-top: 1.25rem; padding: 0; list-style: none; font-family: var(--font-display); font-size: clamp(1.25rem,1.8vw,1.6rem); font-weight: 400; border-top: 1px solid #aeb5a480; padding-top: 1.25rem; }
 .timeline { list-style: none; padding: 0; margin: 3rem 0 0; display: grid; gap: 2rem 4rem; }
 .milestone { display: grid; grid-template-columns: 3rem 1fr; gap: 1rem; padding-top: 1.5rem; border-top: 1px solid #ccd2c4; }
