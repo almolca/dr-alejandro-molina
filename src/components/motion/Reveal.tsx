@@ -2,7 +2,7 @@
 
 import { motion } from "motion/react";
 import type { ReactNode } from "react";
-import { defaultViewport, fadeUpVariants, revealTransition } from "./motion-config";
+import { cardHoverLift, defaultViewport, fadeUpVariants, hasCardHoverClass, revealTransition } from "./motion-config";
 
 /**
  * Soft reveal-on-scroll primitive (spec §17). Wrap any section/element
@@ -21,6 +21,7 @@ export function Reveal({
   as?: "div" | "section" | "li";
 }) {
   const MotionTag = motion[as];
+  const isCardHover = hasCardHoverClass(className);
 
   return (
     <MotionTag
@@ -30,6 +31,8 @@ export function Reveal({
       viewport={defaultViewport}
       variants={fadeUpVariants}
       transition={{ ...revealTransition, delay }}
+      whileHover={isCardHover ? cardHoverLift : undefined}
+      whileFocus={isCardHover ? cardHoverLift : undefined}
     >
       {children}
     </MotionTag>
