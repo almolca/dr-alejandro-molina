@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Activity, CircleDot, Pill, Stethoscope, Syringe, TestTube, Zap } from "lucide-react";
+import { Activity, Brain, CircleDot, Droplets, Pill, Stethoscope, Syringe, TestTube, Waves, Zap } from "lucide-react";
 import { AmpersandText } from "@/components/ui/AmpersandText";
 import { VascularFlowDiagram } from "@/components/illustrations/VascularFlowDiagram";
 import { EditorialFrame } from "@/components/editorial/EditorialFrame";
@@ -90,6 +90,28 @@ const causes = [
     label: "Pelvic / structural",
     description:
       "Previous pelvic surgery, radiotherapy, or structural conditions such as Peyronie's disease can affect erectile function directly.",
+  },
+];
+
+/** Spec R7.1.3 §1 — vascular mechanisms deep-dive: patient-facing, not an academic-density list, but visible and specific enough to demonstrate real depth. */
+const vascularMechanisms = [
+  {
+    title: "Arterial Insufficiency",
+    description:
+      "Reduced blood flow reaching the penis through the arteries that supply it — the 'inflow' side of the physiology. Often related to cardiovascular risk factors such as high blood pressure, cholesterol or smoking.",
+    icon: Droplets,
+  },
+  {
+    title: "Veno-Occlusive Dysfunction",
+    description:
+      "Sometimes called a 'venous leak' — outflow isn't reduced enough once an erection is established, even when inflow is adequate. A mechanical consequence of incomplete cavernosal expansion, not a separate faulty valve.",
+    icon: Waves,
+  },
+  {
+    title: "Functional, Non-Structural Patterns",
+    description:
+      "Not every vascular-looking pattern is structural. Insufficient stimulation, anxiety, heightened sympathetic tone or metabolic factors can produce a similar picture without a fixed anatomical cause.",
+    icon: Brain,
   },
 ];
 
@@ -267,24 +289,32 @@ export default function ErectileDysfunctionPage() {
               </StaggerItem>
             ))}
           </StaggerGroup>
+        </Container>
+      </section>
+
+      {/* Vascular mechanisms — spec R7.1.3 §1: a real, visible section, not a subtle line + link */}
+      <section className="border-t border-border bg-surface py-section-y">
+        <Container>
+          <SectionHeading
+            eyebrow="Distinguishing the mechanisms"
+            heading="The Vascular Side of Erectile Dysfunction"
+            description="Reduced arterial inflow, impaired veno-occlusion (often called a 'venous leak'), and non-structural functional patterns are three genuinely different vascular-related mechanisms — Penile Doppler assessment is how they're told apart."
+          />
+          <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 md:grid-cols-3">
+            {vascularMechanisms.map((mechanism) => (
+              <StaggerItem key={mechanism.title} className="card-hover border-t border-border pt-6">
+                <mechanism.icon className="h-6 w-6 text-accent-strong" aria-hidden="true" />
+                <h3 className="mt-4 font-display text-lg text-foreground">{mechanism.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{mechanism.description}</p>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
           <Reveal delay={0.1}>
             <p className="mt-14 max-w-3xl border-t border-border pt-8 text-sm leading-relaxed text-muted-foreground">
-              A problem at any one of these stages can reduce rigidity —
-              which is why the causes below are grouped by which stage
-              they tend to affect, rather than treated as one
-              undifferentiated list. Reduced <strong className="text-foreground">arterial inflow</strong>,
-              incomplete <strong className="text-foreground">cavernosal relaxation and expansion</strong>,
-              and impaired <strong className="text-foreground">veno-occlusion</strong> are three
-              genuinely different mechanisms — see our{" "}
               <Link href="/erectile-dysfunction/penile-doppler" className="text-foreground underline decoration-accent-strong underline-offset-4">
                 Penile Doppler
               </Link>{" "}
-              page for how assessment distinguishes between them.
-            </p>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <p className="mt-4 max-w-3xl text-sm text-muted-foreground">
-              For a deeper look at one of these mechanisms specifically, see{" "}
+              assessment is how these mechanisms are distinguished in practice. For a deeper look at one of them specifically, see{" "}
               <Link href="/insights/venous-leak-erectile-dysfunction" className="text-foreground underline decoration-accent-strong underline-offset-4">
                 Venous Leak and Erectile Dysfunction: What Penile Doppler Really Shows
               </Link>.
