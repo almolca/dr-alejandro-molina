@@ -20,7 +20,7 @@ export function PhysicianAuthority({ dark = false, recognition = false }: { dark
       {doctor.medicalTrainer && (
         <p className={styles.railItem}>
           {trainingPrograms[0]?.logoSrc && (
-            <Image src={trainingPrograms[0].logoSrc} alt={trainingPrograms[0].program} width={100} height={32} className={styles.railLogo} />
+            <Image src={trainingPrograms[0].logoSrc} alt={trainingPrograms[0].program} width={32} height={32} className={styles.railLogo} />
           )}
           <span><strong>Medical Trainer</strong> · {doctor.medicalTrainer.program}<br />Trains urologists &amp; aesthetic physicians</span>
         </p>
@@ -29,7 +29,7 @@ export function PhysicianAuthority({ dark = false, recognition = false }: { dark
         const publicationLogo = publications.find((pub) => pub.outletName === item.outletName)?.logoSrc;
         return (
           <p key={item.outletName} className={styles.railItem}>
-            {publicationLogo && <Image src={publicationLogo} alt={item.outletName} width={80} height={32} className={styles.railLogo} />}
+            {publicationLogo && <Image src={publicationLogo} alt={item.outletName} width={57} height={32} className={styles.railLogo} />}
             <span>{item.wording}</span>
           </p>
         );
