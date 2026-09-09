@@ -1,4 +1,4 @@
-import { reviewPlatforms, topDoctorsAggregate, publicReviewHeadline } from "@/config/reputation";
+import { reviewPlatforms, topDoctorsAggregate, publicReviewHeadline, verifiedReviewTotal } from "@/config/reputation";
 import editorialStyles from "@/components/editorial/Editorial.module.css";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -22,7 +22,7 @@ export function PatientFeedbackSection() {
         <SectionHeading
           eyebrow="Patient Feedback"
           heading="Independently Reviewed"
-          description={topDoctors.length > 0 ? publicReviewHeadline : undefined}
+          description={verifiedReviewTotal > 0 ? publicReviewHeadline : undefined}
         />
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3">
           {google && (
