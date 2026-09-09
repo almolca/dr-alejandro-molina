@@ -244,7 +244,7 @@ export default function TestosteronePage() {
           />
           <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {approachPillars.map((pillar) => (
-              <StaggerItem key={pillar.title} className="border-t border-border pt-6">
+              <StaggerItem key={pillar.title} className="card-hover border-t border-border pt-6">
                 <h3 className="font-display text-lg text-foreground">{pillar.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{pillar.description}</p>
               </StaggerItem>
@@ -266,7 +266,7 @@ export default function TestosteronePage() {
           </Reveal>
           <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
             {panel.map((item) => (
-              <StaggerItem key={item.label} className="border-t border-border pt-5">
+              <StaggerItem key={item.label} className="card-hover border-t border-border pt-5">
                 <h3 className="font-display text-base text-foreground">{item.label}</h3>
                 <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
                   {item.description}

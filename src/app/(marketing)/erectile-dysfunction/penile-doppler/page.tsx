@@ -203,7 +203,7 @@ export default function PenileDopplerPage() {
           <SectionHeading eyebrow="What the test evaluates" heading="Three Things the Scan Looks At" />
           <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-12 gap-y-12 border-t border-border pt-12 md:grid-cols-3">
             {evaluates.map((item, index) => (
-              <StaggerItem key={item.title}>
+              <StaggerItem key={item.title} className="card-hover border-t border-border pt-6">
                 <span className="font-display text-2xl text-accent-strong">
                   {String(index + 1).padStart(2, "0")}
                 </span>
@@ -309,11 +309,11 @@ export default function PenileDopplerPage() {
             heading="PSV and EDV Are a Starting Point, Not a Diagnosis"
           />
           <div className="mt-10 grid gap-10 sm:grid-cols-2">
-            <Reveal>
+            <Reveal className="card-hover border-t border-border pt-6">
               <h3 className="font-display text-lg text-foreground">PSV</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">Peak systolic velocity — primarily reflects arterial inflow.</p>
             </Reveal>
-            <Reveal delay={0.05}>
+            <Reveal delay={0.05} className="card-hover border-t border-border pt-6">
               <h3 className="font-display text-lg text-foreground">EDV</h3>
               <p className="mt-3 text-sm leading-relaxed text-muted-foreground">End-diastolic velocity — helps assess persistent outflow during erection.</p>
             </Reveal>

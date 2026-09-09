@@ -260,7 +260,7 @@ export default function ErectileDysfunctionPage() {
           />
           <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
             {erectionStages.map((stage, index) => (
-              <StaggerItem key={stage.title} className="border-t border-border pt-6">
+              <StaggerItem key={stage.title} className="card-hover border-t border-border pt-6">
                 <span className="font-display text-sm text-accent-strong">{String(index + 1).padStart(2, "0")}</span>
                 <h3 className="mt-3 font-display text-lg text-foreground">{stage.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{stage.description}</p>
@@ -291,7 +291,7 @@ export default function ErectileDysfunctionPage() {
           <SectionHeading eyebrow="Understanding the cause" heading="Possible Contributors" />
           <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {causes.map((cause) => (
-              <StaggerItem key={cause.label} className="border-t border-border pt-6">
+              <StaggerItem key={cause.label} className="card-hover border-t border-border pt-6">
                 <h3 className="font-display text-lg text-foreground">{cause.label}</h3>
                 <p className="mt-3 text-sm text-muted-foreground">{cause.description}</p>
               </StaggerItem>
@@ -313,7 +313,7 @@ export default function ErectileDysfunctionPage() {
           <StaggerGroup className="mt-14 divide-y divide-border border-t border-border">
             {ladder.map((step, index) => (
               <StaggerItem key={step.title}>
-                <div className="grid grid-cols-[3rem_1fr] gap-x-6 gap-y-2 py-7 sm:grid-cols-[4rem_1fr_2fr] sm:items-baseline">
+                <div className="card-hover grid grid-cols-[3rem_1fr] gap-x-6 gap-y-2 rounded-sm px-3 py-7 -mx-3 sm:grid-cols-[4rem_1fr_2fr] sm:items-baseline">
                   <div className="flex flex-col gap-1">
                     <step.icon aria-hidden size={18} className="text-accent-strong" />
                     <span className="font-display text-2xl text-accent-strong">

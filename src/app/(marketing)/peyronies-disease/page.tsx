@@ -147,7 +147,7 @@ export default function PeyroniesDiseasePage() {
           <div className="mt-14 grid grid-cols-1 gap-x-16 gap-y-10 md:grid-cols-2">
             {phases.map((phase, index) => (
               <Reveal key={phase.label} delay={index * 0.08}>
-                <div className={index === 1 ? "md:border-l md:border-border md:pl-16" : ""}>
+                <div className={`card-hover border-t border-border pt-6 ${index === 1 ? "md:border-l md:border-t-0 md:border-border md:pl-16 md:pt-0" : ""}`}>
                   <h3 className="font-display text-2xl text-foreground">{phase.label}</h3>
                   <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
                     {phase.description}
@@ -203,7 +203,7 @@ export default function PeyroniesDiseasePage() {
           />
           <div className="mt-14 grid grid-cols-1 gap-10 border-t border-border pt-10 md:grid-cols-3">
             {pathways.map((pathway, index) => (
-              <Reveal key={pathway.tier} delay={index * 0.06}>
+              <Reveal key={pathway.tier} delay={index * 0.06} className="card-hover">
                 <span className="font-display text-sm text-accent-strong">
                   {String(index + 1).padStart(2, "0")}
                 </span>
