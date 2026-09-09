@@ -203,7 +203,7 @@ export default function PenileDopplerPage() {
           <SectionHeading eyebrow="What the test evaluates" heading="Three Things the Scan Looks At" />
           <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-12 gap-y-12 border-t border-border pt-12 md:grid-cols-3">
             {evaluates.map((item, index) => (
-              <StaggerItem key={item.title} className="card-hover border-t border-border pt-6">
+              <StaggerItem key={item.title} className="card-hover">
                 <span className="font-display text-2xl text-accent-strong">
                   {String(index + 1).padStart(2, "0")}
                 </span>
