@@ -32,7 +32,7 @@ export function RecognitionSection() {
                         <Image src={logoSrc} alt={award.officialTitle} width={160} height={44} style={{ height: "1.75rem", width: "auto" }} />
                       </span>
                     )}
-                    <p className={`mt-3 text-sm ${logoSrc ? visual.recognitionCaption : `font-display text-[clamp(1.25rem,1.8vw,1.6rem)] leading-snug ${visual.recognitionHeading}`}`}>
+                    <p className={`mt-3 ${logoSrc ? `text-sm ${visual.recognitionCaption}` : `font-display text-[clamp(1.25rem,1.8vw,1.6rem)] leading-snug ${visual.recognitionHeading}`}`}>
                       {award.officialTitle}
                     </p>
                   </li>
