@@ -140,6 +140,16 @@ export const topDoctorsAggregate = {
  */
 export const publicReviewHeadline = "450+ patient reviews across independent platforms";
 
+/**
+ * A platform-naming variant of `publicReviewHeadline` above (R7.1.2 §7)
+ * — same "450+" rounding rationale (see that export's own comment): a
+ * fixed, owner-approved string, not derived from `verifiedReviewTotal`.
+ * Used where naming the specific platforms adds trust-surface value,
+ * e.g. next to the booking CTA.
+ */
+export const publicReviewHeadlineWithPlatforms =
+  "450+ patient reviews across Google, Doctoralia & Top Doctors";
+
 /** Logo asset path per award, keyed by the exact `officialTitle` in `doctor.awards`. Both approved and supplied by the owner (R7.1). */
 export const awardLogos: Record<string, string> = {
   "Top Doctors Spain 2020": "/brand/authority/top-doctors-awards-2020.png",

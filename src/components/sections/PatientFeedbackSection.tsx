@@ -17,7 +17,7 @@ export function PatientFeedbackSection() {
   const topDoctors = reviewPlatforms.filter((p) => p.platform === "Top Doctors");
 
   return (
-    <section className="border-t border-border bg-surface py-section-y">
+    <section id="reviews" className="border-t border-border bg-surface py-section-y">
       <Container>
         <SectionHeading
           eyebrow="Patient Feedback"

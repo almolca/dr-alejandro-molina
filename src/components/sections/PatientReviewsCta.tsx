@@ -1,31 +1,32 @@
-import { reviewPlatforms } from "@/config/reputation";
+import Link from "next/link";
+import { publicReviewHeadlineWithPlatforms, verifiedReviewTotal } from "@/config/reputation";
 
 /**
- * Compact single-line review CTA, used near the booking CTA — the
+ * Compact aggregate review trust line, used near the booking CTA — the
  * fuller multi-platform breakdown lives in PatientFeedbackSection.
- * Reads from the same centralized `reputation.ts` config (R7.1),
- * replacing the old single-platform `config/patientReviews.ts` scaffold
- * (retired — it was never populated). Prefers Google since that's the
- * owner-verified primary platform; falls back to the first verified
- * platform found, or renders nothing if none are verified.
+ * Reads from the same centralized `reputation.ts` config (R7.1).
+ *
+ * R7.1.2 §6 correction: previously picked whichever single verified
+ * platform had a `profileUrl` (in practice always Doctoralia, since
+ * Google's `profileUrl` is unset) and showed a platform-specific line
+ * like "5 · 237 reviews on Doctoralia" — decoupling the CTA's wording
+ * from the actual verified aggregate and privileging one platform.
+ * Now always shows the same neutral, platform-inclusive aggregate
+ * headline, gated only on whether there is any verified review data
+ * at all.
  */
 export function PatientReviewsCta() {
-  const platform =
-    reviewPlatforms.find((p) => p.platform === "Google" && p.verified && p.profileUrl) ??
-    reviewPlatforms.find((p) => p.verified && p.profileUrl);
-
-  if (!platform?.profileUrl) return null;
+  if (verifiedReviewTotal <= 0) return null;
 
   return (
-    <a
-      href={platform.profileUrl}
-      target="_blank"
-      rel="noopener noreferrer nofollow"
-      className="inline-flex items-center text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
-    >
-      {platform.rating !== null && platform.reviewCount !== null
-        ? `${platform.rating} · ${platform.reviewCount} reviews on ${platform.platform}`
-        : `Read Verified Patient Reviews on ${platform.platform}`}
-    </a>
+    <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
+      <span>{publicReviewHeadlineWithPlatforms}</span>
+      <Link
+        href="/about#reviews"
+        className="font-medium text-foreground underline decoration-accent-strong underline-offset-4"
+      >
+        See patient reviews
+      </Link>
+    </p>
   );
 }
