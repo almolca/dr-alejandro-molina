@@ -24,7 +24,7 @@ export function PatientFeedbackSection() {
           heading="Independently Reviewed"
           description={
             verifiedReviewTotal > 0
-              ? `${verifiedReviewTotal}+ verified reviews across independent platforms.`
+              ? `${verifiedReviewTotal}+ patient reviews across independent platforms.`
               : undefined
           }
         />
@@ -68,20 +68,30 @@ export function PatientFeedbackSection() {
           {topDoctors.length > 0 && (
             <div className={`${editorialStyles.candidateColumn} ${editorialStyles.candidateColumnAlt}`}>
               <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Top Doctors</p>
-              <p className="mt-3 text-sm text-muted-foreground">Verified profiles</p>
-              <div className="mt-4 flex flex-col gap-2">
+              <div className="mt-3 flex flex-col gap-4">
                 {topDoctors.map((entry) => (
-                  entry.profileUrl && (
-                    <a
-                      key={entry.label}
-                      href={entry.profileUrl}
-                      target="_blank"
-                      rel="noopener noreferrer nofollow"
-                      className="inline-flex text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
-                    >
-                      {entry.label ? `View ${entry.label} profile` : "View profile"}
-                    </a>
-                  )
+                  <div key={entry.label}>
+                    {entry.verified ? (
+                      <p className="font-display text-xl text-foreground">
+                        {entry.rating} / 5{" "}
+                        <span className="font-sans text-sm font-normal text-muted-foreground">
+                          · {entry.reviewCount} reviews{entry.label ? ` (${entry.label})` : ""}
+                        </span>
+                      </p>
+                    ) : (
+                      <p className="text-sm text-muted-foreground">{entry.label ?? "Verified profile"}</p>
+                    )}
+                    {entry.profileUrl && (
+                      <a
+                        href={entry.profileUrl}
+                        target="_blank"
+                        rel="noopener noreferrer nofollow"
+                        className="mt-1 inline-flex text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
+                      >
+                        {entry.label ? `View ${entry.label} profile` : "View profile"}
+                      </a>
+                    )}
+                  </div>
                 ))}
               </div>
             </div>

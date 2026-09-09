@@ -27,7 +27,7 @@ export function AuthorityMediaSection() {
           )}
           {hasReviews && (
             <p className="mb-3 text-sm text-foreground">
-              {verifiedReviewTotal}+ verified patient reviews across {reviewPlatforms.filter((p) => p.verified).length} independent platforms
+              {verifiedReviewTotal}+ patient reviews across {new Set(reviewPlatforms.filter((p) => p.verified).map((p) => p.platform)).size} independent platforms
             </p>
           )}
           {publishableMedia.length > 0 && (

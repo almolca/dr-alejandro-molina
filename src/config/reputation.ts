@@ -12,20 +12,20 @@
  * / AuthorityMediaSection. `awardLogos` below only adds the logo asset
  * path for each, keyed by the exact `officialTitle` already in doctor.ts.
  *
- * Verification provenance (R7.1, checked 2026-09-09):
+ * Verification provenance:
  * - Google: rating/count owner-confirmed directly (not independently
  *   re-verified by fetch — Google profiles aren't reliably fetchable
  *   without an API key).
  * - Doctoralia: independently re-verified via a live fetch of the
- *   profile URL. Fetched via an automated tool, not a manual
- *   screenshot — a human spot-check before relying on this further is
- *   still recommended.
- * - Top Doctors: the profile URL was confirmed real (indexed, and the
- *   page title matches) via web search, but the page itself blocks
- *   automated fetching, so its own rating/review count could NOT be
- *   independently verified. Per the "if uncertain, don't invent it"
- *   principle, rating/reviewCount are left null — render the profile
- *   link only, no number.
+ *   profile URL (2026-09-09). Fetched via an automated tool, not a
+ *   manual screenshot — a human spot-check is still recommended.
+ * - Top Doctors (both profiles): the profile URLs were confirmed real
+ *   via web search, and this automated tool's own attempts to fetch the
+ *   individual profile pages were blocked. The owner subsequently
+ *   independently verified the current rating/review count directly
+ *   from Top Doctors' own live specialty/directory pages (R7.1
+ *   correction, 2026-09-09) — recorded here as owner-verified, not
+ *   re-derived by this tool.
  *
  * Also surfaced during verification but NOT added here, pending
  * explicit owner sign-off (only the two awards below are owner-
@@ -74,30 +74,32 @@ export const reviewPlatforms: ReviewPlatform[] = [
     platform: "Top Doctors",
     label: "Andrología",
     profileUrl: "https://www.topdoctors.es/doctor/alejandro-molina-cabeza-doctor/",
-    rating: null,
-    reviewCount: null,
-    lastVerified: null,
-    verified: false,
+    rating: 5,
+    reviewCount: 14,
+    lastVerified: "2026-09-09",
+    verificationMethod: "Owner-verified via Top Doctors' live specialty/directory pages (R7.1 correction)",
+    verified: true,
   },
   {
     platform: "Top Doctors",
     label: "Urología",
     profileUrl: "https://www.topdoctors.es/doctor/alejandro-molina-cabeza/",
-    rating: null,
-    reviewCount: null,
-    lastVerified: null,
-    verified: false,
+    rating: 5,
+    reviewCount: 147,
+    lastVerified: "2026-09-09",
+    verificationMethod: "Owner-verified via Top Doctors' live specialty/directory pages (R7.1 correction)",
+    verified: true,
   },
 ];
 
 /**
  * A rounded aggregate headline is only safe to publish once the sum of
- * *verified* platform counts actually supports it. As of this file's
- * creation that's 58 (Google) + 237 (Doctoralia) = 295 — Top Doctors'
- * count is unverified and excluded from the sum. The brief's suggested
- * "450+ across independent platforms" headline is NOT currently
- * supported and must not be published until Top Doctors is verified
- * (or the copy is adjusted to match the real sum).
+ * *verified* platform counts actually supports it. As of the R7.1
+ * correction that's 58 (Google) + 237 (Doctoralia) + 147 (Top Doctors
+ * Urología) + 14 (Top Doctors Andrología) = 456 — which supports the
+ * "450+ patient reviews across independent platforms" headline. If any
+ * platform's `verified` flag is ever set back to false, this constant
+ * (and the headline it supports) updates automatically.
  */
 export const verifiedReviewTotal = reviewPlatforms
   .filter((p) => p.verified && p.reviewCount !== null)
