@@ -85,6 +85,8 @@ const PUBLISHED = "2026-09-03";
 const PUBLISHED_PHASE_B = "2026-09-06";
 /** Real date this batch of Phase C (topical authority expansion) articles was added. */
 const PUBLISHED_PHASE_C = "2026-09-06";
+/** Real date this batch of R7 (Penile Implant + Testosterone cluster depth) articles was added. */
+const PUBLISHED_R7 = "2026-09-09";
 
 export const insightArticles: InsightArticle[] = [
   {
@@ -734,6 +736,248 @@ export const insightArticles: InsightArticle[] = [
         heading: "Why correction, when needed, requires specialist assessment",
         body: [
           "Where a previous result — here or elsewhere — hasn't met expectations, experience across a large number of cases has reinforced that a generic fix isn't appropriate: correction needs its own anatomical assessment, considering the original treatment and current presentation, set out at our Penile Filler Correction page.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "inflatable-vs-malleable-penile-implant",
+    title: "Inflatable vs Malleable Penile Implant: What's the Difference?",
+    category: "Penile Surgery",
+    excerpt:
+      "Two device types, two genuinely different mechanisms. Here's how they compare, and what actually determines which is right for a given patient.",
+    datePublished: PUBLISHED_R7,
+    clinicalReviewRequired: true,
+    relatedHref: "/penile-implant",
+    relatedLabel: "Penile Implant Surgery",
+    relatedArticleSlugs: ["penile-implant-when-considered"],
+    sections: [
+      {
+        heading: "Two mechanisms, not two versions of the same device",
+        body: [
+          "An inflatable prosthesis uses cylinders, a pump and a fluid reservoir to closely mirror natural rigidity when in use and flaccidity when not. A malleable prosthesis is a simpler design — semi-rigid rods with no pump, positioned by hand into a more or less rigid position. These are genuinely different mechanisms, not a premium-versus-basic version of the same device.",
+        ],
+      },
+      {
+        heading: "Why inflatable is the more commonly selected option",
+        body: [
+          "Because it mirrors the natural flaccid state when not activated, an inflatable device is the option most commonly selected among candidates. The trade-off is mechanical complexity: more moving parts means more that could, in principle, eventually need attention or revision.",
+        ],
+      },
+      {
+        heading: "When a malleable device may be preferred",
+        body: [
+          "A malleable device's simpler mechanical design — no pump, no reservoir — can be a reasonable preference where a more straightforward surgical approach is wanted, or where manual dexterity to operate a pump mechanism is a genuine practical consideration. It is a legitimate choice, not a lesser one.",
+        ],
+      },
+      {
+        heading: "What actually determines the choice",
+        body: [
+          "In practice, the decision depends on anatomy, general health, manual dexterity, and personal preference after both options have been properly explained — not a default recommendation applied to every patient. This is discussed directly as part of surgical planning, not assumed in advance.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "penile-implant-recovery-what-to-expect",
+    title: "Penile Implant Recovery: What to Expect",
+    category: "Penile Surgery",
+    excerpt:
+      "Recovery follows a structured pattern, even though the exact timeline is set individually. Here's how it generally unfolds.",
+    datePublished: PUBLISHED_R7,
+    clinicalReviewRequired: true,
+    relatedHref: "/penile-implant",
+    relatedLabel: "Penile Implant Surgery",
+    relatedArticleSlugs: ["penile-implant-when-considered", "inflatable-vs-malleable-penile-implant"],
+    sections: [
+      {
+        heading: "Recovery happens in phases, not as a single event",
+        body: [
+          "Recovery from penile implant surgery generally moves through three phases: an initial healing period with restricted activity, a gradual return to normal daily activity, and finally a guided introduction of device use once healing is sufficient. Thinking of it as a sequence, rather than a single countdown to 'fully recovered', is a more useful way to set expectations.",
+        ],
+      },
+      {
+        heading: "The initial healing period",
+        body: [
+          "Some swelling, discomfort and bruising in the early period is a normal part of surgical healing, not a sign that something has gone wrong. Activity is deliberately restricted during this phase to protect the surgical site while it heals.",
+        ],
+      },
+      {
+        heading: "Returning to normal activity",
+        body: [
+          "As healing progresses, activity is reintroduced gradually rather than all at once. The pace of this depends on how the individual patient is healing, not a fixed calendar applied to everyone.",
+        ],
+      },
+      {
+        heading: "When device use begins",
+        body: [
+          "Learning to use the device — activating and releasing an inflatable prosthesis, or positioning a malleable one — is introduced under guidance once healing is sufficient, not immediately after surgery. This staged approach protects the surgical result while the patient becomes confident using the device.",
+        ],
+      },
+      {
+        heading: "Why a specific number of days isn't quoted here",
+        body: [
+          "Healing pace, the surgical plan, and individual anatomy all vary between patients, which is why this page describes the structure of recovery rather than a single generic timeline — the specific timeline for your own recovery is set at consultation and reviewed as healing progresses.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "orgasm-ejaculation-after-penile-implant",
+    title: "Can You Orgasm and Ejaculate With a Penile Implant?",
+    category: "Penile Surgery",
+    excerpt:
+      "A penile implant restores the ability to achieve rigidity — not every aspect of sexual function. Here's what it does and doesn't change.",
+    datePublished: PUBLISHED_R7,
+    clinicalReviewRequired: true,
+    relatedHref: "/penile-implant",
+    relatedLabel: "Penile Implant Surgery",
+    relatedArticleSlugs: ["penile-implant-when-considered"],
+    sections: [
+      {
+        heading: "What the implant is designed to do",
+        body: [
+          "A penile implant is designed to allow a man to achieve a rigid erection when he wants one. That is its specific purpose — restoring the mechanical ability to achieve rigidity for penetration.",
+        ],
+      },
+      {
+        heading: "What it does not change",
+        body: [
+          "Orgasm, ejaculation and skin sensation are governed by separate nerve and hormonal pathways, independent of the mechanism that produces rigidity. Implant surgery does not directly alter these — it is not designed to, and does not claim to.",
+        ],
+      },
+      {
+        heading: "Why some men still notice a difference",
+        body: [
+          "The underlying cause of the original erectile dysfunction — nerve changes after pelvic surgery such as prostatectomy, diabetes-related nerve involvement, or longstanding vascular changes — can independently affect sensation, orgasm or ejaculation, separately from the implant itself. It matters to attribute any change to the underlying condition rather than assume the device is responsible.",
+        ],
+      },
+      {
+        heading: "Why this is discussed before surgery, not after",
+        body: [
+          "Realistic expectations about what an implant can and cannot restore are set out during assessment, specifically so a patient is not left drawing incorrect conclusions about the device after surgery. If sensation or ejaculation are a specific concern, they are a reasonable and expected topic to raise at consultation.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "trt-who-is-it-for",
+    title: "Testosterone Replacement Therapy: Who Is It For?",
+    category: "Testosterone",
+    excerpt:
+      "TRT is not appropriate for every man with a single low reading or a symptom of fatigue. Here's how candidacy is actually assessed.",
+    datePublished: PUBLISHED_R7,
+    clinicalReviewRequired: true,
+    relatedHref: "/mens-health/testosterone",
+    relatedLabel: "Testosterone & Male Hormonal Health",
+    relatedArticleSlugs: ["low-testosterone-symptoms-diagnosis", "shbg-and-free-testosterone-explained"],
+    sections: [
+      {
+        heading: "Confirmed deficiency, not a single low reading",
+        body: [
+          "A single low testosterone result is a reason to investigate further, not a diagnosis on its own. Levels fluctuate, and biochemical confirmation typically involves more than one measurement, read alongside symptoms rather than in isolation.",
+        ],
+      },
+      {
+        heading: "Symptoms that actually correlate with the biochemistry",
+        body: [
+          "Fatigue, low libido and reduced performance can have many causes besides testosterone deficiency. Candidacy depends on these symptoms genuinely aligning with confirmed low levels — not the presence of tiredness alone alongside a borderline number.",
+        ],
+      },
+      {
+        heading: "Ruling out reversible causes first",
+        body: [
+          "Untreated sleep apnoea, obesity, thyroid dysfunction and certain medications can all lower testosterone or produce similar symptoms. Where one of these is present and unaddressed, it is generally considered before treatment — because addressing it may change the picture entirely.",
+        ],
+      },
+      {
+        heading: "Who is generally not yet a candidate",
+        body: [
+          "Men actively planning to conceive without a fertility discussion first, those with a significant unaddressed contributing condition, and men seeking treatment purely for bodybuilding or performance enhancement without confirmed deficiency are generally not appropriate candidates at that point — though circumstances can change once the relevant factor is addressed.",
+        ],
+      },
+      {
+        heading: "An individual decision, not a protocol",
+        body: [
+          "Ultimately, whether TRT is appropriate is an individual decision made after the full picture — symptoms, repeat biochemistry, and contributing factors — has been assessed together, not a decision made from a single number.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "shbg-and-free-testosterone-explained",
+    title: "SHBG and Free Testosterone Explained",
+    category: "Testosterone",
+    excerpt:
+      "Total testosterone can look normal while free testosterone tells a different story. Here's why both figures matter.",
+    datePublished: PUBLISHED_R7,
+    clinicalReviewRequired: true,
+    relatedHref: "/mens-health/testosterone",
+    relatedLabel: "Testosterone & Male Hormonal Health",
+    relatedArticleSlugs: ["low-testosterone-symptoms-diagnosis", "trt-who-is-it-for"],
+    sections: [
+      {
+        heading: "What SHBG does",
+        body: [
+          "Sex hormone-binding globulin (SHBG) is a protein that binds to testosterone in the bloodstream. Testosterone bound to SHBG is not biologically available for the body to use — only the unbound portion is active.",
+        ],
+      },
+      {
+        heading: "Total testosterone vs free testosterone",
+        body: [
+          "Total testosterone measures everything in the blood — bound and unbound together. Free testosterone measures only the unbound, biologically active portion. A man can have a normal total testosterone reading while his free testosterone tells a different story, depending on his SHBG level.",
+        ],
+      },
+      {
+        heading: "Why SHBG shifts the picture",
+        body: [
+          "SHBG levels themselves vary with age, obesity, thyroid function and liver health, among other factors. Someone with high SHBG can have low free testosterone despite a normal-looking total figure, and vice versa — which is why SHBG is measured alongside testosterone, not assumed to be constant.",
+        ],
+      },
+      {
+        heading: "Why this matters for diagnosis",
+        body: [
+          "Relying on total testosterone alone can miss a genuine deficiency, or suggest one that isn't really there. This is part of why a full hormonal assessment looks at total and free testosterone together with SHBG, rather than treating a single number as the whole story.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "testosterone-and-erectile-dysfunction",
+    title: "Testosterone and Erectile Dysfunction: How Are They Connected?",
+    category: "Testosterone",
+    excerpt:
+      "Low testosterone can contribute to erectile dysfunction, but it is rarely the only factor. Here's how the two are assessed together.",
+    datePublished: PUBLISHED_R7,
+    clinicalReviewRequired: true,
+    relatedHref: "/mens-health/testosterone",
+    relatedLabel: "Testosterone & Male Hormonal Health",
+    secondaryRelatedHref: "/erectile-dysfunction",
+    secondaryRelatedLabel: "Erectile Dysfunction Assessment & Treatment",
+    relatedArticleSlugs: ["low-testosterone-symptoms-diagnosis"],
+    sections: [
+      {
+        heading: "Testosterone's role in erectile function",
+        body: [
+          "Testosterone contributes to libido and supports several aspects of the erectile process, but an erection itself depends primarily on vascular and neurological mechanisms — healthy blood flow and nerve signalling. Testosterone is a contributor, not the sole mechanism.",
+        ],
+      },
+      {
+        heading: "Why treating testosterone alone doesn't always resolve ED",
+        body: [
+          "When vascular, neurological or psychosexual factors are the primary driver of erectile dysfunction, testosterone treatment on its own is unlikely to fully resolve it. This is the practical reason the two are assessed together rather than assuming a low reading explains the whole picture.",
+        ],
+      },
+      {
+        heading: "When testosterone assessment is part of an ED work-up",
+        body: [
+          "Hormonal assessment is a standard part of a full erectile dysfunction evaluation, used to identify whether testosterone is a relevant contributor — not a routine justification for automatically prescribing it.",
+        ],
+      },
+      {
+        heading: "Two conditions, one assessment",
+        body: [
+          "Because erectile function, hormonal health and psychosexual context can all be relevant to the same presentation, both are considered within the same assessment rather than treated as entirely separate problems.",
         ],
       },
     ],

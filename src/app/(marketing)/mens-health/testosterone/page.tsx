@@ -24,7 +24,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 const PATH = "/mens-health/testosterone";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Testosterone & Male Hormonal Health",
+  title: "Testosterone & Male Hormonal Health in Abu Dhabi",
   description:
     "Testosterone and male hormonal health assessment in Abu Dhabi — symptoms, diagnosis, full biochemical workup, and when treatment is clinically appropriate.",
   path: PATH,
@@ -46,6 +46,33 @@ const panel = [
   { label: "Metabolic health", description: "Weight, insulin resistance and metabolic syndrome all interact with testosterone." },
   { label: "Sleep", description: "Poor sleep, including untreated sleep apnoea, can lower testosterone levels." },
   { label: "Fertility plans", description: "Relevant before starting any hormonal treatment that could affect fertility." },
+];
+
+const approachPillars = [
+  {
+    title: "Symptoms and biochemistry, together",
+    description: "A number on its own is not a diagnosis, and neither are symptoms alone. The two are read together, because either in isolation can mislead.",
+  },
+  {
+    title: "Free testosterone and SHBG in context",
+    description: "Total testosterone alone can be misleading. SHBG affects how much is actually biologically available, which is why free testosterone and SHBG are interpreted together rather than total testosterone in isolation.",
+  },
+  {
+    title: "Looking beyond the number itself",
+    description: "Pituitary hormones (LH/FSH) and prolactin help identify where in the hormonal axis a pattern originates — not just whether a single figure is low.",
+  },
+  {
+    title: "Metabolic and sleep context",
+    description: "Obesity, insulin resistance and untreated sleep apnoea can all lower testosterone or mimic its symptoms. Treating the number without addressing these is treating the wrong problem.",
+  },
+  {
+    title: "Fertility plans checked first",
+    description: "Some hormonal treatments can affect fertility. This is asked about, and factored in, before any treatment begins — not discovered afterward.",
+  },
+  {
+    title: "Monitoring, not a one-time prescription",
+    description: "Treatment, where appropriate, is followed with regular review and bloodwork — not started and left unmonitored.",
+  },
 ];
 
 const monitoring = [
@@ -70,6 +97,8 @@ const faqItems = [
     question: "Will I automatically be offered testosterone treatment?",
     answer:
       "No. Testosterone treatment is considered only after appropriate clinical and biochemical assessment, and only when there is a clear indication for it.",
+    readMoreHref: "/insights/trt-who-is-it-for",
+    readMoreLabel: "Read more: Testosterone Replacement Therapy, Who Is It For?",
   },
   {
     question: "Is this the same as a bodybuilding or performance clinic?",
@@ -80,6 +109,35 @@ const faqItems = [
     question: "What if I'm planning a family?",
     answer:
       "Fertility plans are discussed as part of assessment, since some hormonal treatments can affect fertility — this is factored into any recommendation.",
+  },
+  {
+    question: "What's the difference between free and total testosterone?",
+    answer:
+      "Total testosterone measures all the testosterone in your blood, including the portion bound to SHBG and unavailable for the body to use. Free testosterone measures only the unbound, biologically active portion — which is why the two are interpreted together rather than total testosterone alone.",
+    readMoreHref: "/insights/shbg-and-free-testosterone-explained",
+    readMoreLabel: "Read more: SHBG and Free Testosterone Explained",
+  },
+  {
+    question: "Testosterone injections or gel — which is used?",
+    answer:
+      "Both are established delivery methods, and the choice depends on individual preference, lifestyle and how your levels respond — not a one-size-fits-all decision. They differ in how often they're used and how levels fluctuate between doses, which is part of what's discussed when choosing between them.",
+  },
+  {
+    question: "Does treatment affect hematocrit or blood count?",
+    answer:
+      "Testosterone treatment can raise red blood cell count (hematocrit), which is one of the specific markers checked with regular bloodwork while on treatment — not something reviewed only if symptoms appear. If levels rise outside a safe range, treatment is adjusted or paused rather than continued unchanged.",
+  },
+  {
+    question: "Does testosterone treatment affect the prostate or PSA?",
+    answer:
+      "PSA and prostate health are checked before starting treatment and monitored alongside it, as standard practice for any testosterone treatment — one of the safety markers referred to in ongoing monitoring, not a separate afterthought.",
+  },
+  {
+    question: "Is low testosterone linked to erectile dysfunction?",
+    answer:
+      "It can be, though it's rarely the only factor — an erection depends primarily on vascular and neurological mechanisms, with testosterone contributing to libido and supporting parts of the process. This is why the two are assessed together rather than assuming a low reading explains erectile symptoms on its own.",
+    readMoreHref: "/insights/testosterone-and-erectile-dysfunction",
+    readMoreLabel: "Read more: Testosterone and Erectile Dysfunction",
   },
 ];
 
@@ -171,6 +229,25 @@ export default function TestosteronePage() {
               them.
             </p>
           </Reveal>
+        </Container>
+      </section>
+
+      {/* Dr. Molina's Approach — ties the page's existing depth into one distinct, quotable authority statement */}
+      <section className="py-section-y">
+        <Container>
+          <SectionHeading
+            eyebrow="Clinical philosophy"
+            heading="Dr. Molina's Approach to Male Hormonal Health"
+            description="Not a testosterone number treated in isolation — an assessment of whether symptoms, biochemistry and the wider health picture actually fit together."
+          />
+          <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {approachPillars.map((pillar) => (
+              <StaggerItem key={pillar.title} className="border-t border-border pt-6">
+                <h3 className="font-display text-lg text-foreground">{pillar.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{pillar.description}</p>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
         </Container>
       </section>
 

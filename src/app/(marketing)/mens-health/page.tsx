@@ -53,6 +53,12 @@ const areas = [
       "Sexual-function changes are assessed as part of the same hormonal and metabolic picture where relevant.",
     href: "/erectile-dysfunction",
   },
+  {
+    label: "Premature Ejaculation & Peyronie's Disease",
+    description:
+      "Ejaculatory control and penile curvature are two of the other common reasons men consult — each assessed with the same specialist approach.",
+    href: "/sexual-medicine",
+  },
 ];
 
 const faqItems = [

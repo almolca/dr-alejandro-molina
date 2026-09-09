@@ -25,7 +25,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 const PATH = "/penile-implant";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Penile Implant Surgery",
+  title: "Penile Implant Surgery in Abu Dhabi",
   description:
     "Penile implant surgery for severe erectile dysfunction in Abu Dhabi — inflatable and malleable options, candidacy, the surgical pathway, recovery and realistic expectations.",
   path: PATH,
@@ -95,6 +95,29 @@ const candidateGoodIf = [
   "The underlying cause has already been appropriately assessed",
 ];
 
+const pathwayPrinciples = [
+  {
+    title: "Cause and severity",
+    description: "Confirming that erectile dysfunction is genuinely severe or refractory — not assumed from symptoms alone.",
+  },
+  {
+    title: "Previous treatments",
+    description: "Reviewing what has already been tried — oral medication, vacuum devices, injectable therapy — and why it did or didn't work.",
+  },
+  {
+    title: "Wider clinical context",
+    description: "Vascular, hormonal and anatomical factors that may be contributing are assessed, not overlooked in favour of a quick surgical fix.",
+  },
+  {
+    title: "Realistic expectations",
+    description: "What an implant can and cannot restore — for rigidity, sensation, orgasm and perceived length — discussed before any surgical decision, not after.",
+  },
+  {
+    title: "Device selection",
+    description: "Inflatable or malleable, chosen according to anatomy, health and personal preference, not offered as a single default recommendation.",
+  },
+];
+
 const faqItems = [
   {
     question: "Is a penile implant permanent?",
@@ -105,21 +128,27 @@ const faqItems = [
     question: "What's the difference between inflatable and malleable implants?",
     answer:
       "Inflatable devices use a pump mechanism to mirror natural rigidity and flaccidity. Malleable devices are simpler semi-rigid rods that are manually positioned. Which is discussed depends on your anatomy, health and preference.",
+    readMoreHref: "/insights/inflatable-vs-malleable-penile-implant",
+    readMoreLabel: "Read more: Inflatable vs Malleable Penile Implant",
   },
   {
     question: "Will sensation be normal after surgery?",
     answer:
       "The implant is designed to support rigidity for penetration. It does not aim to change sensation, which is generally governed by separate mechanisms — this is discussed individually during assessment.",
+    readMoreHref: "/insights/orgasm-ejaculation-after-penile-implant",
+    readMoreLabel: "Read more: Can You Orgasm and Ejaculate With a Penile Implant?",
   },
   {
     question: "How long is recovery?",
     answer:
-      "Recovery involves a structured period following surgery. Specific timelines are discussed individually at consultation, based on your surgical plan.",
+      "Recovery generally moves through three phases: an initial healing period with restricted activity, a gradual return to normal daily activity, and finally a guided introduction of device use once healing is sufficient. The specific timeline within that structure depends on your individual healing and surgical plan, and is set at consultation rather than quoted as a single number here.",
+    readMoreHref: "/insights/penile-implant-recovery-what-to-expect",
+    readMoreLabel: "Read more: Penile Implant Recovery, What to Expect",
   },
   {
     question: "Am I a candidate for a penile implant?",
     answer:
-      "Candidacy depends on the cause and severity of erectile dysfunction, previous treatments tried, and overall health — assessed individually at consultation.",
+      "Candidacy depends on three things: whether erectile dysfunction is confirmed as severe or refractory, whether other treatments have already been tried without reliable results, and your overall health and expectations. All three are assessed together at consultation — see the candidacy check above for how this is typically weighed.",
   },
   {
     question: "What are the alternatives to a penile implant?",
@@ -127,6 +156,21 @@ const faqItems = [
       "A penile implant sits at the end of the erectile dysfunction treatment ladder, not the start. Alternatives explored first typically include lifestyle and risk-factor management, PDE5 inhibitors, hormonal treatment where indicated, vacuum devices, shockwave therapy and intracavernosal injection therapy — an implant is considered once these no longer give reliable results.",
     readMoreHref: "/erectile-dysfunction",
     readMoreLabel: "See the full Erectile Dysfunction treatment ladder",
+  },
+  {
+    question: "How does the device actually work day to day?",
+    answer:
+      "An inflatable device is operated by a pump mechanism, most often placed in the scrotum, which the patient uses himself to achieve and release rigidity when desired. A malleable device has no pump — it is simply positioned by hand into a rigid or less rigid position. Which mechanism suits you better is one of the factors discussed when choosing between device types.",
+  },
+  {
+    question: "Will my penis look or feel shorter after implant surgery?",
+    answer:
+      "Some men do perceive a reduction in length compared to the erections they had before erectile dysfunction developed. This is generally related to tissue changes from the underlying condition itself — particularly if ED has been longstanding — rather than something the implant surgery removes. It's part of the realistic-expectations discussion at assessment, not something left as a surprise afterward.",
+  },
+  {
+    question: "Can I have a penile implant after prostate surgery?",
+    answer:
+      "Yes — erectile dysfunction following prostatectomy is a recognised and well-established reason patients consider a penile implant, particularly once other treatments have not given reliable results. The same assessment principles apply: confirming severity, reviewing what has already been tried, and discussing realistic expectations before proceeding.",
   },
 ];
 
@@ -208,6 +252,32 @@ export default function PenileImplantPage() {
               )}
             </div>
           </div>
+        </Container>
+      </section>
+
+      {/* The differentiated clinical approach — a specialist ED pathway, not a generic implant provider */}
+      <section className="py-section-y">
+        <Container>
+          <SectionHeading
+            eyebrow="Our approach"
+            heading="Penile Implant Surgery Is the End of an Assessment Pathway — Not the Beginning"
+            description="A penile implant is a surgical decision, and surgical decisions deserve more than a single conversation about a device. Before it is discussed as a realistic option, assessment covers:"
+          />
+          <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {pathwayPrinciples.map((item) => (
+              <StaggerItem key={item.title} className="border-t border-border pt-6">
+                <h3 className="font-display text-lg text-foreground">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+          <Reveal delay={0.1}>
+            <p className="mt-14 max-w-2xl border-t border-border pt-8 text-sm leading-relaxed text-muted-foreground">
+              This is what separates a specialist ED pathway from a
+              generic implant provider — the device is the last step of
+              an assessment, not the first conversation.
+            </p>
+          </Reveal>
         </Container>
       </section>
 
@@ -303,6 +373,19 @@ export default function PenileImplantPage() {
               and expectations are discussed in detail during
               assessment — the aim is a realistic understanding of what
               the device can and cannot do before proceeding.
+            </p>
+            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+              Day to day, an inflatable device is activated by a pump
+              mechanism, most often placed in the scrotum, that a man
+              operates himself when he wants rigidity; a malleable
+              device is simply positioned by hand. Some men also
+              perceive a reduction in length compared to their erections
+              before erectile dysfunction developed — this is generally
+              related to the underlying condition itself, including
+              tissue changes that occur with longstanding untreated ED,
+              rather than something the implant surgery removes. This is
+              part of the realistic-expectations conversation at
+              assessment, not a surprise left for after surgery.
             </p>
           </Reveal>
         </Container>

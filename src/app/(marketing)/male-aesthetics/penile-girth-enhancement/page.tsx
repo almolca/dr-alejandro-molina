@@ -25,7 +25,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 const PATH = "/male-aesthetics/penile-girth-enhancement";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Penile Girth Enhancement",
+  title: "Penile Girth Enhancement with Hyaluronic Acid",
   description:
     "Specialist penile girth enhancement in Abu Dhabi with Dr. Alejandro Molina, Consultant Urologist & Andrologist — 500+ procedures performed, experience since 2018. Anatomy-led, hyaluronic acid and surgical options, realistic expectations.",
   path: PATH,
@@ -43,12 +43,52 @@ const options = [
   {
     label: "Non-surgical: hyaluronic acid",
     description:
-      "Hyaluronic acid is injected to increase girth, planned according to individual anatomy. Technique, product choice and aftercare all affect the result, and treatment is carried out within a medical, andrology-led context — the more commonly discussed starting point at consultation.",
+      "Hyaluronic acid is injected to increase girth, planned according to individual anatomy. Technique, product choice and aftercare all affect the result, and treatment is carried out within a medical, andrology-led context — the more commonly discussed starting point at consultation. Published clinical literature supports hyaluronic acid as an option for penile girth enhancement, though outcomes vary with anatomy, technique and the treatment plan chosen — which is why individual planning matters more than any single published figure.",
   },
   {
     label: "Surgical approaches",
     description:
       "Surgical approaches to penile augmentation are only offered where currently approved and clinically appropriate, and are discussed individually — not assumed as a starting point.",
+  },
+];
+
+const approachPillars = [
+  {
+    title: "Anatomy First",
+    description:
+      "Treatment is planned around individual anatomy, not a fixed protocol applied the same way to every patient. What suits one man's anatomy may not suit another's, and planning reflects that from the first consultation.",
+  },
+  {
+    title: "Proportion Over Maximum Volume",
+    description:
+      "The objective is natural proportion, contour and symmetry — not the largest volume achievable in a single session. The key clinical question is what looks and feels proportionate for a given patient's anatomy, not how much product can be delivered.",
+  },
+  {
+    title: "Individual Treatment Planning",
+    description:
+      "Anatomy, tissue characteristics, any previous procedures, circumcision status and personal goals all inform the plan. Two patients with similar goals can still receive different treatment plans, because their anatomy and history differ.",
+  },
+  {
+    title: "Staged Treatment When Appropriate",
+    description:
+      "Not every patient is best served by a full planned treatment in one sitting. Where appropriate, treatment is staged, allowing tissue response to be assessed before any decision on further volume.",
+  },
+  {
+    title: "Andrology-Led Assessment",
+    description:
+      "Genital anatomy and sexual function are assessed within a urology and andrology context, not as a generic cosmetic injecting service — because the same anatomy that determines aesthetic planning also relates to erectile and sexual function.",
+  },
+  {
+    title: "Structured Follow-Up",
+    description:
+      "The procedure does not end when the treatment session finishes. Follow-up allows tissue settling to be reviewed and any concerns addressed as part of the planned pathway, not left for the patient to raise unprompted.",
+  },
+  {
+    title: "Correction Expertise",
+    description:
+      "Previous filler — whether performed here or elsewhere — including irregularity, asymmetry, nodules or migration, can be assessed separately and in detail.",
+    href: "/male-aesthetics/penile-filler-correction",
+    linkLabel: "Explore Penile Filler Correction",
   },
 ];
 
@@ -76,12 +116,12 @@ const faqItems = [
   {
     question: "Is penile girth enhancement safe?",
     answer:
-      "No aesthetic or medical procedure is entirely risk-free. Performed within a Consultant Urologist & Andrologist's practice, with anatomy-led assessment beforehand, risks such as swelling, bruising, asymmetry or irregularity are discussed and reviewed individually — not eliminated. See Risks, Aftercare and Revision below for detail.",
+      "No aesthetic or medical procedure is entirely risk-free. What safety actually depends on is anatomy-led assessment beforehand, technique, and a treatment plan matched to individual tissue — not the product alone. Performed within a Consultant Urologist & Andrologist's practice, risks such as swelling, bruising, asymmetry or irregularity are discussed and reviewed individually before proceeding, not eliminated. See Risks, Aftercare and Revision below for detail.",
   },
   {
     question: "How much size increase can I expect?",
     answer:
-      "Specific outcome measurements aren't published here, since results depend on individual anatomy, technique and the option chosen. This is discussed in detail, and in context, at consultation.",
+      "This depends on three things: your baseline anatomy and tissue elasticity, the technique and volume planned for your treatment, and whether treatment is delivered in one session or staged over more than one. Because those three factors vary significantly between patients, specific outcome measurements aren't published here — they're discussed in detail, and in the context of your own anatomy, at consultation.",
     readMoreHref: "/insights/how-much-girth-can-penile-filler-add",
     readMoreLabel: "Read more: How Much Girth Can Penile Filler Actually Add?",
   },
@@ -93,21 +133,43 @@ const faqItems = [
   {
     question: "What if I've had a bad experience with filler elsewhere?",
     answer:
-      "Previous procedures, including those performed elsewhere, are assessed individually — revision is considered where appropriate.",
+      "Assessment focuses on your current anatomy and presentation — asymmetry, irregularity, nodules or suspected migration are the specific findings it looks for — rather than on the original provider or product. Revision, including dissolution where appropriate, is considered individually once that assessment is complete.",
     readMoreHref: "/male-aesthetics/penile-filler-correction",
     readMoreLabel: "Explore Penile Filler Correction",
   },
   {
     question: "Is the result permanent?",
     answer:
-      "This depends on the option chosen and is discussed individually. Hyaluronic acid-based results are not typically permanent, for example, while other options may differ.",
+      "No — hyaluronic acid is gradually broken down by the body over time, which is why it is not typically a permanent result. How long it lasts varies with the product used, volume, technique and individual metabolism; surgical approaches, where appropriate, are discussed separately since their longevity profile differs.",
     readMoreHref: "/insights/how-long-does-penile-filler-last",
     readMoreLabel: "Read more: How Long Does Penile Filler Last?",
   },
   {
     question: "What does aftercare involve?",
     answer:
-      "Aftercare guidance is specific to the procedure performed and is provided as part of your individual treatment plan.",
+      "In general terms, aftercare covers activity restrictions during the initial settling period, what swelling or firmness to expect versus what would warrant contacting the clinic, and a scheduled follow-up review once tissue has settled. The specific guidance you receive is tailored to the option and volume planned for you.",
+  },
+  {
+    question: "Can filler migrate, or develop nodules?",
+    answer:
+      "It can, though this is not the expected or typical course. Migration and nodules are specific findings assessment looks for at follow-up and at any later review — not something patients are left to self-diagnose. Suspected migration or a new nodule is a reasonable reason to seek assessment, whether the original treatment was performed here or elsewhere.",
+    readMoreHref: "/insights/penile-filler-nodules-and-irregularities",
+    readMoreLabel: "Read more: Penile Filler Nodules and Irregularities",
+  },
+  {
+    question: "Can I have treatment if I am uncircumcised?",
+    answer:
+      "Circumcision status is one of the anatomical factors reviewed at assessment and factored into planning — it does not on its own rule treatment in or out. What matters is how it interacts with your specific anatomy and goals, which is assessed individually rather than assumed either way.",
+  },
+  {
+    question: "Does the procedure affect erections or sensation?",
+    answer:
+      "Treatment targets the shaft's skin and subcutaneous tissue and is planned to avoid the structures responsible for erectile function. Temporary changes in sensation from swelling or the treatment itself can occur during the settling period, but a lasting effect on erectile function or sensation is not the expected outcome — this is discussed individually if you have specific concerns.",
+  },
+  {
+    question: "Why do different patients receive different treatment plans?",
+    answer:
+      "Because anatomy, tissue characteristics, previous procedures, circumcision status and personal goals differ between patients — two men with a similar starting request can reasonably end up with different plans once their individual anatomy is assessed. This is the basis of the anatomy-led approach described above, not an inconsistency between patients.",
   },
   {
     question: "How do I start?",
@@ -187,13 +249,12 @@ export default function PenileGirthEnhancementPage() {
         </Container>
       </section>
 
-      {/* What patients want + consultation/anatomy */}
+      {/* What patients want, briefly, then the full clinical philosophy */}
       <section className="border-t border-border bg-surface py-section-y">
         <Container className="grid gap-16 lg:grid-cols-2 lg:gap-24">
           <div>
             <ProcedureFramework />
           </div>
-          <div>
           <div>
             <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
               Common goals
@@ -205,23 +266,37 @@ export default function PenileGirthEnhancementPage() {
               Men considering penile girth enhancement typically want to
               address concerns about size, confidence or symmetry —
               goals that are discussed openly and without judgment at
-              consultation.
+              consultation, then translated into an individual plan
+              below.
             </p>
           </div>
-          <div className="mt-10">
-            <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
-              Consultation and anatomy
-            </p>
-            <h2 className="mt-4 font-display text-display-md text-foreground">
-              Planning Starts With Your Anatomy
-            </h2>
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
-              Treatment planning begins with an assessment of individual
-              anatomy, medical history and goals. What may be suitable
-              varies significantly from one patient to another.
-            </p>
-          </div>
-          </div>
+        </Container>
+      </section>
+
+      {/* Dr. Molina's Approach — the genuine clinical philosophy behind the flagship procedure, without exposing procedural technique */}
+      <section className="py-section-y">
+        <Container>
+          <SectionHeading
+            eyebrow="Clinical philosophy"
+            heading="Dr. Molina's Approach to Penile Girth Enhancement"
+            description="Seven principles that shape every treatment plan — not marketing language, but how anatomy-led planning actually works in practice."
+          />
+          <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {approachPillars.map((pillar) => (
+              <StaggerItem key={pillar.title} className="border-t border-border pt-6">
+                <h3 className="font-display text-lg text-foreground">{pillar.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{pillar.description}</p>
+                {pillar.href && (
+                  <Link
+                    href={pillar.href}
+                    className="mt-4 inline-flex text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
+                  >
+                    {pillar.linkLabel}
+                  </Link>
+                )}
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
         </Container>
       </section>
 
