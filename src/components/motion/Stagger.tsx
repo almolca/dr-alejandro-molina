@@ -48,6 +48,7 @@ export function StaggerItem({
   return (
     <motion.div
       className={className}
+      style={isCardHover ? { transitionProperty: "box-shadow, border-color" } : undefined}
       variants={fadeUpVariants}
       transition={revealTransition}
       whileHover={isCardHover ? cardHoverLift : undefined}

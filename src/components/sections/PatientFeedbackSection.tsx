@@ -64,10 +64,16 @@ export function PatientFeedbackSection() {
           {topDoctors.length > 0 && (
             <div className={`${editorialStyles.candidateColumn} ${editorialStyles.candidateColumnAlt}`}>
               <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Top Doctors</p>
-              <p className="mt-3 font-display text-3xl text-foreground">
-                {topDoctorsAggregate.rating} / 5
-              </p>
-              <p className="mt-1 text-sm text-muted-foreground">{topDoctorsAggregate.reviewCount} verified reviews</p>
+              {topDoctorsAggregate.verified ? (
+                <>
+                  <p className="mt-3 font-display text-3xl text-foreground">
+                    {topDoctorsAggregate.rating} / 5
+                  </p>
+                  <p className="mt-1 text-sm text-muted-foreground">{topDoctorsAggregate.reviewCount} verified reviews</p>
+                </>
+              ) : (
+                <p className="mt-3 text-sm text-muted-foreground">Verified profile</p>
+              )}
               <div className="mt-4 flex flex-col gap-1">
                 {topDoctors.map((entry) =>
                   entry.profileUrl ? (

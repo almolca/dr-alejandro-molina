@@ -147,7 +147,7 @@ export default function PeyroniesDiseasePage() {
           <div className="mt-14 grid grid-cols-1 gap-x-16 gap-y-10 md:grid-cols-2">
             {phases.map((phase, index) => (
               <Reveal key={phase.label} delay={index * 0.08}>
-                <div className={`card-hover border-t border-border pt-6 ${index === 1 ? "md:border-l md:border-t-0 md:border-border md:pl-16 md:pt-0" : ""}`}>
+                <div className={`card-hover border-t border-border pt-6 md:border-t-0 md:pt-0 ${index === 1 ? "md:border-l md:border-border md:pl-16" : ""}`}>
                   <h3 className="font-display text-2xl text-foreground">{phase.label}</h3>
                   <p className="mt-4 max-w-md text-sm leading-relaxed text-muted-foreground">
                     {phase.description}

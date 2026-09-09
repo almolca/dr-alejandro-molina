@@ -26,6 +26,7 @@ export function Reveal({
   return (
     <MotionTag
       className={className}
+      style={isCardHover ? { transitionProperty: "box-shadow, border-color" } : undefined}
       initial="hidden"
       whileInView="visible"
       viewport={defaultViewport}

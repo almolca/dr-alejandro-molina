@@ -110,14 +110,24 @@ export const verifiedReviewTotal = reviewPlatforms
  * (Urología 147 + Andrología 14 = 161), per the R7.1.1 correction —
  * the public review card shows one combined Top Doctors figure while
  * `reviewPlatforms` above still keeps both profiles/links available
- * individually. Never hand-typed: derived from the same verified
- * per-platform data.
+ * individually. Never hand-typed: both `rating` and `reviewCount` are
+ * derived from the same verified per-platform data. `verified` is
+ * false (and `rating`/`reviewCount` reflect no data) whenever no Top
+ * Doctors entry is verified — the component must fall back to a bare
+ * "Verified profile" line in that case, exactly like Google/Doctoralia.
  */
+const verifiedTopDoctorsEntries = reviewPlatforms.filter(
+  (p) => p.platform === "Top Doctors" && p.verified && p.reviewCount !== null,
+);
+
 export const topDoctorsAggregate = {
-  rating: 5,
-  reviewCount: reviewPlatforms
-    .filter((p) => p.platform === "Top Doctors" && p.verified && p.reviewCount !== null)
-    .reduce((sum, p) => sum + (p.reviewCount ?? 0), 0),
+  rating:
+    verifiedTopDoctorsEntries.length > 0
+      ? verifiedTopDoctorsEntries.reduce((sum, p) => sum + (p.rating ?? 0), 0) /
+        verifiedTopDoctorsEntries.length
+      : null,
+  reviewCount: verifiedTopDoctorsEntries.reduce((sum, p) => sum + (p.reviewCount ?? 0), 0),
+  verified: verifiedTopDoctorsEntries.length > 0,
 };
 
 /**
