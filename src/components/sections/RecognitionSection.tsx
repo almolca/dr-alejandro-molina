@@ -32,7 +32,7 @@ export function RecognitionSection() {
                         <Image src={logoSrc} alt={award.officialTitle} width={160} height={44} style={{ height: "1.75rem", width: "auto" }} />
                       </span>
                     )}
-                    <p className="mt-3 font-display text-[clamp(1.25rem,1.8vw,1.6rem)] leading-snug text-foreground">
+                    <p className={`mt-3 text-sm ${logoSrc ? visual.recognitionCaption : `font-display text-[clamp(1.25rem,1.8vw,1.6rem)] leading-snug ${visual.recognitionHeading}`}`}>
                       {award.officialTitle}
                     </p>
                   </li>
@@ -54,7 +54,7 @@ export function RecognitionSection() {
                       <Image src="/brand/authority/mens-health.jpg" alt="Men's Health Spain" width={100} height={44} style={{ height: "1.75rem", width: "auto" }} />
                     </span>
                   )}
-                  <p className="mt-3 font-display text-[clamp(1.25rem,1.8vw,1.6rem)] leading-snug text-foreground">
+                  <p className={`mt-3 font-display text-[clamp(1.25rem,1.8vw,1.6rem)] leading-snug ${visual.recognitionHeading}`}>
                     {item.wording}
                   </p>
                   {item.outletName === "Men's Health Spain" && (
@@ -62,7 +62,7 @@ export function RecognitionSection() {
                       href={mensHealthAuthorProfileUrl}
                       target="_blank"
                       rel="noopener noreferrer nofollow"
-                      className="mt-2 inline-flex text-sm underline decoration-border underline-offset-4 hover:decoration-accent-strong"
+                      className="mt-2 inline-flex text-sm underline underline-offset-4"
                     >
                       View author profile
                     </a>
@@ -80,9 +80,9 @@ export function RecognitionSection() {
                 <Image src={training.logoSrc} alt={training.program} width={140} height={44} style={{ height: "1.75rem", width: "auto" }} />
               </span>
             )}
-            <p className="mt-3 font-display text-[clamp(1.25rem,1.8vw,1.6rem)] leading-snug">{doctor.medicalTrainer.program}</p>
+            <p className={`mt-3 font-display text-[clamp(1.25rem,1.8vw,1.6rem)] leading-snug ${visual.recognitionHeading}`}>{doctor.medicalTrainer.program}</p>
             <p className="mt-4 text-sm">Medical Trainer</p>
-            <p className="mt-2 max-w-xs text-sm">
+            <p className={`mt-2 max-w-xs text-sm ${visual.recognitionBody}`}>
               {training?.positioningLine ?? "Training of urologists and aesthetic physicians"}
             </p>
           </Reveal>

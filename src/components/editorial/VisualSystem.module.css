@@ -99,6 +99,11 @@
   box-shadow: 0 8px 20px -14px rgba(0, 0, 0, 0.5);
 }
 .logoChip img { display: block; height: 1.75rem; width: auto; object-fit: contain; }
+.recognitionBody { color: #c9cac6; }
+.recognitionHeading { color: #fafaf7; }
+.recognitionCaption { color: #b6b8b1; }
+.recognition a { color: #f8f8f5; }
+.recognition a:hover, .recognition a:focus-visible { color: #d9b98a; }
 .services { display: grid; gap: 2rem; margin-top: 3rem; }
 .serviceFeature { display: flex; flex-direction: column; justify-content: space-between; min-height: 23rem; padding: 2rem; color: #fafaf6; background: #292c29; }
 .serviceFeature:hover, .serviceFeature:focus-visible { background: #3b3f3b; }
