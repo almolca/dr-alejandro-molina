@@ -31,6 +31,12 @@ export function AuthorityMetric({
 /** Fixed animation start year for the "Since 2018" stat (spec R7.1.2 §2: "2026 → 2018") — a deliberate fixed count-down start, not derived from the current date. */
 const SINCE_STAT_COUNT_FROM = 2026;
 
+/** Real intrinsic aspect ratios (not display size — CSS governs that) for the two approved award logo assets, so next/image never infers a wrong ratio. */
+const AWARD_LOGO_RATIOS: Record<string, { width: number; height: number }> = {
+  "Top Doctors Spain 2020": { width: 369, height: 100 }, // real asset 1221×331px, ≈3.69:1
+  "Doctoralia Awards Spain 2022": { width: 262, height: 100 }, // real asset 6918×2640px, ≈2.62:1
+};
+
 export function PhysicianAuthority({ dark = false, recognition = false }: { dark?: boolean; recognition?: boolean }) {
   return <div className={`${styles.authority} ${dark ? styles.authorityDark : ""}`}>
     <p className="mb-6 text-xs font-medium uppercase tracking-widest">{doctor.title}</p>
@@ -77,8 +83,33 @@ export function PhysicianAuthority({ dark = false, recognition = false }: { dark
         );
       })}
     </div>
-    {recognition && <ul className={styles.recognitionRail} aria-label="Professional recognition">
-      {doctor.awards.filter(award => award.publishReady).map(award => <li key={award.officialTitle}>{award.officialTitle}</li>)}
-    </ul>}
+    {recognition && (
+      <div className={styles.recognitionRow}>
+        <p className={styles.recognitionEyebrow}>Professional Recognition</p>
+        <ul className={styles.recognitionRail} aria-label="Professional recognition">
+          {doctor.awards
+            .filter((award) => award.publishReady)
+            .map((award) => {
+              const logoSrc = awardLogos[award.officialTitle];
+              const ratio = AWARD_LOGO_RATIOS[award.officialTitle];
+              return (
+                <li key={award.officialTitle}>
+                  {logoSrc && ratio ? (
+                    <Image
+                      src={logoSrc}
+                      alt={award.officialTitle}
+                      width={ratio.width}
+                      height={ratio.height}
+                      className={styles.recognitionLogo}
+                    />
+                  ) : (
+                    award.officialTitle
+                  )}
+                </li>
+              );
+            })}
+        </ul>
+      </div>
+    )}
   </div>;
 }
