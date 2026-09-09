@@ -39,7 +39,6 @@ export function AnimatedNumber({
 
   useEffect(() => {
     if (!isInView || shouldReduceMotion) return;
-    setDisplay(from);
     const controls = animate(from, to, {
       duration: durationSeconds,
       ease: easeSoft,
