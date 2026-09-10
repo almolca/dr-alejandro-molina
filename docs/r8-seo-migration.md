@@ -86,9 +86,9 @@ All entries are **permanent (308)**, implemented in
 | `/protesis-de-pene` | `/penile-implant` | B | High | Spanish equivalent |
 | `/en/curved-penis` | `/peyronies-disease` | B | High | Curved penis is the lay term for Peyronie's |
 | `/incurvacion-de-pene` | `/peyronies-disease` | B | High | Spanish equivalent |
-| `/en/no-scalpel-vasectomy` | `/male-fertility` | C | Medium | No dedicated vasectomy page exists yet on the new site |
-| `/vasectomia-sin-bisturi` | `/male-fertility` | C | Medium | Spanish equivalent |
-| `/en/vasovasostomy` | `/male-fertility` | C | Medium | No dedicated page; closest hub |
+| `/en/no-scalpel-vasectomy` | `/mens-health/vasectomy` | A | High | R8.0.2: dedicated page added. The R8.0.1 review found `/male-fertility` a genuine intent-inversion (fertility assessment helps patients conceive; vasectomy is elective sterilization) rather than merely an imperfect match, so a real page was built instead of redirecting around the gap |
+| `/vasectomia-sin-bisturi` | `/mens-health/vasectomy` | A | High | Spanish equivalent |
+| `/en/vasovasostomy` | `/male-fertility` | C | Medium | Vasectomy *reversal* is a fertility-restoration procedure — unlike plain vasectomy, this destination's intent alignment is real (the page discusses surgical sperm retrieval and reproductive-team coordination). No dedicated reversal page; closest genuine hub |
 | `/vasovasostomia` | `/male-fertility` | C | Medium | Spanish equivalent |
 | `/en/scrotoplasty` | `/male-aesthetics/scrotal-lift` | B | High | Scrotoplasty ≈ scrotal lift |
 | `/escrotoplastia` | `/male-aesthetics/scrotal-lift` | B | High | Spanish equivalent |
@@ -150,6 +150,24 @@ introduces.
   redirected and 410'd).
 - Every destination is a relative, internal path.
 
+### R8.0.2 addendum — dedicated vasectomy page
+
+The R8.0.1 final redirect-quality review flagged `/en/no-scalpel-vasectomy`
+→ `/male-fertility` as a genuine intent-inversion, not merely an
+imperfect match: `/male-fertility` helps patients conceive, while a
+vasectomy is elective sterilization for patients who have finished
+having children. No adequate existing destination was found. The owner
+approved building a dedicated page rather than redirecting around the
+gap — `/mens-health/vasectomy`, a secondary (non-flagship) service page
+following the same premium editorial system as every other treatment
+page, reclassifying both legacy sources from C (hub fallback) to A
+(direct equivalent). `/en/vasovasostomy` (vasectomy *reversal*) was
+left unchanged — reversal is itself a fertility-restoration procedure,
+so `/male-fertility` remains a genuinely relevant destination for it.
+Circumcision (`/en/circumcision` → `/penile-surgery`, also flagged as
+weak in R8.0.1) is unchanged — out of scope for this addendum, pending
+a separate owner decision.
+
 ## 3. New site route inventory
 
 Generated from `src/app` (excluding `/admin/**` and
@@ -157,7 +175,7 @@ Generated from `src/app` (excluding `/admin/**` and
 
 **Public indexable pages** (in `src/lib/seo/routes.ts`, emitted to
 sitemap.xml): `/`, `/about`, `/book`, `/mens-health`,
-`/mens-health/testosterone`, `/sexual-medicine`,
+`/mens-health/testosterone`, `/mens-health/vasectomy`, `/sexual-medicine`,
 `/sexual-medicine/premature-ejaculation`, `/erectile-dysfunction`,
 `/erectile-dysfunction/penile-doppler`,
 `/erectile-dysfunction/shockwave-therapy`, `/penile-surgery`,

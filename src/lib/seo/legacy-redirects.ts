@@ -62,9 +62,11 @@ export const legacyRedirects: LegacyRedirect[] = [
   { source: "/en/curved-penis", destination: "/peyronies-disease" },
   { source: "/incurvacion-de-pene", destination: "/peyronies-disease" },
 
-  // ---- Vasectomy / vasectomy reversal (no dedicated new page -> fertility hub) ----
-  { source: "/en/no-scalpel-vasectomy", destination: "/male-fertility" },
-  { source: "/vasectomia-sin-bisturi", destination: "/male-fertility" },
+  // ---- No-scalpel vasectomy (dedicated page — R8.0.2) ----
+  { source: "/en/no-scalpel-vasectomy", destination: "/mens-health/vasectomy" },
+  { source: "/vasectomia-sin-bisturi", destination: "/mens-health/vasectomy" },
+
+  // ---- Vasectomy reversal (fertility-restoration intent -> fertility hub) ----
   { source: "/en/vasovasostomy", destination: "/male-fertility" },
   { source: "/vasovasostomia", destination: "/male-fertility" },
 

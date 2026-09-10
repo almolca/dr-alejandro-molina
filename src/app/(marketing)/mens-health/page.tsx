@@ -59,6 +59,12 @@ const areas = [
       "Ejaculatory control and penile curvature are two of the other common reasons men consult — each assessed with the same specialist approach.",
     href: "/sexual-medicine",
   },
+  {
+    label: "No-Scalpel Vasectomy",
+    description:
+      "A minimally invasive approach to permanent contraception, with structured counselling on recovery, risks and post-procedure testing.",
+    href: "/mens-health/vasectomy",
+  },
 ];
 
 const faqItems = [

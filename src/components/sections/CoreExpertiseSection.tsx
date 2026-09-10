@@ -48,6 +48,7 @@ const secondaryLinks = [
   { label: "Penile Doppler", href: "/erectile-dysfunction/penile-doppler" },
   { label: "Premature Ejaculation", href: "/sexual-medicine/premature-ejaculation" },
   { label: "Varicocele", href: "/male-fertility/varicocele" },
+  { label: "No-Scalpel Vasectomy", href: "/mens-health/vasectomy" },
 ];
 
 export function CoreExpertiseSection() {

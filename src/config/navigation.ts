@@ -55,6 +55,7 @@ export const footerServiceLinks: NavItem[] = [
   { label: "Testosterone & Hormonal Health", href: "/mens-health/testosterone" },
   { label: "Peyronie's Disease", href: "/peyronies-disease" },
   { label: "Male Fertility", href: "/male-fertility" },
+  { label: "No-Scalpel Vasectomy", href: "/mens-health/vasectomy" },
   ...(features.prpPage
     ? [{ label: "PRP", href: "/erectile-dysfunction/prp" }]
     : []),

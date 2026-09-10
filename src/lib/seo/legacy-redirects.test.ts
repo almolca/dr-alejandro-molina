@@ -42,4 +42,16 @@ describe("legacyRedirects", () => {
       expect(destination).not.toMatch(/^https?:\/\//);
     }
   });
+
+  it("no-scalpel vasectomy legacy URLs resolve to the dedicated vasectomy page, not the fertility hub (R8.0.2)", () => {
+    const bySource = new Map(legacyRedirects.map((r) => [r.source, r.destination]));
+    expect(bySource.get("/en/no-scalpel-vasectomy")).toBe("/mens-health/vasectomy");
+    expect(bySource.get("/vasectomia-sin-bisturi")).toBe("/mens-health/vasectomy");
+  });
+
+  it("vasectomy reversal legacy URLs still resolve to the fertility hub (reversal is a fertility-restoration intent)", () => {
+    const bySource = new Map(legacyRedirects.map((r) => [r.source, r.destination]));
+    expect(bySource.get("/en/vasovasostomy")).toBe("/male-fertility");
+    expect(bySource.get("/vasovasostomia")).toBe("/male-fertility");
+  });
 });
