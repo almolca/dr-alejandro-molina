@@ -17,14 +17,28 @@ import { Button } from "@/components/ui/Button";
  * Accessibility / anti-dark-pattern requirements, all deliberate:
  * - Both actions use the same visual weight (`variant="secondary"` on
  *   both) — neither is styled to visually nudge toward "Accept".
- * - No pre-ticked options, no forced choice that blocks the page (this
- *   is a non-modal bottom bar, not an overlay — the rest of the site
- *   remains usable and keyboard-navigable while it's visible).
+ * - No pre-ticked options, no forced choice that blocks the page.
  * - `role="region"` + `aria-label` so it's announced as a distinct
  *   landmark, not silently skipped by screen readers.
- * - Mounted early in the DOM (root layout, before page content) so
- *   keyboard users reach it early via Tab, not after tabbing through
- *   an entire page first.
+ *
+ * Phase R1-R2 P0 fix: this was previously `position: fixed` at the
+ * bottom of the viewport, and was confirmed (via DOM measurement) to
+ * overlap the hero's primary CTA on mobile. Two fixes were tried and
+ * rejected before this one: shrinking the hero's viewport-height sizing
+ * to "make room" doesn't work, because mobile hero content (including
+ * the stacked portrait placeholder) already exceeds the viewport
+ * height on its own, so nothing about the banner's presence can
+ * reposition it; delaying the banner's first appearance only defers
+ * the same overlap to whenever it eventually appears, since a realistic
+ * visitor takes more than a second or two before clicking anything. A
+ * `position: fixed` overlay, by definition, floats on top of whatever
+ * happens to occupy its screen region — there is no reliable way to
+ * guarantee it never overlaps arbitrary page content while staying
+ * fixed. The banner is now rendered in normal document flow, at the
+ * very top of the page (rendered before `PageShell`/`Header` in
+ * `layout.tsx`), instead of as a fixed overlay — nothing can ever sit
+ * "underneath" an in-flow element, so no interactive content can ever
+ * be obscured, at any viewport size, regardless of hero content length.
  */
 export function ConsentBanner() {
   const [visible, setVisible] = useState(false);
@@ -46,11 +60,7 @@ export function ConsentBanner() {
   }
 
   return (
-    <div
-      role="region"
-      aria-label="Cookie preferences"
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background"
-    >
+    <div role="region" aria-label="Cookie preferences" className="border-b border-border bg-background">
       <div className="mx-auto flex w-full max-w-editorial flex-col gap-4 px-gutter py-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-2xl text-sm text-muted-foreground">
           This site may use analytics cookies to understand how

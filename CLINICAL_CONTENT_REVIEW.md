@@ -226,6 +226,29 @@ cluster.
 | When Can You Have Sex After Penile Girth Enhancement? | Girth Enhancement | **Highest-scrutiny article of the six** — describes a general recovery pattern without quoting an exact day count; confirm this general framing matches actual post-procedure guidance given to patients | CLINICAL REVIEW REQUIRED |
 | Why Can Penile Filler Take Several Weeks to Settle? | Girth Enhancement | General swelling/settling physiology framing, not girth-specific — should still be confirmed as accurate | CLINICAL REVIEW REQUIRED |
 
+### New this phase (Phase C, 2026-09-06) — topical authority expansion
+
+Same restraint standard applied as Phase B, checked specifically
+against the "do not fabricate" list — none of the five contain
+citations, studies, guideline references, percentages, complication
+rates, or outcome numbers. The dissolution article states one general
+pharmacological mechanism (hyaluronidase breaking down hyaluronic
+acid) as an established, non-patient-specific fact — not a timeframe
+or success rate — and this specific claim should be confirmed by a
+qualified reviewer as accurately stated. The 500+ procedures article
+was additionally checked against the requirement that it read as
+personal clinical experience, not evidence: its first section
+explicitly makes that distinction before any observation follows, and
+no observation in it is phrased as a guideline or general finding.
+
+| Article | Related page(s) | New/notable claims | Classification |
+|---|---|---|---|
+| Penile Filler Migration: What Patients Should Know | Filler Correction, Girth Enhancement | Distinguishes migration from normal settling by timing pattern — this distinction should be clinically confirmed as accurate | CLINICAL REVIEW REQUIRED |
+| Penile Filler Nodules and Irregularities | Filler Correction, Girth Enhancement | Distinguishes expected early firmness from a "reasonable trigger for assessment" — confirm this threshold matches actual clinical judgment | CLINICAL REVIEW REQUIRED |
+| Can Penile Filler Be Dissolved? | Filler Correction, Girth Enhancement | States hyaluronidase mechanism as general pharmacology (not girth-specific) — **highest-scrutiny claim of the five**, confirm accuracy and that no implied timeframe/outcome is read into it | CLINICAL REVIEW REQUIRED |
+| Why Can Penile Filler Feel Different Between Patients? | Girth Enhancement, Filler Correction | No new physiological claims beyond anatomy/technique/settling variability already stated elsewhere | CLINICAL REVIEW REQUIRED (inherits) |
+| What I Have Learned From 500+ Penile Girth Enhancement Procedures | Girth Enhancement, Filler Correction | Explicitly framed as personal experience, not evidence (see above) — confirm the specific observations reflect actual practice pattern, not just permissible wording | CLINICAL REVIEW REQUIRED |
+
 ---
 
 ## Overall finding
@@ -282,3 +305,19 @@ launch. The Penile Filler Correction page's explicit non-criticism
 framing ("assessed on its own merits — not through criticism of any
 prior provider or treatment") was verified: no competitor, clinic, or
 provider is named or implied anywhere in its content.
+
+**Phase C addendum (2026-09-06).** Five new articles (Insights section
+above) were added as part of the topical-authority expansion phase. No
+new treatment pages were created. Same finding applies: **nothing new
+was classified REMOVE / REWRITE BEFORE LAUNCH.** Three owner-proposed
+candidate articles were deliberately not written — "Is Penile Girth
+Enhancement Safe?" and "Penile Filler Correction: When Is It
+Necessary?" for cannibalizing existing page intent (see `SEO_AUDIT.md`
+Phase C section), and "Penile Filler vs Fat Transfer" specifically on
+clinical-accuracy grounds, since fat transfer isn't a technique
+offered by this practice and an authoritative comparison would require
+claims about a procedure not performed here. All five articles built
+still need the same qualified clinical/compliance sign-off as the rest
+of the site before launch, with the dissolution article's
+hyaluronidase-mechanism statement flagged as the single highest-
+scrutiny claim introduced this phase.

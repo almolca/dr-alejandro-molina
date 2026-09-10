@@ -1601,3 +1601,753 @@ Console-driven iteration). Did not mark any new or existing content as
 clinically, legally, or compliance-approved — see the Phase B
 addendum in `CLINICAL_CONTENT_REVIEW.md` for the specific new items
 awaiting review.
+
+---
+
+## Phase 9 — SEO restructure, Phase C: Topical authority expansion (2026-09-06)
+
+Context recovery confirmed Phases A (Phase 7) and B (Phase 8) were
+already fully implemented and verified — this phase did not rebuild
+either. Full plan: `docs/superpowers/plans/2026-09-06-phase-c-content-cluster.md`.
+
+### 1. Overlap audit — 5 of 8 candidate articles built
+
+Read all 11 existing article bodies plus both the Girth Enhancement
+and Filler Correction pages in full before writing anything. Built:
+
+1. Penile Filler Migration: What Patients Should Know
+2. Penile Filler Nodules and Irregularities
+3. Can Penile Filler Be Dissolved?
+4. Why Can Penile Filler Feel Different Between Patients?
+5. What I Have Learned From 500+ Penile Girth Enhancement Procedures
+
+**Not built, with reasons:**
+- **Penile Filler vs Fat Transfer** — fat transfer isn't a technique
+  offered here or mentioned anywhere on the site; an authoritative
+  comparison would require fabricating clinical claims about a
+  procedure not performed, and would dilute topical focus.
+- **Is Penile Girth Enhancement Safe?** — would cannibalize the
+  flagship page's own Risks/Aftercare/Revision section and FAQ.
+  Addressed instead by adding a direct-answer "Is penile girth
+  enhancement safe?" FAQ item to the flagship page itself.
+- **Penile Filler Correction: When Is It Necessary?** — verbatim the
+  Filler Correction page's own thesis and FAQ; would violate the
+  Phase B principle that complications/correction content lives on
+  that page, not a separate article.
+
+### 2. The 500+ procedures article's framing
+
+Written with an explicit first section ("Personal clinical experience,
+not a clinical study") distinguishing personal experience from
+published evidence, before any observation is stated. No statistics,
+complication rates, or outcome numbers are claimed anywhere in it —
+themes are anatomical variability, product/tissue-response
+variability, settling-time patience, patient selection, and why
+correction needs specialist reassessment, each cross-linked to the
+relevant existing page rather than re-explained.
+
+### 3. Video-ready architecture
+
+Added, populated by nothing (no real video content exists yet):
+- `InsightVideo` type + optional `InsightArticle.video` field
+  (`content/insights/articles.ts`).
+- `videoObjectSchema()` builder (`lib/seo/json-ld.ts`), only callable
+  when both `video` and `video.thumbnailUrl` exist (Google's
+  structured-data requirement for `VideoObject`).
+- `ArticleVideoBlock` component — renders `null` when `article.video`
+  is undefined, same fail-safe pattern as `AuthorityStripSection`.
+- Wired into `insights/[slug]/page.tsx`: video block renders after the
+  author block; `VideoObject` JSON-LD only emitted when the guard
+  passes.
+
+### 4. Related-content system
+
+- `InsightArticle.relatedArticleSlugs?: string[]` + `getRelatedArticles()`
+  helper (resolves slugs to real articles, drops unresolved ones,
+  caps at 4).
+- New `RelatedInsights` component — 2-4 article cards, renders nothing
+  when there are none.
+- Applied to all 12 girth-cluster articles (7 pre-existing + 5 new),
+  cross-linked thematically (e.g. the migration and nodules articles
+  link to each other and to the settling-time article; the 500+
+  procedures article links to the assessment, feel-variability, and
+  settling-time articles).
+
+### 5. GEO/AEO hardening — direct answers + read-more links
+
+- `FaqItem` gained optional `readMoreHref`/`readMoreLabel`, rendered
+  as a link beneath the answer in `Faq.tsx`.
+- Girth Enhancement page: added a new first FAQ item, "Is penile girth
+  enhancement safe?", with a direct answer before elaboration; wired
+  read-more links from the size-increase and permanence FAQs to their
+  matching Insights articles.
+- Filler Correction page: added a new "Can penile filler migrate?" FAQ
+  with a read-more link to the new migration article; wired the
+  existing "Is dissolution always the right approach?" FAQ to the new
+  dissolution article.
+
+### 6. Articles created
+
+Six commits, `content/insights/articles.ts`, category "Male
+Aesthetics," all `clinicalReviewRequired: true`, `datePublished:
+"2026-09-06"` (real add-date, matching the file's existing convention
+of using genuine dates rather than invented ones):
+
+1. Penile Filler Migration: What Patients Should Know
+2. Penile Filler Nodules and Irregularities
+3. Can Penile Filler Be Dissolved?
+4. Why Can Penile Filler Feel Different Between Patients?
+5. What I Have Learned From 500+ Penile Girth Enhancement Procedures
+
+Checked against the "do not fabricate" list: no citations, studies,
+percentages, complication rates, or outcome numbers anywhere in any of
+the five. Where a mechanism is stated (hyaluronidase breaking down
+hyaluronic acid), it's described as general pharmacology only, not a
+timeframe or success rate.
+
+### 7. Entity-consistency audit
+
+Grepped the full `src/` tree for name/title variants ("Dr Alejandro
+Molina," "Dr. Molina," "Consultant Urologist," spelled-out "Urologist
+and Andrologist"). Every hardcoded occurrence matches
+`doctor.displayName`/`doctor.title` consistently. No discrepancy
+found; no file changes made.
+
+### 8. Search Console monitoring plan
+
+New `SEARCH_CONSOLE_MONITORING_PLAN.md` — query groups (Brand, Penile
+Girth, Correction, Andrology), metrics to track, cannibalization
+checks specific to this site's page structure, and an explicit
+"Status: Not yet actionable" note since `NEXT_PUBLIC_SITE_URL` is
+still unset and the site has never been deployed. Contains no
+invented ranking forecasts.
+
+### Verification
+
+`tsc --noEmit` and `eslint` clean after every commit. `next build`
+succeeded after every content addition — **45 static pages** (was 40:
++5 new articles). No new routes were created; all new content is
+served by the existing `insights/[slug]` dynamic route.
+
+### QA (2026-09-06)
+
+`tsc --noEmit`, `eslint`, and `next build` all pass clean (45/45
+static pages generated). Verified against a second production server
+instance on an alternate port, without touching the developer's
+existing process already bound to :3000: sitemap.xml returns exactly
+35 `<url>` entries including all 5 new article slugs; robots.txt
+unchanged. Real-browser QA (Playwright) at 390px and 1440px on the
+Girth Enhancement page, Filler Correction page, Insights index, and
+all 5 new articles: exactly one `<h1>` per page, zero horizontal
+overflow, zero console errors (one pre-existing, expected
+`NEXT_PUBLIC_SITE_URL`-unset warning only). Confirmed in-browser: the
+new "Is penile girth enhancement safe?" FAQ renders first on the Girth
+page; both new/updated read-more links (size-increase → girth-add
+article, dissolution FAQ → dissolution article, migration FAQ →
+migration article) resolve to the correct article; the booking CTA
+still points to `booking.nmc.ae` everywhere; the Related Insights
+section renders the correct 2-3 cross-linked cards on every checked
+article; no `VideoObject` JSON-LD is emitted anywhere (correctly, since
+no article has video content yet). One observation, not a defect: a
+`Reveal`-wrapped section (site-wide scroll-triggered fade-in, present
+since Phase 1) shows `opacity:0` in a screenshot taken without
+scrolling first — confirmed via DOM inspection that all content is
+present and renders normally once scrolled into view, exactly as it
+does for every other page on the site.
+
+### What Phase C explicitly did not do
+
+Did not build the 3 rejected candidate articles (reasons above). Did
+not add any real video content, URLs, or thumbnails — the video
+architecture exists but renders nothing. Did not touch `features.prpPage`,
+`doctor.awards`, `bookingUrl`, or `physicianProfileUrl`. Did not create
+any new route. Did not deploy or set `NEXT_PUBLIC_SITE_URL`. Did not
+mark any content as clinically, legally, or compliance-approved.
+
+---
+
+## Phase 10 — Positioning, UX & Copy audit (Phase D, 2026-09-06/07)
+
+Read-only strategic audit — no code was modified. Full detail in two
+new root-level documents: `POSITIONING_UX_COPY_AUDIT.md` (page-by-page
+scoring across 14 priority pages plus a lighter sitewide consistency
+pass, against 5-second-clarity/authority/visual-hierarchy/conversion/
+SEO-entity dimensions) and `POSITIONING_UX_REDESIGN_PLAN.md` (a
+three-phase R1/R2/R3 implementation plan, not code, with
+problem/solution/component/benefit/SEO-impact/compliance-risk/
+complexity for every item).
+
+Investigation method: full source-code/copy extraction across every
+live route (background agent), combined with direct Playwright
+inspection of the real production build at 390px and 1440px — not
+source-reading alone. Two claims were caught and corrected before
+being written into the audit: an initial (incorrect) belief that
+Person/Physician JSON-LD wasn't emitted sitewide (it is, globally, via
+`layout.tsx`), and an apparent screenshot "bug" (blank sections) that
+turned out to be the pre-existing `Reveal` scroll-animation not yet
+triggered by a fast automated screenshot, not a real content gap.
+
+Headline findings: zero real photography anywhere (every image slot's
+`ImagePlaceholder` caption was, at the time, **live text visible to
+real visitors** — a confirmed P0); the cookie banner measurably
+overlapped the hero CTA on mobile (confirmed via DOM rect measurement,
+P0); the homepage's stated flagship (Penile Girth Enhancement) had
+less visual weight than Penile Implant Surgery despite the copy itself
+calling Girth Enhancement "flagship" twice; three of six primary nav
+hubs (Men's Health, Sexual Medicine, Penile Surgery) were near-empty
+stubs; a live link on two pages pointed at an unbuilt route
+(`/mens-health/low-libido`); plus three smaller confirmed content bugs
+(FEBU credential exact-match filter, a duplicated sentence opening on
+About, a duplicated browser-tab title on About).
+
+---
+
+## Phase 11 — Positioning, UX & Copy implementation (Phase R1-R2, 2026-09-07)
+
+Implements the P0 fixes and the R1 (global system) / R2 (high-value
+commercial pages) portions of `POSITIONING_UX_REDESIGN_PLAN.md`, per
+the owner's Phase R1-R2 prompt. R3 (supporting-page polish beyond what
+R1/R2 already touched) was not requested this round. Full task-by-task
+detail: `docs/superpowers/plans/2026-09-07-phase-r1-r2-positioning-redesign.md`.
+19 commits on branch `phase-r1-r2-positioning-redesign` (off
+`phase-c-content-cluster`), each independently verified
+(`tsc --noEmit` + `eslint` + `next build`, clean throughout) before
+committing.
+
+### 1. P0 launch blockers fixed
+
+- **Live placeholder captions removed.** `ImagePlaceholder` no longer
+  renders any caption text — confirmed via `role="img"` + `aria-label`
+  only, verified against the rendered HTML of every affected page
+  (Home, About, Male Aesthetics hub, Penile Implant) that none of the
+  old caption strings ("no genital close-ups," "photography pending,"
+  etc.) remain visible. Full per-slot photography intent now lives
+  solely in `MEDIA_REQUIREMENTS.md`, updated to match.
+- **Cookie banner no longer obstructs content.** Two approaches were
+  tried and rejected before landing on the real fix — documented in
+  `ConsentBanner.tsx`'s own comment so the reasoning isn't lost:
+  reserving bottom padding on `body` doesn't reposition content that
+  renders before it (like the hero); shrinking the hero's `min-height`
+  to "make room" doesn't work because mobile hero content already
+  exceeds the viewport height on its own. The banner now renders in
+  normal document flow at the top of the page instead of as a
+  `position: fixed` overlay — nothing can sit "underneath" an in-flow
+  element, so the confirmed overlap is structurally impossible now, not
+  just mitigated. Verified via the same DOM-rect measurement the audit
+  used to find the bug: `overlap: false`.
+- **Three confirmed content bugs fixed**: `AboutSection.tsx`'s
+  credential-highlight filter now exact-matches
+  `"FEBU — Fellow of the European Board of Urology"` (previously
+  matched a non-existent shorter string and silently dropped the
+  highlight); About's teaching-narrative row no longer opens two
+  consecutive sentences with "Alongside"; About's `<title>` no longer
+  duplicates the physician's name (was "About Dr. Alejandro Molina |
+  Dr. Alejandro Molina", now "About | Dr. Alejandro Molina").
+  Additionally, while verifying the Men's Health hub, found and fixed
+  **two more** live links to the same unbuilt `/mens-health/low-libido`
+  route (Testosterone page's `RelatedTreatments`, the homepage's
+  `CoreExpertiseSection` "Also assessed" list) — both replaced with a
+  link to the real, built Varicocele page.
+
+### 2. Homepage changes
+
+13 sections consolidated to 10: dropped `MaleAestheticsSection` and
+`ConditionsSection` (redundant with Core Expertise / nav+footer);
+merged `ErectileDysfunctionSection` + `TestosteroneSection` into a new
+`SexualHormonalHealthSection`; merged `PenileImplantSection` +
+`AdvancedAssessmentSection` into a new `AdvancedPenileSurgerySection`;
+added a new `MedicalTrainingSection` (AndroMax, previously About-page-
+only). Hero H1 changed from the generic "Advanced Andrology & Men's
+Health" to "Dr. Alejandro Molina" directly, with a new subheading line
+("Andrology · Men's Sexual Health · Male Genital Aesthetics") and
+updated supporting copy naming Penile Girth Enhancement explicitly.
+**Flagship/Implant visual-hierarchy swap**: `FeaturedProcedureSection`
+(Girth Enhancement) now holds the homepage's one `.section-dark`
+"flagship" moment, with the same `AuthorityBlock` metrics used on the
+treatment page itself; `AdvancedPenileSurgerySection` (the former
+Implant section, merged with Assessment) uses the plain light
+treatment instead — a direct swap, not just a demotion, so the
+priority mismatch the audit found is now structurally corrected.
+Verified: mobile page height dropped from ~13,120px to ~10,414px
+(~21% shorter) with the same underlying content coverage, just less
+repetition.
+
+### 3. Male Aesthetics hub changes
+
+New `AuthorityBlock` (500+/Since 2018/Consultant/Medical Trainer)
+immediately after the hero. "Why specialist assessment matters" moved
+from near the bottom to right after the authority block, and expanded
+with an explicit 7-item list (anatomy, tissue characteristics, previous
+treatments, goals, risks, correction options, follow-up) rather than
+two paragraphs alone. Penile Girth Enhancement split out of the
+three-way equal-weight row list into its own standalone, larger-scale
+feature section; Scrotal Lift and Penile Filler Correction now render
+as a visually secondary two-column pair beneath it, under an "Also
+available" label — the page's layout now agrees with its own copy
+about which procedure is the flagship. New physician-presence section
+added before the closing FAQ/CTA (portrait placeholder + name/title/
+credential line + link to About) — the fourth location sharing
+`doctor.profileImage`.
+
+### 4. Men's Health hub changes
+
+Rewrote from a ~70-word stub (one link row, no FAQ, no closing CTA) to
+a full hub page: repositioned hero copy around hormonal/metabolic/
+sexual-health assessment specifically (per the audit's recommendation
+in §9); added a new 5-step "How assessment works" diagnostic narrative
+(Symptoms → Hormonal assessment → Metabolic/medical contributors →
+Sexual function → Individual treatment strategy); removed the dead
+`/mens-health/low-libido` link entirely (folded "reduced libido" into
+the Testosterone row's own description instead) and added Erectile
+Dysfunction as the second area link; added a 3-item FAQ and a closing
+`TreatmentCtaSection`, matching the pattern already established on the
+Male Aesthetics and Male Fertility hubs.
+
+### 5. About changes
+
+Covered by the P0 fixes above (FEBU highlight, duplicate sentence,
+duplicate title) plus the sitewide placeholder-caption removal — no
+further restructuring, consistent with the audit's own finding that
+this page's prose was already the site's best-written content.
+
+### 6. Flagship-page changes
+
+Penile Girth Enhancement's authority block extracted into a new shared
+`AuthorityBlock` component (`src/components/ui/AuthorityBlock.tsx`),
+now also reused on the homepage and the Male Aesthetics hub, rather
+than being a one-page-only inline array. Hero and closing CTA now read
+"Book a Confidential Consultation." No other structural change — the
+existing section segmentation (options → variability → risks/aftercare/
+revision → about → FAQ) was judged already clear per the redesign
+plan's own instruction not to rewrite unnecessarily.
+
+### 7. Global design-system changes
+
+- **Header**: compact two-level brand lockup — "Dr. Alejandro Molina"
+  with "Consultant Urologist & Andrologist" beneath it in small
+  uppercase tracking, `lg:` and up only (moved from an initial `md:`
+  after a QA-caught 768px overflow — see §8).
+- **Typography**: `--text-sm` (used by the overwhelming majority of
+  body paragraphs, FAQ answers, and footer links sitewide) bumped from
+  Tailwind's default 0.875rem/1.4285 line-height to 0.9375rem/1.65 — a
+  single-token, sitewide readability fix rather than a multi-file
+  sweep.
+- **Spacing**: `--spacing-section-y` tightened from
+  `clamp(4rem, 3rem + 5vw, 8rem)` to `clamp(3rem, 2.5rem + 4vw, 6.5rem)`
+  to reduce excess whitespace, especially on mobile where the floor
+  value dominates.
+- **CTA hierarchy**: "Book a Confidential Consultation" now used (hero
+  + closing CTA) on every intimate/genital-anatomy treatment page —
+  Male Aesthetics hub, Penile Girth Enhancement, Penile Filler
+  Correction (already had it), Scrotal Lift, Peyronie's Disease,
+  Erectile Dysfunction hub, Penile Doppler, Penile Implant. Shockwave
+  Therapy deliberately left unchanged (already has its own more
+  specific "Book an ED Assessment" wording). Primary button variant
+  gained a subtle `shadow-sm`/`hover:shadow-md` for stronger visual
+  weight.
+- **Footer**: physician identity block now shows name, title
+  ("Consultant Urologist & Andrologist"), and the specialty line
+  ("Andrology · Men's Sexual Health · Male Genital Aesthetics"),
+  replacing the previous single `doctor.specialtyLine` paragraph.
+- **Sexual Medicine and Penile Surgery hubs**: both gained a 2-3 item
+  FAQ and a closing `TreatmentCtaSection`, matching the pattern already
+  used on the stronger hub pages — resolves the "thin hub" pattern on
+  2 of the audit's 3 flagged pages (Men's Health resolved separately
+  in §4).
+
+### 8. QA results
+
+`tsc --noEmit`, `eslint`, and `next build` all pass clean after every
+one of the 19 commits. Real-browser QA (Playwright) confirmed: cookie
+banner no longer blocks any CTA (re-ran the audit's own DOM-rect
+overlap check — `false`); zero remaining instances of the retired
+placeholder caption strings anywhere; exactly one `<h1>` per page on
+all 7 priority pages; Person/Physician/BreadcrumbList/MedicalWebPage/
+FAQPage JSON-LD all still emit correctly and parse as valid JSON; nav,
+FAQ accordions, and booking links (`booking.nmc.ae`) all function
+correctly. **One real regression was caught and fixed during QA, not
+before**: the header's new subtitle, combined with the desktop nav and
+booking CTA (both of which also first appear at the `md:` / 768px
+breakpoint), overflowed the viewport by ~12px at exactly 768px — fixed
+by moving the subtitle to the `lg:` (1024px) breakpoint instead.
+Re-verified zero overflow at 375/390/430/768/1024/1440/1728 across all
+7 priority pages after the fix. `prefers-reduced-motion` behavior
+itself (a static, sitewide CSS rule) was not touched by any change in
+this phase and was not independently re-emulated this pass — no tool
+in this session's toolkit exposes CDP media-feature emulation.
+
+### What Phase R1-R2 explicitly did not do
+
+Did not touch `features.prpPage`, `doctor.awards`, `bookingUrl`, or
+`physicianProfileUrl`. Did not create any new route — every change is
+to existing pages/components. Did not source or invent any real
+photography — every `ImagePlaceholder` still renders a clean surface
+with no image behind it. Did not implement Phase R3 (Scrotal Lift,
+Peyronie's, Fertility, Insights index/template further polish) — those
+items in `POSITIONING_UX_REDESIGN_PLAN.md` remain open. Did not deploy
+or set `NEXT_PUBLIC_SITE_URL`. Did not merge `phase-r1-r2-positioning-
+redesign` to `main`.
+
+---
+
+## Phase 12 — Visual enrichment & authority architecture (Phase R2.1/R3, 2026-09-07)
+
+Implements the config-driven authority/media/review architecture, a
+navy/ink color layer, restrained texture, and text-wall reduction from
+the owner's "PHASE R2.1/R3" prompt, on branch
+`phase-r2-1-r3-visual-authority` (off `phase-r1-r2-positioning-
+redesign`). Full task-by-task detail:
+`docs/superpowers/plans/2026-09-07-phase-r2-1-r3-visual-authority.md`.
+Every commit verified clean (`tsc --noEmit` + `eslint` + `next build`)
+before landing.
+
+### Logo — deferred, then completed (2026-09-07, same day)
+
+The owner attached two logo images (full lockup, AM symbol) directly
+in conversation. These could not be wired at the time — no tool
+available in this session can extract a pasted/inline image to a file
+on disk, only files that already exist at a path can be read — so the
+owner saved them into the repo separately. **Task A4 was then
+completed** once the files landed at `public/brand/`.
+
+**Important finding when the files arrived:** the `public/brand/`
+folder contained not just the 2 real logo files, but 5 (later 7)
+AI-generated "doctor" photographs and one apparently unrelated
+marketing asset, all with generic auto-generated filenames
+("ChatGPT Image ...", "Elegant 3D Ebook Mockup..."). The photographs
+show a different-looking face in each generation (confirming they're
+synthetic, not photos of one real person), and one even shows a coat
+badge reading "mmc" rather than "NMC." This was flagged directly to
+the owner before touching anything, per this project's standing,
+repeatedly-stated rule against inventing photography
+(`MEDIA_REQUIREMENTS.md`: "No photographs of Dr. Molina have been
+generated, sourced, or invented"). The owner confirmed: leave the 7
+files in place but do not use them anywhere. Only the 2 real logo
+files were renamed (to `logo-symbol.png` / `logo-full.png`), used, and
+committed; the other 7 remain on disk, untracked, unused.
+
+**What was wired:**
+- `src/app/icon.png` (favicon, 64×64) and `src/app/apple-icon.jpg`
+  (180×180, flattened onto white — the source has a transparent
+  background, which iOS otherwise fills with black) replace the
+  previous temporary code-generated "AM" typographic mark.
+- Footer brand column: the AM symbol, in a small light circular chip.
+  Without the chip, the symbol (navy-on-transparent) was confirmed via
+  screenshot to be nearly invisible against the footer's own
+  `.section-dark` navy background — the chip fix was verified visually
+  before committing, not assumed.
+- Header deliberately kept text-only — the header lockup is already
+  tight at the 768px breakpoint (the exact overflow bug found and
+  fixed earlier this phase), and adding an image there wasn't worth
+  the regression risk for a header that already communicates identity
+  clearly in text.
+- `logo-full.png` (the full lockup) is supplied but not yet placed
+  anywhere — a natural future spot is the About page hero, once real
+  photography also exists there.
+
+QA re-run after the logo changes: 0 overflow at 390px and 768px, `tsc`/
+`eslint`/`next build` all clean.
+
+### 1. Config-driven authority/media/review architecture
+
+Three new gated components, all following the exact fail-safe pattern
+already established by `doctor.awards`/`RecognitionSection`:
+- `src/config/mediaAppearances.ts` + `MediaAppearancesSection` — ships
+  with an empty array; renders nothing until an entry has
+  `publishReady: true`.
+- `src/config/patientReviews.ts` + `PatientReviewsCta` — ships
+  `undefined`; renders nothing until a real, verified `profileUrl` is
+  configured with `publishReady: true`. Supports a rating/count once
+  verified, or a neutral "Read Verified Patient Reviews" CTA if not.
+- `RecognitionSection` restyled (more editorial, less "badge wall") —
+  still fully gated, still renders nothing today (both `doctor.awards`
+  entries remain `publishReady: false`).
+
+Verified via direct DOM inspection on `/about` (where all three are
+now placed): confirmed neither "Professional Recognition" nor "Media &"
+text appears anywhere on the rendered page — the gate works.
+
+### 2. Color system — navy/ink layer
+
+Added a new `ink` OKLCH color scale (`--color-ink-50` through `-950`)
+alongside the existing `stone`/`bronze`/`olive` scales, and repointed
+`.section-dark`'s background/foreground/surface/border/focus-ring from
+`stone` to `ink`. The bronze accent is unchanged — only the base
+ground tones shifted. Verified visually: the homepage's flagship band,
+the footer, and About's Credentials section now read as genuinely
+navy-toned rather than neutral near-black, with contrast unchanged
+(same high-contrast 50-on-950 structure as before).
+
+### 3. Restrained texture
+
+New `TextureOverlay` component — pure CSS (hairline diagonal pattern +
+soft radial glow, `opacity-[0.04]`, `pointer-events-none`,
+`aria-hidden`), no bitmap asset, no JS, no animation. Applied to
+exactly 2 sections (the homepage's flagship band, About's Credentials
+section) — deliberately not broader, per the brief's own "never feel
+like wallpaper" instruction.
+
+### 4. Text-wall reduction
+
+New `PullQuote` component, applied to About (after the narrative
+section — replaces nothing, new content), Men's Health (converted an
+existing plain paragraph into a styled quote rather than duplicating
+it), Penile Girth Enhancement (new, between Options and Expected
+Variability), and — going beyond the original plan — the Insights
+article template itself via a new optional `keyTakeaway` field,
+demonstrated on the "500+ procedures" article.
+
+### 5. About page authority sequence
+
+Reordered to: hero → **AuthorityBlock** (new) → narrative → **pull
+quote** (new) → Medical Education → Credentials (now textured + navy)
+→ Recognition → **Media Appearances** (new) → closing CTA — matching
+the brief's requested sequence, with the two new gated sections adding
+zero visible content today but completing the architecture.
+
+### 6. Homepage authority/media layer
+
+`MedicalTrainingSection` renamed to `AuthorityMediaSection` and
+extended to combine Recognition + Media Appearances + Medical Training
+in one section (per the brief's explicit request for "one compact
+section," not three). Today it renders exactly what
+`MedicalTrainingSection` rendered before (Recognition and Media both
+have zero publish-ready entries) — the homepage's length and section
+count are unaffected; the section is simply ready to grow.
+
+### 7. Iconography
+
+Added `lucide-react` icons (already a dependency, no new library) to
+two existing numbered-step sequences: Men's Health's 5-step diagnostic
+narrative (icon replaces the number — judged cleaner than stacking
+both for a 5-item simple list) and the Erectile Dysfunction treatment
+ladder's 7 steps (icon added above the existing number, since the
+ladder's ordering itself is meaningful and worth keeping visible).
+Icons are neutral/abstract where a literal one would be tasteless
+(e.g. a circle-dot for vacuum/device options, not a literal device).
+
+### 8. QA results
+
+`tsc --noEmit`, `eslint`, `next build` clean after every commit.
+Real-browser QA at 768px (the exact breakpoint that broke during
+Phase 11) and 390px across all 8 priority pages (Homepage, About, Male
+Aesthetics, Penile Girth Enhancement, Penile Filler Correction, Men's
+Health, Insights index, one Insight article), plus Erectile Dysfunction
+for the new iconography: zero overflow anywhere, exactly one `<h1>` per
+page, zero console errors beyond the pre-existing expected
+`NEXT_PUBLIC_SITE_URL` warning. No regression found this pass (unlike
+Phase 11, which caught a real 768px overflow bug).
+
+### What Phase R2.1/R3 explicitly did not do
+
+Did not build the trust/authority logo strip (§12 of the brief — still
+depends on verified media/award data, none of which exists yet, even
+though the logo itself is now wired). Did not use any of the 7
+AI-generated/unrelated files found alongside the real logo, per
+explicit owner instruction. Did not populate
+any `mediaAppearances` entry, `patientReviews` profile, or flip any
+`doctor.awards` entry to `publishReady: true` — no outlet name,
+article title, review count, or award title was invented anywhere.
+Did not touch `features.prpPage`, `bookingUrl`, or
+`physicianProfileUrl`. Did not create any new route. Did not deploy.
+
+## Phase 13 — Correction pass: complete the visual enrichment & brand authority phase (2026-09-07)
+
+The owner's Phase 12 wrap-up was judged insufficient: *"mostly
+integrated favicon/footer assets and left the existing visual system
+substantially unchanged."* This phase completes the original R2.1/R3
+objective on the same branch (`phase-r3-correction-visual-brand`), with
+before/after screenshots at 1440px and 390px as the acceptance bar
+rather than a written description alone. Plan:
+`docs/superpowers/plans/2026-09-07-phase-r3-correction-visual-brand.md`.
+Every commit verified clean (`tsc --noEmit` + `eslint` + `next build`)
+before landing.
+
+### What changed, task by task
+
+- **Palette correction (A1)**: `.section-dark` reverted from the
+  Phase 12 navy `--color-ink-*` scale back to a deep charcoal
+  (`--color-stone-950/900/800`), per the owner's explicit "do NOT use
+  navy blue as the dominant brand color." The `--color-ink-*` `@theme`
+  block was deleted outright, not just unreferenced.
+- **Header responsive rework (B1)**: the AM symbol is now genuinely
+  in the header (`logo-symbol.png`, 26px), not text-only. Rather than
+  keep the old `md:` breakpoint (which is what caused the Phase 12
+  author to leave the header text-only), the tier structure moved to
+  `xl:` (1280px) for the full desktop nav + subtitle, with a
+  symbol+name compact header below that — matching the owner's
+  suggested tiers. A regression this introduced (see below) was caught
+  and fixed in the same phase.
+- **Reusable background primitives (C1–C3)**: `EditorialTexture`
+  (replaces `TextureOverlay` — subtle diagonal hatching + a large,
+  near-invisible AM watermark), `BrandCurve` (a thin gold SVG curve
+  that draws in on scroll), and `TonalSection` (ivory/stone/charcoal/
+  warm-gradient tone wrapper) — all built on the existing motion
+  tokens, none introduce new dependencies.
+- **Full logo placement (D1)**: `logo-full.png` now renders on the
+  homepage's Authority & Media section and the About page's authority
+  block — both light backgrounds, avoiding the navy-on-navy contrast
+  problem the footer already solved differently.
+- **Footer chip redesign (E1)**: circular plain-white chip replaced
+  with a bordered square mark, so it reads as an intentional part of
+  the identity rather than a patch.
+- **Text-wall reduction (F1, plus carried-over C2 uses)**: `PullQuote`
+  added to Penile Filler Correction, Testosterone, and Penile Implant
+  (Male Aesthetics and Girth Enhancement already had one from Phase
+  12/prior work) — breaks up long clinical sections without removing
+  or shortening any clinical content.
+- **Patient reviews wiring (G1)**: `PatientReviewsCta` is now in the
+  About page's closing CTA render tree. It still renders nothing —
+  `patientReviews.publishReady` is false and no profile is configured
+  — but the fail-safe component is wired in, not just written.
+- **Girth Enhancement texture (H1)**: `EditorialTexture` (watermark
+  disabled) added to the page's one dark section ("Expected
+  variability"), matching the treatment on About's Credentials section
+  and the homepage's Featured Procedure section.
+- **AuthorityBlock motion (I1)**: metric numbers now scale in
+  (`opacity 0→1`, `scale 0.94→1`) on scroll, on top of the existing
+  fade+rise stagger — small, restrained, respects
+  `prefers-reduced-motion` via the shared motion tokens.
+- **Header gap regression, found and fixed during QA**: the B1
+  breakpoint rework introduced a new bug — at exactly 1280px, "About"
+  and the "Book a Consultation" button ended up ~1px apart (touching)
+  because the header's flex row had no minimum-gap floor and
+  `justify-between` let the outer gaps collapse under content
+  pressure. Fixed by trimming `DesktopNav`'s item gap (`gap-8` →
+  `gap-6`) and adding an explicit `gap-x-4` floor to the header's flex
+  row, so this can't silently recur if nav copy or the doctor's
+  name/title ever get longer. Re-verified clean at 1280/1440/1728px
+  (healthy ~21px gap) after the fix.
+- **Git hygiene**: discovered mid-phase that an earlier broad `git add`
+  had committed four QA screenshots and all seven of the
+  explicitly-unused AI-generated/marketing images (public/brand/
+  ChatGPT*.png, Elegant 3D Ebook Mockup*.png) into git history. Ran
+  `git rm --cached` on all eleven (files remain on disk exactly as the
+  owner asked — "déjalas, pero no las uses" — only git tracking was
+  removed) and added `.gitignore` rules so this can't happen silently
+  again.
+
+### Mandatory visual verification (§16 of the correction brief)
+
+Real-browser QA via Playwright against a local `next start` (production
+build) server, with `before-*.png` screenshots captured prior to any
+edit in this phase and `after-*.png` captured on the finished branch,
+both full-page at 1440px, plus 390px and a header-focused viewport
+sweep (375/390/430/768/1024/1280/1440/1728px). Screenshots were working
+artifacts only (not committed — see git hygiene note above); the
+comparison below is the permanent record.
+
+1. **What is visibly different on the rendered page, not just in the
+   codebase?** The Featured Procedure section, About's Credentials
+   section, and the footer all shifted from navy-black to a warmer
+   charcoal-black. The header now carries the AM monogram next to the
+   practice name at every breakpoint. The full logo lockup appears
+   twice (homepage Authority & Media section, About's authority
+   block) where it was previously unused. A thin gold curve now draws
+   in under three H1s (About, Girth Enhancement, Male Aesthetics'
+   flagship heading). Three more clinical pages have a pull-quote
+   breaking up what was previously an unbroken text column.
+2. **Where does the full logo lockup now appear?** Homepage
+   (`AuthorityMediaSection`, above the Medical Education & Training
+   copy) and About (`AuthorityBlock`, right after the hero) — both on
+   light backgrounds for clean contrast.
+3. **Where was navy actually removed, and what replaced it?** Every
+   `.section-dark` consumer (Featured Procedure on the homepage, the
+   Credentials section and footer on About, the ED treatment ladder,
+   the Girth Enhancement "Expected variability" section, the Penile
+   Implant "surgical pathway" section) — replaced by
+   `--color-stone-950/900/800`, a deep charcoal rather than a tinted
+   navy. `--color-ink-*` was deleted, so there's no way for navy to
+   resurface through that token.
+4. **Where does real background texture/depth appear, and how is it
+   built?** `EditorialTexture` (diagonal hatching + a faint AM
+   watermark) on the homepage's Featured Procedure section, About's
+   Credentials section, and Girth Enhancement's "Expected variability"
+   section (watermark off there, section too short for it to read
+   well). `TonalSection` gives Male Aesthetics' "Also available" block
+   a warm-gradient tone distinct from the flat white sections around
+   it.
+5. **What motion was actually added, distinct from what already
+   existed?** `BrandCurve`'s SVG path draws in on scroll (`pathLength`
+   0→1) under three H1s/headings; `AuthorityBlock`'s metric numbers
+   scale in (0.94→1) on top of the pre-existing fade+rise stagger.
+   Both ride the same shared `motion-config` tokens as everything
+   else, so `prefers-reduced-motion` handling is inherited, not
+   reimplemented.
+6. **How were text walls actually broken up, and were clinical facts
+   removed to do it?** `PullQuote` (existing component) now appears on
+   Filler Correction, Testosterone, and Penile Implant, in each case
+   restating a claim already made in the surrounding prose — no
+   clinical content was cut to make room for it.
+7. **Where do recognition/media/review signals appear in the render
+   tree, even while gated?** `RecognitionSection` and
+   `MediaAppearancesSection` render on About (after Credentials);
+   `PatientReviewsCta` renders in About's closing CTA. All three
+   currently return `null` — confirmed via a real-browser DOM check
+   (`document.body.innerText` has no "award", "recognition",
+   "featured in", "rating", or "review" anywhere on the rendered
+   About page) — because no backing config has been marked
+   `publishReady`/configured. Nothing fake was rendered to make this
+   phase look more finished than the underlying data supports.
+8. **Which authority elements remain hidden, and why?** Awards,
+   media/editorial appearances, and patient reviews all stay at zero
+   entries — none of `doctor.awards[].publishReady`,
+   `mediaAppearances[].publishReady`, or `patientReviews.publishReady`
+   was touched. They stay hidden because no verified data for them
+   exists yet, not because of a bug or an oversight.
+
+### QA results
+
+`tsc --noEmit`, `eslint`, `next build` clean after every commit. Real
+browser QA: zero horizontal overflow at 375/390/430/768/1024/1280/
+1440/1728px on Home and About (768px and 1280px specifically re-checked
+given this phase's two header breakpoint changes); zero overflow at
+390/1440px on Male Aesthetics, Girth Enhancement, Testosterone, Penile
+Implant, and one Insight article; exactly one `<h1>` per page checked;
+zero console errors (two pre-existing, unrelated warnings: the expected
+`NEXT_PUBLIC_SITE_URL` notice, and a benign "logo preloaded but not
+used within a few seconds" hint from the header's `priority` image).
+One real regression was found and fixed during this QA pass — the
+1280px header gap collision documented above — which is the reason
+this phase re-ran the full viewport sweep after the fix rather than
+treating the first pass as sufficient.
+
+### What Phase 13 explicitly did not do
+
+Did not deploy. Did not add any new SEO article or Insight page. Did
+not enable PRP. Did not populate any `mediaAppearances` entry,
+`patientReviews` profile, or flip any `doctor.awards` entry to
+`publishReady: true` — no outlet name, article title, review count, or
+award title was invented anywhere. Did not use any of the 7
+AI-generated/unrelated images — confirmed neither referenced in any
+component nor reachable from any route. Did not give Girth Enhancement
+the full "most visually sophisticated page" treatment the brief asked
+for beyond the palette/texture/motion/pull-quote changes already
+listed — it received the same treatment as the other clinical pages,
+not a distinct flagship redesign; this is a known gap, not an oversight,
+and is the most likely candidate for a follow-up pass if the owner
+wants to push further.
+
+
+## Phase R4 — Strategic visual and product correction (2026-09-07)
+
+Implemented the owner-provided `CODEX_R4_STRATEGIC_VISUAL_PRODUCT_CORRECTION.md` on the existing `phase-r3-correction-visual-brand` branch. Full detail, file inventory and final QA: [R4_IMPLEMENTATION_REPORT.md](R4_IMPLEMENTATION_REPORT.md). Before/after evidence: [visual comparison gallery](qa/r4-visual-review.html).
+
+- Direct primary navigation to the existing flagship canonical, plus contextual hub links.
+- Approved full logo in header/footer at responsive sizes; no HTML recreation of the lockup.
+- Layered ivory/stone editorial heroes, visible contour geometry, scannable physician authority and an alternating About timeline.
+- Dedicated flagship pathway, abstract planning visual, variability factors and stepped risks/aftercare/correction presentation.
+- Owner-approved Men's Health Spain contribution now has a separate config-driven publication gate, without inventing a dated appearance. Awards, dated media and reviews keep their existing gates.
+- No deployment, merge, new route, SEO article or PRP activation. Approved photography remains outstanding.
+
+## R4.2 — 2026-09-07
+
+Completed the five-page visual system correction and shared footer. See [R4.2 implementation report](R4_2_IMPLEMENTATION_REPORT.md) and [before/after gallery](qa/r4-2/index.html). Typecheck, lint, build and 40 responsive browser checks pass. Owner-confirmed awards remain public. Photography slots await approved files. Stopped for owner visual review without merge or deployment.
+
+## R4.3 — 2026-09-07
+
+Focused brand/authority final pass completed. Transparent full logo, refined header/footer, clearer recognition/media/education and a stronger charcoal Girth hero. Nine existing photo slots remain ready for approved assets. [R4.3 report](R4_3_IMPLEMENTATION_REPORT.md) · [R4.2/R4.3 comparison](qa/r4-3/index.html). Typecheck, lint, build and 40 responsive checks pass. Stopped for owner review without merge or deployment.
+
+## R5 — SVG illustration system + Premature Ejaculation (2026-09-08)
+
+Added a reusable, componentized SVG illustration system (`src/components/illustrations/`, 9 abstract line-art diagrams — no stock icons, no explicit imagery) and integrated it across Home, About (light use), Men's Health, Sexual Medicine, Erectile Dysfunction, Testosterone, Penile Implant, Peyronie's Disease, Male Aesthetics and Penile Filler Correction. Added Premature Ejaculation as a proper, dedicated route (`/sexual-medicine/premature-ejaculation`) with its own condition-page structure, including a restrained, clinically-gated section on hyaluronic acid treatment at the glans in selected cases — deliberately under-styled so it doesn't read as promoted. Updated navigation, footer links, the homepage's existing (previously dead-ended) Premature Ejaculation link, and the sitemap route registry accordingly. Full detail, illustration inventory and QA: [R5 implementation report](R5_ILLUSTRATION_SYSTEM_IMPLEMENTATION_REPORT.md). Typecheck, lint, build and responsive browser QA (390/768/1440px, 11 pages) all pass. Stopped for owner review without merge or deployment.

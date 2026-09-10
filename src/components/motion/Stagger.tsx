@@ -3,8 +3,10 @@
 import { motion } from "motion/react";
 import type { ReactNode } from "react";
 import {
+  cardHoverLift,
   defaultViewport,
   fadeUpVariants,
+  hasCardHoverClass,
   revealTransition,
   staggerContainerVariants,
 } from "./motion-config";
@@ -41,11 +43,16 @@ export function StaggerItem({
   children: ReactNode;
   className?: string;
 }) {
+  const isCardHover = hasCardHoverClass(className);
+
   return (
     <motion.div
       className={className}
+      style={isCardHover ? { transitionProperty: "box-shadow, border-color" } : undefined}
       variants={fadeUpVariants}
       transition={revealTransition}
+      whileHover={isCardHover ? cardHoverLift : undefined}
+      whileFocus={isCardHover ? cardHoverLift : undefined}
     >
       {children}
     </motion.div>

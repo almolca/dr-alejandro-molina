@@ -1,0 +1,10 @@
+{
+  "source": "public/brand/logo-full.png",
+  "output": "public/brand/logo-full-transparent.png",
+  "width": 1536,
+  "height": 1024,
+  "unchangedRGB": true,
+  "transparent": 1452023,
+  "opaque": 116377,
+  "partial": 4464
+}

@@ -1,10 +1,11 @@
+import visual from "@/components/editorial/VisualSystem.module.css";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { doctor } from "@/config/doctor";
 import {
   bookHref,
   footerServiceLinks,
   legalNav,
-  primaryNav,
 } from "@/config/navigation";
 import { isPhysicianProfileConfigured, practice, practiceLocationLine } from "@/config/practice";
 import { Container } from "@/components/ui/Container";
@@ -13,13 +14,13 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="section-dark border-t border-border bg-background text-foreground">
+    <footer className={`${visual.footer} text-foreground`}>
       <Container className="py-section-y">
-        <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
-          <div>
-            <p className="font-display text-2xl">{doctor.displayName}</p>
-            <p className="mt-2 max-w-sm text-sm text-muted-foreground">
-              {doctor.specialtyLine}
+        <div className="grid gap-12 md:grid-cols-[1.5fr_1fr_0.7fr]">
+          <div className={visual.footerBrand}>
+            <Link href="/" className="inline-block" aria-label="Dr. Alejandro Molina — Home"><BrandLogo footer /></Link>
+            <p className={visual.footerIntro}>
+              Andrology · Men&rsquo;s Sexual Health · Male Genital Aesthetics
             </p>
             <p className="mt-6 text-sm text-muted-foreground">
               Consultations at {practiceLocationLine}
@@ -46,19 +47,11 @@ export function Footer() {
 
           <nav aria-label="Site" className="text-sm">
             <p className="text-eyebrow font-medium uppercase tracking-widest text-muted-foreground">
-              Site
+              Your consultation
             </p>
             <ul className="mt-4 space-y-3">
-              {primaryNav.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="text-foreground/85 transition-colors hover:text-foreground"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+              <li><Link href="/about" className="text-foreground/85 transition-colors hover:text-foreground">About Dr. Molina</Link></li>
+              <li><Link href="/insights" className="text-foreground/85 transition-colors hover:text-foreground">Patient Insights</Link></li>
               <li>
                 <Link
                   href={bookHref}

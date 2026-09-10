@@ -1,11 +1,14 @@
+import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import type { Metadata } from "next";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
+import { Faq } from "@/components/ui/Faq";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { TreatmentCtaSection } from "@/components/sections/TreatmentCtaSection";
 import { breadcrumbSchema } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
 
@@ -82,6 +85,30 @@ export default function PenileSurgeryPage() {
           </StaggerGroup>
         </Container>
       </section>
+
+      <RelatedTreatments items={[{ label: "Penile Girth Enhancement", href: "/male-aesthetics/penile-girth-enhancement" }]} />
+
+      <Faq
+        items={[
+          {
+            question: "Is surgery always the first option?",
+            answer:
+              "No. Surgical options here are considered once appropriate assessment — and, where relevant, non-surgical treatment — have been explored first.",
+          },
+          {
+            question: "How are penile implant surgery and Peyronie's disease related?",
+            answer:
+              "They're separate conditions, but Peyronie's disease can affect erectile function, and prior pelvic surgery or structural conditions can be relevant to both — assessment considers them together where relevant.",
+          },
+        ]}
+      />
+
+      <TreatmentCtaSection
+        heading="Discuss Whether Surgery Is Right for You"
+        sourcePage={PATH}
+        secondary={{ label: "Explore Erectile Dysfunction", href: "/erectile-dysfunction" }}
+        bookingLabel="Book a Confidential Consultation"
+      />
     </>
   );
 }

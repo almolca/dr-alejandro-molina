@@ -1,52 +1,51 @@
+import visual from "@/components/editorial/VisualSystem.module.css";
 import type { Metadata } from "next";
 import { siteUrl } from "@/config/site";
 import { AboutSection } from "@/components/sections/AboutSection";
-import { AdvancedAssessmentSection } from "@/components/sections/AdvancedAssessmentSection";
+import { AdvancedPenileSurgerySection } from "@/components/sections/AdvancedPenileSurgerySection";
+import { AuthorityMediaSection } from "@/components/sections/AuthorityMediaSection";
 import { AuthorityStripSection } from "@/components/sections/AuthorityStripSection";
 import { BookingSection } from "@/components/sections/BookingSection";
-import { ConditionsSection } from "@/components/sections/ConditionsSection";
 import { CoreExpertiseSection } from "@/components/sections/CoreExpertiseSection";
-import { ErectileDysfunctionSection } from "@/components/sections/ErectileDysfunctionSection";
 import { FeaturedProcedureSection } from "@/components/sections/FeaturedProcedureSection";
 import { HeroSection } from "@/components/sections/HeroSection";
 import { InsightsSection } from "@/components/sections/InsightsSection";
-import { MaleAestheticsSection } from "@/components/sections/MaleAestheticsSection";
-import { PenileImplantSection } from "@/components/sections/PenileImplantSection";
-import { TestosteroneSection } from "@/components/sections/TestosteroneSection";
+import { SexualHormonalHealthSection } from "@/components/sections/SexualHormonalHealthSection";
 
 export const metadata: Metadata = {
   alternates: { canonical: siteUrl },
 };
 
 /**
- * Full homepage — spec §7, Sections 1–11, restructured per
- * SEO_RESTRUCTURE_IMPLEMENTATION_PLAN.md Phase A1: Male Genital
- * Aesthetics (with Penile Girth Enhancement as the flagship procedure,
- * introduced immediately after the authority strip) now precedes
- * ED/Implant/Testosterone, matching the updated physician-brand
- * strategy while keeping Core Expertise directly after it so the site
- * still reads as a full-specialty practice, not a single-procedure
- * page. Composition intentionally varies rhythm section to section
- * (editorial list, split layouts, horizontal flow, index, dark/olive
- * tonal shifts) rather than repeating one card-grid pattern (spec §38
- * Phase 2 / design quality bar, §37).
+ * Full homepage — Phase R1-R2 consolidation from 13 sections to 10.
+ * Dropped MaleAestheticsSection (redundant with Core Expertise + the
+ * now-dark Featured Procedure section) and ConditionsSection (redundant
+ * with nav/footer). Merged ErectileDysfunction + Testosterone into
+ * SexualHormonalHealthSection, and PenileImplant + AdvancedAssessment
+ * into AdvancedPenileSurgerySection (demoted from dark to light — see
+ * that component's own comment for why). Penile Girth Enhancement now
+ * holds the homepage's one dark "flagship" moment instead of Penile
+ * Implant, correcting the audit's confirmed visual-hierarchy mismatch.
+ *
+ * Phase R2.1/R3: the former MedicalTrainingSection (AndroMax) was
+ * consolidated into AuthorityMediaSection, which combines Recognition +
+ * Media Appearances + Medical Training in one compact section — see
+ * that component's own comment for how it grows once Recognition/Media
+ * data exists.
  */
 export default function HomePage() {
   return (
-    <>
+    <div className={visual.scope}>
       <HeroSection />
       <AuthorityStripSection />
       <FeaturedProcedureSection />
       <CoreExpertiseSection />
-      <MaleAestheticsSection />
-      <ErectileDysfunctionSection />
-      <PenileImplantSection />
-      <TestosteroneSection />
-      <AdvancedAssessmentSection />
+      <SexualHormonalHealthSection />
+      <AdvancedPenileSurgerySection />
       <AboutSection />
-      <ConditionsSection />
+      <AuthorityMediaSection />
       <InsightsSection />
       <BookingSection />
-    </>
+    </div>
   );
 }

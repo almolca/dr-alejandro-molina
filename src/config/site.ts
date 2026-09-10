@@ -1,4 +1,5 @@
 import { env } from "@/lib/env";
+import { resolveSiteUrl } from "@/lib/seo/canonical-site-url";
 import { doctor } from "./doctor";
 
 /**
@@ -8,29 +9,34 @@ import { doctor } from "./doctor";
  */
 
 /**
- * TODO(owner): confirm production domain before launch. Not specified in
- * the master spec. Falls back to a same-origin-safe relative base so
- * metadata/OG generation still works correctly in preview/dev without a
- * fabricated public domain being asserted anywhere — this is the "fail
- * safely if missing in local development" behavior (spec §32 / Phase 5
- * brief). In production specifically, a missing value is loud rather
- * than silent: every canonical/OG/sitemap URL would otherwise point at
- * "localhost" for real visitors with no visible signal anything was
- * wrong. This only logs (doesn't throw) — a warning that ships is far
- * better than a build that fails at the least convenient moment.
+ * R8 canonical-domain decision (owner-confirmed launch domain). This is
+ * the one place every canonical URL, Open Graph URL, JSON-LD `url`, and
+ * sitemap entry ultimately derives from (`siteUrl` below) — see
+ * docs/r8-seo-migration.md §4.
  */
-if (
-  process.env.NODE_ENV === "production" &&
-  !env.NEXT_PUBLIC_SITE_URL
-) {
-  console.warn(
-    "[config/site] NEXT_PUBLIC_SITE_URL is not set in a production build — " +
-      "canonical URLs, Open Graph tags and sitemap.xml will all use " +
-      "http://localhost:3000. Set NEXT_PUBLIC_SITE_URL to the real domain before launch.",
-  );
-}
+export const PRODUCTION_SITE_URL = "https://dralejandromolinaurologist.com";
 
-export const siteUrl = env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+/**
+ * R8 §4/§5 — "Preview should still emit production canonical URLs
+ * where appropriate for launch validation, while Preview itself
+ * remains protected from indexing." `process.env.VERCEL` is set to
+ * "1" by Vercel's build environment on every deployment it builds —
+ * Preview and Production alike — and is unset in local dev
+ * (https://vercel.com/docs/environment-variables/system-environment-variables).
+ * So: any Vercel deployment (Preview included) emits real production
+ * canonical/OG/sitemap URLs, letting the owner validate exactly what
+ * will ship before cutover, while indexing itself is blocked
+ * separately (Vercel Preview deployment protection + the `X-Robots-Tag`
+ * proxy sets on non-production hosts, see src/proxy.ts). Local dev
+ * keeps using `NEXT_PUBLIC_SITE_URL` (falling back to localhost) so
+ * canonical URLs in a dev build still point at whatever's actually
+ * running.
+ */
+export const siteUrl = resolveSiteUrl({
+  isVercelDeployment: Boolean(process.env.VERCEL),
+  productionSiteUrl: PRODUCTION_SITE_URL,
+  devSiteUrl: env.NEXT_PUBLIC_SITE_URL,
+});
 
 export const site = {
   name: doctor.displayName,

@@ -30,7 +30,13 @@
   --focus-ring: var(--color-stone-900);
 }
 
-/* Spec §7 Section 4 — "Premium dark section" (Penile Implant Surgery). */
+/*
+ * Spec §7 Section 4 — "Premium dark section". Phase R3 correction:
+ * reverted from the navy `ink` scale (Phase R2.1) back to warm
+ * charcoal/near-black — explicit owner direction that navy is not the
+ * dominant brand color, even though the logo itself uses navy.
+ * `stone-950` is a warm, near-black neutral (not blue-tinted).
+ */
 .section-dark {
   --background: var(--color-stone-950);
   --foreground: var(--color-stone-50);
@@ -110,12 +116,23 @@
   --text-body-lg: clamp(1.0625rem, 1rem + 0.25vw, 1.25rem);
   --text-body-lg--line-height: 1.6;
 
+  /*
+   * Phase R1-R2: the audit found body copy sitewide (nearly every
+   * paragraph, FAQ answer, and footer link uses Tailwind's `text-sm`
+   * utility) read as too small/light. Overriding the underlying theme
+   * value here is a single-file, sitewide readability fix rather than
+   * touching dozens of call sites individually.
+   */
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.65;
+
   --text-eyebrow: 0.8125rem;
   --text-eyebrow--line-height: 1.4;
 
   /* Section rhythm — spec §16 "large margins". */
   --spacing-gutter: clamp(1.25rem, 1rem + 2vw, 3rem);
-  --spacing-section-y: clamp(4rem, 3rem + 5vw, 8rem);
+  /* Phase R1-R2: tightened floor/midpoint/ceiling to reduce excess whitespace, especially on mobile where the floor dominates. */
+  --spacing-section-y: clamp(3rem, 2.5rem + 4vw, 6.5rem);
 
   --container-editorial: 90rem;
 

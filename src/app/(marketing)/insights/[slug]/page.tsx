@@ -4,12 +4,15 @@ import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
+import { PullQuote } from "@/components/ui/PullQuote";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import { Reveal } from "@/components/motion/Reveal";
 import { ArticleAuthorBlock } from "@/components/sections/ArticleAuthorBlock";
+import { ArticleVideoBlock } from "@/components/sections/ArticleVideoBlock";
+import { RelatedInsights } from "@/components/sections/RelatedInsights";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { getInsightArticle, insightArticles } from "@/content/insights/articles";
-import { articleSchema, breadcrumbSchema } from "@/lib/seo/json-ld";
+import { getInsightArticle, getRelatedArticles, insightArticles } from "@/content/insights/articles";
+import { articleSchema, breadcrumbSchema, videoObjectSchema } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
 
 export function generateStaticParams() {
@@ -41,6 +44,13 @@ export default async function InsightArticlePage({ params }: Props) {
     { name: "Insights", href: "/insights" },
     { name: article.title, href: path },
   ];
+  const relatedArticles = getRelatedArticles(article);
+  // Google's structured-data guidelines require thumbnailUrl for VideoObject —
+  // only emit the schema when both video and a real thumbnail exist.
+  const videoSchema =
+    article.video?.thumbnailUrl
+      ? videoObjectSchema({ video: article.video, datePublished: article.datePublished })
+      : undefined;
 
   return (
     <>
@@ -53,6 +63,7 @@ export default async function InsightArticlePage({ params }: Props) {
             path,
             datePublished: article.datePublished,
           }),
+          ...(videoSchema ? [videoSchema] : []),
         ]}
       />
 
@@ -94,6 +105,18 @@ export default async function InsightArticlePage({ params }: Props) {
         <ArticleAuthorBlock />
       </Container>
 
+      {article.keyTakeaway && (
+        <Container className="max-w-2xl py-10">
+          <PullQuote>{article.keyTakeaway}</PullQuote>
+        </Container>
+      )}
+
+      {article.video && (
+        <Container className="max-w-2xl">
+          <ArticleVideoBlock video={article.video} />
+        </Container>
+      )}
+
       {/* Body */}
       <section className="border-t border-border py-section-y">
         <Container className="max-w-2xl">
@@ -129,6 +152,8 @@ export default async function InsightArticlePage({ params }: Props) {
           </Reveal>
         </Container>
       </section>
+
+      <RelatedInsights articles={relatedArticles} />
 
       <RelatedTreatments
         items={[

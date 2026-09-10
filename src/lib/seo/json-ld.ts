@@ -59,20 +59,11 @@ function credentialEntries() {
   ];
 }
 
-/**
- * Public-facing award strings — owner-confirmed 2026-09-05 (see
- * SEO_RESTRUCTURE_GAP_ANALYSIS.md). Filtered to `publishReady` only:
- * the recognition and year being real is not the same as the exact
- * official title being verified, and this must never emit the
- * `EXACT OFFICIAL TITLE REQUIRED` placeholder into public structured
- * data. Today this always returns an empty array — both entries in
- * `doctor.awards` have `publishReady: false` — and `prune()` drops the
- * empty array entirely rather than emitting `"award": []`.
- */
+/** Owner-confirmed recognition names, emitted exactly as configured. */
 function awardEntries() {
   return doctor.awards
     .filter((award) => award.publishReady)
-    .map((award) => `${award.officialTitle} — ${award.issuer}, ${award.year}`);
+    .map((award) => award.officialTitle);
 }
 
 export function personSchema() {
@@ -183,5 +174,29 @@ export function articleSchema(input: {
     datePublished: input.datePublished,
     dateModified: input.dateModified || input.datePublished,
     author: { "@type": "Person", name: doctor.displayName },
+  });
+}
+
+/**
+ * VideoObject schema — Phase C video-ready architecture. Callers must
+ * only invoke this when `article.video` AND `article.video.thumbnailUrl`
+ * both exist (Google's structured-data guidelines treat `thumbnailUrl`
+ * as required for VideoObject) — see the guard in `insights/[slug]/page.tsx`.
+ * Never called speculatively; with no real videos yet, this function is
+ * simply unreachable in production until owner-supplied video content
+ * exists.
+ */
+export function videoObjectSchema(input: {
+  video: { title: string; url: string; thumbnailUrl?: string; summary?: string };
+  datePublished: string;
+}) {
+  return prune({
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: input.video.title,
+    description: input.video.summary || input.video.title,
+    thumbnailUrl: input.video.thumbnailUrl,
+    uploadDate: input.datePublished,
+    contentUrl: input.video.url,
   });
 }

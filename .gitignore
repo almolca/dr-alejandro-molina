@@ -4,3 +4,31 @@ out/
 .env*.local
 *.tsbuildinfo
 .DS_Store
+.playwright-mcp/
+
+# QA/verification screenshots — working artifacts, never part of the repo
+/before-*.png
+/after-*.png
+
+# Unused reference/mockup images kept on disk but never wired into the
+# site — see MEDIA_REQUIREMENTS.md (no invented/AI-generated photography
+# of Dr. Molina). Real brand assets (logo-*.png) are not covered by this.
+public/brand/ChatGPT Image*.png
+public/brand/Elegant 3D Ebook Mockup*.png
+
+# 2026-09-08: the 7 files below (public/images/doctor/) were flagged
+# earlier the same day as byte-identical to previously-rejected
+# ChatGPT/Ebook-Mockup files. Owner (Dr. Molina) has since explicitly
+# confirmed, in writing, that these are AI-generated/AI-edited images
+# based on his own likeness and reference material, and approved their
+# use as branded physician/editorial imagery — not as documentary
+# photography of a specific real consultation, surgery or training
+# event. Approved for use in R6 (see photography.ts); alt text and any
+# copy referencing them must not claim a specific real event.
+#
+# The 7 files further below (public/images/, topic/treatment imagery)
+# are similarly owner-approved for use as editorial/treatment imagery
+# (see editorial-media.ts) — not documentary photography.
+
+# Local Claude Code session state (e.g. scheduled-task lock files) — not application config
+.claude/

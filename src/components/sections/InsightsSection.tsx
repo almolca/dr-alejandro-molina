@@ -59,11 +59,11 @@ export function InsightsSection() {
             .filter((a) => a.featured)
             .map((article) => (
               <Reveal key={article.href} className="lg:row-span-2">
-                <Link href={article.href} className="group block">
+                <Link href={article.href} className="group block card-hover rounded-sm p-2 -m-2">
                   <span className="text-xs font-medium uppercase tracking-widest text-accent-strong">
                     {article.tag}
                   </span>
-                  <h3 className="mt-4 font-display text-display-md leading-tight text-foreground transition-colors">
+                  <h3 className="mt-4 font-display text-display-md leading-tight text-foreground transition-colors group-hover:text-accent-strong">
                     {article.title}
                   </h3>
                 </Link>
@@ -79,11 +79,11 @@ export function InsightsSection() {
                   delay={0.05 * (index + 1)}
                   className="py-8 first:pt-0"
                 >
-                  <Link href={article.href} className="group block">
+                  <Link href={article.href} className="group block card-hover rounded-sm p-2 -m-2">
                     <span className="text-xs font-medium uppercase tracking-widest text-accent-strong">
                       {article.tag}
                     </span>
-                    <h3 className="mt-3 font-display text-xl leading-snug text-foreground sm:text-2xl">
+                    <h3 className="mt-3 font-display text-xl leading-snug text-foreground transition-colors group-hover:text-accent-strong sm:text-2xl">
                       {article.title}
                     </h3>
                   </Link>

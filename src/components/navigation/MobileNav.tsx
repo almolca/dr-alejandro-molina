@@ -21,7 +21,7 @@ export function MobileNav() {
         <button
           type="button"
           aria-label="Open menu"
-          className="inline-flex h-10 w-10 items-center justify-center rounded-sm text-foreground md:hidden"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-sm text-foreground xl:hidden"
         >
           <Menu aria-hidden size={22} />
         </button>
@@ -29,7 +29,7 @@ export function MobileNav() {
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-40 bg-stone-950/40" />
         <Dialog.Content
-          className="fixed inset-y-0 right-0 z-50 flex w-full max-w-sm flex-col bg-background px-gutter py-6 shadow-xl"
+          className="fixed inset-y-0 right-0 z-50 flex w-full max-w-sm flex-col overflow-y-auto bg-background px-gutter py-6 shadow-xl"
           aria-describedby={undefined}
         >
           <div className="flex items-center justify-between">
@@ -45,7 +45,7 @@ export function MobileNav() {
             </Dialog.Close>
           </div>
 
-          <nav aria-label="Primary" className="mt-10 flex flex-col gap-6">
+          <nav aria-label="Primary" className="mt-6 flex flex-col gap-5">
             {primaryNav.map((item) => (
               <Link
                 key={item.href}

@@ -1,7 +1,7 @@
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { doctor } from "@/config/doctor";
 import { Container } from "@/components/ui/Container";
-import { ImagePlaceholder } from "@/components/ui/ImagePlaceholder";
+import { PhotoFrame } from "@/components/editorial/PhotoFrame";
 import { MaskedReveal } from "@/components/motion/MaskedReveal";
 import { Reveal } from "@/components/motion/Reveal";
 
@@ -12,7 +12,7 @@ import { Reveal } from "@/components/motion/Reveal";
  */
 const highlightLabels = [
   "Hospital Clínic Barcelona training",
-  "European Board of Urology",
+  "FEBU — Fellow of the European Board of Urology",
   "Advanced laparoscopic surgery",
   "Practicing in the United Arab Emirates",
 ];
@@ -26,11 +26,8 @@ export function AboutSection() {
             placeholder image does, even though the image sits in the
             left column on desktop (lg:order-first) — found in the
             Phase 5 UX audit. */}
-        <MaskedReveal className="order-last aspect-[3/4] w-full border border-border bg-surface lg:order-first">
-          <ImagePlaceholder
-            index={doctor.displayName}
-            caption={doctor.profileImage.alt}
-          />
+        <MaskedReveal className="order-last w-full lg:order-first">
+          <PhotoFrame slot="homeClinical" landscape />
         </MaskedReveal>
 
         <div>

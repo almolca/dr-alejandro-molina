@@ -1,0 +1,86 @@
+[
+  {
+    "name": "home",
+    "width": 390,
+    "errors": [],
+    "checks": {
+      "Top Doctors Spain 2020": true,
+      "Doctoralia Awards Spain 2022": true,
+      "Contributor to Men's Health Spain": true,
+      "AndroMax Training": true,
+      "Medical Trainer": true,
+      "urologists & aesthetic physicians": true,
+      "FEBU": true,
+      "15+": true,
+      "500+": true,
+      "Since 2018": true
+    },
+    "metrics": {
+      "h1": 1,
+      "overflow": false
+    }
+  },
+  {
+    "name": "home",
+    "width": 1440,
+    "errors": [],
+    "checks": {
+      "Top Doctors Spain 2020": true,
+      "Doctoralia Awards Spain 2022": true,
+      "Contributor to Men's Health Spain": true,
+      "AndroMax Training": true,
+      "Medical Trainer": true,
+      "urologists & aesthetic physicians": true,
+      "FEBU": true,
+      "15+": true,
+      "500+": true,
+      "Since 2018": true
+    },
+    "metrics": {
+      "h1": 1,
+      "overflow": false
+    }
+  },
+  {
+    "name": "about",
+    "width": 390,
+    "errors": [],
+    "checks": {
+      "Top Doctors Spain 2020": true,
+      "Doctoralia Awards Spain 2022": true,
+      "Contributor to Men's Health Spain": true,
+      "AndroMax Training": true,
+      "Medical Trainer": true,
+      "urologists & aesthetic physicians": true,
+      "FEBU": true,
+      "15+": true,
+      "500+": true,
+      "Since 2018": true
+    },
+    "metrics": {
+      "h1": 1,
+      "overflow": false
+    }
+  },
+  {
+    "name": "about",
+    "width": 1440,
+    "errors": [],
+    "checks": {
+      "Top Doctors Spain 2020": true,
+      "Doctoralia Awards Spain 2022": true,
+      "Contributor to Men's Health Spain": true,
+      "AndroMax Training": true,
+      "Medical Trainer": true,
+      "urologists & aesthetic physicians": true,
+      "FEBU": true,
+      "15+": true,
+      "500+": true,
+      "Since 2018": true
+    },
+    "metrics": {
+      "h1": 1,
+      "overflow": false
+    }
+  }
+]

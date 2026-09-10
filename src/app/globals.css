@@ -56,3 +56,38 @@
     scroll-behavior: auto !important;
   }
 }
+
+/*
+ * Spec R7.1.1 §2 — one restrained hover language shared by every
+ * editorial "card" grid item sitewide (approach pillars, cause
+ * matrices, diagnostic panels, options, care/pathway steps, review
+ * cards). translateY -3px, a slightly deeper shadow, and the
+ * hairline border already present on most of these items darkens to
+ * --accent-strong. No scale, no bounce. Reduced motion is already
+ * handled globally above (transition-duration is zeroed), so this
+ * utility needs no reduced-motion override of its own.
+ */
+@utility card-hover {
+  transition: transform 240ms var(--ease-soft), box-shadow 240ms var(--ease-soft), border-color 240ms var(--ease-soft);
+
+  &:hover, &:focus-visible {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 32px -24px rgba(30, 36, 22, 0.35);
+    border-color: var(--accent-strong);
+  }
+}
+
+/*
+ * Spec R7.1.4 §1 — every in-page hash-link target (e.g. /about#reviews,
+ * #treatment-ladder) must land visibly below the sticky header
+ * (`Header.tsx`, `sticky top-0 z-30`), not underneath it. Global and
+ * reusable rather than scoped to one section, since every current and
+ * future anchor target benefits identically; scroll-margin-top has no
+ * effect on non-anchor elements, so applying it broadly via `[id]` is
+ * safe. 10rem clears the header's tallest measured rendered height
+ * (~140px at 1440px width, header grows slightly at wider breakpoints
+ * as nav items lay out) plus a visible gap.
+ */
+[id] {
+  scroll-margin-top: 10rem;
+}

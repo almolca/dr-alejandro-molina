@@ -108,7 +108,7 @@ export default function ShockwaveTherapyPage() {
               <BookingCta
                 sourcePage={PATH}
                 ctaPosition="hero"
-                service="shockwave-therapy"
+                service="erectile_dysfunction"
                 size="lg"
               >
                 Book an ED Assessment

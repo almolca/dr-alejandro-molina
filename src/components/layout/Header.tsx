@@ -1,7 +1,7 @@
 "use client";
 
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import Link from "next/link";
-import { doctor } from "@/config/doctor";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Container } from "@/components/ui/Container";
 import { DesktopNav } from "@/components/navigation/DesktopNav";
@@ -19,15 +19,12 @@ export function Header() {
         "sticky top-0 z-30 transition-[background-color,box-shadow] duration-300 ease-out",
         scrolled
           ? "bg-background/90 shadow-sm backdrop-blur-md"
-          : "bg-transparent",
+          : "bg-background",
       )}
     >
-      <Container className="flex h-20 items-center justify-between">
-        <Link
-          href="/"
-          className="font-display text-lg tracking-tight text-foreground"
-        >
-          {doctor.displayName}
+      <Container className="flex min-h-28 items-center justify-between gap-x-5">
+        <Link href="/" className="shrink-0" aria-label="Dr. Alejandro Molina — Home">
+          <BrandLogo />
         </Link>
 
         <DesktopNav />

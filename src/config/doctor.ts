@@ -90,6 +90,8 @@ export const doctor = {
   yearsOfExperience: 15,
   girthEnhancementSince: 2018,
   girthProcedureCount: "500+",
+  /** Numeric form of `girthProcedureCount` above, for the count-up animation on the main authority stats block (R7.1.2 §2) — kept in sync manually since the string carries a "+" the animation target must not. */
+  girthProcedureCountValue: 500,
 
   /**
    * B2B medical-education activity — kept as its own field, deliberately
@@ -106,31 +108,23 @@ export const doctor = {
     programUrl: undefined as string | undefined,
   },
 
-  /**
-   * Professional recognition. The owner has confirmed the recognition
-   * and year for both entries below are real (`ownerConfirmed: true`),
-   * but NOT the exact official award/category title — that still needs
-   * verification against the primary source before publication. Per
-   * explicit owner instruction: store the structure now, but
-   * `publishReady` must stay `false`, and every consumer of this array
-   * must render NOTHING for an entry where `publishReady` is not
-   * `true` — the `officialTitle` placeholder text below must never
-   * reach a rendered page or structured-data output.
+  /** Owner-confirmed for publication in the R4 authority correction.
+   * Use these exact names; no additional category or ranking is asserted.
    */
   awards: [
     {
       issuer: "Top Doctors Spain",
       year: 2020,
-      officialTitle: "EXACT OFFICIAL TITLE REQUIRED",
+      officialTitle: "Top Doctors Spain 2020",
       ownerConfirmed: true,
-      publishReady: false,
+      publishReady: true,
     },
     {
       issuer: "Doctoralia Awards Spain",
       year: 2022,
-      officialTitle: "EXACT OFFICIAL TITLE REQUIRED",
+      officialTitle: "Doctoralia Awards Spain 2022",
       ownerConfirmed: true,
-      publishReady: false,
+      publishReady: true,
     },
   ],
 

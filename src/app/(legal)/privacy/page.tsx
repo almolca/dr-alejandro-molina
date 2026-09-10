@@ -15,7 +15,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
  */
 
 const PATH = "/privacy";
-const LAST_UPDATED = "3 September 2026";
+const LAST_UPDATED = "10 September 2026";
 
 export const metadata: Metadata = buildMetadata({
   title: "Privacy Policy",
@@ -60,68 +60,93 @@ export default function PrivacyPage() {
             <div>
               <h2 className="font-display text-xl text-foreground">Information We Collect</h2>
               <p className="mt-3">
-                This website does not include contact forms, account
-                registration, or any mechanism for submitting personal
-                or health information. It does not collect, process or
-                store medical, symptom or appointment data of any kind.
+                When you submit the &ldquo;Book a Consultation&rdquo; form on this
+                website, we collect your full name, email address, mobile number,
+                service of interest, and (if provided) your preferred contact
+                method. We do not ask for and do not collect symptoms, diagnosis,
+                medical history, medications, or any other health information
+                through this website.
               </p>
               <p className="mt-3">
-                Standard technical information (such as browser type
-                and general usage data) may be logged automatically by
-                the hosting infrastructure that serves this website, as
-                is typical for any website — this is not used to
-                identify individual visitors for marketing purposes.
+                We also record where a visit or enquiry came from — such as the
+                referring website, search engine, or campaign link (UTM
+                parameters) — and the page you were on when you clicked
+                &ldquo;Continue to NMC Booking&rdquo;. This is used only to
+                understand which channels bring visitors to the site, not to
+                build a profile of you as an individual.
+              </p>
+              <p className="mt-3">
+                Standard technical information (such as browser type and general
+                usage data) may also be logged automatically by the hosting
+                infrastructure that serves this website, as is typical for any
+                website.
               </p>
             </div>
 
             <div>
               <h2 className="font-display text-xl text-foreground">Cookies and Analytics</h2>
               <p className="mt-3">
-                This website does not currently use analytics or
-                marketing cookies. If analytics tools are introduced in
-                the future, this policy will be updated accordingly and
-                appropriate consent mechanisms will be implemented
-                before any such tool is activated. No symptom, health
-                or appointment information is ever sent to analytics
-                tools.
+                This website uses a small number of first-party, non-advertising
+                cookies. Two remember where a visit first came from and most
+                recently came from (e.g. a search engine, social media, or a
+                specific campaign link), so we can understand which channels
+                bring enquiries; these expire after 180 days and store only a
+                short code (such as &ldquo;google_business&rdquo; or
+                &ldquo;direct&rdquo;) and the page path — never your name, email,
+                or phone number. A separate anonymous identifier (a random code,
+                not derived from any personal information) is used, subject to
+                your consent below, to count page views and button clicks
+                without identifying you individually.
+              </p>
+              <p className="mt-3">
+                Anonymous, aggregate analytics events (such as a page view or a
+                &ldquo;Book a Consultation&rdquo; button click) are only recorded
+                once you accept analytics cookies via the banner shown on this
+                site. No symptom, health, or appointment information is ever
+                sent to analytics, and analytics events are never linked to the
+                contact details you submit through the booking form.
               </p>
             </div>
 
             <div>
               <h2 className="font-display text-xl text-foreground">Booking and Third-Party Links</h2>
               <p className="mt-3">
-                &ldquo;Book a Consultation&rdquo; and &ldquo;View NMC
-                Profile&rdquo; links on this website take you to{" "}
-                {practice.facilityShortName}&rsquo;s official
-                platforms, which operate under their own privacy
-                policy. This website does not process appointment
-                bookings and does not have access to any information
-                you provide on {practice.facilityShortName}&rsquo;s
-                systems.
+                Submitting the booking form creates a record with this
+                practice&rsquo;s own systems, used to follow up with you and
+                understand where enquiries come from. It does not, by itself,
+                create an appointment. Clicking &ldquo;Continue to NMC
+                Booking&rdquo; (and the &ldquo;View NMC Profile&rdquo; link)
+                takes you to {practice.facilityShortName}&rsquo;s official
+                platforms, which operate under their own privacy policy. This
+                website does not process appointment scheduling itself and does
+                not have access to any information you provide on{" "}
+                {practice.facilityShortName}&rsquo;s systems.
               </p>
             </div>
 
             <div>
               <h2 className="font-display text-xl text-foreground">Data Security</h2>
               <p className="mt-3">
-                Reasonable technical measures are used to help protect
-                this website. Because no personal or health data is
-                collected through the website itself, the associated
-                data-protection risk is intentionally minimal by
-                design.
+                Contact details submitted through the booking form are stored in
+                a database that is not directly accessible from the browser —
+                all reads and writes happen through this website&rsquo;s own
+                server, protected against unrestricted public access. Reasonable
+                technical measures are used to help protect this website more
+                generally. We do not collect health data through this website.
               </p>
             </div>
 
             <div>
               <h2 className="font-display text-xl text-foreground">Your Rights</h2>
               <p className="mt-3">
-                You may have rights in relation to any personal data
-                processed about you under applicable data protection
-                law in the United Arab Emirates. Since this website
-                does not itself collect personal data, most such rights
-                would apply to information you provide directly to{" "}
-                {practice.facilityShortName} as part of booking or
-                attending a consultation, and should be directed to{" "}
+                You may have rights in relation to any personal data processed
+                about you under applicable data protection law in the United
+                Arab Emirates, including the right to ask what information we
+                hold about you or to request its deletion. For data you
+                submitted through this website&rsquo;s booking form, contact us
+                using the details below. For information you provide directly
+                to {practice.facilityShortName} as part of booking or attending
+                a consultation, such requests should be directed to{" "}
                 {practice.facilityShortName}.
               </p>
             </div>

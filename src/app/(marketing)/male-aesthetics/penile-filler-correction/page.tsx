@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { ContourReviewDiagram } from "@/components/illustrations/ContourReviewDiagram";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Faq } from "@/components/ui/Faq";
+import { PullQuote } from "@/components/ui/PullQuote";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/motion/Reveal";
@@ -98,6 +100,13 @@ const faqItems = [
       "If you notice asymmetry, an irregular or lumpy contour, migration, uneven distribution, or swelling that hasn't settled as expected, that's generally a reasonable reason to seek assessment — regardless of where the original treatment was performed.",
   },
   {
+    question: "Can penile filler migrate?",
+    answer:
+      "Yes — product can move from its original treatment area, which is one of the presentations assessment looks for. This is a different pattern from the normal, gradual settling that follows treatment, and it's assessed individually rather than assumed from a general description.",
+    readMoreHref: "/insights/penile-filler-migration-what-to-know",
+    readMoreLabel: "Read more: Penile Filler Migration — What Patients Should Know",
+  },
+  {
     question: "Can all penile filler problems be corrected?",
     answer:
       "Not every presentation can be fully corrected. Some irregularities respond well to dissolution or revision; others, particularly longstanding tissue changes, may only partially improve. This is assessed and discussed individually, not assumed either way.",
@@ -106,6 +115,8 @@ const faqItems = [
     question: "Is dissolution always the right approach?",
     answer:
       "No. Dissolution is one option among several, and its suitability depends on the specific presentation. In some cases, observation or a different approach may be more appropriate.",
+    readMoreHref: "/insights/can-penile-filler-be-dissolved",
+    readMoreLabel: "Read more: Can Penile Filler Be Dissolved?",
   },
   {
     question: "Will you need to use ultrasound?",
@@ -164,7 +175,7 @@ export default function PenileFillerCorrectionPage() {
           </Reveal>
           <Reveal delay={0.1}>
             <div className="mt-10 flex flex-wrap gap-4">
-              <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg">
+              <BookingCta sourcePage={PATH} ctaPosition="hero" service="filler_correction" size="lg">
                 {BOOKING_LABEL}
               </BookingCta>
             </div>
@@ -176,7 +187,13 @@ export default function PenileFillerCorrectionPage() {
       <section className="border-t border-border bg-surface py-section-y">
         <Container>
           <SectionHeading eyebrow="Common presentations" heading="What May Prompt an Assessment" />
-          <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 border-t border-border pt-10 sm:grid-cols-2 lg:grid-cols-3">
+          <Reveal delay={0.05}>
+            <ContourReviewDiagram
+              className="mt-10 h-28 w-28 text-muted-foreground"
+              title="Original contour compared against current presentation, marking where they diverge"
+            />
+          </Reveal>
+          <StaggerGroup className="mt-10 grid grid-cols-1 gap-x-10 gap-y-10 border-t border-border pt-10 sm:grid-cols-2 lg:grid-cols-3">
             {presentations.map((item) => (
               <StaggerItem key={item.label}>
                 <h3 className="font-display text-lg text-foreground">{item.label}</h3>
@@ -249,6 +266,15 @@ export default function PenileFillerCorrectionPage() {
           </StaggerGroup>
         </Container>
       </section>
+
+      {/* Pull quote — Phase R3 correction */}
+      <Container className="max-w-2xl py-14">
+        <PullQuote>
+          Every presentation is evaluated on its own anatomy and
+          findings — never through criticism of any prior provider or
+          treatment.
+        </PullQuote>
+      </Container>
 
       {/* Realistic expectations — dark section, this page's one dark moment */}
       <section className="section-dark bg-background py-section-y text-foreground">
