@@ -54,4 +54,15 @@ describe("legacyRedirects", () => {
     expect(bySource.get("/en/vasovasostomy")).toBe("/male-fertility");
     expect(bySource.get("/vasovasostomia")).toBe("/male-fertility");
   });
+
+  it("circumcision legacy URLs are absent from the redirect map — left to fall through to a normal 404, not force-redirected (R8.0.3)", () => {
+    const sources = new Set(legacyRedirects.map((r) => r.source));
+    expect(sources.has("/en/circumcision")).toBe(false);
+    expect(sources.has("/circuncision")).toBe(false);
+  });
+
+  it("circumcision legacy URLs are not in the 410 list either — no migration-specific reason to assert 'permanently gone'", () => {
+    expect(legacyGonePaths.includes("/en/circumcision")).toBe(false);
+    expect(legacyGonePaths.includes("/circuncision")).toBe(false);
+  });
 });

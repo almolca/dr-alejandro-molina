@@ -74,10 +74,6 @@ export const legacyRedirects: LegacyRedirect[] = [
   { source: "/en/scrotoplasty", destination: "/male-aesthetics/scrotal-lift" },
   { source: "/escrotoplastia", destination: "/male-aesthetics/scrotal-lift" },
 
-  // ---- Circumcision (no dedicated new page -> penile surgery hub) ----
-  { source: "/en/circumcision", destination: "/penile-surgery" },
-  { source: "/circuncision", destination: "/penile-surgery" },
-
   // ---- Blog / insights ----
   { source: "/en/blog-2", destination: "/insights" },
   { source: "/blog", destination: "/insights" },

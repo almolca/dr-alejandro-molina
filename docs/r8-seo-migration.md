@@ -92,8 +92,6 @@ All entries are **permanent (308)**, implemented in
 | `/vasovasostomia` | `/male-fertility` | C | Medium | Spanish equivalent |
 | `/en/scrotoplasty` | `/male-aesthetics/scrotal-lift` | B | High | Scrotoplasty ≈ scrotal lift |
 | `/escrotoplastia` | `/male-aesthetics/scrotal-lift` | B | High | Spanish equivalent |
-| `/en/circumcision` | `/penile-surgery` | C | Medium | No dedicated page; general surgical-procedures hub |
-| `/circuncision` | `/penile-surgery` | C | Medium | Spanish equivalent |
 | `/en/blog-2` | `/insights` | A | High | Blog → Insights |
 | `/blog` | `/insights` | A | High | Spanish equivalent |
 | `/deficit-testosterona` | `/mens-health/testosterone` | B | High | Testosterone deficiency article |
@@ -122,6 +120,7 @@ response, not a redirect.
 | `/financiacion` | No financing/payment-plan feature exists on the new site. Redirecting to an unrelated page would set a false expectation. |
 | `/programa-sexologia` | No current equivalent — this was a patient-facing "sexology program," distinct from the new site's AndroMax content (which is doctor-to-doctor training, not a patient program). |
 | `/el-mejor-urologo-de-espana-2022`, `/medicos-valencianos-mas-brillantes` | Unverified press/award claims not part of the current owner-approved awards list (`src/config/doctor.ts` — only Top Doctors Spain 2020 and Doctoralia Awards Spain 2022 are approved). Not redirected to `/about`, to avoid implicitly re-asserting an unverified claim there. |
+| `/en/circumcision`, `/circuncision` | R8.0.3: previously redirected to `/penile-surgery` (C, Medium confidence), but the R8.0.1 review found that page narrowly scoped to penile implant surgery and Peyronie's disease — it never mentions circumcision, so the redirect served no genuine user intent. Owner confirmed Dr. Molina does not currently perform circumcision and does not want it represented as a service. No semantically valid destination exists on the current site, so both legacy URLs are intentionally left unavailable rather than force-redirected. Not a 410 either — there is no migration-specific reason to assert "permanently gone" for a service that was never really represented on the new site in the first place; a normal 404 is the more accurate and flexible behavior, consistent with the other entries in this table. |
 
 These simply return the site's normal 404 page if visited — the
 correct behavior for "no meaningful current equivalent," per brief §1.
@@ -165,8 +164,23 @@ page, reclassifying both legacy sources from C (hub fallback) to A
 left unchanged — reversal is itself a fertility-restoration procedure,
 so `/male-fertility` remains a genuinely relevant destination for it.
 Circumcision (`/en/circumcision` → `/penile-surgery`, also flagged as
-weak in R8.0.1) is unchanged — out of scope for this addendum, pending
-a separate owner decision.
+weak in R8.0.1) was out of scope for this addendum, pending a separate
+owner decision — resolved in R8.0.3 below.
+
+### R8.0.3 addendum — circumcision redirect removed
+
+Owner decision: Dr. Molina does not currently perform circumcision and
+does not want it represented as a service on the site. The
+`/en/circumcision` → `/penile-surgery` and `/circuncision` →
+`/penile-surgery` redirects (flagged WEAK in R8.0.1 — `/penile-surgery`
+is narrowly scoped to penile implant surgery and Peyronie's disease and
+never mentions circumcision) have been **removed** from
+`legacy-redirects.ts` entirely. No new page was created. Both legacy
+URLs now fall through to the site's normal 404, moved to the "Left
+unavailable — E" table above rather than being force-redirected
+somewhere misleading or asserted as a deliberate 410 (no
+migration-specific reason exists for a hard "permanently gone" claim
+here — see that table entry for the full reasoning).
 
 ## 3. New site route inventory
 
@@ -375,11 +389,13 @@ having none. Every discovered Spanish legacy URL was individually
 mapped to its closest *current* (English) equivalent in the redirect
 map (§2) rather than collectively dumped on the homepage — e.g.
 `/disfuncion-erectil` → `/erectile-dysfunction`, not `/`. The only
-Spanish URLs sent to a shared hub (`/`, `/male-fertility`,
-`/penile-surgery`) are ones with no closer topic-specific page on
-*either* language track (`/tratamientos`, vasectomy/circumcision
-pages) — the same C-classification English equivalents get, not a
-language-specific downgrade.
+Spanish URLs sent to a shared hub (`/`, `/male-fertility`) are ones
+with no closer topic-specific page on *either* language track
+(`/tratamientos`, vasectomy reversal) — the same C-classification
+English equivalents get, not a language-specific downgrade.
+(`/circuncision`, like its English counterpart, is intentionally left
+unavailable rather than redirected at all — see the "Left unavailable"
+table above.)
 
 If the owner wants a Spanish version of the new site in the future,
 that's a separate content project, not something to retrofit via
