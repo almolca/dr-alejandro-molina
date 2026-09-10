@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getConsent, setConsent } from "@/lib/analytics/consent";
+import { getConsent, resyncConsentCookie, setConsent } from "@/lib/analytics/consent";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { Button } from "@/components/ui/Button";
 
@@ -71,6 +71,9 @@ export function ConsentBanner() {
     // is what avoids a hydration mismatch, not what causes one.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(getConsent() === "unset");
+    // Covers visitors who chose before the cookie mirror existed — see
+    // resyncConsentCookie()'s own comment.
+    resyncConsentCookie();
 
     function handleReopen() {
       setVisible(true);

@@ -44,3 +44,20 @@ export function setConsent(status: "granted" | "denied"): void {
 export function hasAnalyticsConsent(): boolean {
   return getConsent() === "granted";
 }
+
+/**
+ * Re-mirrors an already-made choice into the cookie, without touching
+ * `localStorage` or showing the banner. Covers visitors who chose
+ * before the cookie mirror existed (setConsent() only runs from a
+ * banner click) — without this, they'd keep `granted` in localStorage
+ * (banner correctly stays hidden, analytics events keep firing) but
+ * `src/proxy.ts` would never see a "granted" cookie and would silently
+ * stop refreshing their attribution cookies. Safe to call on every
+ * mount: a no-op once the mirror already matches.
+ */
+export function resyncConsentCookie(): void {
+  const status = getConsent();
+  if (status !== "unset" && typeof document !== "undefined") {
+    document.cookie = buildConsentCookieString(status);
+  }
+}

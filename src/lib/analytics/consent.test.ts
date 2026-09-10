@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { getConsent, hasAnalyticsConsent, setConsent } from "./consent";
+import { getConsent, hasAnalyticsConsent, resyncConsentCookie, setConsent } from "./consent";
 
 /**
  * This project's vitest environment is "node" (see vitest.config.ts),
@@ -74,5 +74,19 @@ describe("consent", () => {
     expect(getConsent()).toBe("denied");
     expect(cookieValue).toContain("cookie_consent=denied");
     expect(cookieValue).not.toContain("cookie_consent=granted");
+  });
+
+  it("resyncConsentCookie: backfills the mirror cookie for a choice made before the mirror existed (localStorage set directly, cookie never written)", () => {
+    // Simulates a visitor who accepted before this fix shipped: granted
+    // in localStorage, but setConsent() (and so the cookie write) never ran.
+    window.localStorage.setItem("consent:analytics:v1", "granted");
+    expect(cookieValue).toBe(""); // mirror not yet written
+    resyncConsentCookie();
+    expect(cookieValue).toContain("cookie_consent=granted");
+  });
+
+  it("resyncConsentCookie: does nothing when no choice has been made yet", () => {
+    resyncConsentCookie();
+    expect(cookieValue).toBe("");
   });
 });
