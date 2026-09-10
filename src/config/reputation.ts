@@ -15,7 +15,11 @@
  * Verification provenance:
  * - Google: rating/count owner-confirmed directly (not independently
  *   re-verified by fetch — Google profiles aren't reliably fetchable
- *   without an API key).
+ *   without an API key). Profile URL owner-verified in an incognito
+ *   browser (2026-09-10) as the correct listing ("Dr. Alejandro Molina
+ *   – Urologist, Andrologist & Male Genital Aesthetics", Abu Dhabi /
+ *   NMC Royal Hospital Khalifa City) and supplied as a Google Business
+ *   share link.
  * - Doctoralia: independently re-verified via a live fetch of the
  *   profile URL (2026-09-09). Fetched via an automated tool, not a
  *   manual screenshot — a human spot-check is still recommended.
@@ -54,11 +58,11 @@ export type ReviewPlatform = {
 export const reviewPlatforms: ReviewPlatform[] = [
   {
     platform: "Google",
-    profileUrl: null, // TODO(owner): supply the public Google Business Profile / review URL to link out to.
+    profileUrl: "https://share.google/o3AraHRY9qxhPKEU7",
     rating: 4.9,
     reviewCount: 58,
-    lastVerified: "2026-09-09",
-    verificationMethod: "Owner-confirmed",
+    lastVerified: "2026-09-10",
+    verificationMethod: "Owner-verified in an incognito browser",
     verified: true,
   },
   {
