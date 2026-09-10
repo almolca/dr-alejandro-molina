@@ -1,80 +1,112 @@
 # R8 Launch Runbook
 
 Ordered procedure for cutting `phase-r3-correction-visual-brand` over to
-production at `https://dralejandromolinaurologist.com`. **Every phase
-below is a future action — none of it has been executed.** This
+production at `https://dralejandromolinaurologist.com`. This
 document is the plan; `docs/r8-seo-migration.md` is the audit that
-justifies it.
+justifies it. See `docs/r8-cutover-status.md` for the current
+real-world state snapshot.
 
-Do not begin Phase B until the owner has reviewed
-`docs/r8-seo-migration.md` and explicitly approved cutover.
+**Status as of R8.1A (2026-09-10): Phases A–C complete. Application is
+live in Production on Vercel's own domains. Phases D onward
+(custom-domain connection and DNS cutover) are explicitly NOT executed
+— stopped for owner approval per brief §11/§14, exactly as planned.**
+
+Do not begin Phase D until the owner has explicitly approved DNS
+cutover (R8.1B).
 
 ---
 
-## PHASE A — Pre-launch
+## PHASE A — Pre-launch — ✅ COMPLETE (R8.1A, 2026-09-10)
 
-Owner actions, all in Vercel's dashboard (no tool in this session can
-perform these):
+1. Production-scope env vars — **owner-confirmed present** in the
+   Vercel dashboard directly (no tool in any session this project has
+   used can enumerate Vercel env var names/scopes, so this was and
+   remains an owner attestation, not an independent verification):
+   - `NEXT_PUBLIC_SUPABASE_URL` — PRESENT (owner-confirmed)
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` — PRESENT (owner-confirmed)
+   - `SUPABASE_SERVICE_ROLE_KEY` — PRESENT (owner-confirmed)
+   - `ADMIN_ALLOWED_EMAILS` — PRESENT (owner-confirmed)
+2. `NEXT_PUBLIC_SITE_URL` — confirmed not required (optional in the
+   Zod env schema, dev-only fallback; canonical URLs derive from
+   `process.env.VERCEL` in Production).
+3. Supabase Auth admin user / `ADMIN_ALLOWED_EMAILS` — unchanged since
+   R7.2, not independently re-verified this phase (no admin
+   credentials available to this session; see Phase 8/PHASE C admin
+   result below).
+4. `docs/r8-seo-migration.md` re-read in full as part of R8.0.1–R8.0.3.
+5. Feature branch re-verified clean immediately before merge:
+   typecheck/lint/build/104 tests all pass; Preview (commit `9842d4b`)
+   smoke-tested across every major route, every representative legacy
+   redirect, and both intentional 404s (circumcision).
 
-1. Confirm/set these four environment variables in the **Production**
-   scope specifically (Preview having them does not carry over — see
-   migration doc §14). Preview configuration proves nothing about
-   Production — each is a separate Vercel scope and must be checked
-   independently. No value below has been or can be verified from this
-   session; each is **OWNER MUST CONFIRM IN VERCEL**:
-   - `NEXT_PUBLIC_SUPABASE_URL` — OWNER MUST CONFIRM IN VERCEL
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` — OWNER MUST CONFIRM IN VERCEL
-   - `SUPABASE_SERVICE_ROLE_KEY` (server-only — never expose) — OWNER MUST CONFIRM IN VERCEL
-   - `ADMIN_ALLOWED_EMAILS` — OWNER MUST CONFIRM IN VERCEL
-2. `NEXT_PUBLIC_SITE_URL` is not required post-R8 (canonical URLs now
-   derive from a hardcoded production constant) — no action needed.
-3. Confirm the Supabase Auth admin user still exists and its email is
-   in `ADMIN_ALLOWED_EMAILS`.
-4. Re-read `docs/r8-seo-migration.md` in full; confirm the redirect map
-   and 410 list look correct with fresh eyes.
-5. Confirm current Preview is `READY` (see this phase's final report
-   for the URL/commit) and re-smoke-test `/book` end-to-end with a
-   clearly fake test lead, exactly as done in R7.2.2 — this validates
-   the *exact* commit about to become Production, not an earlier one.
-   Delete the test lead/events afterward the same way.
+## PHASE B — Merge to `main` — ✅ COMPLETE (R8.1A, 2026-09-10)
 
-## PHASE B — Merge to `main`
+1. No PR was opened — merged directly per this phase's explicit
+   pre-authorization to merge `main` (brief §4 of R8.1A), since the
+   owner had already reviewed and approved R8.0.1–R8.0.3 individually
+   as they landed.
+2. Full diff reviewed via `git log --graph` and file-level checks
+   before merging (see `docs/r8-cutover-status.md`).
+3. Merged with a normal (`--no-ff`) merge, preserving full development
+   history — **not squashed**. Merge commit: `347c827`. Clean merge,
+   zero conflicts.
+4. Post-merge QA re-run on `main` itself: typecheck/lint/build/104
+   tests all pass; `git diff --check` clean.
+5. Pushed to `origin/main`.
 
-1. Open a PR from `phase-r3-correction-visual-brand` into `main`
-   (`gh pr create`), title referencing R8, summary linking both R8
-   docs.
-2. Review the full diff one more time — this is the last checkpoint
-   before anything touches the production branch.
-3. Merge (do not squash-rewrite history unless that's this repo's norm
-   — check recent `main` merge commits first).
-4. Confirm `main`'s own Vercel deployment (if auto-triggered) builds
-   `READY`. This deployment is still not Production traffic yet unless
-   the domain is already attached to `main` — it was not, per this
-   phase's constraints, so this is safe.
+## PHASE C — Vercel Production deployment — ✅ COMPLETE (R8.1A, 2026-09-10)
 
-## PHASE C — Vercel Production deployment
+1. Vercel's GitHub integration auto-triggered the Production
+   deployment from the `main` push (not a manual promotion of an
+   unrelated Preview).
+2. Deployment ID `dpl_ZuJ6EZezCF8T76Xd2wuKyQj2ZteJ`, commit `347c827`,
+   `target: "production"`, `source: "git"` — reached `READY`.
+3. Custom domain **not** attached — deployment is reachable only at
+   its own Vercel-generated aliases (`dr-alejandro-molina.vercel.app`
+   and others), exactly as planned.
+4. Smoke-tested directly against `https://dr-alejandro-molina.vercel.app`:
+   `/`, `/about`, `/mens-health`, `/mens-health/vasectomy`,
+   `/erectile-dysfunction`, `/male-aesthetics/penile-girth-enhancement`,
+   `/penile-implant`, `/privacy`, `/terms`, `/admin` (→ `/admin/login`,
+   `noindex`), `/sitemap.xml` (44 URLs, all canonical-domain, includes
+   the vasectomy page, no `/admin`), `/robots.txt` (correct). All
+   passed — no 500s, no broken images, correct canonical domain on
+   every page, no `AggregateRating`.
+5. Booking E2E test performed with clearly fake data
+   (`r8-1a-production-cutover-test@example.invalid`) — lead created
+   correctly (`service_interest: general_urology`, `origin_page`
+   captured correctly, `status: sent_to_nmc`, `booking_clicked_at`
+   populated), redirected to exactly
+   `https://booking.nmc.ae/en-ae/doctor/urology-urinary-system/abu-dhabi/alejandro-molina`.
+   Test lead deleted immediately after; database confirmed back to a
+   clean state (0 remaining test rows). No analytics events were
+   created by this test (consent banner was correctly never accepted
+   during the test, and `trackEvent()` correctly no-ops without
+   consent) — confirms the consent gate works, not a defect.
 
-1. From the Vercel dashboard, promote the `main`-branch deployment to
-   Production (or trigger a new Production deployment from `main`).
-2. Wait for `READY`.
-3. **Do not** attach the custom domain yet — this step only makes the
-   deployment reachable at its own `*.vercel.app` Production alias.
-4. Smoke-test the Production `*.vercel.app` URL directly: `/`, `/book`
-   (fake lead again, delete after), `/admin/login`, a couple of
-   redirect sources from the map, a 410 path, `/sitemap.xml`,
-   `/robots.txt`.
+## PHASE D — Domain connection — ⏸ NOT STARTED, awaiting owner approval
 
-## PHASE D — Domain connection
+**Blocker found in R8.1A:** no tool available to this session can add
+a custom domain to the Vercel project or read back the exact DNS
+records (A/ALIAS, CNAME, TXT) Vercel would require — the only
+domain-related tools available are for *purchasing a new domain*, not
+attaching an existing one to a project. This is a manual Vercel
+dashboard action only the owner (or someone with dashboard access) can
+perform.
 
 1. In Vercel → Project → Domains, add
    `dralejandromolinaurologist.com` and
    `www.dralejandromolinaurologist.com`, pointed at the Production
-   deployment.
+   deployment (`dpl_ZuJ6EZezCF8T76Xd2wuKyQj2ZteJ` or whichever is
+   current Production at the time).
 2. Configure `www` → apex redirect at the Vercel domain level (not in
    application code — brief §4/§2 explicitly separates this).
 3. Vercel will present the exact DNS records required (A/ALIAS for
-   apex, CNAME for `www`) — copy them for Phase E. Do not change DNS
-   yet in this step.
+   apex, CNAME for `www`) in the dashboard at that time — copy them for
+   Phase E from there, not from this document. **Do not invent or
+   assume these values** — see `docs/r8-cutover-status.md` §"DNS
+   changes required" for what's already known (current DNS state) vs.
+   what can only come from Vercel once the domain is actually added.
 
 ## PHASE E — DNS cutover
 
@@ -189,10 +221,22 @@ re-add redirects on top of an old deployment; roll the deployment
 forward again once the underlying issue is fixed instead of patching
 an old version.
 
-**Domain-specific note:** since this is the *first* production
-cutover for this domain from this Vercel project (the domain was not
-previously attached to any deployment of this project), "rollback" in
-the traditional sense (revert to a prior Production deployment of
-*this* domain) only becomes meaningful after Phase C's first
-promotion. Before that point, "rollback" is simply: don't proceed to
-Phase D/E.
+**Domain-specific note:** since the custom domain is not attached yet
+(Phase D not started as of R8.1A), "rollback" in the traditional sense
+(revert to a prior Production deployment of *this* domain) is not yet
+meaningful — no public traffic is being served by any Vercel
+deployment of this project. If an issue is found in the current
+Production deployment before Phase D, simply push a fix to `main`
+(Vercel will auto-deploy) rather than rolling back.
+
+**R8.1A rollback reference:** the Production-target deployment
+immediately prior to R8.1A's merge was `dpl_EoFesVcaN4zQd93hojW6RgcLQSee`
+(commit `34b6bde`, "chore: initial commit of existing site" —
+main's pre-R6/R7/R8 baseline, marked `isRollbackCandidate: true` in
+Vercel). This is the deployment to "Promote to Production" from if a
+rollback is ever needed after Phase D attaches the domain — it
+predates the entire R6–R8 body of work, so rolling back to it means
+losing all of it (visual system, medical authority content, patient
+acquisition, and the R8 redirect/SEO work), not a small step back.
+Prefer forward-fixing on `main` over rolling back this far unless the
+issue is severe and its cause isn't quickly identifiable.
