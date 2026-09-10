@@ -34,7 +34,8 @@ describe("leadFormSchema", () => {
   });
 
   it("rejects missing privacy consent", () => {
-    const { privacyConsent: _drop, ...rest } = validPayload;
+    const rest: Record<string, unknown> = { ...validPayload };
+    delete rest.privacyConsent;
     const result = leadFormSchema.safeParse(rest);
     expect(result.success).toBe(false);
   });
