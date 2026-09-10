@@ -11,6 +11,26 @@ type BuildMetadataInput = {
 };
 
 /**
+ * Site-wide fallback social share image — R8.2.1. Next's file-convention
+ * `opengraph-image.tsx` only resolves for the exact route segment it
+ * lives in (`src/app/opengraph-image.tsx` → the root `/` route only);
+ * it does not propagate to descendant routes the way the root file's
+ * own doc comment assumed. Every page built through `buildMetadata()`
+ * (i.e. every page except the root layout) was shipping with no
+ * `og:image`/`twitter:image` at all as a result. Rather than adding a
+ * same-content `opengraph-image.tsx` file under every route segment,
+ * point every page's Open Graph/Twitter metadata at the one branded
+ * image already generated at `/opengraph-image` — same asset the
+ * homepage uses, so this is reuse, not a new design.
+ */
+const fallbackSocialImage = {
+  url: new URL("/opengraph-image", siteUrl).toString(),
+  width: 1200,
+  height: 630,
+  alt: site.defaultTitle,
+};
+
+/**
  * SEO utility — builds a consistent `Metadata` object per spec §24
  * on-page SEO rules: unique title, unique description, canonical, Open
  * Graph. Every route-level `page.tsx` should call this rather than
@@ -45,11 +65,13 @@ export function buildMetadata({
       siteName: site.name,
       locale: site.locale,
       type: "website",
+      images: [fallbackSocialImage],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description,
+      images: [fallbackSocialImage],
     },
   };
 }
