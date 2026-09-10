@@ -8,6 +8,9 @@ import {
   serializeTouch,
   type AttributionTouch,
 } from "@/lib/attribution/cookies";
+import { PRODUCTION_SITE_URL } from "@/config/site";
+import { isProductionHost } from "@/lib/seo/production-host";
+import { legacyGonePaths } from "@/lib/seo/legacy-redirects";
 
 /**
  * Captures UTM/referrer attribution into first-party cookies on every
@@ -29,8 +32,25 @@ export const config = {
 };
 
 export function proxy(request: NextRequest) {
-  const response = NextResponse.next();
   const { searchParams, pathname } = request.nextUrl;
+
+  // R8 §20 — deliberate 410 Gone for legacy content that will never be
+  // replaced (off-topic/out-of-scope), rather than a misleading
+  // redirect to an unrelated current page. See docs/r8-seo-migration.md
+  // for the reasoning behind each entry.
+  if (legacyGonePaths.includes(pathname)) {
+    return new NextResponse(null, { status: 410 });
+  }
+
+  const response = NextResponse.next();
+
+  // R8 §5/§6 — defense in depth alongside Vercel's own Preview
+  // deployment protection: any request not on the canonical production
+  // host gets marked noindex, so a disabled/misconfigured deployment
+  // protection setting can never silently let a Preview URL get indexed.
+  if (!isProductionHost(request.nextUrl.host, PRODUCTION_SITE_URL)) {
+    response.headers.set("X-Robots-Tag", "noindex, nofollow");
+  }
 
   const utmSource = searchParams.get("utm_source");
   const refererHeader = request.headers.get("referer");
