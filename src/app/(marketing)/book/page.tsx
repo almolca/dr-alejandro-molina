@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { doctor } from "@/config/doctor";
 import { isPhysicianProfileConfigured, practice, practiceLocationLine } from "@/config/practice";
-import { BookingCta } from "@/components/ui/BookingCta";
+import { isServiceInterest, type ServiceInterest } from "@/lib/domain/service-interest";
+import { BookingLeadForm } from "@/components/forms/BookingLeadForm";
+import { BookPageViewTracker } from "@/components/analytics/BookPageViewTracker";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
@@ -23,16 +26,26 @@ const breadcrumbItems = [
   { name: "Book a Consultation", href: PATH },
 ];
 
-export default function BookPage() {
+type Props = { searchParams: Promise<{ service?: string }> };
+
+export default async function BookPage({ searchParams }: Props) {
+  const params = await searchParams;
+  const defaultService: ServiceInterest | undefined =
+    params.service && isServiceInterest(params.service) ? params.service : undefined;
+
   return (
     <>
       <JsonLd data={breadcrumbSchema(breadcrumbItems.map((i) => ({ name: i.name, path: i.href })))} />
 
+      <Suspense fallback={null}>
+        <BookPageViewTracker service={defaultService} />
+      </Suspense>
+
       <Breadcrumb items={breadcrumbItems} />
 
-      {/* Hero */}
+      {/* Hero + lead form */}
       <section className="py-section-y">
-        <Container className="max-w-2xl text-center mx-auto">
+        <Container className="mx-auto grid max-w-4xl gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:gap-16">
           <Reveal>
             <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
               Consultation
@@ -43,21 +56,26 @@ export default function BookPage() {
             <p className="mt-6 text-body-lg text-muted-foreground">
               {doctor.title} · {practiceLocationLine}
             </p>
+            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+              Share a few details below. After submitting, you&rsquo;ll continue to the official{" "}
+              {practice.facilityShortName} booking system to select your appointment time.
+            </p>
+            {isPhysicianProfileConfigured && (
+              <a
+                href={practice.physicianProfileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex h-11 items-center text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
+              >
+                View NMC Profile
+              </a>
+            )}
           </Reveal>
+
           <Reveal delay={0.1}>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-              <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg" />
-              {isPhysicianProfileConfigured && (
-                <a
-                  href={practice.physicianProfileUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex h-13 items-center px-6 text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
-                >
-                  View NMC Profile
-                </a>
-              )}
-            </div>
+            <Suspense fallback={null}>
+              <BookingLeadForm defaultService={defaultService} sourcePage={PATH} />
+            </Suspense>
           </Reveal>
         </Container>
       </section>
@@ -84,7 +102,7 @@ export default function BookPage() {
         </Container>
       </section>
 
-      {/* What the CTA does */}
+      {/* What happens with your details */}
       <section className="py-section-y">
         <Container className="max-w-2xl">
           <Reveal>
@@ -92,28 +110,16 @@ export default function BookPage() {
               How Booking Works
             </h2>
             <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-              &ldquo;Book a Consultation&rdquo; takes you directly to
-              the official {practice.facilityName} appointment system,
-              where you can arrange your consultation with{" "}
-              {doctor.displayName}. This site does not collect or store
-              any appointment or health information — booking and any
-              patient records are handled entirely by{" "}
-              {practice.facilityShortName}.
+              Submitting this form sends your name, email, mobile number and service of interest
+              to {doctor.displayName}&rsquo;s practice so we can follow up and help you book. It
+              does not create an appointment by itself — after submitting, you&rsquo;ll continue
+              to the official {practice.facilityName} appointment system, where booking and any
+              patient records are handled entirely by {practice.facilityShortName}. See our{" "}
+              <a href="/privacy" className="underline decoration-accent-strong underline-offset-4">
+                Privacy Policy
+              </a>{" "}
+              for details.
             </p>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* Closing CTA — dark, this page's conversion moment */}
-      <section className="section-dark bg-background py-section-y text-foreground">
-        <Container className="flex flex-col items-center text-center">
-          <Reveal>
-            <h2 className="mx-auto max-w-xl font-display text-display-md text-foreground">
-              Ready to Book Your Consultation?
-            </h2>
-            <div className="mt-8">
-              <BookingCta sourcePage={PATH} ctaPosition="page-closing-cta" size="lg" />
-            </div>
           </Reveal>
         </Container>
       </section>
