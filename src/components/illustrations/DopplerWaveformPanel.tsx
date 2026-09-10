@@ -70,7 +70,7 @@ export function DopplerWaveformPanel({
           </filter>
         </defs>
         <rect x="0" y="0" width={VIEW_WIDTH} height={VIEW_HEIGHT} className={styles.panelBg} />
-        <rect x="0" y="0" width={VIEW_WIDTH} height={VIEW_HEIGHT} filter={`url(#${uid}-grain)`} opacity="0.4" />
+        <rect x="0" y="0" width={VIEW_WIDTH} height={VIEW_HEIGHT} fill="none" filter={`url(#${uid}-grain)`} opacity="0.4" />
         {[40, 80, 120].map((y) => (
           <line key={y} x1="0" x2={VIEW_WIDTH} y1={y} y2={y} className={styles.gridLine} />
         ))}

@@ -25,7 +25,7 @@ export function UltrasoundEchoFan({ className = "" }: { className?: string }) {
       </defs>
       <rect x="0" y="0" width="240" height="200" fill="#0d0e0c" />
       <path d="M120,10 L13.9,161.6 A185,185 0 0 0 226.1,161.6 Z" fill="url(#echoFanGradient)" />
-      <path d="M120,10 L13.9,161.6 A185,185 0 0 0 226.1,161.6 Z" filter="url(#echoFanGrain)" opacity="0.5" />
+      <path d="M120,10 L13.9,161.6 A185,185 0 0 0 226.1,161.6 Z" fill="none" filter="url(#echoFanGrain)" opacity="0.5" />
       <path d="M79.9,67.3 A70,70 0 0 0 160.2,67.3" fill="none" stroke="#6b6d63" strokeWidth="0.5" opacity="0.3" />
       <path d="M51.2,108.3 A120,120 0 0 0 188.8,108.3" fill="none" stroke="#6b6d63" strokeWidth="0.5" opacity="0.3" />
       <path d="M22.5,149.3 A170,170 0 0 0 217.5,149.3" fill="none" stroke="#6b6d63" strokeWidth="0.5" opacity="0.3" />

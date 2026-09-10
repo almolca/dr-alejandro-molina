@@ -31,7 +31,7 @@
 .railItem { display: inline-flex; align-items: center; gap: 0.6rem; }
 .railLogo { display: block; height: 1.35rem; width: auto; object-fit: contain; opacity: 0.92; }
 .recognitionRow { margin-top: 1.75rem; border-top: 1px solid #aeb5a480; padding-top: 1.5rem; }
-.recognitionEyebrow { margin: 0 0 1rem; text-align: center; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: #ad9063; }
+.recognitionEyebrow { margin: 0 0 1rem; text-align: center; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent-strong); }
 .recognitionRail { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1.5rem 2.5rem; margin: 0; padding: 0; list-style: none; }
 .recognitionRail li { display: flex; align-items: center; justify-content: center; }
 .recognitionLogo { display: block; height: 2rem; width: auto; object-fit: contain; }
