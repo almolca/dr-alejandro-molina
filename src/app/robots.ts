@@ -6,6 +6,8 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      // Private admin dashboard (R7.2 brief §34) — never indexed.
+      disallow: "/admin",
     },
     sitemap: new URL("/sitemap.xml", siteUrl).toString(),
   };
