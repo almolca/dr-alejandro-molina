@@ -1,15 +1,20 @@
 "use client";
 
-import { isBookingConfigured, practice } from "@/config/practice";
+import Link from "next/link";
+import { isBookingConfigured } from "@/config/practice";
 import { trackEvent } from "@/lib/analytics/events";
 import { cn } from "@/lib/utils/cn";
 import { Button, type ButtonProps } from "./Button";
 
 /**
- * Primary booking CTA — spec §26: tracks `nmc_booking_click`, opens the
- * official NMC flow safely (`rel="noopener noreferrer"`, spec §32), and
- * degrades gracefully while `practice.bookingUrl` is still a placeholder
- * (see config/practice.ts) rather than linking to a broken/fabricated URL.
+ * Primary booking CTA — R7.2 brief §22. Routes to the owned lead-capture
+ * funnel (`/book`, preserving service context) rather than linking
+ * straight to NMC; the NMC handoff now happens only from inside `/book`
+ * after a lead is captured (`BookingLeadForm`'s "Continue to NMC
+ * Booking" step). Fires `book_cta_click`, not `nmc_booking_click` — that
+ * event belongs solely to the post-lead-capture NMC handoff. Degrades
+ * gracefully while `practice.bookingUrl` is still a placeholder (see
+ * config/practice.ts), same as before.
  */
 export function BookingCta({
   children = "Book a Consultation",
@@ -39,15 +44,15 @@ export function BookingCta({
     );
   }
 
+  const href = service ? `/book?service=${encodeURIComponent(service)}` : "/book";
+
   return (
     <Button asChild variant={variant} size={size} className={className}>
-      <a
-        href={practice.bookingUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+      <Link
+        href={href}
         onClick={() =>
           trackEvent({
-            name: "nmc_booking_click",
+            name: "book_cta_click",
             properties: {
               source_page: sourcePage,
               service,
@@ -57,7 +62,7 @@ export function BookingCta({
         }
       >
         {children}
-      </a>
+      </Link>
     </Button>
   );
 }

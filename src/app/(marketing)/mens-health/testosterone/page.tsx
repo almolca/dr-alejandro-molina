@@ -182,7 +182,7 @@ export default function TestosteronePage() {
             </Reveal>
             <Reveal delay={0.1}>
               <div className="mt-10 flex flex-wrap items-center gap-4">
-                <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg" />
+                <BookingCta sourcePage={PATH} ctaPosition="hero" service="testosterone" size="lg" />
               </div>
             </Reveal>
           </div>

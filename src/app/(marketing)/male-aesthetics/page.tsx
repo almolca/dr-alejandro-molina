@@ -141,7 +141,7 @@ export default function MaleAestheticsPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <div className="mt-10 flex flex-wrap gap-4">
-                <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg">
+                <BookingCta sourcePage={PATH} ctaPosition="hero" service="male_aesthetics" size="lg">
                   Book a Confidential Consultation
                 </BookingCta>
               </div>
