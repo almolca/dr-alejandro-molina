@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { resolveTimeRange } from "@/lib/admin/time-range";
 import { getLeads } from "@/lib/admin/queries";
-import { serviceInterestLabel, SERVICE_INTERESTS } from "@/lib/domain/service-interest";
+import { discussionTopicLabel, DISCUSSION_TOPICS } from "@/lib/domain/discussion-topic";
 import { TimeRangePicker } from "@/components/admin/TimeRangePicker";
 import { DataTable, type Column } from "@/components/admin/DataTable";
 import type { LeadRow } from "@/lib/admin/queries";
@@ -24,8 +24,7 @@ function buildColumns(): Column<LeadRow>[] {
     },
     { key: "full_name", header: "Name", render: (r) => <Link href={`/admin/leads/${r.id}`} className="underline underline-offset-2">{r.full_name}</Link> },
     { key: "email", header: "Email", render: (r) => r.email },
-    { key: "phone", header: "Phone", render: (r) => r.phone },
-    { key: "service_interest", header: "Service", render: (r) => serviceInterestLabel(r.service_interest) },
+    { key: "service_interest", header: "Discussion Topic", render: (r) => discussionTopicLabel(r.service_interest) },
     { key: "source", header: "Source", render: (r) => r.last_touch_source ?? r.first_touch_source ?? "—" },
     { key: "status", header: "Status", render: (r) => r.status },
     {
@@ -86,13 +85,13 @@ export default async function AdminLeadsPage({ searchParams }: Props) {
 
       <div className="flex flex-wrap gap-4 text-sm">
         <div>
-          <span className="mr-2 text-stone-500">Service:</span>
+          <span className="mr-2 text-stone-500">Discussion topic:</span>
           <Link href={qs({ service: undefined, page: undefined })} className={!params.service ? "font-medium underline" : "text-stone-600"}>
             All
           </Link>
-          {SERVICE_INTERESTS.map((s) => (
-            <Link key={s.value} href={qs({ service: s.value, page: undefined })} className={`ml-3 ${params.service === s.value ? "font-medium underline" : "text-stone-600"}`}>
-              {s.label}
+          {DISCUSSION_TOPICS.map((t) => (
+            <Link key={t.value} href={qs({ service: t.value, page: undefined })} className={`ml-3 ${params.service === t.value ? "font-medium underline" : "text-stone-600"}`}>
+              {t.label}
             </Link>
           ))}
         </div>

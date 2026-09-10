@@ -19,22 +19,32 @@ Marketing page  ──(page_view)──▶  analytics_events (Supabase)
         ▼
       /book  ──(book_page_view)──▶  analytics_events
         │
-        ▼  lead form submit
-   Server Action `createLead`  ──▶  Zod  ──▶  leads (Supabase, status=lead_created)
+        ▼  "Continue to NMC Booking" click — ONE user action, ONE server action
+   Server Action `createLead`:
+     1. Zod-validate
+     2. insert into leads (status=lead_created)
+     3. immediately attempt: leads.status='sent_to_nmc', booking_clicked_at=now()
+        (best-effort — never blocks the response, see §5/§6)
         │
-        ▼  "Continue to NMC Booking"
-   Server Action `markSentToNmc`  ──▶  leads.status = 'sent_to_nmc'
-        │  (redirect fires regardless of the above succeeding)
-        ▼
+        ▼  client fires lead_submit_success + nmc_booking_click, then redirects
    https://booking.nmc.ae/... (official NMC booking system)
 ```
+
+**UX simplification (post-launch revision):** `/book` was originally a
+two-step flow (submit → separate "Continue to NMC Booking" button). It
+is now single-step: one click both creates the lead and attempts the
+`sent_to_nmc` transition, server-side, before the client redirects. The
+`lead_created`/`sent_to_nmc` **business states remain distinct** (§7);
+only the *user-facing* step count changed. See §3 for why analytics
+still counts two separate events despite the one click.
 
 Two Postgres tables in one Supabase project (`dr-alejandro-molina`,
 `wsgudfdifdqwacnbntbr`, `ap-south-1`) hold everything server-side data
 this phase needs:
 
-- **`leads`** — identified enquiries (name, email, phone, service,
-  attribution, status). Never readable/writable from the browser.
+- **`leads`** — identified enquiries (name, email, optional discussion
+  topic, attribution, status). Never readable/writable from the
+  browser.
 - **`analytics_events`** — anonymous behavioral events (page views, CTA
   clicks). Also never readable/writable from the browser.
 
@@ -82,13 +92,30 @@ contract):
 | `book_page_view` | `/book` mounts |
 | `lead_submit_success` | `createLead` returns `{ ok: true }` |
 | `lead_submit_error` | `createLead` returns `{ ok: false }` |
-| `nmc_booking_click` | "Continue to NMC Booking" is clicked, before the redirect |
+| `nmc_booking_click` | Fired by the client immediately after `lead_submit_success`, before the redirect |
 | `physician_profile_click` | Pre-existing event, unchanged |
+
+**`lead_submit_success` and `nmc_booking_click` now fire within the
+same user action** (the single "Continue to NMC Booking" click) —
+this is intentional, not a double-count bug. They represent two
+distinct backend states (`lead_created` and the immediate best-effort
+`sent_to_nmc` attempt, §7) that happen to both complete inside one
+`createLead` call after the UX simplification (§1). Each event is
+still emitted exactly once per click (no loop, no retry firing a
+duplicate), so funnel counts (§4) stay accurate: a click that
+successfully creates a lead always contributes exactly one
+`lead_submit_success` and one `nmc_booking_click`, never two of either.
 
 Allowed properties: `path`, `service_interest`, `source`, `utm_source`,
 `utm_medium`, `utm_campaign`, `referrer_category`, plus an anonymous
-`anonymous_session_id`. **No name, email, phone, or medical/health
-field exists anywhere in this contract** — it is structurally
+`anonymous_session_id`. `service_interest` here is the *page-context*
+value from `BookingCta`'s `?service=` link (fine-grained, e.g.
+`erectile_dysfunction`) for `page_view`/`book_cta_click`/
+`book_page_view`, or the patient's freely-chosen broad discussion
+topic (e.g. `mens_sexual_health`, or absent) for
+`lead_submit_success`/`nmc_booking_click` — see §6 for why these are
+deliberately different enums. **No name, email, phone, or medical/
+health field exists anywhere in this contract** — it is structurally
 impossible to pass PII through it, not just a documented rule.
 
 `trackEvent()` is consent-gated (`hasAnalyticsConsent()`, from the
@@ -145,10 +172,19 @@ last-touch attribution model (matches how GA4/HubSpot-style tools
 define it) and avoids "building a complex attribution engine," per the
 brief's own constraint.
 
-The separate raw `referrer` field stored on each lead (`leads.referrer`,
-captured from the `Referer` HTTP header at submission time) captures
-"the page immediately before booking" literally, for cases where that
-raw signal is useful independent of the marketing-touch model above.
+**`origin_page` — the actual "page before booking" signal.** The
+`leads.referrer` field (raw `Referer` header, captured when the lead
+form *POSTs*) turned out to always resolve to `/book` itself — that's
+the page the POST request originates from, not the marketing page that
+linked here. It's kept for backward compatibility/debugging but is not
+a reliable origin signal. `origin_page` (added in the R7.2 UX/privacy
+addendum) fixes this properly: `src/proxy.ts` captures the `Referer`
+header at `/book`'s *initial GET* (when it's still the real previous
+page, e.g. `/erectile-dysfunction`) into a short-lived, plain-path
+cookie (`book_origin`, 30-minute expiry — just long enough to fill out
+the form), which `createLead` reads at submission time. `origin_page`
+is purely an attribution/analytics field — see §6 for why it is never
+translated into a stored health topic.
 
 ### Source normalization (`normalize-source.ts`)
 
@@ -164,23 +200,58 @@ Known mappings: `google_business`/`gbp`/`google-business` →
 `doctoralia`/`topdoctors` domains → their platform; any other external
 referer → `referral`.
 
-## 6. Service-interest enum
+## 6. Two separate "service" enums, deliberately
 
-Defined once in `src/lib/domain/service-interest.ts` — see brief §6 for
-the canonical list. Consumed by the booking form, `leads.service_interest`
-(DB-constrained via a `check` constraint), analytics event properties,
-and the admin Services page. Logic never branches on the human label,
-only the stable `value`.
+**`src/lib/domain/service-interest.ts` (fine-grained, page context).**
+The original R7.2 enum (brief §6's canonical list, e.g.
+`erectile_dysfunction`, `penile_girth`). Used only for `BookingCta`'s
+`?service=` link/prefill context and page-level analytics properties
+(`page_view`, `book_cta_click`, `book_page_view`). **Never written to
+`leads`.**
+
+**`src/lib/domain/discussion-topic.ts` (broad, patient-facing,
+optional).** Added in the R7.2 UX/privacy addendum. `/book` is a
+low-friction attribution gateway, not a diagnostic intake form — a
+visitor must never be recorded as having a specific condition merely
+because of which marketing page linked them to `/book`. The public
+form's "What would you like to discuss? (optional)" field uses this
+broader, 8-value set (e.g. `mens_sexual_health`, not
+`erectile_dysfunction`) plus a UI-only "Prefer not to say" sentinel
+that is **never sent to the server as a value** — the client deletes
+the field from the submission entirely when it's chosen
+(`BookingLeadForm.tsx`), so "declined" and "didn't answer" are both
+represented the same way: absence, stored as `null`.
+`mapServiceToDiscussionTopic()` maps the fine-grained page-context
+value to the closest broad topic purely to *suggest* a convenience
+default on the select — the visitor can always clear or change it
+before submitting, and un-mapped values (e.g. `other`) intentionally
+leave the field unprefilled rather than guessing.
+
+This is stored in `leads.service_interest` (same DB column as before,
+narrower value domain — `supabase/migrations/0004_optional_discussion_
+topic_and_origin_page.sql`), nullable, DB-constrained via a `check`
+constraint to the 8 broad values only. Treat it as potentially
+sensitive health-adjacent information: it's patient-volunteered, never
+inferred.
 
 ## 7. Lead schema & status flow
 
 `public.leads` (see `supabase/migrations/0001_leads_and_analytics.sql`
-for the exact DDL). Status values: `lead_created` → `sent_to_nmc` →
+for the base DDL, plus `0003`/`0004` for the UX-simplification
+changes). Status values: `lead_created` → `sent_to_nmc` →
 `{booked | attended | cancelled | not_booked}`. **Only the first two
-transitions are automated this phase** (`createLead` inserts at
-`lead_created`; `markSentToNmc` moves to `sent_to_nmc`). The remaining
+transitions are automated**, and — since the UX simplification — both
+happen inside the *same* `createLead` server action, in the same user
+click: it inserts the lead at `lead_created`, then immediately
+attempts the `sent_to_nmc` transition before returning. The remaining
 statuses exist in the schema/check-constraint for forward compatibility
 but nothing currently writes them — see §11 below.
+
+Public form fields (final, post-simplification): full name, email,
+optional discussion topic, required privacy consent. Phone, preferred
+contact method, and marketing consent were removed from the public
+form; their DB columns remain (nullable) for backward compatibility
+with any pre-simplification leads rather than a destructive migration.
 
 ## 8. Security model
 
@@ -236,7 +307,7 @@ Authentication → Users → Add user) with your email/password, then set
 | `/admin` | Overview KPIs (visitors, page views, Book CTA clicks, leads, NMC clicks) + funnel |
 | `/admin/pages` | Views/Book-clicks per page (leads/NMC-clicks not derivable per page — see limitation below) |
 | `/admin/sources` | Sessions/Book-clicks/Leads/NMC-clicks per normalized source, with conversion % |
-| `/admin/services` | Leads/NMC-clicks per service, with conversion % |
+| `/admin/services` | Leads/NMC-clicks per discussion topic, with conversion % |
 | `/admin/leads` | Paginated, filterable (status, service, date range) read-only leads table |
 | `/admin/leads/[id]` | Full lead detail: contact, attribution, consent, status timestamps |
 
@@ -248,12 +319,16 @@ data yet for this range," never placeholder numbers.
 ### Known limitation: page-level lead/NMC-click counts
 
 `admin_page_performance` cannot attribute a lead or NMC click to a
-specific marketing page, because a lead only carries its `last_touch_page`
-(the last *marketing* entry page, not necessarily where the form was
-submitted — see §5) — not "the page the visit reached `/book`
-from." Faking this join was rejected as inconsistent with the brief's
-"do not show fake data" requirement (§27). Use `/admin/sources` and
-`/admin/services` for lead-level breakdowns instead.
+specific marketing page. `leads.origin_page` (§5) now captures the
+actual referring page reliably, but `admin_page_performance` aggregates
+`analytics_events.path` (anonymous, pre-identification) — joining an
+identified lead's `origin_page` into that anonymous aggregate would be
+exactly the "unsafe joining of anonymous analytics identities to PII"
+the brief tells us to avoid (§45). Faking the join instead was rejected
+as inconsistent with "do not show fake data" (§27). Use
+`/admin/sources` and `/admin/services` for lead-level breakdowns
+instead, or open individual leads (`/admin/leads/[id]`) to see each
+one's `origin_page`.
 
 ## 11. Future booked/attended workflow
 
@@ -261,9 +336,9 @@ Not automated this phase, per brief §42/§43. Options for later:
 
 - **Manual admin status update**: extend `/admin/leads/[id]` with a
   server-action-backed status dropdown (`booked`/`attended`/`cancelled`/
-  `not_booked`), authenticated + audited the same way `markSentToNmc`
-  is today. Deliberately deferred to keep this phase's admin surface
-  read-only, per brief §33/§43.
+  `not_booked`), authenticated + audited the same way the `sent_to_nmc`
+  transition is today. Deliberately deferred to keep this phase's
+  admin surface read-only, per brief §33/§43.
 - **CSV reconciliation**: the practice periodically exports a booked-
   patient list from NMC (or receives one) and an admin script/route
   matches by email/phone to update `leads.status`.
@@ -312,3 +387,10 @@ either replay the same MCP call or, with the Supabase CLI installed,
 - `0002_fix_set_updated_at_search_path.sql` — pins `search_path` on the
   `updated_at` trigger function (flagged by Supabase's security
   advisor as a mutable-search-path function; fixed same session).
+- `0003_make_phone_optional.sql` — UX simplification: `phone` relaxed
+  to nullable (public form no longer collects it; non-destructive,
+  table had 0 rows).
+- `0004_optional_discussion_topic_and_origin_page.sql` — UX/privacy
+  addendum: `service_interest` relaxed to nullable with its check
+  constraint swapped to the new broad 8-value discussion-topic enum
+  (§6); new nullable `origin_page` column + index (§5).

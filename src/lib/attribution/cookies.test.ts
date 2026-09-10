@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { parseAttributionCookie, serializeTouch, type AttributionTouch } from "./cookies";
+import {
+  parseAttributionCookie,
+  parseBookOrigin,
+  serializeTouch,
+  type AttributionTouch,
+} from "./cookies";
 
 describe("attribution cookies", () => {
   it("round-trips a touch through serialize/parse", () => {
@@ -18,5 +23,19 @@ describe("attribution cookies", () => {
 
   it("returns null when required fields are missing", () => {
     expect(parseAttributionCookie(encodeURIComponent(JSON.stringify({ source: "direct" })))).toBeNull();
+  });
+});
+
+describe("parseBookOrigin", () => {
+  it("returns the page path unchanged", () => {
+    expect(parseBookOrigin("/erectile-dysfunction")).toBe("/erectile-dysfunction");
+  });
+
+  it("returns null for undefined", () => {
+    expect(parseBookOrigin(undefined)).toBeNull();
+  });
+
+  it("returns null for an empty string", () => {
+    expect(parseBookOrigin("")).toBeNull();
   });
 });

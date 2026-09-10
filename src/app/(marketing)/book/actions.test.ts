@@ -2,7 +2,10 @@ import { describe, expect, it, vi, beforeEach } from "vitest";
 
 const insertSingleMock = vi.fn();
 const selectMock = vi.fn(() => ({ single: insertSingleMock }));
-const insertMock = vi.fn(() => ({ select: selectMock }));
+const insertMock = vi.fn((payload: Record<string, unknown>) => {
+  void payload;
+  return { select: selectMock };
+});
 const eqMock = vi.fn();
 const updateMock = vi.fn();
 
@@ -15,23 +18,22 @@ vi.mock("@/lib/supabase/service-client", () => ({
   }),
 }));
 
+let cookieValues: Record<string, string> = {};
 vi.mock("next/headers", () => ({
   cookies: async () => ({
-    get: () => undefined,
+    get: (name: string) => (name in cookieValues ? { value: cookieValues[name] } : undefined),
   }),
   headers: async () => ({
     get: () => null,
   }),
 }));
 
-const { createLead, markSentToNmc } = await import("./actions");
+const { createLead } = await import("./actions");
 
 function validFormData(overrides: Record<string, string> = {}) {
   const fd = new FormData();
   fd.set("fullName", "Jane Doe");
   fd.set("email", "jane@example.com");
-  fd.set("phone", "+971501234567");
-  fd.set("serviceInterest", "erectile_dysfunction");
   fd.set("privacyConsent", "on");
   fd.set("company", "");
   fd.set("renderedAt", String(Date.now() - 5000));
@@ -44,19 +46,44 @@ beforeEach(() => {
   insertMock.mockClear();
   updateMock.mockReset().mockReturnValue({ eq: () => ({ eq: eqMock }) });
   eqMock.mockReset().mockResolvedValue({ error: null });
+  cookieValues = {};
 });
 
 describe("createLead", () => {
-  it("succeeds with a valid payload", async () => {
+  it("succeeds with only name, email and privacy consent (no phone, no topic)", async () => {
     const result = await createLead(validFormData());
     expect(result).toEqual({ ok: true, leadId: "lead-1" });
     expect(insertMock).toHaveBeenCalledTimes(1);
+  });
+
+  it("does not include phone/preferredContactMethod/marketingConsent form fields", () => {
+    const fd = validFormData();
+    expect(fd.has("phone")).toBe(false);
+    expect(fd.has("preferredContactMethod")).toBe(false);
+    expect(fd.has("marketingConsent")).toBe(false);
   });
 
   it("rejects when privacy consent is missing", async () => {
     const fd = validFormData();
     fd.delete("privacyConsent");
     const result = await createLead(fd);
+    expect(result.ok).toBe(false);
+    expect(insertMock).not.toHaveBeenCalled();
+  });
+
+  it("succeeds with a valid discussion topic", async () => {
+    const result = await createLead(validFormData({ discussionTopic: "fertility" }));
+    expect(result.ok).toBe(true);
+    expect(insertMock.mock.calls[0][0]).toMatchObject({ service_interest: "fertility" });
+  });
+
+  it("stores a null service_interest when no discussion topic is given", async () => {
+    await createLead(validFormData());
+    expect(insertMock.mock.calls[0][0]).toMatchObject({ service_interest: null });
+  });
+
+  it("rejects the prefer-not-to-say sentinel if it somehow reaches the server (client should omit it)", async () => {
+    const result = await createLead(validFormData({ discussionTopic: "prefer_not_to_say" }));
     expect(result.ok).toBe(false);
     expect(insertMock).not.toHaveBeenCalled();
   });
@@ -84,23 +111,47 @@ describe("createLead", () => {
     const result = await createLead(validFormData());
     expect(result.ok).toBe(false);
   });
-});
 
-describe("markSentToNmc", () => {
-  it("resolves ok on a successful update", async () => {
-    const result = await markSentToNmc("lead-1");
-    expect(result).toEqual({ ok: true });
+  it("immediately attempts to mark the lead sent_to_nmc within the same action", async () => {
+    await createLead(validFormData());
+    expect(updateMock).toHaveBeenCalledTimes(1);
+    expect(updateMock).toHaveBeenCalledWith(
+      expect.objectContaining({ status: "sent_to_nmc" }),
+    );
   });
 
-  it("resolves { ok: false } (never throws) when the DB update fails", async () => {
+  it("still returns ok:true when the sent_to_nmc update fails (redirect must not be blocked)", async () => {
     eqMock.mockResolvedValueOnce({ error: { message: "db down" } });
-    await expect(markSentToNmc("lead-1")).resolves.toEqual({ ok: false });
+    const result = await createLead(validFormData());
+    expect(result).toEqual({ ok: true, leadId: "lead-1" });
   });
 
-  it("resolves { ok: false } (never throws) when the client throws synchronously", async () => {
+  it("still returns ok:true when the sent_to_nmc update throws synchronously", async () => {
     updateMock.mockImplementationOnce(() => {
       throw new Error("boom");
     });
-    await expect(markSentToNmc("lead-1")).resolves.toEqual({ ok: false });
+    const result = await createLead(validFormData());
+    expect(result).toEqual({ ok: true, leadId: "lead-1" });
+  });
+
+  it("captures origin_page from the book_origin cookie, not the request referer", async () => {
+    cookieValues.book_origin = "/erectile-dysfunction";
+    await createLead(validFormData());
+    expect(insertMock.mock.calls[0][0]).toMatchObject({ origin_page: "/erectile-dysfunction" });
+  });
+
+  it("stores a null origin_page when no book_origin cookie is present", async () => {
+    await createLead(validFormData());
+    expect(insertMock.mock.calls[0][0]).toMatchObject({ origin_page: null });
+  });
+
+  it("never stores the referer-derived value as the diagnosis-bearing discussionTopic just because the visitor came from a treatment page", async () => {
+    cookieValues.book_origin = "/erectile-dysfunction";
+    await createLead(validFormData());
+    // origin_page (attribution) and service_interest (patient-stated topic) must stay independent.
+    expect(insertMock.mock.calls[0][0]).toMatchObject({
+      origin_page: "/erectile-dysfunction",
+      service_interest: null,
+    });
   });
 });

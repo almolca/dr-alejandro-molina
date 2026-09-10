@@ -48,3 +48,19 @@ export function parseAttributionCookie(raw: string | undefined | null): Attribut
     return null;
   }
 }
+
+/**
+ * Origin-page capture — R7.2 UX addendum. `leads.referrer` (captured
+ * when the lead form POSTs) always resolves to `/book` itself, since
+ * that's the page the POST originates from — never a reliable "which
+ * marketing page linked here" signal. This cookie is set instead, at
+ * `/book`'s initial GET (src/proxy.ts), from that request's own
+ * Referer header — a short-lived, plain-path cookie (no JSON), just
+ * long enough to survive filling out the form.
+ */
+export const BOOK_ORIGIN_COOKIE = "book_origin";
+export const BOOK_ORIGIN_MAX_AGE_SECONDS = 60 * 30; // 30 minutes
+
+export function parseBookOrigin(raw: string | undefined | null): string | null {
+  return raw && raw.length > 0 ? raw : null;
+}

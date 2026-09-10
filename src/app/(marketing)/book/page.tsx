@@ -57,8 +57,8 @@ export default async function BookPage({ searchParams }: Props) {
               {doctor.title} · {practiceLocationLine}
             </p>
             <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-              Share a few details below. After submitting, you&rsquo;ll continue to the official{" "}
-              {practice.facilityShortName} booking system to select your appointment time.
+              Share your details below and continue directly to the official{" "}
+              {practice.facilityShortName} booking system to choose your appointment time.
             </p>
             {isPhysicianProfileConfigured && (
               <a
@@ -110,10 +110,11 @@ export default async function BookPage({ searchParams }: Props) {
               How Booking Works
             </h2>
             <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-              Submitting this form sends your name, email, mobile number and service of interest
-              to {doctor.displayName}&rsquo;s practice so we can follow up and help you book. It
-              does not create an appointment by itself — after submitting, you&rsquo;ll continue
-              to the official {practice.facilityName} appointment system, where booking and any
+              This page is an owned gateway to {practice.facilityShortName}&rsquo;s official
+              booking system, not a separate enquiry form — there is no callback workflow.
+              Submitting sends your name, email and (if provided) what you&rsquo;d like to
+              discuss to {doctor.displayName}&rsquo;s practice, and immediately continues you to
+              the official {practice.facilityName} appointment system, where booking and any
               patient records are handled entirely by {practice.facilityShortName}. See our{" "}
               <a href="/privacy" className="underline decoration-accent-strong underline-offset-4">
                 Privacy Policy

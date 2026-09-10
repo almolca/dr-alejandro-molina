@@ -2,18 +2,45 @@
 
 import { cookies, headers } from "next/headers";
 import { createLeadServerSchema } from "@/lib/domain/lead-schema";
-import { ATTRIBUTION_COOKIE, parseAttributionCookie } from "@/lib/attribution/cookies";
+import {
+  ATTRIBUTION_COOKIE,
+  BOOK_ORIGIN_COOKIE,
+  parseAttributionCookie,
+  parseBookOrigin,
+} from "@/lib/attribution/cookies";
 import { getServiceSupabase } from "@/lib/supabase/service-client";
 
 /**
- * Lead capture + NMC handoff — R7.2 brief §20/§21. `createLead` is the
- * only path into `leads` (browser never talks to Supabase directly, per
- * brief §17). `markSentToNmc` must never throw: the redirect to NMC has
- * to proceed even if the DB update fails (brief §21 — booking UX over
- * analytics completeness).
+ * Lead capture + immediate NMC handoff — R7.2 UX simplification.
+ * `/book` is a single-step attribution gateway: one submission both
+ * creates the lead (`status=lead_created`) and immediately attempts
+ * the `sent_to_nmc` transition, in the same server action, before the
+ * client redirects. The `sent_to_nmc` attempt is best-effort and must
+ * never block or fail the overall submission — the redirect to NMC has
+ * to happen regardless (see `attemptMarkSentToNmc` below).
+ *
+ * `createLead` is the only path into `leads` (browser never talks to
+ * Supabase directly).
  */
 
 const DOUBLE_SUBMIT_MIN_MS = 2000;
+
+async function attemptMarkSentToNmc(leadId: string): Promise<void> {
+  try {
+    const supabase = getServiceSupabase();
+    const { error } = await supabase
+      .from("leads")
+      .update({ status: "sent_to_nmc", booking_clicked_at: new Date().toISOString() })
+      .eq("id", leadId)
+      .eq("status", "lead_created");
+
+    if (error) {
+      console.error("[createLead] sent_to_nmc update failed", error);
+    }
+  } catch (err) {
+    console.error("[createLead] sent_to_nmc update threw", err);
+  }
+}
 
 export async function createLead(
   formData: FormData,
@@ -32,20 +59,19 @@ export async function createLead(
   const headerStore = await headers();
   const firstTouch = parseAttributionCookie(cookieStore.get(ATTRIBUTION_COOKIE.first)?.value);
   const lastTouch = parseAttributionCookie(cookieStore.get(ATTRIBUTION_COOKIE.last)?.value);
+  const originPage = parseBookOrigin(cookieStore.get(BOOK_ORIGIN_COOKIE)?.value);
 
   const rawPayload = {
     fullName: String(formData.get("fullName") ?? ""),
     email: String(formData.get("email") ?? ""),
-    phone: String(formData.get("phone") ?? ""),
-    serviceInterest: String(formData.get("serviceInterest") ?? ""),
-    preferredContactMethod: formData.get("preferredContactMethod")
-      ? String(formData.get("preferredContactMethod"))
+    discussionTopic: formData.get("discussionTopic")
+      ? String(formData.get("discussionTopic"))
       : undefined,
     privacyConsent: formData.get("privacyConsent") === "on",
-    marketingConsent: formData.get("marketingConsent") === "on",
     honeypot,
     renderedAt,
     referrer: headerStore.get("referer") ?? undefined,
+    originPage: originPage ?? undefined,
     utmSource: formData.get("utmSource") ? String(formData.get("utmSource")) : undefined,
     utmMedium: formData.get("utmMedium") ? String(formData.get("utmMedium")) : undefined,
     utmCampaign: formData.get("utmCampaign") ? String(formData.get("utmCampaign")) : undefined,
@@ -73,10 +99,9 @@ export async function createLead(
       .insert({
         full_name: parsed.data.fullName,
         email: parsed.data.email,
-        phone: parsed.data.phone,
-        service_interest: parsed.data.serviceInterest,
+        service_interest: parsed.data.discussionTopic ?? null,
         status: "lead_created",
-        preferred_contact_method: parsed.data.preferredContactMethod ?? null,
+        origin_page: parsed.data.originPage ?? null,
         first_touch_source: parsed.data.firstTouchSource ?? null,
         first_touch_landing_page: parsed.data.firstTouchLandingPage ?? null,
         first_touch_at: parsed.data.firstTouchAt ?? null,
@@ -91,8 +116,6 @@ export async function createLead(
         utm_content: parsed.data.utmContent ?? null,
         privacy_consent: true,
         privacy_consent_at: now,
-        marketing_consent: parsed.data.marketingConsent,
-        marketing_consent_at: parsed.data.marketingConsent ? now : null,
       })
       .select("id")
       .single();
@@ -102,29 +125,13 @@ export async function createLead(
       return { ok: false, error: "We couldn't submit your details. Please try again." };
     }
 
-    return { ok: true, leadId: data.id as string };
+    const leadId = data.id as string;
+    // Best-effort, in the same action — never blocks the response.
+    await attemptMarkSentToNmc(leadId);
+
+    return { ok: true, leadId };
   } catch (err) {
     console.error("[createLead] unexpected error", err);
     return { ok: false, error: "We couldn't submit your details. Please try again." };
-  }
-}
-
-export async function markSentToNmc(leadId: string): Promise<{ ok: boolean }> {
-  try {
-    const supabase = getServiceSupabase();
-    const { error } = await supabase
-      .from("leads")
-      .update({ status: "sent_to_nmc", booking_clicked_at: new Date().toISOString() })
-      .eq("id", leadId)
-      .eq("status", "lead_created");
-
-    if (error) {
-      console.error("[markSentToNmc] update failed", error);
-      return { ok: false };
-    }
-    return { ok: true };
-  } catch (err) {
-    console.error("[markSentToNmc] unexpected error", err);
-    return { ok: false };
   }
 }

@@ -41,18 +41,24 @@ export type SourcePerformanceRow = {
 };
 
 export type ServicePerformanceRow = {
-  service_interest: string;
+  service_interest: string | null;
   leads: number;
   nmc_clicks: number;
 };
 
+/**
+ * `phone` is intentionally excluded from the list view — the public
+ * form no longer collects it (R7.2 UX addendum), so it would be an
+ * almost-always-empty column there. It's still readable in
+ * `LEAD_DETAIL_COLUMNS` below for pre-simplification leads that do
+ * have one.
+ */
 export type LeadRow = {
   id: string;
   created_at: string;
   full_name: string;
   email: string;
-  phone: string;
-  service_interest: string;
+  service_interest: string | null;
   status: string;
   last_touch_source: string | null;
   first_touch_source: string | null;
@@ -60,11 +66,11 @@ export type LeadRow = {
 };
 
 const LEAD_LIST_COLUMNS =
-  "id, created_at, full_name, email, phone, service_interest, status, last_touch_source, first_touch_source, booking_clicked_at";
+  "id, created_at, full_name, email, service_interest, status, last_touch_source, first_touch_source, booking_clicked_at";
 
 const LEAD_DETAIL_COLUMNS =
   "id, created_at, updated_at, full_name, email, phone, service_interest, status, preferred_contact_method, " +
-  "first_touch_source, first_touch_landing_page, first_touch_at, last_touch_source, last_touch_page, last_touch_at, " +
+  "origin_page, first_touch_source, first_touch_landing_page, first_touch_at, last_touch_source, last_touch_page, last_touch_at, " +
   "referrer, utm_source, utm_medium, utm_campaign, utm_term, utm_content, booking_clicked_at, " +
   "privacy_consent, privacy_consent_at, marketing_consent, marketing_consent_at";
 

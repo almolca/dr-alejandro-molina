@@ -1,7 +1,11 @@
 /**
- * Service-interest enum — R7.2 brief §6. Stable internal values used by
- * the booking form, `leads.service_interest`, and analytics event
- * properties. Do not derive logic from the human labels below.
+ * Fine-grained page-context enum — R7.2 brief §6. Used by `BookingCta`'s
+ * `?service=` link/prefill context and page-level analytics event
+ * properties. Deliberately NOT the enum stored on a lead (see
+ * `discussion-topic.ts`): a visitor must never be recorded as having a
+ * specific condition merely because of which marketing page linked
+ * them to `/book` (R7.2 UX/privacy addendum). Do not derive logic from
+ * the human labels below.
  */
 export const SERVICE_INTERESTS = [
   { value: "erectile_dysfunction", label: "Erectile Dysfunction" },
@@ -29,8 +33,4 @@ export const SERVICE_INTEREST_VALUES = SERVICE_INTERESTS.map(
 
 export function isServiceInterest(value: string): value is ServiceInterest {
   return (SERVICE_INTEREST_VALUES as readonly string[]).includes(value);
-}
-
-export function serviceInterestLabel(value: string): string {
-  return SERVICE_INTERESTS.find((s) => s.value === value)?.label ?? "Other";
 }

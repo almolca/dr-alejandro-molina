@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getLead } from "@/lib/admin/queries";
-import { serviceInterestLabel } from "@/lib/domain/service-interest";
+import { discussionTopicLabel } from "@/lib/domain/discussion-topic";
 
 export const metadata = { robots: { index: false, follow: false } };
 
@@ -38,7 +38,7 @@ export default async function AdminLeadDetailPage({ params }: Props) {
           <Field label="Email" value={l.email} />
           <Field label="Phone" value={l.phone} />
           <Field label="Preferred contact" value={l.preferred_contact_method} />
-          <Field label="Service interest" value={serviceInterestLabel(String(l.service_interest ?? ""))} />
+          <Field label="Discussion topic" value={discussionTopicLabel(l.service_interest as string | null)} />
           <Field label="Status" value={l.status} />
           <Field label="Created" value={l.created_at ? new Date(String(l.created_at)).toLocaleString() : null} />
         </dl>
@@ -47,6 +47,7 @@ export default async function AdminLeadDetailPage({ params }: Props) {
       <section className="rounded-sm border border-stone-200 bg-white p-6">
         <h2 className="mb-4 text-sm font-semibold uppercase tracking-wide text-stone-500">Attribution</h2>
         <dl className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+          <Field label="Origin page" value={l.origin_page} />
           <Field label="First-touch source" value={l.first_touch_source} />
           <Field label="First-touch landing page" value={l.first_touch_landing_page} />
           <Field label="First-touch at" value={l.first_touch_at ? new Date(String(l.first_touch_at)).toLocaleString() : null} />

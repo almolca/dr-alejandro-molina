@@ -3,6 +3,8 @@ import { normalizeSource } from "@/lib/attribution/normalize-source";
 import {
   ATTRIBUTION_COOKIE,
   ATTRIBUTION_MAX_AGE_SECONDS,
+  BOOK_ORIGIN_COOKIE,
+  BOOK_ORIGIN_MAX_AGE_SECONDS,
   serializeTouch,
   type AttributionTouch,
 } from "@/lib/attribution/cookies";
@@ -33,10 +35,36 @@ export function proxy(request: NextRequest) {
   const utmSource = searchParams.get("utm_source");
   const refererHeader = request.headers.get("referer");
   let refererHost: string | null = null;
+  let refererPath: string | null = null;
   try {
-    refererHost = refererHeader ? new URL(refererHeader).host : null;
+    if (refererHeader) {
+      const refererUrl = new URL(refererHeader);
+      refererHost = refererUrl.host;
+      refererPath = refererUrl.pathname + refererUrl.search;
+    }
   } catch {
     refererHost = null;
+    refererPath = null;
+  }
+
+  // Origin-page capture (R7.2 UX addendum) — independent of the
+  // first/last-touch "fresh entry" logic below, so it runs on every
+  // /book load, including pure internal navigation from a marketing
+  // page. Only set when the referer is same-origin and isn't /book
+  // itself (e.g. a reload of /book, or the POST-time self-referer).
+  if (
+    pathname === "/book" &&
+    refererPath &&
+    refererHost === request.nextUrl.host &&
+    !refererPath.startsWith("/book")
+  ) {
+    response.cookies.set(BOOK_ORIGIN_COOKIE, refererPath, {
+      maxAge: BOOK_ORIGIN_MAX_AGE_SECONDS,
+      path: "/",
+      sameSite: "lax",
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+    });
   }
 
   const hasFirstTouchCookie = Boolean(request.cookies.get(ATTRIBUTION_COOKIE.first));
