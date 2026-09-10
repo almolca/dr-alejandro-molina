@@ -12,10 +12,17 @@ import { buildMetadata } from "@/lib/seo/metadata";
  * instruction §10). This is professional-draft-quality placeholder
  * content, not a legally reviewed policy. Do not treat as approved for
  * launch without owner/legal sign-off. See IMPLEMENTATION_REPORT.md.
+ *
+ * R8.1C/R8.1D hardened the *technical* implementation (consent gating,
+ * accurate collected-fields list, cross-border/retention/processor
+ * disclosure) and reviewed it against publicly available UAE PDPL
+ * guidance — that is not the same thing as final legal sign-off, and
+ * this file's content should not be read as a claim of guaranteed
+ * legal compliance. The DRAFT status above is deliberately unchanged.
  */
 
 const PATH = "/privacy";
-const LAST_UPDATED = "10 September 2026 (R8.1C)";
+const LAST_UPDATED = "10 September 2026 (R8.1D)";
 
 export const metadata: Metadata = buildMetadata({
   title: "Privacy Policy",
@@ -139,15 +146,49 @@ export default function PrivacyPage() {
                 Where Information Is Processed
               </h2>
               <p className="mt-3">
-                This website is built and hosted using third-party cloud
-                infrastructure and database providers, which process and store
-                data outside the United Arab Emirates, including in the United
-                States and India. These providers act only on this
-                website&rsquo;s instructions, as processors, and do not
-                independently use your data for their own purposes. We use
-                them because they provide the technical infrastructure this
-                website runs on, not as a matter of preference for any
-                particular country.
+                This website is built and hosted on Vercel, and booking/lead
+                and analytics data is stored in a database managed by
+                Supabase. These are the specific infrastructure and database
+                providers currently used to run this website. Based on their
+                currently configured regions, the application itself runs in
+                the United States and the database is located in India —
+                both outside the United Arab Emirates. These providers act
+                only on this website&rsquo;s instructions, as processors, and
+                do not independently use your data for their own purposes.
+                We use them because they provide the technical
+                infrastructure this website runs on, not as a matter of
+                preference for any particular country, and this section will
+                be updated if that infrastructure changes.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="font-display text-xl text-foreground">Retention</h2>
+              <p className="mt-3">
+                Booking/lead records that do not result in a confirmed
+                consultation are kept for up to 12 months from submission,
+                after which they are eligible for deletion. Analytics data
+                (the anonymous identifier and event records described above)
+                is kept only for as long as reasonably useful for
+                understanding how the site is used for our current
+                operational needs.
+              </p>
+              <p className="mt-3">
+                This describes our intended retention practice.
+                Automated, scheduled deletion enforcing it is not yet
+                implemented — this is identified as a follow-up operational
+                requirement, not something already running. Regardless of
+                how long information has been held, you may ask us to
+                delete your information at any time (see &ldquo;Your
+                Rights&rdquo;).
+              </p>
+              <p className="mt-3">
+                This retention approach applies only to information
+                collected through this website. It does not apply to your
+                medical records, appointment history, or any clinical
+                information held by {practice.facilityShortName}, which are
+                governed by {practice.facilityShortName}&rsquo;s own
+                policies, not this one.
               </p>
             </div>
 

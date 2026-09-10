@@ -27,7 +27,21 @@ export const CONSENT_COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 180; // 180 days �
  * same pure/impure split this codebase already uses for the attribution
  * cookies (`attribution/cookies.ts`'s `serializeTouch`/`parseAttributionCookie`
  * vs. the actual `response.cookies.set()` call in `proxy.ts`).
+ *
+ * R8.1D: takes `secure` as an explicit parameter rather than reading
+ * `window.location` itself, so this file stays free of browser-only
+ * references (its own design constraint above, for safe import from
+ * `proxy.ts`) — `consent.ts` (the only caller) decides `secure` from
+ * `window.location.protocol`. A `Secure` cookie is silently *not set at
+ * all* by the browser over plain `http://`, which is exactly how local
+ * dev serves this app — so this must stay conditional, never hardcoded
+ * true, or `next dev` would break with no error, just a cookie that
+ * never appears.
  */
-export function buildConsentCookieString(status: "granted" | "denied"): string {
-  return `${CONSENT_COOKIE_NAME}=${status}; path=/; max-age=${CONSENT_COOKIE_MAX_AGE_SECONDS}; SameSite=Lax`;
+export function buildConsentCookieString(
+  status: "granted" | "denied",
+  options?: { secure?: boolean },
+): string {
+  const secure = options?.secure ? "; Secure" : "";
+  return `${CONSENT_COOKIE_NAME}=${status}; path=/; max-age=${CONSENT_COOKIE_MAX_AGE_SECONDS}; SameSite=Lax${secure}`;
 }

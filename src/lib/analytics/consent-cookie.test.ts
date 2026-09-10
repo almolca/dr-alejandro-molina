@@ -14,7 +14,15 @@ describe("buildConsentCookieString", () => {
     expect(buildConsentCookieString("denied")).toContain(`${CONSENT_COOKIE_NAME}=denied`);
   });
 
-  it("never marks the cookie Secure (would silently fail to set over local http:// dev, matching this codebase's other client-set cookie — analytics_session_id)", () => {
+  it("omits Secure by default (would silently fail to set over local http:// dev if forced on)", () => {
     expect(buildConsentCookieString("granted")).not.toMatch(/;\s*Secure/i);
+    expect(buildConsentCookieString("granted", {})).not.toMatch(/;\s*Secure/i);
+    expect(buildConsentCookieString("granted", { secure: false })).not.toMatch(/;\s*Secure/i);
+  });
+
+  it("adds Secure when explicitly requested (R8.1D — production/HTTPS)", () => {
+    const cookie = buildConsentCookieString("granted", { secure: true });
+    expect(cookie).toMatch(/;\s*Secure/i);
+    expect(cookie).toContain(`${CONSENT_COOKIE_NAME}=granted`);
   });
 });

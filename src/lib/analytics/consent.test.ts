@@ -21,9 +21,16 @@ function makeFakeLocalStorage() {
 describe("consent", () => {
   let cookieValue = "";
 
+  function stubWindow(protocol: "http:" | "https:") {
+    vi.stubGlobal("window", {
+      localStorage: makeFakeLocalStorage(),
+      location: { protocol },
+    });
+  }
+
   beforeEach(() => {
     cookieValue = "";
-    vi.stubGlobal("window", { localStorage: makeFakeLocalStorage() });
+    stubWindow("https:"); // production-like default; individual tests override for http://
     vi.stubGlobal("document", {
       get cookie() {
         return cookieValue;
@@ -88,5 +95,26 @@ describe("consent", () => {
   it("resyncConsentCookie: does nothing when no choice has been made yet", () => {
     resyncConsentCookie();
     expect(cookieValue).toBe("");
+  });
+
+  it("R8.1D: marks the mirror cookie Secure over https:// (production)", () => {
+    stubWindow("https:");
+    setConsent("granted");
+    expect(cookieValue).toMatch(/;\s*Secure/i);
+  });
+
+  it("R8.1D: omits Secure over http:// (local dev) — a Secure cookie would otherwise silently never be set", () => {
+    stubWindow("http:");
+    setConsent("granted");
+    expect(cookieValue).not.toMatch(/;\s*Secure/i);
+    expect(cookieValue).toContain("cookie_consent=granted");
+  });
+
+  it("R8.1D: resyncConsentCookie also respects the current protocol", () => {
+    stubWindow("http:");
+    window.localStorage.setItem("consent:analytics:v1", "denied");
+    resyncConsentCookie();
+    expect(cookieValue).toContain("cookie_consent=denied");
+    expect(cookieValue).not.toMatch(/;\s*Secure/i);
   });
 });

@@ -28,6 +28,11 @@ function safeLocalStorage(): Storage | null {
   }
 }
 
+/** R8.1D — Secure in production (HTTPS), omitted on local http://, where a `Secure` cookie would silently never be set at all. */
+function isHttps(): boolean {
+  return typeof window !== "undefined" && window.location.protocol === "https:";
+}
+
 export function getConsent(): ConsentStatus {
   const storage = safeLocalStorage();
   const value = storage?.getItem(STORAGE_KEY);
@@ -37,7 +42,7 @@ export function getConsent(): ConsentStatus {
 export function setConsent(status: "granted" | "denied"): void {
   safeLocalStorage()?.setItem(STORAGE_KEY, status);
   if (typeof document !== "undefined") {
-    document.cookie = buildConsentCookieString(status);
+    document.cookie = buildConsentCookieString(status, { secure: isHttps() });
   }
 }
 
@@ -58,6 +63,6 @@ export function hasAnalyticsConsent(): boolean {
 export function resyncConsentCookie(): void {
   const status = getConsent();
   if (status !== "unset" && typeof document !== "undefined") {
-    document.cookie = buildConsentCookieString(status);
+    document.cookie = buildConsentCookieString(status, { secure: isHttps() });
   }
 }

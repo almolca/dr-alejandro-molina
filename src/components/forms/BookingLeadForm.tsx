@@ -191,7 +191,9 @@ export function BookingLeadForm({
           <a href="/privacy" className="underline decoration-accent-strong underline-offset-2" target="_blank" rel="noopener noreferrer">
             Privacy Policy
           </a>{" "}
-          and consent to my details being used to facilitate my appointment booking.
+          and consent to my name, email, and (if provided) discussion
+          topic being used to process this consultation request — not
+          for marketing, newsletters, or other communications.
         </label>
       </div>
       {fieldErrors.privacyConsent && <p className="text-xs text-red-600">{fieldErrors.privacyConsent}</p>}
