@@ -8,11 +8,14 @@ import { Button } from "@/components/ui/Button";
 /**
  * Cookie/analytics consent banner — spec §27, Phase 5 brief §7.
  *
- * Honest framing: no analytics provider is active yet (see
- * `lib/analytics/events.ts`), so this does not claim tracking is
- * currently happening — it's a forward-looking preference capture, so
- * that if/when GA4 or Vercel Analytics is added, existing visitors'
- * choice is already respected rather than needing to ask again.
+ * This gates a real, active first-party analytics pipeline (R7.2
+ * onward — see `lib/analytics/events.ts`, which posts to `/api/events`
+ * and inserts into Supabase `analytics_events`), not a forward-looking
+ * placeholder — `trackEvent()` checks `hasAnalyticsConsent()` before
+ * every call, and R8.1C additionally gates the non-essential
+ * attribution cookies this site sets (`src/proxy.ts`) on the same
+ * choice. No third-party analytics/advertising provider (GA4, Meta
+ * Pixel, etc.) is present.
  *
  * Accessibility / anti-dark-pattern requirements, all deliberate:
  * - Both actions use the same visual weight (`variant="secondary"` on
@@ -40,6 +43,24 @@ import { Button } from "@/components/ui/Button";
  * "underneath" an in-flow element, so no interactive content can ever
  * be obscured, at any viewport size, regardless of hero content length.
  */
+/**
+ * R8.1C privacy audit — "change my choice" path (brief §6). Reuses this
+ * exact banner rather than a second consent UI: the footer's "Cookie
+ * Settings" control (`CookieSettingsLink.tsx`) dispatches this event,
+ * which forces the banner visible again regardless of the stored
+ * choice, without altering that choice until the visitor picks again.
+ * A plain DOM event, not shared React state, since the banner and the
+ * footer live in unrelated parts of the tree under `layout.tsx` and
+ * this is the smallest change that connects them.
+ */
+const REOPEN_EVENT = "cookie-consent:reopen";
+
+export function reopenConsentBanner(): void {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new Event(REOPEN_EVENT));
+  }
+}
+
 export function ConsentBanner() {
   const [visible, setVisible] = useState(false);
 
@@ -50,6 +71,12 @@ export function ConsentBanner() {
     // is what avoids a hydration mismatch, not what causes one.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setVisible(getConsent() === "unset");
+
+    function handleReopen() {
+      setVisible(true);
+    }
+    window.addEventListener(REOPEN_EVENT, handleReopen);
+    return () => window.removeEventListener(REOPEN_EVENT, handleReopen);
   }, []);
 
   if (!visible) return null;

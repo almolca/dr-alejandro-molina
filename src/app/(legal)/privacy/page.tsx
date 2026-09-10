@@ -15,7 +15,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
  */
 
 const PATH = "/privacy";
-const LAST_UPDATED = "10 September 2026";
+const LAST_UPDATED = "10 September 2026 (R8.1C)";
 
 export const metadata: Metadata = buildMetadata({
   title: "Privacy Policy",
@@ -61,17 +61,32 @@ export default function PrivacyPage() {
               <h2 className="font-display text-xl text-foreground">Information We Collect</h2>
               <p className="mt-3">
                 When you submit the &ldquo;Book a Consultation&rdquo; form on this
-                website, we collect your full name, email address, mobile number,
-                service of interest, and (if provided) your preferred contact
-                method. We do not ask for and do not collect symptoms, diagnosis,
-                medical history, medications, or any other health information
-                through this website.
+                website, we collect your full name and email address, and, only
+                if you choose to provide it, a general topic you&rsquo;d like to
+                discuss (selected from a short list, such as &ldquo;Male
+                Hormonal Health&rdquo; or &ldquo;General Urology&rdquo;) —
+                this field is optional, and you may select
+                &ldquo;Prefer not to say&rdquo; instead. We do not ask for and
+                do not collect symptoms, a diagnosis, medical history,
+                medications, test results, or clinical records through this
+                website.
+              </p>
+              <p className="mt-3">
+                We are conscious that, because this is a medical practice&rsquo;s
+                website, even a general topic selection can be sensitive —
+                it may indicate an area of health interest, even though it is
+                not a diagnosis and is entirely optional. This field is
+                handled with the same access controls as your other contact
+                details (see &ldquo;Data Security&rdquo; below), is never
+                combined with the analytics described below, and — as with any
+                data you submit through this form — you may ask us to delete it
+                at any time (see &ldquo;Your Rights&rdquo;).
               </p>
               <p className="mt-3">
                 We also record where a visit or enquiry came from — such as the
                 referring website, search engine, or campaign link (UTM
-                parameters) — and the page you were on when you clicked
-                &ldquo;Continue to NMC Booking&rdquo;. This is used only to
+                parameters) — and, where applicable, which page on this site
+                linked you to the booking page. This is used only to
                 understand which channels bring visitors to the site, not to
                 build a profile of you as an individual.
               </p>
@@ -87,24 +102,52 @@ export default function PrivacyPage() {
               <h2 className="font-display text-xl text-foreground">Cookies and Analytics</h2>
               <p className="mt-3">
                 This website uses a small number of first-party, non-advertising
-                cookies. Two remember where a visit first came from and most
-                recently came from (e.g. a search engine, social media, or a
-                specific campaign link), so we can understand which channels
-                bring enquiries; these expire after 180 days and store only a
-                short code (such as &ldquo;google_business&rdquo; or
-                &ldquo;direct&rdquo;) and the page path — never your name, email,
-                or phone number. A separate anonymous identifier (a random code,
-                not derived from any personal information) is used, subject to
-                your consent below, to count page views and button clicks
-                without identifying you individually.
+                cookies, none of which are used for advertising or shared with
+                any advertising network. Two remember where a visit first came
+                from and most recently came from (e.g. a search engine, social
+                media, or a specific campaign link), and a third remembers which
+                page linked you to the booking page — these help us understand
+                which channels bring enquiries, expire after 180 days (30
+                minutes for the booking-referral one), and store only a short
+                code (such as &ldquo;google_business&rdquo; or
+                &ldquo;direct&rdquo;) and a page path — never your name, email,
+                or phone number. Like the anonymous identifier described below,
+                these are only set once you accept analytics cookies via the
+                banner shown on this site.
               </p>
               <p className="mt-3">
-                Anonymous, aggregate analytics events (such as a page view or a
-                &ldquo;Book a Consultation&rdquo; button click) are only recorded
-                once you accept analytics cookies via the banner shown on this
-                site. No symptom, health, or appointment information is ever
-                sent to analytics, and analytics events are never linked to the
-                contact details you submit through the booking form.
+                A separate anonymous identifier (a random code, not derived
+                from any personal information) is used, subject to your consent
+                below, to count page views and button clicks without
+                identifying you individually. Anonymous, aggregate analytics
+                events (such as a page view or a &ldquo;Book a
+                Consultation&rdquo; button click) are only recorded once you
+                accept analytics cookies. No symptom, health, or appointment
+                information is ever sent to analytics, and analytics events are
+                never linked to the contact details you submit through the
+                booking form.
+              </p>
+              <p className="mt-3">
+                You can change your cookie choice at any time using the
+                &ldquo;Cookie Settings&rdquo; link in the footer of this site,
+                which reopens the same banner shown on your first visit.
+              </p>
+            </div>
+
+            <div>
+              <h2 className="font-display text-xl text-foreground">
+                Where Information Is Processed
+              </h2>
+              <p className="mt-3">
+                This website is built and hosted using third-party cloud
+                infrastructure and database providers, which process and store
+                data outside the United Arab Emirates, including in the United
+                States and India. These providers act only on this
+                website&rsquo;s instructions, as processors, and do not
+                independently use your data for their own purposes. We use
+                them because they provide the technical infrastructure this
+                website runs on, not as a matter of preference for any
+                particular country.
               </p>
             </div>
 
@@ -127,12 +170,16 @@ export default function PrivacyPage() {
             <div>
               <h2 className="font-display text-xl text-foreground">Data Security</h2>
               <p className="mt-3">
-                Contact details submitted through the booking form are stored in
-                a database that is not directly accessible from the browser —
-                all reads and writes happen through this website&rsquo;s own
-                server, protected against unrestricted public access. Reasonable
-                technical measures are used to help protect this website more
-                generally. We do not collect health data through this website.
+                Contact details submitted through the booking form — including
+                the optional topic field described above — are stored in a
+                database that is not directly accessible from the browser: all
+                reads and writes happen through this website&rsquo;s own
+                server, and the database itself is configured to deny direct
+                access entirely, accessible only through that server.
+                Reasonable technical measures are used to help protect this
+                website more generally. As noted above, this website does not
+                collect symptoms, a diagnosis, medical history, medications,
+                test results, or clinical records.
               </p>
             </div>
 
@@ -142,12 +189,25 @@ export default function PrivacyPage() {
                 You may have rights in relation to any personal data processed
                 about you under applicable data protection law in the United
                 Arab Emirates, including the right to ask what information we
-                hold about you or to request its deletion. For data you
-                submitted through this website&rsquo;s booking form, contact us
-                using the details below. For information you provide directly
-                to {practice.facilityShortName} as part of booking or attending
-                a consultation, such requests should be directed to{" "}
+                hold about you, to request its correction or deletion, and to
+                withdraw any consent you have given at any time. Withdrawing
+                consent does not affect the lawfulness of anything already done
+                based on it. For analytics cookies specifically, withdrawal is
+                immediate via the &ldquo;Cookie Settings&rdquo; link in the
+                footer. For data you submitted through this website&rsquo;s
+                booking form, contact us using the details below. For
+                information you provide directly to{" "}
+                {practice.facilityShortName} as part of booking or attending a
+                consultation, such requests should be directed to{" "}
                 {practice.facilityShortName}.
+              </p>
+              <p className="mt-3">
+                Submitting the booking form is consent to that specific
+                purpose — being contacted to facilitate your appointment — and
+                is not consent to receive marketing or promotional
+                communications. This website does not send marketing
+                communications, and would only ever do so on the basis of
+                separate, explicit consent obtained for that specific purpose.
               </p>
             </div>
 

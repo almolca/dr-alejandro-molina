@@ -11,6 +11,7 @@ import {
 import { PRODUCTION_SITE_URL } from "@/config/site";
 import { isProductionHost } from "@/lib/seo/production-host";
 import { legacyGonePaths } from "@/lib/seo/legacy-redirects";
+import { CONSENT_COOKIE_NAME } from "@/lib/analytics/consent-cookie";
 
 /**
  * Captures UTM/referrer attribution into first-party cookies on every
@@ -52,6 +53,19 @@ export function proxy(request: NextRequest) {
     response.headers.set("X-Robots-Tag", "noindex, nofollow");
   }
 
+  // R8.1C privacy audit — attribution cookies (attr_first/attr_last,
+  // book_origin) are non-essential to booking itself (traced every
+  // reader: only `book/actions.ts`, only to enrich a lead record that
+  // is created and submitted successfully with or without them) and
+  // are marketing/analytics attribution by purpose, exactly the kind
+  // of cookie the site's own consent banner already claims a visitor
+  // can decline. They were previously set unconditionally, before any
+  // consent choice was possible — this cookie (mirrored client-side by
+  // `setConsent()`) is the only way this server-side middleware can
+  // see that choice. Absent/anything other than "granted" behaves as
+  // not-yet-consented, the same fail-closed default as `hasAnalyticsConsent()`.
+  const hasAnalyticsConsent = request.cookies.get(CONSENT_COOKIE_NAME)?.value === "granted";
+
   const utmSource = searchParams.get("utm_source");
   const refererHeader = request.headers.get("referer");
   let refererHost: string | null = null;
@@ -73,6 +87,7 @@ export function proxy(request: NextRequest) {
   // page. Only set when the referer is same-origin and isn't /book
   // itself (e.g. a reload of /book, or the POST-time self-referer).
   if (
+    hasAnalyticsConsent &&
     pathname === "/book" &&
     refererPath &&
     refererHost === request.nextUrl.host &&
@@ -92,6 +107,7 @@ export function proxy(request: NextRequest) {
   const isFreshEntry = Boolean(utmSource) || isExternalReferer || !hasFirstTouchCookie;
 
   if (!isFreshEntry) return response;
+  if (!hasAnalyticsConsent) return response;
 
   const source = normalizeSource({
     utmSource,

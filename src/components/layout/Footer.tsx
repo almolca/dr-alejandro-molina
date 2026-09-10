@@ -1,5 +1,6 @@
 import visual from "@/components/editorial/VisualSystem.module.css";
 import { BrandLogo } from "@/components/ui/BrandLogo";
+import { CookieSettingsLink } from "@/components/ui/CookieSettingsLink";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { doctor } from "@/config/doctor";
 import {
@@ -90,6 +91,7 @@ export function Footer() {
                 {item.label}
               </Link>
             ))}
+            <CookieSettingsLink />
           </nav>
         </div>
       </Container>
