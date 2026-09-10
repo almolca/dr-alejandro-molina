@@ -9,6 +9,7 @@ import {
   PREFER_NOT_TO_SAY,
   isDiscussionTopic,
   mapServiceToDiscussionTopic,
+  resolveSubmittedDiscussionTopic,
   type DiscussionTopic,
 } from "@/lib/domain/discussion-topic";
 import { leadFormSchema } from "@/lib/domain/lead-schema";
@@ -66,15 +67,21 @@ export function BookingLeadForm({
   function handleSubmit(formData: FormData) {
     setFormError(null);
 
-    // "Prefer not to say" is a UI-only sentinel — never sent as a value.
-    if (formData.get("discussionTopic") === PREFER_NOT_TO_SAY) {
+    // Single source of truth for what this field means (R7.2.2):
+    // omitted, "Prefer not to say", and anything invalid all resolve
+    // the same way — no topic sent at all, never a rejected value.
+    const rawTopic = formData.get("discussionTopic");
+    const resolvedTopic = resolveSubmittedDiscussionTopic(typeof rawTopic === "string" ? rawTopic : null);
+    if (resolvedTopic) {
+      formData.set("discussionTopic", resolvedTopic);
+    } else {
       formData.delete("discussionTopic");
     }
 
     const clientCheck = leadFormSchema.safeParse({
       fullName: formData.get("fullName"),
       email: formData.get("email"),
-      discussionTopic: formData.get("discussionTopic") || undefined,
+      discussionTopic: resolvedTopic,
       privacyConsent: formData.get("privacyConsent") === "on",
       honeypot: formData.get("company") ?? "",
       renderedAt,

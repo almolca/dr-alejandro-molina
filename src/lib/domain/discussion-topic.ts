@@ -40,6 +40,25 @@ export function discussionTopicLabel(value: string | null | undefined): string {
 }
 
 /**
+ * The single source of truth for "what does the submitted select value
+ * actually mean" — R7.2.2. Used by `BookingLeadForm` to decide what
+ * (if anything) to send to the server: omitted/empty and the
+ * "Prefer not to say" sentinel both resolve to `undefined` (no topic),
+ * exactly like leaving the field untouched — a declined answer is
+ * indistinguishable from no answer, by design. Anything that isn't a
+ * real `DiscussionTopic` (including the fine-grained page-context
+ * enum, or garbage) also resolves to `undefined` rather than being
+ * passed through, so this function alone determines what can ever
+ * reach the server for this field.
+ */
+export function resolveSubmittedDiscussionTopic(
+  raw: string | null | undefined,
+): DiscussionTopic | undefined {
+  if (!raw || raw === PREFER_NOT_TO_SAY) return undefined;
+  return isDiscussionTopic(raw) ? raw : undefined;
+}
+
+/**
  * Maps a marketing page's fine-grained service context (the
  * `?service=` a `BookingCta` link carries) to the closest broad
  * discussion topic, purely to suggest a convenience default on the

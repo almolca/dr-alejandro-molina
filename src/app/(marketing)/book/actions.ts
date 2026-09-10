@@ -2,6 +2,7 @@
 
 import { cookies, headers } from "next/headers";
 import { createLeadServerSchema } from "@/lib/domain/lead-schema";
+import { resolveSubmittedDiscussionTopic } from "@/lib/domain/discussion-topic";
 import {
   ATTRIBUTION_COOKIE,
   BOOK_ORIGIN_COOKIE,
@@ -64,9 +65,10 @@ export async function createLead(
   const rawPayload = {
     fullName: String(formData.get("fullName") ?? ""),
     email: String(formData.get("email") ?? ""),
-    discussionTopic: formData.get("discussionTopic")
-      ? String(formData.get("discussionTopic"))
-      : undefined,
+    // Same resolver the client uses (R7.2.2) — defense in depth, so a
+    // raw "prefer_not_to_say"/garbage value reaching this action
+    // directly is treated as "no topic," never rejected outright.
+    discussionTopic: resolveSubmittedDiscussionTopic(formData.get("discussionTopic")?.toString()),
     privacyConsent: formData.get("privacyConsent") === "on",
     honeypot,
     renderedAt,

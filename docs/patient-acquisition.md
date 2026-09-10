@@ -394,3 +394,13 @@ either replay the same MCP call or, with the Supabase CLI installed,
   addendum: `service_interest` relaxed to nullable with its check
   constraint swapped to the new broad 8-value discussion-topic enum
   (§6); new nullable `origin_page` column + index (§5).
+- `0005_fix_null_service_interest_join.sql` — bug fix (R7.2.2):
+  `admin_service_performance`'s `full outer join ... using
+  (service_interest)` never merged two NULL groups (standard SQL never
+  matches NULL = NULL, including in a `USING` join), so leads with no
+  discussion topic showed as two separate "Not specified" rows in
+  `/admin/services` instead of one. Fixed by coalescing NULL to a
+  sentinel before the join and converting back via `nullif` after —
+  the same pattern `admin_source_performance` already used correctly.
+  `admin_page_performance` was never affected (joins on the NOT NULL
+  `path` column).

@@ -3,6 +3,7 @@ import {
   discussionTopicLabel,
   isDiscussionTopic,
   mapServiceToDiscussionTopic,
+  resolveSubmittedDiscussionTopic,
 } from "./discussion-topic";
 
 describe("isDiscussionTopic", () => {
@@ -29,6 +30,36 @@ describe("discussionTopicLabel", () => {
   });
   it("labels an unknown value as Not specified", () => {
     expect(discussionTopicLabel("something_unmapped")).toBe("Not specified");
+  });
+});
+
+describe("resolveSubmittedDiscussionTopic", () => {
+  // R7.2.2 — what the booking form actually sends to the server for
+  // each of the three required scenarios. Must never throw and must
+  // never resolve "prefer_not_to_say" as a real topic.
+
+  it("scenario A: topic omitted (null) resolves to undefined", () => {
+    expect(resolveSubmittedDiscussionTopic(null)).toBeUndefined();
+  });
+
+  it("scenario A: topic omitted (empty string) resolves to undefined", () => {
+    expect(resolveSubmittedDiscussionTopic("")).toBeUndefined();
+  });
+
+  it("scenario B: Prefer not to say resolves to undefined, not a stored value", () => {
+    expect(resolveSubmittedDiscussionTopic("prefer_not_to_say")).toBeUndefined();
+  });
+
+  it("scenario C: a valid broad topic resolves to itself", () => {
+    expect(resolveSubmittedDiscussionTopic("fertility")).toBe("fertility");
+  });
+
+  it("rejects a fine-grained page-context value as not a valid broad topic", () => {
+    expect(resolveSubmittedDiscussionTopic("erectile_dysfunction")).toBeUndefined();
+  });
+
+  it("rejects garbage input safely", () => {
+    expect(resolveSubmittedDiscussionTopic("<script>alert(1)</script>")).toBeUndefined();
   });
 });
 

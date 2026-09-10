@@ -82,10 +82,16 @@ describe("createLead", () => {
     expect(insertMock.mock.calls[0][0]).toMatchObject({ service_interest: null });
   });
 
-  it("rejects the prefer-not-to-say sentinel if it somehow reaches the server (client should omit it)", async () => {
+  it("R7.2.2: still succeeds with a null topic if the prefer-not-to-say sentinel somehow reaches the server directly (defense in depth — never reject a valid decline)", async () => {
     const result = await createLead(validFormData({ discussionTopic: "prefer_not_to_say" }));
-    expect(result.ok).toBe(false);
-    expect(insertMock).not.toHaveBeenCalled();
+    expect(result.ok).toBe(true);
+    expect(insertMock.mock.calls[0][0]).toMatchObject({ service_interest: null });
+  });
+
+  it("R7.2.2: still succeeds with a null topic for a garbage discussionTopic value (never a diagnosis, never a rejection)", async () => {
+    const result = await createLead(validFormData({ discussionTopic: "not-a-real-topic" }));
+    expect(result.ok).toBe(true);
+    expect(insertMock.mock.calls[0][0]).toMatchObject({ service_interest: null });
   });
 
   it("rejects an invalid email without calling the DB", async () => {
