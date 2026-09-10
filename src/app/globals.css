@@ -76,3 +76,18 @@
     border-color: var(--accent-strong);
   }
 }
+
+/*
+ * Spec R7.1.4 §1 — every in-page hash-link target (e.g. /about#reviews,
+ * #treatment-ladder) must land visibly below the sticky header
+ * (`Header.tsx`, `sticky top-0 z-30`), not underneath it. Global and
+ * reusable rather than scoped to one section, since every current and
+ * future anchor target benefits identically; scroll-margin-top has no
+ * effect on non-anchor elements, so applying it broadly via `[id]` is
+ * safe. 10rem clears the header's tallest measured rendered height
+ * (~140px at 1440px width, header grows slightly at wider breakpoints
+ * as nav items lay out) plus a visible gap.
+ */
+[id] {
+  scroll-margin-top: 10rem;
+}

@@ -28,8 +28,18 @@ export function AuthorityMetric({
   );
 }
 
-/** Fixed animation start year for the "Since 2018" stat (spec R7.1.2 §2: "2026 → 2018") — a deliberate fixed count-down start, not derived from the current date. */
-const SINCE_STAT_COUNT_FROM = 2026;
+/**
+ * Animation start year for the "Since 2018" stat (spec R7.1.4 §2) — the
+ * current year at render/build time, not a permanently hardcoded value,
+ * so a future rebuild automatically counts down from whatever year it's
+ * then deployed in. Evaluated in this Server Component, so it's a plain
+ * number by the time it reaches the client `AnimatedNumber` — same as
+ * the literal it replaces, no new hydration/SSR risk. The final
+ * displayed and announced value is always "Since 2018" regardless of
+ * this start point (see `AuthorityMetric`'s `value` prop below, unrelated
+ * to `animate.from`).
+ */
+const SINCE_STAT_COUNT_FROM = new Date().getFullYear();
 
 /** Real intrinsic aspect ratios (not display size — CSS governs that) for the two approved award logo assets, so next/image never infers a wrong ratio. */
 const AWARD_LOGO_RATIOS: Record<string, { width: number; height: number }> = {
