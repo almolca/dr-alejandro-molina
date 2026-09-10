@@ -18,11 +18,14 @@ perform these):
 
 1. Confirm/set these four environment variables in the **Production**
    scope specifically (Preview having them does not carry over — see
-   migration doc §14):
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
-   - `SUPABASE_SERVICE_ROLE_KEY` (server-only — never expose)
-   - `ADMIN_ALLOWED_EMAILS`
+   migration doc §14). Preview configuration proves nothing about
+   Production — each is a separate Vercel scope and must be checked
+   independently. No value below has been or can be verified from this
+   session; each is **OWNER MUST CONFIRM IN VERCEL**:
+   - `NEXT_PUBLIC_SUPABASE_URL` — OWNER MUST CONFIRM IN VERCEL
+   - `NEXT_PUBLIC_SUPABASE_ANON_KEY` — OWNER MUST CONFIRM IN VERCEL
+   - `SUPABASE_SERVICE_ROLE_KEY` (server-only — never expose) — OWNER MUST CONFIRM IN VERCEL
+   - `ADMIN_ALLOWED_EMAILS` — OWNER MUST CONFIRM IN VERCEL
 2. `NEXT_PUBLIC_SITE_URL` is not required post-R8 (canonical URLs now
    derive from a hardcoded production constant) — no action needed.
 3. Confirm the Supabase Auth admin user still exists and its email is
