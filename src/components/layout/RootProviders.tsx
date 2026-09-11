@@ -10,8 +10,10 @@ import { personSchema, physicianSchema } from "@/lib/seo/json-ld";
  * app/admin/layout.tsx) so none of them duplicate this logic.
  *
  * Person/Physician JSON-LD is locale-invariant (same entity, never
- * duplicated data — spec §10) and genuinely global, so sharing it across
- * all three roots is correct, not just convenient.
+ * duplicated data — spec §10): sharing it identically across the (en) and
+ * (ar) roots is correct, not just convenient, since it's the same physician
+ * regardless of language. Its presence in admin's root (below) is a different
+ * matter — see the note there.
  *
  * ConsentBanner and public structured data are, strictly speaking, only
  * meaningful for the PUBLIC (en/ar) roots — admin is an internal,
