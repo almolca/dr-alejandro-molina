@@ -2,13 +2,14 @@
 
 import { usePathname } from "next/navigation";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
-import { primaryNav } from "@/config/navigation";
+import { getPrimaryNav } from "@/config/navigation";
 
-export function DesktopNav() {
+export function DesktopNav({ locale = "en" }: { locale?: "en" | "ar" }) {
   const pathname = usePathname();
+  const items = getPrimaryNav(locale);
   return (
     <nav aria-label="Primary" className="hidden items-center gap-3 xl:flex 2xl:gap-5">
-      {primaryNav.map((item) => (
+      {items.map((item) => (
         <Link
           key={item.href}
           href={item.href}
