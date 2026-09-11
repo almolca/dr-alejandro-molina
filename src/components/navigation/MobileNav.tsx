@@ -22,6 +22,14 @@ const copy = {
  * of `right-0` so the drawer opens from the trailing edge in both
  * directions — the leading-edge/trailing-edge convention RTL layouts
  * expect (R9 Phase A spec §6/§29 mobile-nav RTL requirement).
+ *
+ * `Dialog.Content` gets an explicit `dir`/`lang`: Radix's `Dialog.Portal`
+ * renders the drawer directly under `<body>`, outside the `/ar` root's
+ * `dir="rtl"` wrapper (`src/app/ar/layout.tsx`), so without this the
+ * portaled content silently falls back to the browser default direction
+ * (ltr) — flipping the `end-0` inset to the wrong physical edge and
+ * reversing the title/close-button order. Found via R9 Phase A task 16
+ * RTL QA.
  */
 export function MobileNav({ locale = "en" }: { locale?: "en" | "ar" }) {
   const [open, setOpen] = useState(false);
@@ -42,6 +50,8 @@ export function MobileNav({ locale = "en" }: { locale?: "en" | "ar" }) {
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-40 bg-stone-950/40" />
         <Dialog.Content
+          dir={locale === "ar" ? "rtl" : "ltr"}
+          lang={locale}
           className="fixed inset-y-0 end-0 z-50 flex w-full max-w-sm flex-col overflow-y-auto bg-background px-gutter py-6 shadow-xl"
           aria-describedby={undefined}
         >
