@@ -25,10 +25,10 @@ describe("analyticsEventSchema", () => {
     expect(result.success).toBe(false);
   });
 
-  it("rejects a payload missing locale", () => {
+  it("accepts a payload missing locale (optional, so a pre-deploy in-flight beacon isn't dropped)", () => {
     const rest: Record<string, unknown> = { ...validPayload };
     delete rest.locale;
-    expect(analyticsEventSchema.safeParse(rest).success).toBe(false);
+    expect(analyticsEventSchema.safeParse(rest).success).toBe(true);
   });
 
   it("rejects an unknown event name", () => {

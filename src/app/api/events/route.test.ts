@@ -31,6 +31,18 @@ describe("POST /api/events", () => {
     expect(insertMock).toHaveBeenCalledWith(expect.objectContaining({ locale: "en" }));
   });
 
+  it("R9: returns 200 for a payload missing locale and inserts locale: null (pre-deploy in-flight beacon must not be dropped)", async () => {
+    const res = await POST(
+      makeRequest({
+        name: "page_view",
+        anonymousSessionId: "abc-123",
+        path: "/",
+      }),
+    );
+    expect(res.status).toBe(200);
+    expect(insertMock).toHaveBeenCalledWith(expect.objectContaining({ locale: null }));
+  });
+
   it("returns 400 for malformed JSON", async () => {
     const req = new NextRequest("http://localhost/api/events", {
       method: "POST",

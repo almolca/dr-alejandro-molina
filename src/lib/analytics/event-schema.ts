@@ -22,7 +22,13 @@ export const analyticsEventSchema = z
     name: z.enum(EVENT_NAMES),
     anonymousSessionId: z.string().trim().min(1).max(100),
     path: z.string().trim().min(1).max(500),
-    locale: z.enum(["en", "ar"]),
+    // Optional, not required: a browser tab still running the pre-deploy
+    // JS bundle (including a `keepalive` beacon from a long-open tab) can
+    // POST without `locale` during a deploy window. Rejecting that would
+    // silently drop real analytics events, and it would contradict the
+    // Supabase column itself, which is nullable so pre-migration rows
+    // remain valid.
+    locale: z.enum(["en", "ar"]).optional(),
     serviceInterest: z.string().trim().max(60).optional(),
     source: z.string().trim().max(30).optional(),
     utmSource: z.string().trim().max(200).optional(),
