@@ -1,6 +1,7 @@
 import visual from "@/components/editorial/VisualSystem.module.css";
 import type { Metadata } from "next";
 import { siteUrl } from "@/config/site";
+import { getLocalizedPathPair } from "@/lib/seo/routes";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { AdvancedPenileSurgerySection } from "@/components/sections/AdvancedPenileSurgerySection";
 import { AuthorityMediaSection } from "@/components/sections/AuthorityMediaSection";
@@ -12,8 +13,21 @@ import { HeroSection } from "@/components/sections/HeroSection";
 import { InsightsSection } from "@/components/sections/InsightsSection";
 import { SexualHormonalHealthSection } from "@/components/sections/SexualHormonalHealthSection";
 
+const homePair = getLocalizedPathPair("/");
+
 export const metadata: Metadata = {
-  alternates: { canonical: siteUrl },
+  alternates: {
+    canonical: siteUrl,
+    ...(homePair
+      ? {
+          languages: {
+            "en-AE": siteUrl,
+            "ar-AE": new URL(homePair.ar, siteUrl).toString(),
+            "x-default": siteUrl,
+          },
+        }
+      : {}),
+  },
 };
 
 /**
