@@ -47,40 +47,76 @@ const AWARD_LOGO_RATIOS: Record<string, { width: number; height: number }> = {
   "Doctoralia Awards Spain 2022": { width: 262, height: 100 }, // real asset 6918×2640px, ≈2.62:1
 };
 
-export function PhysicianAuthority({ dark = false, recognition = false }: { dark?: boolean; recognition?: boolean }) {
+/**
+ * Arabic label/wording overrides (R9 Phase B0) — colocated here rather
+ * than in `config/doctor.ts` / `config/reputation.ts` since these are
+ * UI-facing translations of already-verified facts, not new source
+ * data. Every value/number/award name itself still comes from the same
+ * shared config the English render path uses — only the surrounding
+ * prose is swapped.
+ */
+const AR = {
+  yearsLabel: "سنوات الخبرة في المسالك البولية",
+  girthProcedureLabel: "إجراءات زيادة سماكة القضيب",
+  girthSinceLabel: "زيادة سماكة القضيب",
+  girthSinceValue: (year: number) => `منذ ${year}`,
+  girthSincePrefix: "منذ ",
+  febuLine: "زميل المجلس الأوروبي لطب المسالك البولية",
+  medicalTrainerLabel: "مدرّب طبي",
+  medicalTrainerTrains: "يُدرّب أطباء المسالك البولية وأطباء التجميل",
+  editorialWording: "مساهم في مجلة Men's Health إسبانيا",
+  professionalRecognition: "الاعتراف المهني",
+};
+
+export function PhysicianAuthority({
+  dark = false,
+  recognition = false,
+  locale,
+}: {
+  dark?: boolean;
+  recognition?: boolean;
+  locale?: "ar";
+}) {
+  const isAr = locale === "ar";
   return <div className={`${styles.authority} ${dark ? styles.authorityDark : ""}`}>
     <p className="mb-6 text-xs font-medium uppercase tracking-widest">{doctor.title}</p>
     <dl className={styles.metrics}>
       {doctor.yearsOfExperience !== undefined && (
         <AuthorityMetric
           value={`${doctor.yearsOfExperience}+`}
-          label="Years in Urology"
+          label={isAr ? AR.yearsLabel : "Years in Urology"}
           animate={{ from: 0, to: doctor.yearsOfExperience, suffix: "+" }}
         />
       )}
       {doctor.girthProcedureCount && (
         <AuthorityMetric
           value={doctor.girthProcedureCount}
-          label="Penile Girth Enhancement procedures"
+          label={isAr ? AR.girthProcedureLabel : "Penile Girth Enhancement procedures"}
           animate={{ from: 0, to: doctor.girthProcedureCountValue, suffix: "+" }}
         />
       )}
       {doctor.girthEnhancementSince !== undefined && (
         <AuthorityMetric
-          value={`Since ${doctor.girthEnhancementSince}`}
-          label="Penile Girth Enhancement"
-          animate={{ from: SINCE_STAT_COUNT_FROM, to: doctor.girthEnhancementSince, prefix: "Since " }}
+          value={isAr ? AR.girthSinceValue(doctor.girthEnhancementSince) : `Since ${doctor.girthEnhancementSince}`}
+          label={isAr ? AR.girthSinceLabel : "Penile Girth Enhancement"}
+          animate={{ from: SINCE_STAT_COUNT_FROM, to: doctor.girthEnhancementSince, prefix: isAr ? AR.girthSincePrefix : "Since " }}
         />
       )}
     </dl>
     <div className={styles.rail}>
-      {doctor.credentials.includes("FEBU — Fellow of the European Board of Urology") && <p><strong>FEBU</strong> · Fellow of the European Board of Urology</p>}
+      {doctor.credentials.includes("FEBU — Fellow of the European Board of Urology") && (
+        <p><strong>FEBU</strong> · {isAr ? AR.febuLine : "Fellow of the European Board of Urology"}</p>
+      )}
       {doctor.medicalTrainer && (
         <p className={styles.railItem}>
           {trainingPrograms[0]?.logoSrc && (
             <Image src={trainingPrograms[0].logoSrc} alt={trainingPrograms[0].program} width={32} height={32} className={styles.railLogo} />
           )}
-          <span><strong>Medical Trainer</strong> · {doctor.medicalTrainer.program}<br />Trains urologists &amp; aesthetic physicians</span>
+          <span>
+            <strong>{isAr ? AR.medicalTrainerLabel : "Medical Trainer"}</strong> · {doctor.medicalTrainer.program}
+            <br />
+            {isAr ? AR.medicalTrainerTrains : "Trains urologists & aesthetic physicians"}
+          </span>
         </p>
       )}
       {editorialContributions.filter(item => item.publishReady).map((item) => {
@@ -88,15 +124,15 @@ export function PhysicianAuthority({ dark = false, recognition = false }: { dark
         return (
           <p key={item.outletName} className={styles.railItem}>
             {publicationLogo && <Image src={publicationLogo} alt={item.outletName} width={57} height={32} className={styles.railLogo} />}
-            <span>{item.wording}</span>
+            <span>{isAr ? AR.editorialWording : item.wording}</span>
           </p>
         );
       })}
     </div>
     {recognition && (
       <div className={styles.recognitionRow}>
-        <p className={styles.recognitionEyebrow}>Professional Recognition</p>
-        <ul className={styles.recognitionRail} aria-label="Professional recognition">
+        <p className={styles.recognitionEyebrow}>{isAr ? AR.professionalRecognition : "Professional Recognition"}</p>
+        <ul className={styles.recognitionRail} aria-label={isAr ? AR.professionalRecognition : "Professional recognition"}>
           {doctor.awards
             .filter((award) => award.publishReady)
             .map((award) => {
