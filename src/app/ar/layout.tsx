@@ -1,10 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
-import { Noto_Sans_Arabic } from "next/font/google";
-
-const notoSansArabic = Noto_Sans_Arabic({
-  variable: "--font-noto-sans-arabic",
-  subsets: ["arabic"],
-});
+import { notoSansArabic } from "@/lib/fonts/arabic";
 
 /**
  * R9 Phase A spec §4: `lang`/`dir` are set here, on a wrapper just
@@ -49,6 +44,16 @@ const notoSansArabic = Noto_Sans_Arabic({
  * `usePathname()` instead, and its physician JSON-LD is locale-invariant
  * (same entity, nothing to localize) so one instance already covers
  * `/ar` too.
+ *
+ * `notoSansArabic` itself now lives in `src/lib/fonts/arabic.ts` rather
+ * than being instantiated inline here: `ConsentBanner` needs the exact
+ * same font instance for the same reason (see that module's comment) —
+ * `next/font`'s `variable` custom property is scoped to whichever
+ * element wears the `.variable` className, so it is NOT globally
+ * available the way `--font-fraunces`/`--font-inter` are (those apply
+ * their `.variable` classNames to `<html>` in `src/app/layout.tsx`).
+ * `ConsentBanner` renders outside this wrapper's subtree, so it must
+ * bring `--font-noto-sans-arabic` into its own scope independently.
  */
 const arabicFontVars = {
   "--font-fraunces": "var(--font-noto-sans-arabic)",

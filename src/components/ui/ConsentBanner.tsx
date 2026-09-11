@@ -1,7 +1,9 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { notoSansArabic } from "@/lib/fonts/arabic";
 import { getConsent, resyncConsentCookie, setConsent } from "@/lib/analytics/consent";
 import { isArabicPath } from "@/lib/seo/routes";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
@@ -57,6 +59,19 @@ import { Button } from "@/components/ui/Button";
  */
 const REOPEN_EVENT = "cookie-consent:reopen";
 
+/**
+ * Mirrors `arabicFontVars` in `src/app/ar/layout.tsx` exactly — same two
+ * custom properties, same target value — so this banner's font matches
+ * the rest of the `/ar` subtree despite rendering outside it. Needs
+ * `notoSansArabic.variable` (below, in the root div's className) applied
+ * on this element too, so `var(--font-noto-sans-arabic)` actually
+ * resolves here — see the R9 doc comment above for why.
+ */
+const arabicFontVars = {
+  "--font-fraunces": "var(--font-noto-sans-arabic)",
+  "--font-inter": "var(--font-noto-sans-arabic)",
+} as CSSProperties;
+
 export function reopenConsentBanner(): void {
   if (typeof window !== "undefined") {
     window.dispatchEvent(new Event(REOPEN_EVENT));
@@ -86,6 +101,34 @@ export function reopenConsentBanner(): void {
  * page's default `ltr` direction: paragraph lines rendered flush-left
  * instead of flush-right, and the Decline/Accept buttons sat in the
  * wrong left-to-right order. Found via R9 Phase A task 16 RTL QA.
+ *
+ * The same "sits outside the wrapper" gap also applies to the wrapper's
+ * font override, and `dir`/`lang` alone don't fix it: `src/app/ar/layout.tsx`
+ * overrides the `--font-fraunces`/`--font-inter` CSS custom properties
+ * (which the generated `.font-display`/`.font-sans` utility CSS actually
+ * reads — see that file's comment) to `var(--font-noto-sans-arabic)`, but
+ * only within its own subtree. Live Preview verification (post-task-16)
+ * found this banner's Arabic body text still computed `font-family: Inter`
+ * instead of `Noto Sans Arabic`. Fixed the same way the wrapper does it:
+ * `arabicFontVars` below re-overrides the same two custom properties, and
+ * `resolvedLocale === "ar"` adds the same `font-sans` class this root div
+ * needs re-applied so its subtree recomputes `font-family` from the
+ * overridden variables rather than inheriting `<body>`'s already-computed
+ * value.
+ *
+ * Unlike `dir`/`lang`, `--font-noto-sans-arabic` is NOT already available
+ * here just because `src/app/ar/layout.tsx` ran for the route: confirmed
+ * live via `getComputedStyle(...).getPropertyValue('--font-noto-sans-arabic')`
+ * that the property is unset outside that layout's wrapper subtree —
+ * `next/font`'s `variable` option scopes the custom property to whatever
+ * element wears the resulting `.variable` className (that wrapper `<div>`),
+ * it does not register at `<html>`/`:root` the way `--font-fraunces`/
+ * `--font-inter` do (their `.variable` classNames are on `<html>` itself,
+ * in `src/app/layout.tsx`). So this banner also applies
+ * `notoSansArabic.variable` (imported from the shared `src/lib/fonts/arabic.ts`
+ * module — the same `next/font` instance `src/app/ar/layout.tsx` uses, not
+ * a second one) to bring `--font-noto-sans-arabic` into scope for its own
+ * subtree independently. English is untouched — no style/class added.
  */
 const copy = {
   en: {
@@ -156,7 +199,12 @@ export function ConsentBanner({ locale }: { locale?: "en" | "ar" } = {}) {
       aria-label="Cookie preferences"
       dir={resolvedLocale === "ar" ? "rtl" : "ltr"}
       lang={resolvedLocale}
-      className="border-b border-border bg-background"
+      className={
+        resolvedLocale === "ar"
+          ? `border-b border-border bg-background font-sans ${notoSansArabic.variable}`
+          : "border-b border-border bg-background"
+      }
+      style={resolvedLocale === "ar" ? arabicFontVars : undefined}
     >
       <div className="mx-auto flex w-full max-w-editorial flex-col gap-4 px-gutter py-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-2xl text-sm text-muted-foreground">{t.body}</p>
