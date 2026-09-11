@@ -1,5 +1,6 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getConsent, resyncConsentCookie, setConsent } from "@/lib/analytics/consent";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
@@ -66,6 +67,15 @@ export function reopenConsentBanner(): void {
  * The Privacy Policy link intentionally stays pointed at `/privacy`
  * (English) for both locales: `/ar/privacy` doesn't exist until Phase C
  * (spec §13/§14). All consent mechanics below are unchanged by this.
+ *
+ * Locale is self-detected via `usePathname()` rather than threaded
+ * through as a required prop: the root layout (`src/app/layout.tsx`)
+ * renders exactly one `<ConsentBanner />` instance for every route,
+ * including `/ar/*` — `src/app/ar/layout.tsx` deliberately does not
+ * render a second, locale-scoped instance of its own (that would
+ * duplicate, not replace, the root's). The optional `locale` prop is
+ * kept only as an explicit override for tests/future call sites; the
+ * default resolves from the current pathname.
  */
 const copy = {
   en: {
@@ -99,9 +109,11 @@ const copy = {
   },
 } as const;
 
-export function ConsentBanner({ locale = "en" }: { locale?: "en" | "ar" }) {
+export function ConsentBanner({ locale }: { locale?: "en" | "ar" } = {}) {
+  const pathname = usePathname();
+  const resolvedLocale = locale ?? (pathname?.startsWith("/ar") ? "ar" : "en");
+  const t = copy[resolvedLocale];
   const [visible, setVisible] = useState(false);
-  const t = copy[locale];
 
   useEffect(() => {
     // Deliberate: localStorage isn't available during SSR, so both the

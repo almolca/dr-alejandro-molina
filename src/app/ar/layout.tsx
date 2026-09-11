@@ -1,9 +1,5 @@
 import type { CSSProperties, ReactNode } from "react";
 import { Noto_Sans_Arabic } from "next/font/google";
-import { ConsentBanner } from "@/components/ui/ConsentBanner";
-import { JsonLd } from "@/components/seo/JsonLd";
-import { MotionProvider } from "@/components/motion/MotionProvider";
-import { personSchema, physicianSchema } from "@/lib/seo/json-ld";
 
 const notoSansArabic = Noto_Sans_Arabic({
   variable: "--font-noto-sans-arabic",
@@ -25,6 +21,17 @@ const notoSansArabic = Noto_Sans_Arabic({
  * `h-full`/`min-h-full` height chain from `<body>` down to `PageShell` —
  * `dir`/`lang`/CSS custom properties still inherit to children exactly
  * as they would from a normal element.
+ *
+ * This layout deliberately does NOT render its own `<ConsentBanner>`,
+ * `<JsonLd>`, or `<MotionProvider>` — `src/app/layout.tsx` already
+ * renders exactly one instance of each for every route, `/ar` included
+ * (nested layouts wrap through the existing root layout; they don't
+ * replace it). Re-rendering them here would duplicate them, not swap
+ * them: two consent banners, two identical JSON-LD schema blocks. The
+ * root layout's `<ConsentBanner />` self-detects the `/ar` locale via
+ * `usePathname()` instead, and its physician JSON-LD is locale-invariant
+ * (same entity, nothing to localize) so one instance already covers
+ * `/ar` too.
  */
 const arabicFontVars = {
   "--font-display": "var(--font-noto-sans-arabic)",
@@ -34,11 +41,7 @@ const arabicFontVars = {
 export default function ArabicLayout({ children }: { children: ReactNode }) {
   return (
     <div lang="ar" dir="rtl" className={`${notoSansArabic.variable} contents`} style={arabicFontVars}>
-      <JsonLd data={[personSchema(), physicianSchema()]} />
-      <MotionProvider>
-        <ConsentBanner locale="ar" />
-        {children}
-      </MotionProvider>
+      {children}
     </div>
   );
 }
