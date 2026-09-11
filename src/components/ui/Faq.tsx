@@ -22,11 +22,22 @@ export type FaqItem = {
  * visible accordion and its matching JSON-LD from the same data, so
  * they can never drift apart.
  */
-export function Faq({ items, eyebrow = "FAQs" }: { items: FaqItem[]; eyebrow?: string }) {
+export function Faq({
+  items,
+  eyebrow = "FAQs",
+  heading = "Frequently Asked Questions",
+  locale,
+}: {
+  items: FaqItem[];
+  eyebrow?: string;
+  heading?: string;
+  /** When set, tags the FAQPage JSON-LD with `inLanguage` (spec §10/§24). Omit for English. */
+  locale?: "ar";
+}) {
   return (
     <section className="py-section-y">
       <Container className="max-w-3xl">
-        <SectionHeading eyebrow={eyebrow} heading="Frequently Asked Questions" size="md" />
+        <SectionHeading eyebrow={eyebrow} heading={heading} size="md" />
 
         <Accordion.Root type="single" collapsible className="mt-10 border-t border-border">
           {items.map((item) => (
@@ -36,7 +47,7 @@ export function Faq({ items, eyebrow = "FAQs" }: { items: FaqItem[]; eyebrow?: s
               className="border-b border-border"
             >
               <Accordion.Header>
-                <Accordion.Trigger className="group flex w-full items-center justify-between gap-6 py-6 text-left font-display text-lg text-foreground sm:text-xl">
+                <Accordion.Trigger className="group flex w-full items-center justify-between gap-6 py-6 text-start font-display text-lg text-foreground sm:text-xl">
                   {item.question}
                   <Plus
                     aria-hidden
@@ -61,7 +72,7 @@ export function Faq({ items, eyebrow = "FAQs" }: { items: FaqItem[]; eyebrow?: s
         </Accordion.Root>
       </Container>
 
-      <JsonLd data={faqPageSchema(items)} />
+      <JsonLd data={faqPageSchema(items, locale ? { inLanguage: locale } : undefined)} />
     </section>
   );
 }

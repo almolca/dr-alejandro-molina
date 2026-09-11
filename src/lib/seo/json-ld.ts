@@ -142,10 +142,14 @@ export function medicalWebPageSchema(input: {
 }
 
 /** Only render when the page has genuinely visible FAQ content (spec §24). */
-export function faqPageSchema(items: { question: string; answer: string }[]) {
-  return {
+export function faqPageSchema(
+  items: { question: string; answer: string }[],
+  options?: { inLanguage?: string },
+) {
+  return prune({
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    inLanguage: options?.inLanguage,
     mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.question,
@@ -154,7 +158,7 @@ export function faqPageSchema(items: { question: string; answer: string }[]) {
         text: item.answer,
       },
     })),
-  };
+  });
 }
 
 /** For Insights articles (Phase 4+). */
