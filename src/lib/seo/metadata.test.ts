@@ -45,4 +45,43 @@ describe("buildMetadata", () => {
     expect(imageUrl).toContain("://");
     expect(imageUrl).not.toContain("vercel.app");
   });
+
+  it("R9: emits reciprocal hreflang alternates when an Arabic equivalent exists", () => {
+    const metadata = buildMetadata({
+      title: "Dr. Alejandro Molina",
+      description: "Specialist care.",
+      path: "/",
+    });
+
+    expect(metadata.alternates?.languages).toEqual({
+      "en-AE": `${siteUrl}/`,
+      "ar-AE": `${siteUrl}/ar`,
+      "x-default": `${siteUrl}/`,
+    });
+  });
+
+  it("R9: emits the same reciprocal alternates and ar_AE og:locale from the Arabic side", () => {
+    const metadata = buildMetadata({
+      title: "د. أليخاندرو مولينا",
+      description: "رعاية متخصصة.",
+      path: "/ar",
+    });
+
+    expect(metadata.alternates?.languages).toEqual({
+      "en-AE": `${siteUrl}/`,
+      "ar-AE": `${siteUrl}/ar`,
+      "x-default": `${siteUrl}/`,
+    });
+    expect(metadata.openGraph?.locale).toBe("ar_AE");
+  });
+
+  it("R9: emits no hreflang alternates when no Arabic equivalent exists yet", () => {
+    const metadata = buildMetadata({
+      title: "Men's Health",
+      description: "Specialist care.",
+      path: "/mens-health",
+    });
+
+    expect(metadata.alternates?.languages).toBeUndefined();
+  });
 });

@@ -32,3 +32,4 @@ public/brand/Elegant 3D Ebook Mockup*.png
 
 # Local Claude Code session state (e.g. scheduled-task lock files) — not application config
 .claude/
+.superpowers/

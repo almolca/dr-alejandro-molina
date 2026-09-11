@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Select } from "@/components/ui/Select";
 import { Checkbox } from "@/components/ui/Checkbox";
-import { createLead } from "@/app/(marketing)/book/actions";
+import { createLead } from "@/app/(en)/(marketing)/book/actions";
 
 /**
  * Single-step booking gateway — R7.2 UX simplification. One submission

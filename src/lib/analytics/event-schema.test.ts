@@ -7,11 +7,28 @@ const validPayload = {
   path: "/erectile-dysfunction",
   serviceInterest: "erectile_dysfunction",
   source: "google_business",
+  locale: "en" as const,
 };
 
 describe("analyticsEventSchema", () => {
   it("accepts a valid payload", () => {
     expect(analyticsEventSchema.safeParse(validPayload).success).toBe(true);
+  });
+
+  it("accepts locale 'ar'", () => {
+    const result = analyticsEventSchema.safeParse({ ...validPayload, path: "/ar", locale: "ar" });
+    expect(result.success).toBe(true);
+  });
+
+  it("rejects an invalid locale value", () => {
+    const result = analyticsEventSchema.safeParse({ ...validPayload, locale: "fr" });
+    expect(result.success).toBe(false);
+  });
+
+  it("accepts a payload missing locale (optional, so a pre-deploy in-flight beacon isn't dropped)", () => {
+    const rest: Record<string, unknown> = { ...validPayload };
+    delete rest.locale;
+    expect(analyticsEventSchema.safeParse(rest).success).toBe(true);
   });
 
   it("rejects an unknown event name", () => {

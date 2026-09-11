@@ -27,6 +27,7 @@ export async function POST(request: NextRequest) {
       anonymous_session_id: parsed.data.anonymousSessionId,
       event_name: parsed.data.name,
       path: parsed.data.path,
+      locale: parsed.data.locale ?? null,
       service_interest: parsed.data.serviceInterest ?? null,
       source: parsed.data.source ?? null,
       utm_source: parsed.data.utmSource ?? null,

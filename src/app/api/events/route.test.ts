@@ -24,10 +24,23 @@ describe("POST /api/events", () => {
         name: "page_view",
         anonymousSessionId: "abc-123",
         path: "/",
+        locale: "en",
       }),
     );
     expect(res.status).toBe(200);
-    expect(insertMock).toHaveBeenCalled();
+    expect(insertMock).toHaveBeenCalledWith(expect.objectContaining({ locale: "en" }));
+  });
+
+  it("R9: returns 200 for a payload missing locale and inserts locale: null (pre-deploy in-flight beacon must not be dropped)", async () => {
+    const res = await POST(
+      makeRequest({
+        name: "page_view",
+        anonymousSessionId: "abc-123",
+        path: "/",
+      }),
+    );
+    expect(res.status).toBe(200);
+    expect(insertMock).toHaveBeenCalledWith(expect.objectContaining({ locale: null }));
   });
 
   it("returns 400 for malformed JSON", async () => {
@@ -41,7 +54,7 @@ describe("POST /api/events", () => {
 
   it("returns 400 for an event name outside the allow-list", async () => {
     const res = await POST(
-      makeRequest({ name: "custom_event", anonymousSessionId: "abc-123", path: "/" }),
+      makeRequest({ name: "custom_event", anonymousSessionId: "abc-123", path: "/", locale: "en" }),
     );
     expect(res.status).toBe(400);
   });

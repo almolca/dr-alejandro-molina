@@ -1,7 +1,11 @@
 "use client";
 
+import type { CSSProperties } from "react";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { notoSansArabic } from "@/lib/fonts/arabic";
 import { getConsent, resyncConsentCookie, setConsent } from "@/lib/analytics/consent";
+import { isArabicPath } from "@/lib/seo/routes";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { Button } from "@/components/ui/Button";
 
@@ -55,13 +59,113 @@ import { Button } from "@/components/ui/Button";
  */
 const REOPEN_EVENT = "cookie-consent:reopen";
 
+/**
+ * Mirrors `arabicFontVars` in `src/app/ar/layout.tsx` exactly — same two
+ * custom properties, same target value — so this banner's font matches
+ * the rest of the `/ar` subtree despite rendering outside it. Needs
+ * `notoSansArabic.variable` (below, in the root div's className) applied
+ * on this element too, so `var(--font-noto-sans-arabic)` actually
+ * resolves here — see the R9 doc comment above for why.
+ */
+const arabicFontVars = {
+  "--font-fraunces": "var(--font-noto-sans-arabic)",
+  "--font-inter": "var(--font-noto-sans-arabic)",
+} as CSSProperties;
+
 export function reopenConsentBanner(): void {
   if (typeof window !== "undefined") {
     window.dispatchEvent(new Event(REOPEN_EVENT));
   }
 }
 
-export function ConsentBanner() {
+/**
+ * R9 Arabic i18n foundation (Phase A) — pure text-localization layer.
+ * The Privacy Policy link intentionally stays pointed at `/privacy`
+ * (English) for both locales: `/ar/privacy` doesn't exist until Phase C
+ * (spec §13/§14). All consent mechanics below are unchanged by this.
+ *
+ * Locale is self-detected via `usePathname()` rather than threaded
+ * through as a required prop: the root layout (`src/app/layout.tsx`)
+ * renders exactly one `<ConsentBanner />` instance for every route,
+ * including `/ar/*` — `src/app/ar/layout.tsx` deliberately does not
+ * render a second, locale-scoped instance of its own (that would
+ * duplicate, not replace, the root's). The optional `locale` prop is
+ * kept only as an explicit override for tests/future call sites; the
+ * default resolves from the current pathname.
+ *
+ * Because the root layout renders this banner as a sibling of
+ * `{children}` (see `src/app/layout.tsx`), it sits outside the `/ar`
+ * route's `dir="rtl"` wrapper (`src/app/ar/layout.tsx`) rather than
+ * inside it — the wrapper only ever wraps its own page content. Without
+ * an explicit `dir`/`lang` here, the Arabic copy below inherited the
+ * page's default `ltr` direction: paragraph lines rendered flush-left
+ * instead of flush-right, and the Decline/Accept buttons sat in the
+ * wrong left-to-right order. Found via R9 Phase A task 16 RTL QA.
+ *
+ * The same "sits outside the wrapper" gap also applies to the wrapper's
+ * font override, and `dir`/`lang` alone don't fix it: `src/app/ar/layout.tsx`
+ * overrides the `--font-fraunces`/`--font-inter` CSS custom properties
+ * (which the generated `.font-display`/`.font-sans` utility CSS actually
+ * reads — see that file's comment) to `var(--font-noto-sans-arabic)`, but
+ * only within its own subtree. Live Preview verification (post-task-16)
+ * found this banner's Arabic body text still computed `font-family: Inter`
+ * instead of `Noto Sans Arabic`. Fixed the same way the wrapper does it:
+ * `arabicFontVars` below re-overrides the same two custom properties, and
+ * `resolvedLocale === "ar"` adds the same `font-sans` class this root div
+ * needs re-applied so its subtree recomputes `font-family` from the
+ * overridden variables rather than inheriting `<body>`'s already-computed
+ * value.
+ *
+ * Unlike `dir`/`lang`, `--font-noto-sans-arabic` is NOT already available
+ * here just because `src/app/ar/layout.tsx` ran for the route: confirmed
+ * live via `getComputedStyle(...).getPropertyValue('--font-noto-sans-arabic')`
+ * that the property is unset outside that layout's wrapper subtree —
+ * `next/font`'s `variable` option scopes the custom property to whatever
+ * element wears the resulting `.variable` className (that wrapper `<div>`),
+ * it does not register at `<html>`/`:root` the way `--font-fraunces`/
+ * `--font-inter` do (their `.variable` classNames are on `<html>` itself,
+ * in `src/app/layout.tsx`). So this banner also applies
+ * `notoSansArabic.variable` (imported from the shared `src/lib/fonts/arabic.ts`
+ * module — the same `next/font` instance `src/app/ar/layout.tsx` uses, not
+ * a second one) to bring `--font-noto-sans-arabic` into scope for its own
+ * subtree independently. English is untouched — no style/class added.
+ */
+const copy = {
+  en: {
+    body: (
+      <>
+        This site may use analytics cookies to understand how visitors use it. No health or
+        symptom information is ever included. You can accept or decline, and change your choice
+        anytime — see our{" "}
+        <Link href="/privacy" className="underline decoration-border underline-offset-4 hover:decoration-accent-strong">
+          Privacy Policy
+        </Link>
+        .
+      </>
+    ),
+    decline: "Decline",
+    accept: "Accept",
+  },
+  ar: {
+    body: (
+      <>
+        قد يستخدم هذا الموقع ملفات تعريف ارتباط تحليلية لفهم كيفية استخدام الزوار له. لا يتم تضمين
+        أي معلومات صحية أو أعراض على الإطلاق. يمكنك القبول أو الرفض، وتغيير اختيارك في أي وقت — راجع{" "}
+        <Link href="/privacy" className="underline decoration-border underline-offset-4 hover:decoration-accent-strong">
+          سياسة الخصوصية
+        </Link>
+        .
+      </>
+    ),
+    decline: "رفض",
+    accept: "قبول",
+  },
+} as const;
+
+export function ConsentBanner({ locale }: { locale?: "en" | "ar" } = {}) {
+  const pathname = usePathname();
+  const resolvedLocale = locale ?? (pathname && isArabicPath(pathname) ? "ar" : "en");
+  const t = copy[resolvedLocale];
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -90,27 +194,26 @@ export function ConsentBanner() {
   }
 
   return (
-    <div role="region" aria-label="Cookie preferences" className="border-b border-border bg-background">
+    <div
+      role="region"
+      aria-label="Cookie preferences"
+      dir={resolvedLocale === "ar" ? "rtl" : "ltr"}
+      lang={resolvedLocale}
+      className={
+        resolvedLocale === "ar"
+          ? `border-b border-border bg-background font-sans ${notoSansArabic.variable}`
+          : "border-b border-border bg-background"
+      }
+      style={resolvedLocale === "ar" ? arabicFontVars : undefined}
+    >
       <div className="mx-auto flex w-full max-w-editorial flex-col gap-4 px-gutter py-6 sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-2xl text-sm text-muted-foreground">
-          This site may use analytics cookies to understand how
-          visitors use it. No health or symptom information is ever
-          included. You can accept or decline, and change your choice
-          anytime — see our{" "}
-          <Link
-            href="/privacy"
-            className="underline decoration-border underline-offset-4 hover:decoration-accent-strong"
-          >
-            Privacy Policy
-          </Link>
-          .
-        </p>
+        <p className="max-w-2xl text-sm text-muted-foreground">{t.body}</p>
         <div className="flex shrink-0 gap-3">
           <Button variant="secondary" size="sm" onClick={() => choose("denied")}>
-            Decline
+            {t.decline}
           </Button>
           <Button variant="secondary" size="sm" onClick={() => choose("granted")}>
-            Accept
+            {t.accept}
           </Button>
         </div>
       </div>

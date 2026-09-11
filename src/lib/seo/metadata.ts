@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { site, siteUrl } from "@/config/site";
+import { getLocalizedPathPair, isArabicPath } from "./routes";
 
 type BuildMetadataInput = {
   title: string;
@@ -44,12 +45,22 @@ export function buildMetadata({
   index = true,
 }: BuildMetadataInput): Metadata {
   const url = new URL(path, siteUrl).toString();
+  const locale = isArabicPath(path) ? "ar" : "en";
+  const pair = getLocalizedPathPair(path);
+  const languages = pair
+    ? {
+        "en-AE": new URL(pair.en, siteUrl).toString(),
+        "ar-AE": new URL(pair.ar, siteUrl).toString(),
+        "x-default": new URL(pair.en, siteUrl).toString(),
+      }
+    : undefined;
 
   return {
     title,
     description,
     alternates: {
       canonical: url,
+      ...(languages ? { languages } : {}),
     },
     // `follow: true` even when `index` is false — for a `noindex`
     // utility page (legal pages), search engines should still crawl
@@ -63,7 +74,7 @@ export function buildMetadata({
       description,
       url,
       siteName: site.name,
-      locale: site.locale,
+      locale: locale === "ar" ? "ar_AE" : site.locale,
       type: "website",
       images: [fallbackSocialImage],
     },
