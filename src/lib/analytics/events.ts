@@ -52,6 +52,7 @@ export function trackEvent(event: AnalyticsEvent) {
 
   const properties = event.properties as Record<string, string | undefined>;
   const path = "path" in properties ? properties.path : properties.source_page;
+  const locale = path?.startsWith("/ar") ? "ar" : "en";
 
   try {
     fetch("/api/events", {
@@ -62,6 +63,7 @@ export function trackEvent(event: AnalyticsEvent) {
         name: event.name,
         anonymousSessionId: getAnonymousSessionId(),
         path,
+        locale,
         serviceInterest: properties.service,
         source: properties.source,
         utmSource: properties.utm_source,

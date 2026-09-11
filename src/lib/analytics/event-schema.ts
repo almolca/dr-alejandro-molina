@@ -22,6 +22,7 @@ export const analyticsEventSchema = z
     name: z.enum(EVENT_NAMES),
     anonymousSessionId: z.string().trim().min(1).max(100),
     path: z.string().trim().min(1).max(500),
+    locale: z.enum(["en", "ar"]),
     serviceInterest: z.string().trim().max(60).optional(),
     source: z.string().trim().max(30).optional(),
     utmSource: z.string().trim().max(200).optional(),
