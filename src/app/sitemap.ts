@@ -7,7 +7,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages: MetadataRoute.Sitemap = sitemapRoutes.map((route) => ({
     url: new URL(route.path, siteUrl).toString(),
     priority: route.priority,
+    ...(route.arPath
+      ? {
+          alternates: {
+            languages: {
+              "en-AE": new URL(route.path, siteUrl).toString(),
+              "ar-AE": new URL(route.arPath, siteUrl).toString(),
+            },
+          },
+        }
+      : {}),
   }));
+
+  const arPages: MetadataRoute.Sitemap = sitemapRoutes
+    .filter((route): route is typeof route & { arPath: string } => Boolean(route.arPath))
+    .map((route) => ({
+      url: new URL(route.arPath, siteUrl).toString(),
+      priority: route.priority,
+      alternates: {
+        languages: {
+          "en-AE": new URL(route.path, siteUrl).toString(),
+          "ar-AE": new URL(route.arPath, siteUrl).toString(),
+        },
+      },
+    }));
 
   // Individual /insights/[slug] articles — derived directly from the
   // article content data, so the sitemap can never list a slug that
@@ -18,5 +41,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
-  return [...pages, ...articles];
+  return [...pages, ...arPages, ...articles];
 }
