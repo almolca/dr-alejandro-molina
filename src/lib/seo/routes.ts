@@ -20,6 +20,13 @@ export type RouteEntry = {
   status: "live" | "planned";
   priority: number;
   /**
+   * Arabic equivalent path (e.g. "/ar"), when a real translated page
+   * exists. Only set this once the page is actually live — this field
+   * is the single source of truth for the language switcher, hreflang,
+   * and sitemap (R9 Phase A spec §8).
+   */
+  arPath?: string;
+  /**
    * Whether this route should appear in sitemap.xml. Defaults to
    * `true` when omitted. Set `false` for pages whose own metadata is
    * `noindex` (legal pages) — listing a noindex page in the sitemap
@@ -32,7 +39,7 @@ export type RouteEntry = {
 };
 
 export const routes: RouteEntry[] = [
-  { path: "/", status: "live", priority: 1.0 },
+  { path: "/", status: "live", priority: 1.0, arPath: "/ar" },
   { path: "/about", status: "live", priority: 0.7 },
   { path: "/book", status: "live", priority: 0.8 },
 
@@ -90,3 +97,19 @@ export const liveRoutes = routes.filter((route) => route.status === "live");
 
 /** Routes that belong in sitemap.xml — live and not explicitly noindex. */
 export const sitemapRoutes = liveRoutes.filter((route) => route.index !== false);
+
+/**
+ * Resolves the English/Arabic pair for a given path, in either
+ * direction — the single lookup used by the language switcher,
+ * hreflang generation, and the sitemap (R9 Phase A spec §8). Returns
+ * `null` when no real Arabic equivalent exists yet, so callers never
+ * construct a guessed or broken URL.
+ */
+export function getLocalizedPathPair(path: string): { en: string; ar: string } | null {
+  if (path.startsWith("/ar")) {
+    const entry = routes.find((route) => route.arPath === path);
+    return entry ? { en: entry.path, ar: path } : null;
+  }
+  const entry = routes.find((route) => route.path === path);
+  return entry?.arPath ? { en: path, ar: entry.arPath } : null;
+}

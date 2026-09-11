@@ -2,7 +2,9 @@ import Link, { type LinkProps } from "next/link";
 import type { AnchorHTMLAttributes, ReactNode } from "react";
 import { liveRoutes } from "@/lib/seo/routes";
 
-const livePaths = new Set(liveRoutes.map((route) => route.path));
+const livePaths = new Set(
+  liveRoutes.flatMap((route) => (route.arPath ? [route.path, route.arPath] : [route.path])),
+);
 
 /**
  * Thin wrapper around `next/link` that only prefetches routes actually
