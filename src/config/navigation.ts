@@ -60,3 +60,52 @@ export const footerServiceLinks: NavItem[] = [
     ? [{ label: "PRP", href: "/erectile-dysfunction/prp" }]
     : []),
 ];
+
+/**
+ * Arabic nav labels (R9 Phase A). Hrefs point at the existing English
+ * pages, since no Arabic equivalent exists for any of these yet — this
+ * flips automatically to the Arabic route as each one ships in Phase B,
+ * once `routes.ts` gains an `arPath` for it (spec §6, §25).
+ */
+const primaryNavAr: NavItem[] = [
+  { label: "الصحة الرجولية", href: "/mens-health" },
+  { label: "الطب الجنسي", href: "/sexual-medicine" },
+  { label: "زيادة سماكة القضيب", href: "/male-aesthetics/penile-girth-enhancement" },
+  { label: "جراحة القضيب", href: "/penile-surgery" },
+  { label: "التجميل الذكوري", href: "/male-aesthetics" },
+  { label: "نبذة عن الطبيب", href: "/about" },
+];
+
+export function getPrimaryNav(locale: "en" | "ar"): NavItem[] {
+  return locale === "ar" ? primaryNavAr : primaryNav;
+}
+
+export function getBookLabel(locale: "en" | "ar"): string {
+  return locale === "ar" ? "الحجز" : "Book";
+}
+
+const legalNavAr: NavItem[] = [
+  { label: "سياسة الخصوصية", href: "/privacy" },
+  { label: "الشروط", href: "/terms" },
+  { label: "إخلاء المسؤولية الطبية", href: "/medical-disclaimer" },
+];
+
+export function getLegalNav(locale: "en" | "ar"): NavItem[] {
+  return locale === "ar" ? legalNavAr : legalNav;
+}
+
+const footerServiceLinksAr: NavItem[] = [
+  { label: "زيادة سماكة القضيب", href: "/male-aesthetics/penile-girth-enhancement" },
+  { label: "التجميل الذكوري", href: "/male-aesthetics" },
+  { label: "ضعف الانتصاب", href: "/erectile-dysfunction" },
+  { label: "سرعة القذف", href: "/sexual-medicine/premature-ejaculation" },
+  { label: "زراعة دعامة القضيب", href: "/penile-implant" },
+  { label: "التستوستيرون والصحة الهرمونية", href: "/mens-health/testosterone" },
+  { label: "مرض بيروني", href: "/peyronies-disease" },
+  { label: "خصوبة الرجل", href: "/male-fertility" },
+  { label: "قطع القناة المنوية دون مشرط", href: "/mens-health/vasectomy" },
+];
+
+export function getFooterServiceLinks(locale: "en" | "ar"): NavItem[] {
+  return locale === "ar" ? footerServiceLinksAr : footerServiceLinks;
+}
