@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { site, siteUrl } from "@/config/site";
-import { getLocalizedPathPair } from "./routes";
+import { getLocalizedPathPair, isArabicPath } from "./routes";
 
 type BuildMetadataInput = {
   title: string;
@@ -45,7 +45,7 @@ export function buildMetadata({
   index = true,
 }: BuildMetadataInput): Metadata {
   const url = new URL(path, siteUrl).toString();
-  const locale = path.startsWith("/ar") ? "ar" : "en";
+  const locale = isArabicPath(path) ? "ar" : "en";
   const pair = getLocalizedPathPair(path);
   const languages = pair
     ? {

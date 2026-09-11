@@ -99,6 +99,17 @@ export const liveRoutes = routes.filter((route) => route.status === "live");
 export const sitemapRoutes = liveRoutes.filter((route) => route.index !== false);
 
 /**
+ * Whether `path` falls under the `/ar` locale prefix. Boundary-safe:
+ * `path === "/ar"` or `path.startsWith("/ar/")` only — a bare
+ * `path.startsWith("/ar")` would also misclassify a hypothetical future
+ * English route literally starting with the letters "ar" (e.g.
+ * `/articles`) as Arabic.
+ */
+export function isArabicPath(path: string): boolean {
+  return path === "/ar" || path.startsWith("/ar/");
+}
+
+/**
  * Resolves the English/Arabic pair for a given path, in either
  * direction — the single lookup used by the language switcher,
  * hreflang generation, and the sitemap (R9 Phase A spec §8). Returns
@@ -106,7 +117,7 @@ export const sitemapRoutes = liveRoutes.filter((route) => route.index !== false)
  * construct a guessed or broken URL.
  */
 export function getLocalizedPathPair(path: string): { en: string; ar: string } | null {
-  if (path.startsWith("/ar")) {
+  if (isArabicPath(path)) {
     const entry = routes.find((route) => route.arPath === path);
     return entry ? { en: entry.path, ar: path } : null;
   }

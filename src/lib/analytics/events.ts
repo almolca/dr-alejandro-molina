@@ -1,3 +1,4 @@
+import { isArabicPath } from "@/lib/seo/routes";
 import { hasAnalyticsConsent } from "./consent";
 import { getAnonymousSessionId } from "./session";
 
@@ -52,7 +53,12 @@ export function trackEvent(event: AnalyticsEvent) {
 
   const properties = event.properties as Record<string, string | undefined>;
   const path = "path" in properties ? properties.path : properties.source_page;
-  const locale = path?.startsWith("/ar") ? "ar" : "en";
+  // Derived from the actual current URL, not `path` above — `path` for
+  // e.g. `book_cta_click` is `properties.source_page` (a UI location
+  // like "global-header" or "mobile-nav", not a URL), so it can never
+  // start with "/ar" and would always misreport `locale: "en"` for
+  // Arabic-page clicks on those CTAs.
+  const locale = isArabicPath(window.location.pathname) ? "ar" : "en";
 
   try {
     fetch("/api/events", {

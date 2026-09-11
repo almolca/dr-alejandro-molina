@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getConsent, resyncConsentCookie, setConsent } from "@/lib/analytics/consent";
+import { isArabicPath } from "@/lib/seo/routes";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { Button } from "@/components/ui/Button";
 
@@ -120,7 +121,7 @@ const copy = {
 
 export function ConsentBanner({ locale }: { locale?: "en" | "ar" } = {}) {
   const pathname = usePathname();
-  const resolvedLocale = locale ?? (pathname?.startsWith("/ar") ? "ar" : "en");
+  const resolvedLocale = locale ?? (pathname && isArabicPath(pathname) ? "ar" : "en");
   const t = copy[resolvedLocale];
   const [visible, setVisible] = useState(false);
 
