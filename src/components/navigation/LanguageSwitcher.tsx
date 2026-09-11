@@ -14,8 +14,8 @@ import { getLocalizedPathPair } from "@/lib/seo/routes";
  */
 export function LanguageSwitcher() {
   const pathname = usePathname();
-  const isArabic = pathname.startsWith("/ar");
   const pair = getLocalizedPathPair(pathname);
+  const isArabic = pair ? pair.ar === pathname : pathname.startsWith("/ar");
   const currentLabel = isArabic ? "العربية" : "EN";
   const otherHref = pair ? (isArabic ? pair.en : pair.ar) : null;
 
