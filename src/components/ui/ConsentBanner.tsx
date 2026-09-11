@@ -61,8 +61,47 @@ export function reopenConsentBanner(): void {
   }
 }
 
-export function ConsentBanner() {
+/**
+ * R9 Arabic i18n foundation (Phase A) — pure text-localization layer.
+ * The Privacy Policy link intentionally stays pointed at `/privacy`
+ * (English) for both locales: `/ar/privacy` doesn't exist until Phase C
+ * (spec §13/§14). All consent mechanics below are unchanged by this.
+ */
+const copy = {
+  en: {
+    body: (
+      <>
+        This site may use analytics cookies to understand how visitors use it. No health or
+        symptom information is ever included. You can accept or decline, and change your choice
+        anytime — see our{" "}
+        <Link href="/privacy" className="underline decoration-border underline-offset-4 hover:decoration-accent-strong">
+          Privacy Policy
+        </Link>
+        .
+      </>
+    ),
+    decline: "Decline",
+    accept: "Accept",
+  },
+  ar: {
+    body: (
+      <>
+        قد يستخدم هذا الموقع ملفات تعريف ارتباط تحليلية لفهم كيفية استخدام الزوار له. لا يتم تضمين
+        أي معلومات صحية أو أعراض على الإطلاق. يمكنك القبول أو الرفض، وتغيير اختيارك في أي وقت — راجع{" "}
+        <Link href="/privacy" className="underline decoration-border underline-offset-4 hover:decoration-accent-strong">
+          سياسة الخصوصية
+        </Link>
+        .
+      </>
+    ),
+    decline: "رفض",
+    accept: "قبول",
+  },
+} as const;
+
+export function ConsentBanner({ locale = "en" }: { locale?: "en" | "ar" }) {
   const [visible, setVisible] = useState(false);
+  const t = copy[locale];
 
   useEffect(() => {
     // Deliberate: localStorage isn't available during SSR, so both the
@@ -92,25 +131,13 @@ export function ConsentBanner() {
   return (
     <div role="region" aria-label="Cookie preferences" className="border-b border-border bg-background">
       <div className="mx-auto flex w-full max-w-editorial flex-col gap-4 px-gutter py-6 sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-2xl text-sm text-muted-foreground">
-          This site may use analytics cookies to understand how
-          visitors use it. No health or symptom information is ever
-          included. You can accept or decline, and change your choice
-          anytime — see our{" "}
-          <Link
-            href="/privacy"
-            className="underline decoration-border underline-offset-4 hover:decoration-accent-strong"
-          >
-            Privacy Policy
-          </Link>
-          .
-        </p>
+        <p className="max-w-2xl text-sm text-muted-foreground">{t.body}</p>
         <div className="flex shrink-0 gap-3">
           <Button variant="secondary" size="sm" onClick={() => choose("denied")}>
-            Decline
+            {t.decline}
           </Button>
           <Button variant="secondary" size="sm" onClick={() => choose("granted")}>
-            Accept
+            {t.accept}
           </Button>
         </div>
       </div>
