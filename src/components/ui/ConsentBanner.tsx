@@ -76,6 +76,15 @@ export function reopenConsentBanner(): void {
  * duplicate, not replace, the root's). The optional `locale` prop is
  * kept only as an explicit override for tests/future call sites; the
  * default resolves from the current pathname.
+ *
+ * Because the root layout renders this banner as a sibling of
+ * `{children}` (see `src/app/layout.tsx`), it sits outside the `/ar`
+ * route's `dir="rtl"` wrapper (`src/app/ar/layout.tsx`) rather than
+ * inside it — the wrapper only ever wraps its own page content. Without
+ * an explicit `dir`/`lang` here, the Arabic copy below inherited the
+ * page's default `ltr` direction: paragraph lines rendered flush-left
+ * instead of flush-right, and the Decline/Accept buttons sat in the
+ * wrong left-to-right order. Found via R9 Phase A task 16 RTL QA.
  */
 const copy = {
   en: {
@@ -141,7 +150,13 @@ export function ConsentBanner({ locale }: { locale?: "en" | "ar" } = {}) {
   }
 
   return (
-    <div role="region" aria-label="Cookie preferences" className="border-b border-border bg-background">
+    <div
+      role="region"
+      aria-label="Cookie preferences"
+      dir={resolvedLocale === "ar" ? "rtl" : "ltr"}
+      lang={resolvedLocale}
+      className="border-b border-border bg-background"
+    >
       <div className="mx-auto flex w-full max-w-editorial flex-col gap-4 px-gutter py-6 sm:flex-row sm:items-center sm:justify-between">
         <p className="max-w-2xl text-sm text-muted-foreground">{t.body}</p>
         <div className="flex shrink-0 gap-3">
