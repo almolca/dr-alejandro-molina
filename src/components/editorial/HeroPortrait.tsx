@@ -14,10 +14,13 @@ export function HeroPortrait({
   slot,
   priority = false,
   objectPosition = "center 4%",
+  alt,
 }: {
   slot: keyof typeof photography;
   priority?: boolean;
   objectPosition?: string;
+  /** Overrides the config's (English) alt text — used to localize alt text without forking the image asset (R9 Phase B0, spec §5). */
+  alt?: string;
 }) {
   const asset = photography[slot];
   const ready = asset.approved && asset.src?.startsWith("/images/");
@@ -26,7 +29,7 @@ export function HeroPortrait({
     <div className={styles.portrait} data-photo-slot={slot}>
       <Image
         src={asset.src}
-        alt={asset.alt}
+        alt={alt ?? asset.alt}
         fill
         sizes="(min-width: 1024px) 50vw, 100vw"
         preload={priority}
