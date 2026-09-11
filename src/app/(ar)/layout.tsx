@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import "../globals.css";
 import { notoSansArabic } from "@/lib/fonts/arabic";
 import { RootProviders } from "@/components/layout/RootProviders";
 
