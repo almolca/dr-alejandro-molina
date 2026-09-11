@@ -9,15 +9,15 @@ import { Noto_Sans_Arabic } from "next/font/google";
  * NOT registered at `:root`/`<html>` the way `--font-fraunces`/
  * `--font-inter` are in `src/app/layout.tsx` (those apply their
  * `.variable` classNames to `<html>` itself). Confirmed live: a
- * sibling element outside `src/app/ar/layout.tsx`'s wrapper subtree
+ * sibling element outside `src/app/(ar)/layout.tsx`'s wrapper subtree
  * sees `--font-noto-sans-arabic` as unset (`getComputedStyle(...)
  * .getPropertyValue('--font-noto-sans-arabic')` returns `""`), so
  * `var(--font-noto-sans-arabic)` there resolves to nothing rather than
  * the Arabic font.
  *
  * Extracted here (instead of instantiating a second `Noto_Sans_Arabic(...)`
- * call, or importing the object from `src/app/ar/layout.tsx` directly)
- * so both `src/app/ar/layout.tsx` and `src/components/ui/ConsentBanner.tsx`
+ * call, or importing the object from `src/app/(ar)/layout.tsx` directly)
+ * so both `src/app/(ar)/layout.tsx` and `src/components/ui/ConsentBanner.tsx`
  * apply the exact same font instance's `.variable` class on their own
  * root element — each one independently brings `--font-noto-sans-arabic`
  * into scope for its own subtree, rather than relying on inheriting it
