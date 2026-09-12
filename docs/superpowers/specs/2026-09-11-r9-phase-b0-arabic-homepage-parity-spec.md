@@ -104,13 +104,27 @@ Compare `/` and `/ar` at 390 / 768 / 1024 / 1440 via Playwright screenshots (bot
 
 ## 11. Exit criteria (from the owner's brief, carried forward verbatim)
 
-- [ ] Every substantive English homepage section has an Arabic equivalent (table in §1, closed out)
-- [ ] Arabic homepage copy is complete (§6, no abbreviation)
-- [ ] Approved imagery is present (§4)
-- [ ] Visual richness is comparable (same primitives/composition, §3)
-- [ ] RTL is correct (§5 CSS fixes verified)
-- [ ] Internal links are safe — no invented `/ar/*` URLs (§7)
-- [ ] Metadata/schema remain correct (§9)
-- [ ] Owner can compare `/` and `/ar` and reasonably consider them equivalent language versions
+> QA method note (Task 18, 2026-09-12): the Playwright MCP browser was
+> exclusively locked by another live session for the entire QA window, so
+> the planned 8 screenshot pairs were **not captured**. Every box below was
+> instead confirmed via curl-fetched SSR HTML, HTTP status checks on every
+> image URL, source/CSS diffing (including `git diff b11234e` to confirm
+> the English-affecting changes are value-for-value additive/logical-property
+> refactors), and a full component-composition diff — not actual rendered
+> screenshots. No defects were found by any of these checks. See
+> `qa/r9-phase-b0/README.md` and `.superpowers/sdd/2026-09-11-r9-phase-b0-arabic-homepage-parity/task-18-report.md`
+> for the full method and residual risk (true pixel layout, horizontal
+> overflow, and genuinely broken image rendering remain structurally
+> inferred, not visually confirmed — recommend one manual pass once browser
+> access is free, before Production deploy).
+
+- [x] Every substantive English homepage section has an Arabic equivalent (table in §1, closed out) — confirmed: `page.tsx` composition diff shows identical 10-section order plus the bonus FAQ (11 `<section>` elements on `/ar` vs. 10 on `/`).
+- [x] Arabic homepage copy is complete (§6, no abbreviation) — confirmed: every `*SectionAr.tsx` carries substantial Arabic prose, no placeholder/TODO/lorem strings found, `PhysicianAuthority`/`ClinicalDecisionFlow` carry Arabic labels behind `locale="ar"`, and the Insights bilingual notice text is present verbatim.
+- [x] Approved imagery is present (§4) — confirmed: both pages render the same 8 `<img>` tags (hero portrait, clinical photo, AndroMax logo, Men's Health logo, both award logos, brand logo ×2); every unique image URL returns HTTP 200 on both routes; hero portrait and clinical photo carry localized Arabic `alt` text, award/publication logos reused unmodified per §4.
+- [x] Visual richness is comparable (same primitives/composition, §3) — confirmed: identical shared-primitive import sets (`ClinicalDecisionFlow`, `HeroAtmosphere`, `HeroPortrait`, `PhotoFrame`, `PhysicianAuthority`, `BrandCurve`, `BookingCta`, `Button`, `Container`, `SectionHeading`, `VascularFlowDiagram`) across every English/Arabic section pair; `.section-dark` and `.section-olive` band classes both appear twice in each page's rendered HTML, applied via the same `visual.scope` wrapper (Task 16).
+- [x] RTL is correct (§5 CSS fixes verified) — confirmed: `VisualSystem.module.css` `.flow`/`.flow li::before`/`.footerBrand` now use `padding-block`/`padding-inline`/`inset-inline-start`/`padding-inline-end`, and `git diff b11234e` shows these are value-identical to the old physical properties under `dir="ltr"` (zero English impact by construction); `SexualHormonalHealthSectionAr`'s contributor dot correctly swaps to `border-r`/`pr-8`/`-right-[...]`, `FeaturedProcedureSectionAr`'s divider correctly swaps to `border-r`/`pr-8`, and the mini-flow uses `←` per the documented reading-direction judgment call.
+- [x] Internal links are safe — no invented `/ar/*` URLs (§7) — confirmed: no `href="/ar/..."` other than `/ar` itself found anywhere in the Arabic section components or `page.tsx`.
+- [x] Metadata/schema remain correct (§9) — confirmed: `/ar` still self-canonical, reciprocal `en-AE`/`ar-AE`/`x-default` hreflang present, `FAQPage` JSON-LD `inLanguage: "ar"` present, unchanged from Phase A.
+- [x] Owner can compare `/` and `/ar` and reasonably consider them equivalent language versions — every objective sub-criterion above passed with no defects found; caveated only by the absence of an actual pixel-rendered screenshot pass (see method note above) — recommend a quick manual visual spot-check once browser access frees up, ahead of Production deploy (which already requires owner review regardless per the deploy-target note below).
 
 Deploy target: **Preview only**, on `feat/arabic-localization-r9-phase-b`. No merge to `main`, no Production deploy, without owner review.
