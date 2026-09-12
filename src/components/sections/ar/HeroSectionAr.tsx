@@ -34,7 +34,7 @@ export function HeroSectionAr() {
           </Reveal>
 
           <Reveal delay={0.08}>
-            <p className="mt-3 text-sm font-medium uppercase tracking-widest text-muted-foreground">
+            <p className="mt-3 text-sm font-medium uppercase text-muted-foreground">
               طب الذكورة · الصحة الجنسية للرجال · التجميل الذكوري
             </p>
           </Reveal>
