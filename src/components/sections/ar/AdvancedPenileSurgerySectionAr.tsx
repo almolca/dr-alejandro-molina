@@ -31,6 +31,7 @@ export function AdvancedPenileSurgerySectionAr() {
           eyebrow="جراحة القضيب المتقدمة"
           heading="خيار نهائي، يُتوصَّل إليه عبر التقييم"
           description="تُعد جراحة زراعة القضيب خيارًا مدروسًا في مرحلة لاحقة — يُتوصَّل إليه بعد تقييم منظم، ولا يُطرح كخطوة أولى."
+          locale="ar"
         />
 
         <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 border-t border-border pt-10 sm:grid-cols-2">
@@ -43,7 +44,7 @@ export function AdvancedPenileSurgerySectionAr() {
         </StaggerGroup>
 
         <div className="mt-14 border-t border-border pt-10">
-          <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">كيف يتم تأكيد السبب أولًا</p>
+          <p className="text-xs font-medium uppercase text-muted-foreground">كيف يتم تأكيد السبب أولًا</p>
           <StaggerGroup className="mt-6 grid grid-cols-1 gap-y-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-x-8">
             {steps.map((step, index) => (
               <StaggerItem key={step}>

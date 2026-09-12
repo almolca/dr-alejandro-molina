@@ -5,19 +5,18 @@ import { PhotoFrame } from "@/components/editorial/PhotoFrame";
 import { MaskedReveal } from "@/components/motion/MaskedReveal";
 import { Reveal } from "@/components/motion/Reveal";
 
-const highlightLabels = [
-  "Hospital Clínic Barcelona training",
-  "FEBU — Fellow of the European Board of Urology",
-  "Advanced laparoscopic surgery",
-  "Practicing in the United Arab Emirates",
-];
-
 const HIGHLIGHTS_AR: Record<string, string> = {
   "Hospital Clínic Barcelona training": "تدريب في مستشفى كلينيك برشلونة",
   "FEBU — Fellow of the European Board of Urology": "FEBU — زميل المجلس الأوروبي لطب المسالك البولية",
   "Advanced laparoscopic surgery": "جراحة متقدمة بالمنظار",
   "Practicing in the United Arab Emirates": "يمارس الطب في دولة الإمارات العربية المتحدة",
 };
+
+// Derived from `HIGHLIGHTS_AR` (rather than maintained as a separate
+// array) so there's only one list of English credential strings to keep
+// in sync with the translations — a label added to one is automatically
+// in the other.
+const highlightLabels = Object.keys(HIGHLIGHTS_AR);
 
 const highlights = doctor.credentials
   .filter((c) => highlightLabels.includes(c))
@@ -34,7 +33,7 @@ export function AboutSectionAr() {
 
         <div>
           <Reveal>
-            <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">نبذة عن د. مولينا</p>
+            <p className="text-eyebrow font-medium uppercase text-accent-strong">نبذة عن د. مولينا</p>
             <h2 className="mt-4 font-display text-display-lg text-foreground">
               تدريب أوروبي. خلفية جراحية. تركيز متخصص على صحة الرجل.
             </h2>

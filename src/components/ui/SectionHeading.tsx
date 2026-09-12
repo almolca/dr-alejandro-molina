@@ -16,6 +16,7 @@ export function SectionHeading({
   size = "lg",
   className,
   align = "left",
+  locale,
 }: {
   eyebrow?: string;
   heading: ReactNode;
@@ -24,6 +25,7 @@ export function SectionHeading({
   size?: "md" | "lg" | "xl";
   className?: string;
   align?: "left" | "center";
+  locale?: "ar";
 }) {
   const headingSize = {
     md: "text-display-md",
@@ -34,7 +36,14 @@ export function SectionHeading({
   return (
     <Reveal className={cn(align === "center" && "text-center", className)}>
       {eyebrow && (
-        <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
+        <p
+          className={cn(
+            "text-eyebrow font-medium uppercase text-accent-strong",
+            // Letter-spacing distorts joined Arabic script — see W3C i18n
+            // guidance. Only Latin-script (default) eyebrows get tracking.
+            locale === "ar" ? undefined : "tracking-[0.2em]",
+          )}
+        >
           {eyebrow}
         </p>
       )}

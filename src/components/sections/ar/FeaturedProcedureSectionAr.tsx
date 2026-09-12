@@ -10,7 +10,7 @@ export function FeaturedProcedureSectionAr() {
     <section className="section-dark relative overflow-hidden bg-background py-section-y text-foreground">
       <Container className="grid items-center gap-12 lg:grid-cols-[1.4fr_0.6fr] lg:gap-24">
         <Reveal>
-          <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">الإجراء الرائد</p>
+          <p className="text-eyebrow font-medium uppercase text-accent-strong">الإجراء الرائد</p>
           <h2 className="mt-4 max-w-xl font-display text-display-xl">زيادة سماكة القضيب</h2>
           <p className="mt-6 max-w-xl text-body-lg text-muted-foreground">
             يقدّم د. مولينا إجراءً متخصصًا لزيادة سماكة القضيب باستخدام حمض

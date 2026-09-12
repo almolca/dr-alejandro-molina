@@ -15,7 +15,7 @@ export function InsightsSectionAr() {
       <Container>
         <Reveal className="flex flex-wrap items-end justify-between gap-6">
           <div>
-            <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">مقالات ورؤى</p>
+            <p className="text-eyebrow font-medium uppercase text-accent-strong">مقالات ورؤى</p>
             <h2 className="mt-4 font-display text-display-lg text-foreground">رؤى في طب الذكورة وصحة الرجل</h2>
           </div>
           <Link href="/insights" className="text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4">

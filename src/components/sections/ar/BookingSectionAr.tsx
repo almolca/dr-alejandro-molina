@@ -8,10 +8,11 @@ export function BookingSectionAr() {
     <section className="section-olive bg-background py-section-y text-foreground">
       <Container className="flex flex-col items-center text-center">
         <Reveal>
-          <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">الاستشارة</p>
+          <p className="text-eyebrow font-medium uppercase text-accent-strong">الاستشارة</p>
           <h2 className="mx-auto mt-4 max-w-2xl font-display text-display-xl text-foreground">
             استشر د. أليخاندرو مولينا في أبوظبي
           </h2>
+          {/* Arabic translation of `practiceLocationLine` (src/config/practice.ts) — keep in sync with it and with HeroSectionAr.tsx's copy of this same line. */}
           <p className="mt-6 text-body-lg text-muted-foreground">
             مستشفى إن إم سي رويال، مدينة خليفة، أبوظبي
           </p>

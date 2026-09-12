@@ -22,7 +22,7 @@ export function HeroSectionAr() {
       <Container className={`${visual.heroGrid} relative z-10`}>
         <div>
           <Reveal>
-            <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
+            <p className="text-eyebrow font-medium uppercase text-accent-strong">
               استشاري أمراض المسالك البولية والذكورة · أبوظبي
             </p>
           </Reveal>
@@ -51,6 +51,7 @@ export function HeroSectionAr() {
               <p className="text-sm text-muted-foreground">
                 FEBU · زميل المجلس الأوروبي لطب المسالك البولية
               </p>
+              {/* Arabic translation of `practiceLocationLine` (src/config/practice.ts) — keep in sync with it and with BookingSectionAr.tsx's copy of this same line. */}
               <p className="mt-1 text-sm text-muted-foreground">
                 مستشفى إن إم سي رويال، مدينة خليفة، أبوظبي
               </p>

@@ -26,7 +26,7 @@ export function SexualHormonalHealthSectionAr() {
   return (
     <section className={`${visual.clinicalBand} py-section-y`}>
       <Container>
-        <SectionHeading eyebrow="الصحة الجنسية والهرمونية" heading="التشخيص قبل العلاج، في الاتجاهين" />
+        <SectionHeading eyebrow="الصحة الجنسية والهرمونية" heading="التشخيص قبل العلاج، في الاتجاهين" locale="ar" />
 
         <ClinicalDecisionFlow locale="ar" />
 
@@ -65,7 +65,7 @@ export function SexualHormonalHealthSectionAr() {
               <br />
               والأرقام تحتاج إلى سياق.
             </blockquote>
-            <p className="mt-8 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+            <p className="mt-8 text-xs font-medium uppercase text-muted-foreground">
               ما يأخذه التقييم بعين الاعتبار
             </p>
             <ul className="mt-6 flex flex-wrap gap-x-3 gap-y-3">

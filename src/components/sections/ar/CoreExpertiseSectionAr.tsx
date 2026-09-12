@@ -44,11 +44,11 @@ export function CoreExpertiseSectionAr() {
   return (
     <section className="py-section-y">
       <Container>
-        <SectionHeading eyebrow="مجالات الرعاية" heading="رعاية متخصصة لصحة الرجال" />
+        <SectionHeading eyebrow="مجالات الرعاية" heading="رعاية متخصصة لصحة الرجال" locale="ar" />
 
         <div className={visual.services}>
           <Link href="/male-aesthetics/penile-girth-enhancement" className={visual.serviceFeature}>
-            <span className="text-xs uppercase tracking-widest">الإجراء الرائد</span>
+            <span className="text-xs uppercase">الإجراء الرائد</span>
             <div>
               <h3 className="font-display text-3xl">زيادة سماكة القضيب</h3>
               <p className="mt-4 text-sm text-stone-200">تخطيط قائم على التشريح ضمن ممارسة استشاري أمراض المسالك البولية والذكورة.</p>
@@ -70,7 +70,7 @@ export function CoreExpertiseSectionAr() {
         </div>
 
         <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3">
-          <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">أيضًا يُقيَّم</span>
+          <span className="text-xs font-medium uppercase text-muted-foreground">أيضًا يُقيَّم</span>
           {secondaryLinks.map((link) => (
             <Link
               key={link.href}
