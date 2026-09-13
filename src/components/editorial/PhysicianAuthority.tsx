@@ -3,6 +3,7 @@ import { doctor } from "@/config/doctor";
 import { editorialContributions } from "@/config/mediaAppearances";
 import { awardLogos, publications, trainingPrograms } from "@/config/reputation";
 import { AnimatedNumber } from "@/components/motion/AnimatedNumber";
+import { AR_REPUTATION } from "@/lib/i18n/ar-reputation";
 import styles from "./Editorial.module.css";
 
 export function AuthorityMetric({
@@ -64,17 +65,6 @@ export const AR = {
   febuLine: "زميل المجلس الأوروبي لطب المسالك البولية",
   medicalTrainerLabel: "مدرّب طبي",
   medicalTrainerTrains: "يُدرّب أطباء المسالك البولية وأطباء التجميل",
-  /**
-   * Arabic wording per outlet, keyed by `outletName` (matching
-   * `editorialContributions` in `config/mediaAppearances.ts`) — NOT a
-   * single fixed string, since each editorial contribution names a
-   * different outlet. Single source of truth for this translation:
-   * `AuthorityMediaSectionAr.tsx` imports this same map rather than
-   * keeping its own copy (R9 Phase B0 final review, finding #3).
-   */
-  editorialWordingByOutlet: {
-    "Men's Health Spain": "مساهم في مجلة Men's Health إسبانيا",
-  } as Record<string, string>,
   professionalRecognition: "الاعتراف المهني",
 };
 
@@ -134,7 +124,7 @@ export function PhysicianAuthority({
         return (
           <p key={item.outletName} className={styles.railItem}>
             {publicationLogo && <Image src={publicationLogo} alt={item.outletName} width={57} height={32} className={styles.railLogo} />}
-            <span>{isAr ? (AR.editorialWordingByOutlet[item.outletName] ?? item.wording) : item.wording}</span>
+            <span>{isAr ? (AR_REPUTATION.editorialWordingByOutlet[item.outletName] ?? item.wording) : item.wording}</span>
           </p>
         );
       })}

@@ -3,16 +3,7 @@ import { mediaAppearances, editorialContributions } from "@/config/mediaAppearan
 import { verifiedReviewTotal } from "@/config/reputation";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
-import { AR as PHYSICIAN_AUTHORITY_AR } from "@/components/editorial/PhysicianAuthority";
-
-/**
- * Arabic translation of `publicReviewHeadline` in `config/reputation.ts`.
- * Deliberately not derived — same "owner approval" reasoning as that
- * string's own comment. If `publicReviewHeadline` is ever revisited by
- * the owner, this constant must be updated in lockstep (see the sync
- * comment on `publicReviewHeadline` itself).
- */
-const REVIEW_HEADLINE_AR = "أكثر من 450 تقييمًا من المرضى عبر منصات مستقلة";
+import { AR_REPUTATION } from "@/lib/i18n/ar-reputation";
 
 /**
  * Arabic mirror of `AuthorityMediaSection`. Award names (e.g. "Top
@@ -42,7 +33,7 @@ export function AuthorityMediaSectionAr() {
               {publishableAwards.map((a) => a.officialTitle).join(" · ")}
             </p>
           )}
-          {hasReviews && <p className="mb-3 text-sm text-foreground">{REVIEW_HEADLINE_AR}</p>}
+          {hasReviews && <p className="mb-3 text-sm text-foreground">{AR_REPUTATION.reviewHeadline}</p>}
           {publishableMedia.length > 0 && (
             <p className="mt-3 text-sm text-foreground">
               {publishableMedia.map((m) => `${m.title} — ${m.outletName}`).join(" · ")}
@@ -51,7 +42,7 @@ export function AuthorityMediaSectionAr() {
           {publishableEditorial.length > 0 && (
             <p className="mt-3 text-sm text-foreground">
               {publishableEditorial
-                .map((e) => PHYSICIAN_AUTHORITY_AR.editorialWordingByOutlet[e.outletName] ?? e.wording)
+                .map((e) => AR_REPUTATION.editorialWordingByOutlet[e.outletName] ?? e.wording)
                 .join(" · ")}
             </p>
           )}
