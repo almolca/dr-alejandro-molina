@@ -1,4 +1,4 @@
-import { reviewPlatforms, topDoctorsAggregate, verifiedReviewTotal } from "@/config/reputation";
+import { publicReviewHeadline, reviewPlatforms, topDoctorsAggregate, verifiedReviewTotal } from "@/config/reputation";
 import { AR_REPUTATION } from "@/lib/i18n/ar-reputation";
 import editorialStyles from "@/components/editorial/Editorial.module.css";
 import { Container } from "@/components/ui/Container";
@@ -25,7 +25,7 @@ export function PatientFeedbackSection({ locale }: { locale?: "ar" } = {}) {
         <SectionHeading
           eyebrow={isAr ? "آراء المرضى" : "Patient Feedback"}
           heading={isAr ? "تقييمات مستقلة" : "Independently Reviewed"}
-          description={verifiedReviewTotal > 0 ? (isAr ? AR_REPUTATION.reviewHeadline : "450+ patient reviews across independent platforms") : undefined}
+          description={verifiedReviewTotal > 0 ? (isAr ? AR_REPUTATION.reviewHeadline : publicReviewHeadline) : undefined}
           locale={isAr ? "ar" : undefined}
         />
         <div className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-3">
