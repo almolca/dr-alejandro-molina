@@ -52,3 +52,19 @@ Per B0's experience, the Playwright MCP browser may be locked by another concurr
 ## 9. Batch sequencing
 
 Each batch is its own implementation plan (`docs/superpowers/plans/2026-09-13-r9-phase-b-batch<N>-*.md`), executed via `superpowers:subagent-driven-development` in this same worktree, with its own SDD ledger. A batch's plan documents, per outbound link from its pages, whether the destination is already live in Arabic (from an earlier batch) and should get an Arabic href, or is not yet built and must stay a documented temporary English href per §1. After each batch: full verification (typecheck/lint/test/build), a task-level and final-review pass identical in rigor to B0's, and a QA pass — then proceed to the next batch without a separate Preview deploy. One consolidated Preview deploy and final route-by-route parity matrix happen after Batch 4.
+
+## 10. Batch 1 QA status (Task 20)
+
+Batch 1's responsive QA (Task 20) found the Playwright MCP browser locked by
+another live session again (same failure mode as B0's Task 18), so it fell
+back to the same structural/source-based method: full section-by-section
+`page.tsx` diffing, image-URL HTTP checks, hreflang/canonical/`inLanguage`
+verification, a `git`-confirmed zero-content-change guarantee for the 5
+English hub pages (pure renames in `b11234e`), and direct source
+confirmation that the §4 Breadcrumb-chevron and AuthorityBlock-alignment
+fixes plus the locale-agnostic `section-dark`/`section-olive` tokens are
+correctly wired on all 5 pairs. No issues found by this method. See
+`qa/r9-phase-b-batch1/README.md` for the full breakdown. As with B0, this
+does not confirm actual pixel layout at 390/768/1024/1440px — a real
+Playwright/manual visual pass on all pages (B0's homepage included) is still
+owed before the consolidated pre-Production Preview after Batch 4.
