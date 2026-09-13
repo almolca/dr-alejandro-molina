@@ -3,11 +3,13 @@ import visual from "@/components/editorial/VisualSystem.module.css";
 import { doctor } from "@/config/doctor";
 import { editorialContributions } from "@/config/mediaAppearances";
 import { awardLogos, mensHealthAuthorProfileUrl, trainingPrograms } from "@/config/reputation";
+import { AR_REPUTATION } from "@/lib/i18n/ar-reputation";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 
 /** Owner-approved names and, as of R7.1, owner-supplied official logos. */
-export function RecognitionSection() {
+export function RecognitionSection({ locale }: { locale?: "ar" } = {}) {
+  const isAr = locale === "ar";
   const publishable = doctor.awards.filter((award) => award.publishReady);
   const editorial = editorialContributions.filter((item) => item.publishReady);
   const training = trainingPrograms[0];
@@ -20,7 +22,7 @@ export function RecognitionSection() {
         {publishable.length > 0 && (
           <Reveal className={visual.recognitionColumn}>
             <h2 className="font-display text-2xl">
-              Professional Recognition
+              {isAr ? "الاعتراف المهني" : "Professional Recognition"}
             </h2>
             <ul className="mt-6 space-y-5">
               {publishable.map((award) => {
@@ -44,7 +46,7 @@ export function RecognitionSection() {
         {editorial.length > 0 && (
           <Reveal className={visual.recognitionColumn}>
             <h2 className="font-display text-2xl">
-              Editorial / Media
+              {isAr ? "المساهمات التحريرية / الإعلامية" : "Editorial / Media"}
             </h2>
             <ul className="mt-6 space-y-5">
               {editorial.map((item) => (
@@ -55,7 +57,7 @@ export function RecognitionSection() {
                     </span>
                   )}
                   <p className={`mt-3 font-display text-[clamp(1.25rem,1.8vw,1.6rem)] leading-snug ${visual.recognitionHeading}`}>
-                    {item.wording}
+                    {isAr ? (AR_REPUTATION.editorialWordingByOutlet[item.outletName] ?? item.wording) : item.wording}
                   </p>
                   {item.outletName === "Men's Health Spain" && (
                     <a
@@ -64,7 +66,7 @@ export function RecognitionSection() {
                       rel="noopener noreferrer nofollow"
                       className="mt-2 inline-flex text-sm underline underline-offset-4"
                     >
-                      View author profile
+                      {isAr ? "عرض الملف الشخصي للكاتب" : "View author profile"}
                     </a>
                   )}
                 </li>
@@ -74,16 +76,18 @@ export function RecognitionSection() {
         )}
         {doctor.medicalTrainer && (
           <Reveal className={visual.recognitionColumn}>
-            <h2 className="font-display text-2xl">Medical Education</h2>
+            <h2 className="font-display text-2xl">{isAr ? "التعليم الطبي" : "Medical Education"}</h2>
             {training?.logoSrc && (
               <span className={`${visual.logoChip} mt-6`}>
                 <Image src={training.logoSrc} alt={training.program} width={140} height={44} style={{ height: "1.75rem", width: "auto" }} />
               </span>
             )}
             <p className={`mt-3 font-display text-[clamp(1.25rem,1.8vw,1.6rem)] leading-snug ${visual.recognitionHeading}`}>{doctor.medicalTrainer.program}</p>
-            <p className="mt-4 text-sm">Medical Trainer</p>
+            <p className="mt-4 text-sm">{isAr ? "مدرّب طبي" : "Medical Trainer"}</p>
             <p className={`mt-2 max-w-xs text-sm ${visual.recognitionBody}`}>
-              {training?.positioningLine ?? "Training of urologists and aesthetic physicians"}
+              {isAr
+                ? (training?.positioningLine ? AR_REPUTATION.trainingPositioningLine : "تدريب أطباء المسالك البولية وأطباء التجميل")
+                : (training?.positioningLine ?? "Training of urologists and aesthetic physicians")}
             </p>
           </Reveal>
         )}
