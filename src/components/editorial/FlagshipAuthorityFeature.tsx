@@ -12,7 +12,7 @@ export function FlagshipAuthorityFeature({ locale }: { locale?: "ar" } = {}) {
       <div><strong>{doctor.girthProcedureCount}</strong><span>{isAr ? "الإجراءات المنجزة" : "Procedures performed"}</span></div>
       <div><strong>{doctor.girthEnhancementSince}</strong><span>{isAr ? "خبرة منذ" : "Experience since"}</span></div>
     </div>
-    <p className="mb-6 text-sm">{doctor.title}<br />{isAr ? "مدرّب طبي" : "Medical Trainer"} · {doctor.medicalTrainer.program}</p>
+    <p className="mb-6 text-sm">{isAr ? "استشاري أمراض المسالك البولية والذكورة" : doctor.title}<br />{isAr ? "مدرّب طبي" : "Medical Trainer"} · {doctor.medicalTrainer.program}</p>
     <Link className={styles.featureLink} href="/male-aesthetics/penile-girth-enhancement">{isAr ? "استكشف زيادة سماكة القضيب ←" : "Explore Penile Girth Enhancement →"}</Link>
   </div>;
 }

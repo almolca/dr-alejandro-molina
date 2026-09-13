@@ -79,7 +79,7 @@ export function PhysicianAuthority({
 }) {
   const isAr = locale === "ar";
   return <div className={`${styles.authority} ${dark ? styles.authorityDark : ""}`}>
-    <p className="mb-6 text-xs font-medium uppercase tracking-widest">{doctor.title}</p>
+    <p className={`mb-6 text-xs font-medium uppercase ${isAr ? "" : "tracking-widest"}`}>{isAr ? "استشاري أمراض المسالك البولية والذكورة" : doctor.title}</p>
     <dl className={styles.metrics}>
       {doctor.yearsOfExperience !== undefined && (
         <AuthorityMetric
