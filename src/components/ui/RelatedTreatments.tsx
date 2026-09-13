@@ -1,6 +1,7 @@
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
+import { cn } from "@/lib/utils/cn";
 
 export type RelatedLink = { label: string; href: string };
 
@@ -10,13 +11,13 @@ export type RelatedLink = { label: string; href: string };
  * plain (a labelled list, not cards) so it reads as reference material,
  * not another promotional block.
  */
-export function RelatedTreatments({ items }: { items: RelatedLink[] }) {
+export function RelatedTreatments({ items, locale }: { items: RelatedLink[]; locale?: "ar" }) {
   return (
     <section className="border-t border-border py-16">
       <Container>
         <Reveal className="flex flex-wrap items-baseline gap-x-8 gap-y-4">
-          <span className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
-            Related
+          <span className={cn("text-xs font-medium uppercase text-muted-foreground", locale !== "ar" && "tracking-widest")}>
+            {locale === "ar" ? "مواضيع ذات صلة" : "Related"}
           </span>
           {items.map((item) => (
             <Link
