@@ -142,12 +142,12 @@ export const topDoctorsAggregate = {
  * ever drops below 450, this constant must be revisited by the owner
  * before publishing — it is intentionally not auto-derived.
  *
- * Sync note (R9 Phase B0): `REVIEW_HEADLINE_AR` in
- * `src/components/sections/ar/AuthorityMediaSectionAr.tsx` — and any
- * equivalent Arabic headline later added to `PhysicianAuthority.tsx` —
- * is a translated mirror of this string with no automated link back to
- * it. If this headline is ever revisited by the owner, update those
- * Arabic strings in lockstep.
+ * Sync note (R9 Phase B): `AR_REPUTATION.reviewHeadline` in
+ * `src/lib/i18n/ar-reputation.ts` — consumed by both
+ * `AuthorityMediaSectionAr.tsx` and `PhysicianAuthority.tsx` — is a
+ * translated mirror of this string with no automated link back to it.
+ * If this headline is ever revisited by the owner, update that Arabic
+ * string in lockstep.
  */
 export const publicReviewHeadline = "450+ patient reviews across independent platforms";
 
