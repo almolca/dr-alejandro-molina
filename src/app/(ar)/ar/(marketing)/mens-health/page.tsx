@@ -2,7 +2,6 @@ import { EditorialFrame } from "@/components/editorial/EditorialFrame";
 import { HeroAtmosphere } from "@/components/editorial/HeroAtmosphere";
 import { ClinicalDecisionFlow } from "@/components/editorial/ClinicalDecisionFlow";
 import { ConsultationPathwayDiagram } from "@/components/illustrations/ConsultationPathwayDiagram";
-import { doctor } from "@/config/doctor";
 import visual from "@/components/editorial/VisualSystem.module.css";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import type { Metadata } from "next";
@@ -105,7 +104,7 @@ export default function MensHealthPageAr() {
               <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg">احجز استشارة</BookingCta>
             </div>
           </Reveal>
-          <div className={visual.physicianIdentity}><p>{doctor.displayName}</p><span>استشاري أمراض المسالك البولية والذكورة · FEBU · أبوظبي</span></div>
+          <div className={visual.physicianIdentity}><p>د. أليخاندرو مولينا</p><span>استشاري أمراض المسالك البولية والذكورة · FEBU · أبوظبي</span></div>
           </div>
           <EditorialFrame slot="mensHealthHero" landscape priority />
         </Container>
