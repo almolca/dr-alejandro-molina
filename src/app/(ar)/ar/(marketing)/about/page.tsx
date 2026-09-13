@@ -107,7 +107,8 @@ const narrative = [
     body:
       "حافظ د. مولينا على ارتباطه بالتعليم والتدريب الأكاديمي طوال مسيرته السريرية، بما يعكس التزامًا بالمجال يتجاوز رعاية المريض الفردية." +
       (doctor.medicalTrainer?.description
-        ? " إلى جانب ممارسته السريرية، يقدّم د. مولينا تدريبًا متخصصًا في تقنيات تجميل القضيب لأطباء المسالك البولية وأطباء التجميل من خلال برنامج AndroMax Training."
+        ? // Arabic translation of `doctor.medicalTrainer.description` (src/config/doctor.ts) — keep in sync with it and with this page's other copy below, and with AuthorityMediaSectionAr.tsx's copy of the same translation.
+          " إلى جانب ممارسته السريرية، يقدّم د. مولينا تدريبًا متخصصًا في تقنيات تجميل القضيب لأطباء المسالك البولية وأطباء التجميل من خلال برنامج AndroMax Training."
         : ""),
   },
 ];
@@ -134,17 +135,18 @@ export default function AboutPageAr() {
 
           <div>
             <Reveal>
-              <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
+              <p className="text-eyebrow font-medium uppercase text-accent-strong">
                 نبذة
               </p>
               <h1 className="mt-4 font-display text-display-xl text-foreground">
-                {doctor.displayName}
+                د. أليخاندرو مولينا
               </h1>
               <p className="mt-6 max-w-lg font-display text-2xl leading-snug">تدريب أوروبي. خلفية جراحية. تركيز متخصص على صحة الرجل.</p>
             </Reveal>
             <Reveal delay={0.1}>
               <div className="mt-8 border-t border-border pt-6">
                 <p className="text-sm text-muted-foreground">استشاري أمراض المسالك البولية والذكورة</p>
+                {/* Arabic translation of `practiceLocationLine` (src/config/practice.ts) — keep in sync with it and with BookingSectionAr.tsx's copy of this same line. */}
                 <p className="mt-3 text-sm text-muted-foreground">مستشفى إن إم سي رويال، مدينة خليفة، أبوظبي</p>
               </div>
             </Reveal>
@@ -194,6 +196,12 @@ export default function AboutPageAr() {
         </Container>
       </section>
 
+      {/* Medical Education & Training. Deliberately has no BookingCta or any
+          clinical CTA — kept as a purely informational section so the
+          B2B training proposition never mixes with the clinical B2C
+          booking flow (owner's explicit instruction, mirrored from the
+          English page). Renders nothing if `doctor.medicalTrainer` is
+          ever unset. */}
       {doctor.medicalTrainer?.description && (
         <section className="border-t border-border py-section-y">
           <Container className={visual.split}>
@@ -203,10 +211,11 @@ export default function AboutPageAr() {
                 className="mb-6 h-16 w-16 text-muted-foreground"
                 title="إرشاد الأطباء والتدريب الموجّه بالموجات فوق الصوتية"
               />
-              <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
+              <p className="text-eyebrow font-medium uppercase text-accent-strong">
                 التعليم والتدريب الطبي
               </p>
               <h2 className="mt-4 font-display text-display-md">{doctor.medicalTrainer.program}</h2>
+              {/* Arabic translation of `doctor.medicalTrainer.description` (src/config/doctor.ts) — keep in sync with it and with the narrative[] copy above, and with AuthorityMediaSectionAr.tsx's copy of the same translation. */}
               <p className="mt-6 text-body-lg text-muted-foreground">
                 إلى جانب ممارسته السريرية، يقدّم د. مولينا تدريبًا متخصصًا في تقنيات تجميل القضيب لأطباء المسالك البولية وأطباء التجميل من خلال برنامج AndroMax Training.
               </p>
@@ -228,7 +237,7 @@ export default function AboutPageAr() {
       <section className="section-dark relative bg-background py-section-y text-foreground">
         <EditorialTexture />
         <Container>
-          <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
+          <p className="text-eyebrow font-medium uppercase text-accent-strong">
             الخلفية
           </p>
           <h2 className="mt-4 font-display text-display-md text-foreground">المؤهلات</h2>
@@ -248,7 +257,7 @@ export default function AboutPageAr() {
       {publications.length > 0 && (
         <section className="border-t border-border py-section-y">
           <Container>
-            <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
+            <p className="text-eyebrow font-medium uppercase text-accent-strong">
               منشورات مختارة
             </p>
             <h2 className="mt-4 font-display text-display-md text-foreground">مساهم وكاتب — مجلة Men&rsquo;s Health إسبانيا</h2>
@@ -278,8 +287,9 @@ export default function AboutPageAr() {
         <Container className="flex flex-col items-center text-center">
           <Reveal>
             <h2 className="mx-auto max-w-xl font-display text-display-md text-foreground">
-              استشر {doctor.displayName} في {practice.city}
+              استشر د. أليخاندرو مولينا في أبوظبي
             </h2>
+            {/* Arabic translation of `practiceLocationLine` (src/config/practice.ts) — keep in sync with it and with BookingSectionAr.tsx's copy of this same line. */}
             <p className="mt-4 text-sm text-muted-foreground">مستشفى إن إم سي رويال، مدينة خليفة، أبوظبي</p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <BookingCta sourcePage={PATH} ctaPosition="page-closing-cta" size="lg">احجز استشارة</BookingCta>
