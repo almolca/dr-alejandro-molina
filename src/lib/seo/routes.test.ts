@@ -11,11 +11,19 @@ describe("getLocalizedPathPair", () => {
   });
 
   it("returns null for an English route with no Arabic equivalent yet", () => {
-    expect(getLocalizedPathPair("/mens-health")).toBeNull();
+    expect(getLocalizedPathPair("/book")).toBeNull();
   });
 
   it("returns null for an Arabic path with no matching registry entry", () => {
-    expect(getLocalizedPathPair("/ar/mens-health")).toBeNull();
+    expect(getLocalizedPathPair("/ar/book")).toBeNull();
+  });
+
+  it("returns the en/ar pair for a Batch 1 hub route", () => {
+    expect(getLocalizedPathPair("/mens-health")).toEqual({ en: "/mens-health", ar: "/ar/mens-health" });
+  });
+
+  it("returns the same Batch 1 pair when looked up from the Arabic side", () => {
+    expect(getLocalizedPathPair("/ar/mens-health")).toEqual({ en: "/mens-health", ar: "/ar/mens-health" });
   });
 });
 
@@ -38,8 +46,15 @@ describe("isArabicPath", () => {
 });
 
 describe("routes registry", () => {
-  it("only the homepage has an arPath set in Phase A", () => {
-    const withArPath = routes.filter((r) => r.arPath);
-    expect(withArPath).toEqual([expect.objectContaining({ path: "/", arPath: "/ar" })]);
+  it("has arPath set on the homepage and the five R9 Phase B Batch 1 hub routes", () => {
+    const withArPath = routes.filter((r) => r.arPath).map((r) => r.path);
+    expect(withArPath).toEqual([
+      "/",
+      "/about",
+      "/mens-health",
+      "/sexual-medicine",
+      "/male-aesthetics",
+      "/male-fertility",
+    ]);
   });
 });

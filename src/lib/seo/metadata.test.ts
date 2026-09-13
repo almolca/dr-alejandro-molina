@@ -77,11 +77,25 @@ describe("buildMetadata", () => {
 
   it("R9: emits no hreflang alternates when no Arabic equivalent exists yet", () => {
     const metadata = buildMetadata({
+      title: "Book a Consultation",
+      description: "Specialist care.",
+      path: "/book",
+    });
+
+    expect(metadata.alternates?.languages).toBeUndefined();
+  });
+
+  it("R9 Phase B Batch 1: emits reciprocal hreflang alternates for a hub route now that its Arabic page exists", () => {
+    const metadata = buildMetadata({
       title: "Men's Health",
       description: "Specialist care.",
       path: "/mens-health",
     });
 
-    expect(metadata.alternates?.languages).toBeUndefined();
+    expect(metadata.alternates?.languages).toEqual({
+      "en-AE": `${siteUrl}/mens-health`,
+      "ar-AE": `${siteUrl}/ar/mens-health`,
+      "x-default": `${siteUrl}/mens-health`,
+    });
   });
 });

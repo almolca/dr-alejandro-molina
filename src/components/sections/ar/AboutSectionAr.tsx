@@ -22,7 +22,6 @@ const highlights = doctor.credentials
   .filter((c) => highlightLabels.includes(c))
   .map((c) => HIGHLIGHTS_AR[c]);
 
-/** Temporary EN destination — no Arabic /about yet, spec §7. */
 export function AboutSectionAr() {
   return (
     <section className="py-section-y">
@@ -49,7 +48,7 @@ export function AboutSectionAr() {
 
           <Reveal delay={0.15}>
             <Link
-              href="/about"
+              href="/ar/about"
               className="mt-10 inline-flex items-center text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
             >
               تعرّف على د. مولينا

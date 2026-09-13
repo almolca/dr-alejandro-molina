@@ -27,9 +27,20 @@ describe("sitemap", () => {
     });
   });
 
-  it("includes no other /ar/* route yet", () => {
+  it("includes the R9 Phase B Batch 1 /ar/* routes alongside the homepage, and no others yet", () => {
     const arEntries = entries.filter((e) => e.url.includes(`${siteUrl}/ar`));
-    expect(arEntries).toHaveLength(1);
+    expect(arEntries.map((e) => e.url).sort()).toEqual(
+      [
+        "/ar",
+        "/ar/about",
+        "/ar/mens-health",
+        "/ar/sexual-medicine",
+        "/ar/male-aesthetics",
+        "/ar/male-fertility",
+      ]
+        .map((path) => `${siteUrl}${path}`)
+        .sort(),
+    );
   });
 
   it("still includes insight articles (regression check)", () => {

@@ -21,13 +21,13 @@ const primaryAreas = [
     number: "03",
     title: "التجميل الذكوري",
     description: "نهج قائم على التشريح وتحت إشراف طبي لتجميل القضيب وتصحيحه.",
-    href: "/male-aesthetics",
+    href: "/ar/male-aesthetics",
   },
   {
     number: "04",
     title: "خصوبة الرجل",
     description: "تحليل السائل المنوي، والتقييم الهرموني، وتقييم دوالي الخصية.",
-    href: "/male-fertility",
+    href: "/ar/male-fertility",
   },
 ];
 
@@ -39,7 +39,11 @@ const secondaryLinks = [
   { label: "قطع القناة المنوية بدون مشرط", href: "/mens-health/vasectomy" },
 ];
 
-/** Temporary EN destinations throughout — no Arabic pages yet, spec §7. */
+/**
+ * `/male-aesthetics` and `/male-fertility` now link to real Arabic pages
+ * (R9 Phase B Batch 1). The remaining hrefs are sub-pages outside this
+ * batch and stay temporary EN destinations, spec §7.
+ */
 export function CoreExpertiseSectionAr() {
   return (
     <section className="py-section-y">

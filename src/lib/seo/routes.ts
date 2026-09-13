@@ -40,15 +40,15 @@ export type RouteEntry = {
 
 export const routes: RouteEntry[] = [
   { path: "/", status: "live", priority: 1.0, arPath: "/ar" },
-  { path: "/about", status: "live", priority: 0.7 },
+  { path: "/about", status: "live", priority: 0.7, arPath: "/ar/about" },
   { path: "/book", status: "live", priority: 0.8 },
 
-  { path: "/mens-health", status: "live", priority: 0.8 },
+  { path: "/mens-health", status: "live", priority: 0.8, arPath: "/ar/mens-health" },
   { path: "/mens-health/testosterone", status: "live", priority: 0.9 },
   { path: "/mens-health/vasectomy", status: "live", priority: 0.6 },
   { path: "/mens-health/low-libido", status: "planned", priority: 0.5 },
 
-  { path: "/sexual-medicine", status: "live", priority: 0.7 },
+  { path: "/sexual-medicine", status: "live", priority: 0.7, arPath: "/ar/sexual-medicine" },
   { path: "/sexual-medicine/premature-ejaculation", status: "live", priority: 0.8 },
   { path: "/erectile-dysfunction", status: "live", priority: 0.9 },
   // "/erectile-dysfunction/assessment" (spec §5) was deliberately not
@@ -63,7 +63,7 @@ export const routes: RouteEntry[] = [
   { path: "/penile-implant", status: "live", priority: 0.9 },
   { path: "/peyronies-disease", status: "live", priority: 0.7 },
 
-  { path: "/male-aesthetics", status: "live", priority: 0.9 },
+  { path: "/male-aesthetics", status: "live", priority: 0.9, arPath: "/ar/male-aesthetics" },
   { path: "/male-aesthetics/penile-girth-enhancement", status: "live", priority: 0.9 },
   { path: "/male-aesthetics/scrotal-lift", status: "live", priority: 0.8 },
   // Built Phase B (SEO_RESTRUCTURE_IMPLEMENTATION_PLAN.md). Renamed from
@@ -72,7 +72,7 @@ export const routes: RouteEntry[] = [
   // needed, since nothing was ever live at the old slug.
   { path: "/male-aesthetics/penile-filler-correction", status: "live", priority: 0.7 },
 
-  { path: "/male-fertility", status: "live", priority: 0.7 },
+  { path: "/male-fertility", status: "live", priority: 0.7, arPath: "/ar/male-fertility" },
   { path: "/male-fertility/varicocele", status: "live", priority: 0.6 },
   { path: "/male-fertility/semen-analysis", status: "planned", priority: 0.5 },
 
