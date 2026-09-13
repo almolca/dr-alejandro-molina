@@ -108,7 +108,7 @@ export default function MaleFertilityPageAr() {
       <section className="py-section-y">
         <Container className="max-w-3xl">
           <Reveal>
-            <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
+            <p className="text-eyebrow font-medium uppercase text-accent-strong">
               خصوبة الرجل
             </p>
             <h1 className="mt-4 font-display text-display-xl text-foreground">
@@ -191,7 +191,7 @@ export default function MaleFertilityPageAr() {
         <Container className="grid gap-16 lg:grid-cols-2 lg:gap-24">
           {contributors.map((item) => (
             <Reveal key={item.title}>
-              <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
+              <p className="text-eyebrow font-medium uppercase text-accent-strong">
                 العوامل المساهمة
               </p>
               <h2 className="mt-4 font-display text-display-md text-foreground">{item.title}</h2>
@@ -206,7 +206,7 @@ export default function MaleFertilityPageAr() {
       <section className="section-olive bg-background py-section-y text-foreground">
         <Container className="mx-auto max-w-2xl text-center">
           <Reveal>
-            <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
+            <p className="text-eyebrow font-medium uppercase text-accent-strong">
               ما بعد التقييم
             </p>
             <p className="mt-6 font-display text-display-md text-foreground">
