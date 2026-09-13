@@ -7,6 +7,7 @@ import { HeroAtmosphere } from "@/components/editorial/HeroAtmosphere";
 import { HeroPortrait } from "@/components/editorial/HeroPortrait";
 import { MaskedReveal } from "@/components/motion/MaskedReveal";
 import { Reveal } from "@/components/motion/Reveal";
+import { AR_IDENTITY } from "@/lib/i18n/ar-identity";
 
 /**
  * R9 Phase B0 — Arabic mirror of `HeroSection`. `align="left"` on
@@ -23,13 +24,13 @@ export function HeroSectionAr() {
         <div>
           <Reveal>
             <p className="text-eyebrow font-medium uppercase text-accent-strong">
-              استشاري أمراض المسالك البولية والذكورة · أبوظبي
+              {AR_IDENTITY.doctorTitle} · أبوظبي
             </p>
           </Reveal>
 
           <Reveal delay={0.05}>
             <h1 className="mt-5 font-display text-display-2xl text-foreground">
-              د. أليخاندرو مولينا
+              {AR_IDENTITY.doctorDisplayName}
             </h1>
           </Reveal>
 
@@ -51,9 +52,8 @@ export function HeroSectionAr() {
               <p className="text-sm text-muted-foreground">
                 FEBU · زميل المجلس الأوروبي لطب المسالك البولية
               </p>
-              {/* Arabic translation of `practiceLocationLine` (src/config/practice.ts) — keep in sync with it and with BookingSectionAr.tsx's copy of this same line. */}
               <p className="mt-1 text-sm text-muted-foreground">
-                مستشفى إن إم سي رويال، مدينة خليفة، أبوظبي
+                {AR_IDENTITY.practiceLocationLine}
               </p>
             </div>
           </Reveal>
@@ -79,7 +79,7 @@ export function HeroSectionAr() {
               slot="homeHero"
               priority
               objectPosition="center 4%"
-              alt="صورة الدكتور أليخاندرو مولينا، استشاري أمراض المسالك البولية والذكورة"
+              alt={`صورة الدكتور أليخاندرو مولينا، ${AR_IDENTITY.doctorTitle}`}
             />
           </MaskedReveal>
         </div>

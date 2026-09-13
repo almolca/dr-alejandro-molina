@@ -19,6 +19,7 @@ import { MaskedReveal } from "@/components/motion/MaskedReveal";
 import { Reveal } from "@/components/motion/Reveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { TreatmentCtaSection } from "@/components/sections/TreatmentCtaSection";
+import { AR_IDENTITY } from "@/lib/i18n/ar-identity";
 import { breadcrumbSchema, medicalWebPageSchema } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
 
@@ -136,7 +137,7 @@ export default function MaleAestheticsPageAr() {
                 </BookingCta>
               </div>
             </Reveal>
-          <div className={visual.physicianIdentity}><p>د. أليخاندرو مولينا</p><span>استشاري أمراض المسالك البولية والذكورة</span></div>
+          <div className={visual.physicianIdentity}><p>{AR_IDENTITY.doctorDisplayName}</p><span>{AR_IDENTITY.doctorTitle}</span></div>
           </div>
         </Container>
       </EditorialField>
@@ -229,12 +230,11 @@ export default function MaleAestheticsPageAr() {
               نبذة
             </p>
             <h2 className="mt-4 font-display text-display-md text-foreground">
-              د. أليخاندرو مولينا
+              {AR_IDENTITY.doctorDisplayName}
             </h2>
-            <p className="mt-2 text-sm text-muted-foreground">استشاري أمراض المسالك البولية والذكورة</p>
+            <p className="mt-2 text-sm text-muted-foreground">{AR_IDENTITY.doctorTitle}</p>
             <p className="mt-6 max-w-md text-sm leading-relaxed text-muted-foreground">
-              يُجرى التجميل الذكوري في هذه الممارسة ضمن ممارسة استشاري
-              أمراض المسالك البولية والذكورة
+              يُجرى التجميل الذكوري في هذه الممارسة ضمن ممارسة {AR_IDENTITY.doctorTitle}
               {doctor.girthEnhancementSince !== undefined &&
                 `، بخبرة في زيادة سماكة القضيب منذ ${doctor.girthEnhancementSince}`}
               .
@@ -243,7 +243,7 @@ export default function MaleAestheticsPageAr() {
               href="/ar/about"
               className="mt-6 inline-flex text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
             >
-              نبذة عن د. أليخاندرو مولينا
+              نبذة عن {AR_IDENTITY.doctorDisplayName}
             </Link>
           </div>
         </Container>

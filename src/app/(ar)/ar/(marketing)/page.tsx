@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import visual from "@/components/editorial/VisualSystem.module.css";
+import { AR_IDENTITY } from "@/lib/i18n/ar-identity";
 import { buildMetadata } from "@/lib/seo/metadata";
 import { homeFaqItemsAr } from "@/content/ar/homeFaq";
 import { Faq } from "@/components/ui/Faq";
@@ -15,7 +16,7 @@ import { InsightsSectionAr } from "@/components/sections/ar/InsightsSectionAr";
 import { BookingSectionAr } from "@/components/sections/ar/BookingSectionAr";
 
 export const metadata: Metadata = buildMetadata({
-  title: "د. أليخاندرو مولينا — استشاري أمراض المسالك البولية والذكورة، أبوظبي",
+  title: `${AR_IDENTITY.doctorDisplayName} — ${AR_IDENTITY.doctorTitle}، أبوظبي`,
   description:
     "رعاية متخصصة في الطب الجنسي، الصحة الهرمونية للرجال، جراحة القضيب، الخصوبة، والتجميل الذكوري في أبوظبي، الإمارات العربية المتحدة.",
   path: "/ar",

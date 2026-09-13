@@ -143,8 +143,8 @@ export const topDoctorsAggregate = {
  * before publishing — it is intentionally not auto-derived.
  *
  * Sync note (R9 Phase B): `AR_REPUTATION.reviewHeadline` in
- * `src/lib/i18n/ar-reputation.ts` — currently consumed only by
- * `AuthorityMediaSectionAr.tsx` — is a translated mirror of this string
+ * `src/lib/i18n/ar-reputation.ts` — consumed by `AuthorityMediaSectionAr.tsx`
+ * and `PatientFeedbackSection.tsx` — is a translated mirror of this string
  * with no automated link back to it. (`PhysicianAuthority.tsx` also
  * imports `AR_REPUTATION` from the same module, but only for the
  * unrelated `editorialWordingByOutlet` field, not `.reviewHeadline`.)

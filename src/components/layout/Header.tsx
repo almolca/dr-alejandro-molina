@@ -8,6 +8,7 @@ import { DesktopNav } from "@/components/navigation/DesktopNav";
 import { MobileNav } from "@/components/navigation/MobileNav";
 import { LanguageSwitcher } from "@/components/navigation/LanguageSwitcher";
 import { useScrolled } from "@/components/navigation/useScrolled";
+import { AR_IDENTITY } from "@/lib/i18n/ar-identity";
 import { cn } from "@/lib/utils/cn";
 
 /** Spec §6: sticky header after initial scroll, discreet persistent mobile booking CTA. */
@@ -15,7 +16,7 @@ export function Header({ locale = "en" }: { locale?: "en" | "ar" }) {
   const scrolled = useScrolled();
   const homeHref = locale === "ar" ? "/ar" : "/";
   const homeAriaLabel =
-    locale === "ar" ? "د. أليخاندرو مولينا — الصفحة الرئيسية" : "Dr. Alejandro Molina — Home";
+    locale === "ar" ? `${AR_IDENTITY.doctorDisplayName} — الصفحة الرئيسية` : "Dr. Alejandro Molina — Home";
   const bookingCtaLabel = locale === "ar" ? "احجز استشارة" : "Book a Consultation";
 
   return (

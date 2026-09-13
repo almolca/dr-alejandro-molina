@@ -24,6 +24,7 @@ import { PatientReviewsCta } from "@/components/sections/PatientReviewsCta";
 import { PatientFeedbackSection } from "@/components/sections/PatientFeedbackSection";
 import { RecognitionSection } from "@/components/sections/RecognitionSection";
 import { publications } from "@/config/reputation";
+import { AR_IDENTITY } from "@/lib/i18n/ar-identity";
 import { breadcrumbSchema } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
 
@@ -32,7 +33,7 @@ const PATH = "/ar/about";
 export const metadata: Metadata = buildMetadata({
   title: "نبذة عنّا",
   description:
-    "د. أليخاندرو مولينا — استشاري أمراض المسالك البولية والذكورة في مستشفى إن إم سي رويال، مدينة خليفة، أبوظبي. تدريب جراحي أوروبي، مع تطور نحو طب الذكورة وصحة الرجل.",
+    `${AR_IDENTITY.doctorDisplayName} — ${AR_IDENTITY.doctorTitle} في ${AR_IDENTITY.practiceLocationLine}. تدريب جراحي أوروبي، مع تطور نحو طب الذكورة وصحة الرجل.`,
   path: PATH,
 });
 
@@ -139,15 +140,14 @@ export default function AboutPageAr() {
                 نبذة
               </p>
               <h1 className="mt-4 font-display text-display-xl text-foreground">
-                د. أليخاندرو مولينا
+                {AR_IDENTITY.doctorDisplayName}
               </h1>
               <p className="mt-6 max-w-lg font-display text-2xl leading-snug">تدريب أوروبي. خلفية جراحية. تركيز متخصص على صحة الرجل.</p>
             </Reveal>
             <Reveal delay={0.1}>
               <div className="mt-8 border-t border-border pt-6">
-                <p className="text-sm text-muted-foreground">استشاري أمراض المسالك البولية والذكورة</p>
-                {/* Arabic translation of `practiceLocationLine` (src/config/practice.ts) — keep in sync with it and with BookingSectionAr.tsx's copy of this same line. */}
-                <p className="mt-3 text-sm text-muted-foreground">مستشفى إن إم سي رويال، مدينة خليفة، أبوظبي</p>
+                <p className="text-sm text-muted-foreground">{AR_IDENTITY.doctorTitle}</p>
+                <p className="mt-3 text-sm text-muted-foreground">{AR_IDENTITY.practiceLocationLine}</p>
               </div>
             </Reveal>
             <Reveal delay={0.15}>
@@ -287,10 +287,9 @@ export default function AboutPageAr() {
         <Container className="flex flex-col items-center text-center">
           <Reveal>
             <h2 className="mx-auto max-w-xl font-display text-display-md text-foreground">
-              استشر د. أليخاندرو مولينا في أبوظبي
+              استشر {AR_IDENTITY.doctorDisplayName} في أبوظبي
             </h2>
-            {/* Arabic translation of `practiceLocationLine` (src/config/practice.ts) — keep in sync with it and with BookingSectionAr.tsx's copy of this same line. */}
-            <p className="mt-4 text-sm text-muted-foreground">مستشفى إن إم سي رويال، مدينة خليفة، أبوظبي</p>
+            <p className="mt-4 text-sm text-muted-foreground">{AR_IDENTITY.practiceLocationLine}</p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <BookingCta sourcePage={PATH} ctaPosition="page-closing-cta" size="lg">احجز استشارة</BookingCta>
             </div>

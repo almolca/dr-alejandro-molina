@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { buildMetadata } from "./metadata";
 import { siteUrl } from "@/config/site";
+import { AR_IDENTITY } from "@/lib/i18n/ar-identity";
 
 describe("buildMetadata", () => {
   it("R8.2.1: falls back to the site-wide branded /opengraph-image for openGraph.images", () => {
@@ -62,7 +63,7 @@ describe("buildMetadata", () => {
 
   it("R9: emits the same reciprocal alternates and ar_AE og:locale from the Arabic side", () => {
     const metadata = buildMetadata({
-      title: "د. أليخاندرو مولينا",
+      title: AR_IDENTITY.doctorDisplayName,
       description: "رعاية متخصصة.",
       path: "/ar",
     });

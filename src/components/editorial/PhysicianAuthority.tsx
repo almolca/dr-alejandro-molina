@@ -3,6 +3,7 @@ import { doctor } from "@/config/doctor";
 import { editorialContributions } from "@/config/mediaAppearances";
 import { awardLogos, publications, trainingPrograms } from "@/config/reputation";
 import { AnimatedNumber } from "@/components/motion/AnimatedNumber";
+import { AR_IDENTITY } from "@/lib/i18n/ar-identity";
 import { AR_REPUTATION } from "@/lib/i18n/ar-reputation";
 import styles from "./Editorial.module.css";
 
@@ -56,7 +57,7 @@ const AWARD_LOGO_RATIOS: Record<string, { width: number; height: number }> = {
  * shared config the English render path uses — only the surrounding
  * prose is swapped.
  */
-export const AR = {
+const AR = {
   yearsLabel: "سنوات الخبرة في المسالك البولية",
   girthProcedureLabel: "إجراءات زيادة سماكة القضيب",
   girthSinceLabel: "زيادة سماكة القضيب",
@@ -79,7 +80,7 @@ export function PhysicianAuthority({
 }) {
   const isAr = locale === "ar";
   return <div className={`${styles.authority} ${dark ? styles.authorityDark : ""}`}>
-    <p className={`mb-6 text-xs font-medium uppercase ${isAr ? "" : "tracking-widest"}`}>{isAr ? "استشاري أمراض المسالك البولية والذكورة" : doctor.title}</p>
+    <p className={`mb-6 text-xs font-medium uppercase ${isAr ? "" : "tracking-widest"}`}>{isAr ? AR_IDENTITY.doctorTitle : doctor.title}</p>
     <dl className={styles.metrics}>
       {doctor.yearsOfExperience !== undefined && (
         <AuthorityMetric

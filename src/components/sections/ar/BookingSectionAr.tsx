@@ -2,6 +2,7 @@ import { isPhysicianProfileConfigured, practice } from "@/config/practice";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
+import { AR_IDENTITY } from "@/lib/i18n/ar-identity";
 
 export function BookingSectionAr() {
   return (
@@ -10,11 +11,10 @@ export function BookingSectionAr() {
         <Reveal>
           <p className="text-eyebrow font-medium uppercase text-accent-strong">الاستشارة</p>
           <h2 className="mx-auto mt-4 max-w-2xl font-display text-display-xl text-foreground">
-            استشر د. أليخاندرو مولينا في أبوظبي
+            استشر {AR_IDENTITY.doctorDisplayName} في أبوظبي
           </h2>
-          {/* Arabic translation of `practiceLocationLine` (src/config/practice.ts) — keep in sync with it and with HeroSectionAr.tsx's copy of this same line. */}
           <p className="mt-6 text-body-lg text-muted-foreground">
-            مستشفى إن إم سي رويال، مدينة خليفة، أبوظبي
+            {AR_IDENTITY.practiceLocationLine}
           </p>
         </Reveal>
 

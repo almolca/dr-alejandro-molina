@@ -3,6 +3,7 @@ import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { ArrowUpRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { AR_IDENTITY } from "@/lib/i18n/ar-identity";
 
 const primaryAreas = [
   {
@@ -55,7 +56,7 @@ export function CoreExpertiseSectionAr() {
             <span className="text-xs uppercase">الإجراء الرائد</span>
             <div>
               <h3 className="font-display text-3xl">زيادة سماكة القضيب</h3>
-              <p className="mt-4 text-sm text-stone-200">تخطيط قائم على التشريح ضمن ممارسة استشاري أمراض المسالك البولية والذكورة.</p>
+              <p className="mt-4 text-sm text-stone-200">تخطيط قائم على التشريح ضمن ممارسة {AR_IDENTITY.doctorTitle}.</p>
             </div>
             <span className="mt-6 text-sm">استكشف الإجراء <span aria-hidden="true">↗</span></span>
           </Link>

@@ -3,9 +3,11 @@ import { BrandLogo } from "@/components/ui/BrandLogo";
 import { CookieSettingsLink } from "@/components/ui/CookieSettingsLink";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { doctor } from "@/config/doctor";
-import { bookHref, getFooterServiceLinks, getLegalNav } from "@/config/navigation";
+import { bookHref, getFooterServiceLinks, getLegalNav, localizeHref } from "@/config/navigation";
 import { isPhysicianProfileConfigured, practice, practiceLocationLine } from "@/config/practice";
 import { Container } from "@/components/ui/Container";
+import { AR_IDENTITY } from "@/lib/i18n/ar-identity";
+import { cn } from "@/lib/utils/cn";
 
 const copy = {
   en: {
@@ -23,7 +25,7 @@ const copy = {
   },
   ar: {
     homeHref: "/ar",
-    homeAriaLabel: "د. أليخاندرو مولينا — الصفحة الرئيسية",
+    homeAriaLabel: `${AR_IDENTITY.doctorDisplayName} — الصفحة الرئيسية`,
     tagline: "طب الذكورة · الصحة الجنسية للرجال · التجميل الذكوري",
     consultationsAt: (location: string) => `استشارات في ${location}`,
     careAreas: "مجالات الرعاية",
@@ -51,11 +53,13 @@ export function Footer({ locale = "en" }: { locale?: "en" | "ar" }) {
               <BrandLogo footer />
             </Link>
             <p className={visual.footerIntro}>{t.tagline}</p>
-            <p className="mt-6 text-sm text-muted-foreground">{t.consultationsAt(practiceLocationLine)}</p>
+            <p className="mt-6 text-sm text-muted-foreground">
+              {t.consultationsAt(locale === "ar" ? AR_IDENTITY.practiceLocationLine : practiceLocationLine)}
+            </p>
           </div>
 
           <nav aria-label="Services" className="text-sm">
-            <p className="text-eyebrow font-medium uppercase tracking-widest text-muted-foreground">
+            <p className={cn("text-eyebrow font-medium uppercase text-muted-foreground", locale !== "ar" && "tracking-widest")}>
               {t.careAreas}
             </p>
             <ul className="mt-4 space-y-3">
@@ -70,12 +74,12 @@ export function Footer({ locale = "en" }: { locale?: "en" | "ar" }) {
           </nav>
 
           <nav aria-label="Site" className="text-sm">
-            <p className="text-eyebrow font-medium uppercase tracking-widest text-muted-foreground">
+            <p className={cn("text-eyebrow font-medium uppercase text-muted-foreground", locale !== "ar" && "tracking-widest")}>
               {t.yourConsultation}
             </p>
             <ul className="mt-4 space-y-3">
               <li>
-                <Link href="/about" className="text-foreground/85 transition-colors hover:text-foreground">
+                <Link href={localizeHref("/about", locale)} className="text-foreground/85 transition-colors hover:text-foreground">
                   {t.about}
                 </Link>
               </li>

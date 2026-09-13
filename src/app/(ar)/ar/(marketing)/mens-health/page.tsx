@@ -14,6 +14,7 @@ import { PullQuote } from "@/components/ui/PullQuote";
 import { Reveal } from "@/components/motion/Reveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { TreatmentCtaSection } from "@/components/sections/TreatmentCtaSection";
+import { AR_IDENTITY } from "@/lib/i18n/ar-identity";
 import { breadcrumbSchema } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
 
@@ -104,7 +105,7 @@ export default function MensHealthPageAr() {
               <BookingCta sourcePage={PATH} ctaPosition="hero" size="lg">احجز استشارة</BookingCta>
             </div>
           </Reveal>
-          <div className={visual.physicianIdentity}><p>د. أليخاندرو مولينا</p><span>استشاري أمراض المسالك البولية والذكورة · FEBU · أبوظبي</span></div>
+          <div className={visual.physicianIdentity}><p>{AR_IDENTITY.doctorDisplayName}</p><span>{AR_IDENTITY.doctorTitle} · FEBU · أبوظبي</span></div>
           </div>
           <EditorialFrame slot="mensHealthHero" landscape priority />
         </Container>
