@@ -6,14 +6,7 @@ import { defaultViewport, durations, easeSoft } from "@/components/motion/motion
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { cn } from "@/lib/utils/cn";
 
-/**
- * Shared authority-metrics block — extracted from the Penile Girth
- * Enhancement page (Phase R1-R2, was previously a one-off there so it
- * could be reused on the homepage and the Male Aesthetics hub). Same
- * fail-safe, config-driven pattern as AuthorityStripSection: never
- * renders a metric whose backing config field is unset.
- */
-const metrics = [
+const metricsEn = [
   doctor.girthProcedureCount !== undefined && {
     value: doctor.girthProcedureCount,
     label: "Procedures Performed",
@@ -29,7 +22,31 @@ const metrics = [
   },
 ].filter((metric): metric is { value: string; label: string } => Boolean(metric));
 
-export function AuthorityBlock({ align = "left" }: { align?: "left" | "center" }) {
+const metricsAr = [
+  doctor.girthProcedureCount !== undefined && {
+    value: doctor.girthProcedureCount,
+    label: "الإجراءات المنجزة",
+  },
+  doctor.girthEnhancementSince !== undefined && {
+    value: `منذ ${doctor.girthEnhancementSince}`,
+    label: "خبرة في زيادة سماكة القضيب",
+  },
+  { value: "استشاري", label: "أمراض المسالك البولية والذكورة" },
+  doctor.medicalTrainer?.role !== undefined && {
+    value: "مدرّب طبي",
+    label: "تقنيات تجميل القضيب",
+  },
+].filter((metric): metric is { value: string; label: string } => Boolean(metric));
+
+/**
+ * Shared authority-metrics block — extracted from the Penile Girth
+ * Enhancement page (Phase R1-R2, was previously a one-off there so it
+ * could be reused on the homepage and the Male Aesthetics hub). Same
+ * fail-safe, config-driven pattern as AuthorityStripSection: never
+ * renders a metric whose backing config field is unset.
+ */
+export function AuthorityBlock({ align = "left", locale }: { align?: "left" | "center"; locale?: "ar" }) {
+  const metrics = locale === "ar" ? metricsAr : metricsEn;
   if (metrics.length === 0) return null;
 
   return (
@@ -42,7 +59,7 @@ export function AuthorityBlock({ align = "left" }: { align?: "left" | "center" }
       {metrics.map((metric) => (
         <StaggerItem
           key={metric.label}
-          className={align === "center" ? "text-center" : "text-center lg:text-left"}
+          className={align === "center" ? "text-center" : "text-center lg:text-start"}
         >
           <motion.p
             className="font-display text-display-md text-foreground"
@@ -53,7 +70,7 @@ export function AuthorityBlock({ align = "left" }: { align?: "left" | "center" }
           >
             {metric.value}
           </motion.p>
-          <p className="mt-2 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+          <p className={cn("mt-2 text-xs font-medium uppercase text-muted-foreground", locale !== "ar" && "tracking-widest")}>
             {metric.label}
           </p>
         </StaggerItem>
