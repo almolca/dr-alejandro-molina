@@ -1,4 +1,5 @@
 import { features } from "./features";
+import { getLocalizedPathPair } from "@/lib/seo/routes";
 
 /**
  * Navigation configuration.
@@ -62,10 +63,23 @@ export const footerServiceLinks: NavItem[] = [
 ];
 
 /**
- * Arabic nav labels (R9 Phase A). Hrefs point at the existing English
- * pages, since no Arabic equivalent exists for any of these yet — this
- * flips automatically to the Arabic route as each one ships in Phase B,
- * once `routes.ts` gains an `arPath` for it (spec §6, §25).
+ * Resolves `href` to its Arabic equivalent via `getLocalizedPathPair`
+ * (the single source of truth in `routes.ts`) when `locale` is "ar" and
+ * a real Arabic page exists for it; otherwise returns `href` unchanged.
+ * A no-op for `locale === "en"`.
+ */
+export function localizeHref(href: string, locale: "en" | "ar"): string {
+  if (locale !== "ar") return href;
+  const pair = getLocalizedPathPair(href);
+  return pair?.ar ?? href;
+}
+
+/**
+ * Arabic nav labels (R9 Phase A). Hrefs are written as the canonical
+ * English paths and resolved through `localizeHref` at call time below
+ * — each one automatically becomes the Arabic route once `routes.ts`
+ * gains an `arPath` for it, with no further changes needed here (spec
+ * §6, §25).
  */
 const primaryNavAr: NavItem[] = [
   { label: "الصحة الرجولية", href: "/mens-health" },
@@ -77,7 +91,8 @@ const primaryNavAr: NavItem[] = [
 ];
 
 export function getPrimaryNav(locale: "en" | "ar"): NavItem[] {
-  return locale === "ar" ? primaryNavAr : primaryNav;
+  const items = locale === "ar" ? primaryNavAr : primaryNav;
+  return items.map((item) => ({ ...item, href: localizeHref(item.href, locale) }));
 }
 
 export function getBookLabel(locale: "en" | "ar"): string {
@@ -91,7 +106,8 @@ const legalNavAr: NavItem[] = [
 ];
 
 export function getLegalNav(locale: "en" | "ar"): NavItem[] {
-  return locale === "ar" ? legalNavAr : legalNav;
+  const items = locale === "ar" ? legalNavAr : legalNav;
+  return items.map((item) => ({ ...item, href: localizeHref(item.href, locale) }));
 }
 
 const footerServiceLinksAr: NavItem[] = [
@@ -107,5 +123,6 @@ const footerServiceLinksAr: NavItem[] = [
 ];
 
 export function getFooterServiceLinks(locale: "en" | "ar"): NavItem[] {
-  return locale === "ar" ? footerServiceLinksAr : footerServiceLinks;
+  const items = locale === "ar" ? footerServiceLinksAr : footerServiceLinks;
+  return items.map((item) => ({ ...item, href: localizeHref(item.href, locale) }));
 }
