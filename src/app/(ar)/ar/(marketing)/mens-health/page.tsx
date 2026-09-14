@@ -137,7 +137,7 @@ export default function MensHealthPageAr() {
               <ConsultationPathwayDiagram className="mt-8 h-14 w-full max-w-xs text-muted-foreground" />
               <div className={visual.clinicalAreas}>
                 <Link href="/ar/sexual-medicine"><span>01</span>الصحة الجنسية</Link>
-                <Link href="/mens-health/testosterone"><span>02</span>الصحة الهرمونية</Link>
+                <Link href="/ar/mens-health/testosterone"><span>02</span>الصحة الهرمونية</Link>
                 <Link href="/ar/male-fertility"><span>03</span>الخصوبة</Link>
                 <Link href="/book"><span>04</span>مخاوف المسالك البولية/الذكورة</Link>
               </div>

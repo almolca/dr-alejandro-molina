@@ -44,24 +44,24 @@ export const routes: RouteEntry[] = [
   { path: "/book", status: "live", priority: 0.8 },
 
   { path: "/mens-health", status: "live", priority: 0.8, arPath: "/ar/mens-health" },
-  { path: "/mens-health/testosterone", status: "live", priority: 0.9 },
+  { path: "/mens-health/testosterone", status: "live", priority: 0.9, arPath: "/ar/mens-health/testosterone" },
   { path: "/mens-health/vasectomy", status: "live", priority: 0.6 },
   { path: "/mens-health/low-libido", status: "planned", priority: 0.5 },
 
   { path: "/sexual-medicine", status: "live", priority: 0.7, arPath: "/ar/sexual-medicine" },
-  { path: "/sexual-medicine/premature-ejaculation", status: "live", priority: 0.8 },
-  { path: "/erectile-dysfunction", status: "live", priority: 0.9 },
+  { path: "/sexual-medicine/premature-ejaculation", status: "live", priority: 0.8, arPath: "/ar/sexual-medicine/premature-ejaculation" },
+  { path: "/erectile-dysfunction", status: "live", priority: 0.9, arPath: "/ar/erectile-dysfunction" },
   // "/erectile-dysfunction/assessment" (spec §5) was deliberately not
   // built as a separate route — Phase 4's "Penile Doppler / Advanced ED
   // Assessment" brief treated the two as one page; it lives at
   // "/erectile-dysfunction/penile-doppler" instead. See
   // IMPLEMENTATION_REPORT.md for the reasoning.
-  { path: "/erectile-dysfunction/penile-doppler", status: "live", priority: 0.7 },
+  { path: "/erectile-dysfunction/penile-doppler", status: "live", priority: 0.7, arPath: "/ar/erectile-dysfunction/penile-doppler" },
   { path: "/erectile-dysfunction/shockwave-therapy", status: "live", priority: 0.7 },
 
   { path: "/penile-surgery", status: "live", priority: 0.7 },
-  { path: "/penile-implant", status: "live", priority: 0.9 },
-  { path: "/peyronies-disease", status: "live", priority: 0.7 },
+  { path: "/penile-implant", status: "live", priority: 0.9, arPath: "/ar/penile-implant" },
+  { path: "/peyronies-disease", status: "live", priority: 0.7, arPath: "/ar/peyronies-disease" },
 
   { path: "/male-aesthetics", status: "live", priority: 0.9, arPath: "/ar/male-aesthetics" },
   { path: "/male-aesthetics/penile-girth-enhancement", status: "live", priority: 0.9 },
@@ -73,7 +73,7 @@ export const routes: RouteEntry[] = [
   { path: "/male-aesthetics/penile-filler-correction", status: "live", priority: 0.7 },
 
   { path: "/male-fertility", status: "live", priority: 0.7, arPath: "/ar/male-fertility" },
-  { path: "/male-fertility/varicocele", status: "live", priority: 0.6 },
+  { path: "/male-fertility/varicocele", status: "live", priority: 0.6, arPath: "/ar/male-fertility/varicocele" },
   { path: "/male-fertility/semen-analysis", status: "planned", priority: 0.5 },
 
   { path: "/insights", status: "live", priority: 0.5 },

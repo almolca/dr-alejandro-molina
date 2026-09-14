@@ -57,11 +57,11 @@ export function AdvancedPenileSurgerySectionAr() {
 
         <Reveal delay={0.1}>
           <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-border pt-8">
-            <Link href="/penile-implant" className="text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4">
+            <Link href="/ar/penile-implant" className="text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4">
               استكشف زراعة القضيب
             </Link>
             <Link
-              href="/erectile-dysfunction/penile-doppler"
+              href="/ar/erectile-dysfunction/penile-doppler"
               className="text-sm text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-foreground hover:decoration-accent-strong"
             >
               الموجات فوق الصوتية الدوبلر للقضيب

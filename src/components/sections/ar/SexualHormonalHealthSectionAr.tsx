@@ -50,7 +50,7 @@ export function SexualHormonalHealthSectionAr() {
             </StaggerGroup>
             <div className="mt-8 flex flex-wrap gap-x-8 gap-y-4">
               <Link
-                href="/erectile-dysfunction"
+                href="/ar/erectile-dysfunction"
                 className="text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
               >
                 استكشف ضعف الانتصاب
@@ -76,7 +76,7 @@ export function SexualHormonalHealthSectionAr() {
               ))}
             </ul>
             <Link
-              href="/mens-health/testosterone"
+              href="/ar/mens-health/testosterone"
               className="mt-8 inline-flex items-center text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
             >
               استكشف الصحة الهرمونية للرجال
