@@ -10,7 +10,7 @@ const facts = [
     description: "أجهزة من قطعتين أو ثلاث قطع، مصممة لمحاكاة الصلابة والارتخاء الطبيعيين بدقة.",
   },
   {
-    title: "الدعامات القابلة للثني",
+    title: "الدعامات المرنة",
     description: "قضبان شبه صلبة يمكن توجيهها يدويًا، دون أجزاء ميكانيكية.",
   },
 ];
@@ -30,7 +30,7 @@ export function AdvancedPenileSurgerySectionAr() {
         <SectionHeading
           eyebrow="جراحة القضيب المتقدمة"
           heading="خيار نهائي، يُتوصَّل إليه عبر التقييم"
-          description="تُعد جراحة زراعة القضيب خيارًا مدروسًا في مرحلة لاحقة — يُتوصَّل إليه بعد تقييم منظم، ولا يُطرح كخطوة أولى."
+          description="تُعد جراحة زراعة دعامة القضيب خيارًا مدروسًا في مرحلة لاحقة — يُتوصَّل إليه بعد تقييم منظم، ولا يُطرح كخطوة أولى."
           locale="ar"
         />
 
@@ -58,7 +58,7 @@ export function AdvancedPenileSurgerySectionAr() {
         <Reveal delay={0.1}>
           <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-4 border-t border-border pt-8">
             <Link href="/ar/penile-implant" className="text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4">
-              استكشف زراعة القضيب
+              استكشف زراعة دعامة القضيب
             </Link>
             <Link
               href="/ar/erectile-dysfunction/penile-doppler"

@@ -8,8 +8,8 @@ import { AR_IDENTITY } from "@/lib/i18n/ar-identity";
 const primaryAreas = [
   {
     number: "01",
-    title: "ضعف الانتصاب وزراعة القضيب",
-    description: "التشخيص قبل العلاج — من العلاج بمثبطات PDE5 إلى الدعامة القضيبية للحالات المستعصية.",
+    title: "ضعف الانتصاب ودعامة القضيب",
+    description: "التشخيص قبل العلاج — من العلاج بمثبطات PDE5 إلى دعامة القضيب للحالات المستعصية.",
     href: "/ar/erectile-dysfunction",
   },
   {

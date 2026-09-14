@@ -48,8 +48,12 @@ carried since R9 Phase A/B0).
 | End-diastolic velocity (EDV) | السرعة الانبساطية النهائية (EDV) | /erectile-dysfunction/penile-doppler (Batch 2) | Keep "EDV" abbreviation in Latin script alongside the Arabic term |
 | PDE5 inhibitors | مثبطات PDE5 | /erectile-dysfunction (Batch 2) | Keep "PDE5" in Latin script — standard in Arabic medical literature |
 | Intracavernosal therapy | العلاج داخل الكهفي | /erectile-dysfunction (Batch 2) | |
-| Penile implant | الغرسة القضيبية | /penile-implant (Batch 2) | |
-| Inflatable / malleable prosthesis | الغرسة القابلة للنفخ / القابلة للثني | /penile-implant (Batch 2) | |
+| Penile implant | دعامة القضيب | /penile-implant (Batch 2) | **Owner-decided terminology (2026-09-14).** Primary patient-facing term — use throughout the site. Superseded prior term `الغرسة القضيبية` (retained below only as a historical note). |
+| Penile implant surgery | جراحة زراعة دعامة القضيب | /penile-implant (Batch 2) | Owner-decided (2026-09-14). Use for the procedure/surgery, not the bare device. |
+| Inflatable penile implant | دعامة قضيبية قابلة للنفخ | /penile-implant (Batch 2) | Owner-decided (2026-09-14). |
+| Malleable penile implant | دعامة قضيبية مرنة | /penile-implant (Batch 2) | Owner-decided (2026-09-14). Adjective is `مرنة` (flexible), not `القابلة للثني`. |
+| ~~Penile implant (superseded)~~ | ~~الغرسة القضيبية~~ | /penile-implant (Batch 2) | **Do not use.** Superseded 2026-09-14 by `دعامة القضيب` for consistency and natural Gulf/UAE patient-facing Arabic — not incorrect, just no longer the site standard. |
+| ~~Penile implant (do not use)~~ | ~~زراعة القضيب~~ | — | **Do not use, ever.** Clinically ambiguous — reads as implantation/transplantation of the penis itself rather than placement of a penile prosthesis. Use `دعامة القضيب` (device) or `جراحة زراعة دعامة القضيب` (procedure) instead. |
 | Shockwave therapy | العلاج بالموجات الصادمة | /erectile-dysfunction (Batch 2) | |
 | Vacuum device | الأجهزة الفراغية | /erectile-dysfunction (Batch 2) | |
 | Hyaluronic acid | حمض الهيالورونيك | /sexual-medicine/premature-ejaculation (Batch 2) | |

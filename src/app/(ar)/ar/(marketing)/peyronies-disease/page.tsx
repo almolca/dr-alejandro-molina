@@ -208,7 +208,7 @@ export default function PeyroniesDiseasePageAr() {
         locale="ar"
         items={[
           { label: "ضعف الانتصاب", href: "/ar/erectile-dysfunction" },
-          { label: "جراحة الغرسة القضيبية", href: "/ar/penile-implant" },
+          { label: "جراحة زراعة دعامة القضيب", href: "/ar/penile-implant" },
           { label: "التستوستيرون والصحة الهرمونية", href: "/ar/mens-health/testosterone" },
         ]}
       />
