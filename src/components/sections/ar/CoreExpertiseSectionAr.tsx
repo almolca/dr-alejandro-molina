@@ -10,13 +10,13 @@ const primaryAreas = [
     number: "01",
     title: "ضعف الانتصاب وزراعة القضيب",
     description: "التشخيص قبل العلاج — من العلاج بمثبطات PDE5 إلى الدعامة القضيبية للحالات المستعصية.",
-    href: "/erectile-dysfunction",
+    href: "/ar/erectile-dysfunction",
   },
   {
     number: "02",
     title: "التستوستيرون والصحة الهرمونية للرجال",
     description: "تقييم هرموني وأيضي شامل قبل النظر في أي علاج.",
-    href: "/mens-health/testosterone",
+    href: "/ar/mens-health/testosterone",
   },
   {
     number: "03",
@@ -33,17 +33,22 @@ const primaryAreas = [
 ];
 
 const secondaryLinks = [
-  { label: "مرض بيروني", href: "/peyronies-disease" },
-  { label: "دوبلر القضيب", href: "/erectile-dysfunction/penile-doppler" },
-  { label: "سرعة القذف", href: "/sexual-medicine/premature-ejaculation" },
-  { label: "دوالي الخصية", href: "/male-fertility/varicocele" },
+  { label: "مرض بيروني", href: "/ar/peyronies-disease" },
+  { label: "دوبلر القضيب", href: "/ar/erectile-dysfunction/penile-doppler" },
+  { label: "سرعة القذف", href: "/ar/sexual-medicine/premature-ejaculation" },
+  { label: "دوالي الخصية", href: "/ar/male-fertility/varicocele" },
   { label: "قطع القناة المنوية بدون مشرط", href: "/mens-health/vasectomy" },
 ];
 
 /**
- * `/male-aesthetics` and `/male-fertility` now link to real Arabic pages
- * (R9 Phase B Batch 1). The remaining hrefs are sub-pages outside this
- * batch and stay temporary EN destinations, spec §7.
+ * All primary/secondary hrefs above now point to real Arabic pages
+ * except `/male-aesthetics/penile-girth-enhancement` and
+ * `/mens-health/vasectomy`, which have no Arabic page yet and stay
+ * temporary EN destinations, spec §7. (R9 Phase B: Batch 1 covered
+ * `/ar/male-aesthetics` and `/ar/male-fertility`; Batch 2 covered the
+ * remaining four — found still un-flipped here during Batch 2's Task 11
+ * whole-site regression pass, since this component wasn't in Task 9's
+ * declared edit scope.)
  */
 export function CoreExpertiseSectionAr() {
   return (
