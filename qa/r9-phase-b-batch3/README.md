@@ -94,7 +94,7 @@ Command (exact, as specified in the brief):
 grep -rn '"/male-aesthetics/penile-girth-enhancement"\|"/male-aesthetics/scrotal-lift"\|"/male-aesthetics/penile-filler-correction"' src/
 ```
 
-Full output (56 matching lines across the categories below):
+Full output (59 matching lines across the categories below):
 
 ```
 src/app/(en)/(marketing)/mens-health/page.tsx:162
@@ -106,7 +106,7 @@ src/app/(en)/(marketing)/male-aesthetics/scrotal-lift/page.tsx:15,212
 src/app/(en)/(marketing)/male-aesthetics/penile-filler-correction/page.tsx:17,321
 src/app/(en)/(marketing)/male-aesthetics/penile-girth-enhancement/page.tsx:27,92,112,139,423
 src/config/navigation.ts:21,51,87,114
-src/content/insights/articles.ts: 21 occurrences (relatedHref/secondaryRelatedHref fields)
+src/content/insights/articles.ts: 20 occurrences (relatedHref/secondaryRelatedHref fields)
 src/components/sections/FeaturedProcedureSection.tsx:17
 src/components/sections/HeroSection.tsx:66
 src/components/sections/CoreExpertiseSection.tsx:64
@@ -129,7 +129,7 @@ raw output was reviewed line-by-line, no line skipped)
   canonical-English form by design — these self-heal via
   `localizeHref`/`getLocalizedPathPair` now that `arPath` is registered
   (Task 5, Step 1/11). Confirmed unchanged and correct — do not edit.
-- **`src/content/insights/articles.ts`** (21 hits) — checked whether this
+- **`src/content/insights/articles.ts`** (20 hits) — checked whether this
   content is ever rendered on an Arabic page before accepting it as
   expected: confirmed via `grep -rln "@/content/insights/articles" src/`
   that its only consumers are `src/app/sitemap.ts`,
@@ -288,7 +288,7 @@ three new pages with exact parity against their English sources;
 correct hreflang/canonical/`lang`/`dir`/JSON-LD locale tagging and `200`
 responses on all eight relevant Arabic routes; an independent whole-`src/`-tree
 multi-shape link sweep reaching the same "no live finding" conclusion as
-Task 5's own post-review sweep, with every one of ~56 matching lines
+Task 5's own post-review sweep, with every one of the 59 matching lines
 manually classified; a minimal, surgical diff on all 8 files Task 5 (and
 its fix-round) touched, with nothing beyond the declared href/comment
 changes; and that all four of this batch's highest-risk clinical-tone
