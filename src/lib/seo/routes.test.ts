@@ -46,15 +46,22 @@ describe("isArabicPath", () => {
 });
 
 describe("routes registry", () => {
-  it("has arPath set on the homepage and the five R9 Phase B Batch 1 hub routes", () => {
+  it("has arPath set on the homepage and all R9 Phase B Batch 1 and Batch 2 routes", () => {
     const withArPath = routes.filter((r) => r.arPath).map((r) => r.path);
     expect(withArPath).toEqual([
       "/",
       "/about",
       "/mens-health",
+      "/mens-health/testosterone",
       "/sexual-medicine",
+      "/sexual-medicine/premature-ejaculation",
+      "/erectile-dysfunction",
+      "/erectile-dysfunction/penile-doppler",
+      "/penile-implant",
+      "/peyronies-disease",
       "/male-aesthetics",
       "/male-fertility",
+      "/male-fertility/varicocele",
     ]);
   });
 });

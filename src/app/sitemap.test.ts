@@ -27,16 +27,23 @@ describe("sitemap", () => {
     });
   });
 
-  it("includes the R9 Phase B Batch 1 /ar/* routes alongside the homepage, and no others yet", () => {
+  it("includes the R9 Phase B Batch 1 and Batch 2 /ar/* routes", () => {
     const arEntries = entries.filter((e) => e.url.includes(`${siteUrl}/ar`));
     expect(arEntries.map((e) => e.url).sort()).toEqual(
       [
         "/ar",
         "/ar/about",
         "/ar/mens-health",
+        "/ar/mens-health/testosterone",
         "/ar/sexual-medicine",
+        "/ar/sexual-medicine/premature-ejaculation",
+        "/ar/erectile-dysfunction",
+        "/ar/erectile-dysfunction/penile-doppler",
+        "/ar/penile-implant",
+        "/ar/peyronies-disease",
         "/ar/male-aesthetics",
         "/ar/male-fertility",
+        "/ar/male-fertility/varicocele",
       ]
         .map((path) => `${siteUrl}${path}`)
         .sort(),
