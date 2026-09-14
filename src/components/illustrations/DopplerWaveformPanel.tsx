@@ -3,10 +3,17 @@ import styles from "./DopplerWaveformPanel.module.css";
 
 export type DopplerPattern = "normal" | "arterial-insufficiency" | "veno-occlusive";
 
-const PATTERN_CONFIG: Record<DopplerPattern, { peakY: number; troughY: number; psvLabel: string; edvLabel: string }> = {
+const PATTERN_CONFIG_EN: Record<DopplerPattern, { peakY: number; troughY: number; psvLabel: string; edvLabel: string }> = {
   normal: { peakY: 18, troughY: 124, psvLabel: "PSV — adequate", edvLabel: "EDV — falls near zero" },
   "arterial-insufficiency": { peakY: 68, troughY: 120, psvLabel: "PSV — reduced", edvLabel: "EDV — falls near zero" },
   "veno-occlusive": { peakY: 18, troughY: 68, psvLabel: "PSV — adequate", edvLabel: "EDV — persistently elevated" },
+};
+
+/** Same peakY/troughY geometry as the English config — only the labels are translated. Keeping geometry in one place per pattern would be a premature abstraction for two three-entry records; the risk of drift is the same class the English config already accepts. */
+const PATTERN_CONFIG_AR: Record<DopplerPattern, { peakY: number; troughY: number; psvLabel: string; edvLabel: string }> = {
+  normal: { peakY: 18, troughY: 124, psvLabel: "PSV — كافية", edvLabel: "EDV — تنخفض نحو الصفر" },
+  "arterial-insufficiency": { peakY: 68, troughY: 120, psvLabel: "PSV — منخفضة", edvLabel: "EDV — تنخفض نحو الصفر" },
+  "veno-occlusive": { peakY: 18, troughY: 68, psvLabel: "PSV — كافية", edvLabel: "EDV — مرتفعة باستمرار" },
 };
 
 const VIEW_WIDTH = 600;
@@ -40,13 +47,16 @@ export function DopplerWaveformPanel({
   label,
   description,
   className = "",
+  locale,
 }: {
   pattern: DopplerPattern;
   label: string;
   description: string;
   className?: string;
+  locale?: "ar";
 }) {
-  const { peakY, troughY, psvLabel, edvLabel } = PATTERN_CONFIG[pattern];
+  const isAr = locale === "ar";
+  const { peakY, troughY, psvLabel, edvLabel } = (isAr ? PATTERN_CONFIG_AR : PATTERN_CONFIG_EN)[pattern];
   const path = buildWaveformPath(peakY, troughY);
   const fillPath = buildFillPath(path);
   const uid = useId();
@@ -79,8 +89,8 @@ export function DopplerWaveformPanel({
         <path d={path} className={styles.wave} />
         <text x="12" y={Math.max(peakY - 8, 14)} className={styles.annotation}>{psvLabel}</text>
         <text x="12" y={troughY + 16} className={styles.annotation}>{edvLabel}</text>
-        <text x="8" y={VIEW_HEIGHT - 6} className={styles.axisLabel}>Time →</text>
-        <text x={VIEW_WIDTH - 8} y="14" textAnchor="end" className={styles.axisLabel}>Velocity</text>
+        <text x="8" y={VIEW_HEIGHT - 6} className={styles.axisLabel}>{isAr ? "الوقت ←" : "Time →"}</text>
+        <text x={VIEW_WIDTH - 8} y="14" textAnchor="end" className={styles.axisLabel}>{isAr ? "السرعة" : "Velocity"}</text>
       </svg>
       <p className={styles.panelLabel}>{label}</p>
       <p className={styles.panelCaption}>{description}</p>
