@@ -41,3 +41,26 @@ carried since R9 Phase A/B0).
 | Book a consultation | احجز استشارة | shared (BookingCta call sites) | Default English string has no Arabic equivalent in the component itself — every Arabic call site must pass this explicitly |
 | Book a confidential consultation | احجز استشارتك السرية | shared (BookingCta call sites) | Used where English says "confidential" |
 | Frequently Asked Questions | الأسئلة الشائعة | shared (`Faq` component, B0) | |
+| Arterial inflow | التدفق الشرياني الداخل | /erectile-dysfunction (Batch 2) | |
+| Veno-occlusion / veno-occlusive dysfunction | الانسداد الوريدي / الخلل الوظيفي الانسدادي الوريدي | /erectile-dysfunction (Batch 2) | |
+| Venous leak | التسرب الوريدي | /erectile-dysfunction/penile-doppler (Batch 2) | |
+| Peak systolic velocity (PSV) | ذروة السرعة الانقباضية (PSV) | /erectile-dysfunction/penile-doppler (Batch 2) | Keep "PSV" abbreviation in Latin script alongside the Arabic term |
+| End-diastolic velocity (EDV) | السرعة الانبساطية النهائية (EDV) | /erectile-dysfunction/penile-doppler (Batch 2) | Keep "EDV" abbreviation in Latin script alongside the Arabic term |
+| PDE5 inhibitors | مثبطات PDE5 | /erectile-dysfunction (Batch 2) | Keep "PDE5" in Latin script — standard in Arabic medical literature |
+| Intracavernosal therapy | العلاج داخل الكهفي | /erectile-dysfunction (Batch 2) | |
+| Penile implant | الغرسة القضيبية | /penile-implant (Batch 2) | |
+| Inflatable / malleable prosthesis | الغرسة القابلة للنفخ / القابلة للثني | /penile-implant (Batch 2) | |
+| Shockwave therapy | العلاج بالموجات الصادمة | /erectile-dysfunction (Batch 2) | |
+| Vacuum device | الأجهزة الفراغية | /erectile-dysfunction (Batch 2) | |
+| Hyaluronic acid | حمض الهيالورونيك | /sexual-medicine/premature-ejaculation (Batch 2) | |
+| SHBG (sex hormone-binding globulin) | الغلوبيولين الرابط للهرمونات الجنسية (SHBG) | /mens-health/testosterone (Batch 2) | Keep "SHBG" abbreviation in Latin script alongside the Arabic term |
+| LH / FSH | LH / FSH | /mens-health/testosterone (Batch 2) | Kept in Latin script — standard clinical shorthand, no established single-term Arabic abbreviation in patient-facing material |
+| Prolactin | البرولاكتين | /mens-health/testosterone (Batch 2) | |
+| Hematocrit | الهيماتوكريت | /mens-health/testosterone (Batch 2) | |
+| Prostate-specific antigen (PSA) | مستضد البروستاتا النوعي (PSA) | /mens-health/testosterone (Batch 2) | Keep "PSA" abbreviation in Latin script alongside the Arabic term |
+| Penile curvature | انحناء القضيب | /peyronies-disease (Batch 2) | |
+| Plaque (Peyronie's) | لويحة ليفية | /peyronies-disease (Batch 2) | |
+| Clinical vs. subclinical varicocele | دوالي خصية سريرية / دون سريرية (تحت الإكلينيكية) | /male-fertility/varicocele (Batch 2) | |
+| Semen parameters | معايير السائل المنوي | /male-fertility/varicocele (Batch 2) | |
+| Testicular function | وظيفة الخصية | /male-fertility/varicocele (Batch 2) | |
+| Book a specialist assessment | احجز تقييمًا متخصصًا | /male-fertility/varicocele (Batch 2) | Used where English says "Specialist Assessment" instead of "Consultation" |
