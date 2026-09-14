@@ -69,3 +69,12 @@ carried since R9 Phase A/B0).
 | Semen parameters | معايير السائل المنوي | /male-fertility/varicocele (Batch 2) | |
 | Testicular function | وظيفة الخصية | /male-fertility/varicocele (Batch 2) | |
 | Book a specialist assessment | احجز تقييمًا متخصصًا | /male-fertility/varicocele (Batch 2) | Used where English says "Specialist Assessment" instead of "Consultation" |
+| Anatomy-led (planning) | قائم على التشريح | /male-aesthetics/penile-girth-enhancement (Batch 3) | |
+| Proportion (aesthetic goal, vs. maximum volume) | التناسب | /male-aesthetics/penile-girth-enhancement (Batch 3) | |
+| Staged treatment | علاج مرحلي | /male-aesthetics/penile-girth-enhancement (Batch 3) | |
+| Asymmetry | عدم التماثل | /male-aesthetics/penile-filler-correction (Batch 3) | |
+| Irregular contour | عدم انتظام الملامس | /male-aesthetics/penile-filler-correction (Batch 3) | |
+| Nodules (filler) | العقيدات | /male-aesthetics/penile-filler-correction (Batch 3) | |
+| Migration (filler) | الانزياح | /male-aesthetics/penile-filler-correction (Batch 3) | |
+| Dissolution (filler) | الإذابة | /male-aesthetics/penile-filler-correction (Batch 3) | |
+| Excess/lax scrotal skin | زيادة أو ترهل جلد الصفن | /male-aesthetics/scrotal-lift (Batch 3) | |
