@@ -27,22 +27,22 @@ const breadcrumbItems = [
   { name: "الطب الجنسي", href: PATH },
 ];
 
-/** All four temporary EN — Batch 2, and shockwave-therapy is outside all four batches (no scheduled Arabic build). */
+/** All four now live in Arabic (Batch 2), except shockwave-therapy, which is outside all four R9 Phase B batches (no scheduled Arabic build). */
 const areas = [
   {
     label: "ضعف الانتصاب",
     description: "تقييم يبدأ بالتشخيص، وسلّم علاجي يتناسب مع السبب.",
-    href: "/erectile-dysfunction",
+    href: "/ar/erectile-dysfunction",
   },
   {
     label: "سرعة القذف",
     description: "خيارات سلوكية ونفسية-جنسية وطبية وإجرائية تتناسب مع كل فرد.",
-    href: "/sexual-medicine/premature-ejaculation",
+    href: "/ar/sexual-medicine/premature-ejaculation",
   },
   {
     label: "دوبلر القضيب",
     description: "تقييم متقدم بالموجات فوق الصوتية لتدفق الدم في القضيب، عند الحاجة.",
-    href: "/erectile-dysfunction/penile-doppler",
+    href: "/ar/erectile-dysfunction/penile-doppler",
   },
   {
     label: "العلاج بموجات الصدمة",
@@ -110,7 +110,7 @@ export default function SexualMedicinePageAr() {
         locale="ar"
         items={[
           { label: "زيادة سماكة القضيب", href: "/male-aesthetics/penile-girth-enhancement" },
-          { label: "التستوستيرون والصحة الهرمونية", href: "/mens-health/testosterone" },
+          { label: "التستوستيرون والصحة الهرمونية", href: "/ar/mens-health/testosterone" },
         ]}
       />
 
@@ -138,7 +138,7 @@ export default function SexualMedicinePageAr() {
             question: "هل تعالجون سرعة القذف أيضًا، وليس فقط ضعف الانتصاب؟",
             answer:
               "نعم. تُقيَّم سرعة القذف بنفس النهج المتخصص، مع مراعاة الخيارات السلوكية والنفسية-الجنسية والطبية — والإجرائية في حالات مختارة.",
-            readMoreHref: "/sexual-medicine/premature-ejaculation",
+            readMoreHref: "/ar/sexual-medicine/premature-ejaculation",
             readMoreLabel: "استكشف سرعة القذف",
           },
         ]}
@@ -147,7 +147,7 @@ export default function SexualMedicinePageAr() {
       <TreatmentCtaSection
         heading="ابدأ بالتقييم، لا بالافتراض"
         sourcePage={PATH}
-        secondary={{ label: "استكشف ضعف الانتصاب", href: "/erectile-dysfunction" }}
+        secondary={{ label: "استكشف ضعف الانتصاب", href: "/ar/erectile-dysfunction" }}
         bookingLabel="احجز استشارتك السرية"
       />
     </>

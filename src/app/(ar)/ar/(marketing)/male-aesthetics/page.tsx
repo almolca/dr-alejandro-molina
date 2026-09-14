@@ -255,7 +255,7 @@ export default function MaleAestheticsPageAr() {
           { label: "زيادة سماكة القضيب", href: "/male-aesthetics/penile-girth-enhancement" },
           { label: "شد الصفن", href: "/male-aesthetics/scrotal-lift" },
           { label: "تصحيح حشو القضيب", href: "/male-aesthetics/penile-filler-correction" },
-          { label: "مرض بيروني", href: "/peyronies-disease" },
+          { label: "مرض بيروني", href: "/ar/peyronies-disease" },
         ]}
       />
 

@@ -32,19 +32,19 @@ const breadcrumbItems = [
   { name: "صحة الرجل", href: PATH },
 ];
 
-/** Temporary EN destinations for testosterone/ED/vasectomy — Batch 2/4. sexual-medicine/male-fertility are live Arabic (this batch). */
+/** Testosterone and ED now live in Arabic (Batch 2). Vasectomy stays temporary EN — ships Batch 4. */
 const areas = [
   {
     label: "التستوستيرون والصحة الهرمونية للرجال",
     description:
       "الأعراض، والتشخيص، ومتى يكون العلاج مناسبًا سريريًا — بما في ذلك انخفاض الرغبة الجنسية، ويُقيَّم إلى جانب العوامل الهرمونية والطبية والنفسية-الجنسية.",
-    href: "/mens-health/testosterone",
+    href: "/ar/mens-health/testosterone",
   },
   {
     label: "ضعف الانتصاب",
     description:
       "تُقيَّم تغيرات الوظيفة الجنسية كجزء من الصورة الهرمونية والأيضية نفسها عند الحاجة.",
-    href: "/erectile-dysfunction",
+    href: "/ar/erectile-dysfunction",
   },
   {
     label: "سرعة القذف ومرض بيروني",
@@ -160,7 +160,7 @@ export default function MensHealthPageAr() {
         heading="ابدأ بتقييم صحي هرموني"
         sourcePage={PATH}
         bookingLabel="احجز استشارة"
-        secondary={{ label: "استكشف التستوستيرون والصحة الهرمونية للرجال", href: "/mens-health/testosterone" }}
+        secondary={{ label: "استكشف التستوستيرون والصحة الهرمونية للرجال", href: "/ar/mens-health/testosterone" }}
       />
     </div>
   );

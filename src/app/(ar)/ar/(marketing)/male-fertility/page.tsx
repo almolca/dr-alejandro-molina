@@ -38,9 +38,9 @@ const labsImaging = [
   "الموجات فوق الصوتية، عند الحاجة",
 ];
 
-/** varicocele stays temporary EN — ships Batch 2. */
+/** varicocele now live in Arabic (Batch 2). */
 const findings = [
-  { label: "دوالي الخصية", href: "/male-fertility/varicocele" },
+  { label: "دوالي الخصية", href: "/ar/male-fertility/varicocele" },
   { label: "معايير غير طبيعية للسائل المنوي", href: undefined },
   { label: "العقم بعامل الذكور", href: undefined },
   { label: "تجزؤ الحمض النووي للحيوانات المنوية، عند الحاجة السريرية", href: undefined },
@@ -231,8 +231,8 @@ export default function MaleFertilityPageAr() {
       <RelatedTreatments
         locale="ar"
         items={[
-          { label: "دوالي الخصية", href: "/male-fertility/varicocele" },
-          { label: "التستوستيرون والصحة الهرمونية", href: "/mens-health/testosterone" },
+          { label: "دوالي الخصية", href: "/ar/male-fertility/varicocele" },
+          { label: "التستوستيرون والصحة الهرمونية", href: "/ar/mens-health/testosterone" },
           { label: "المقالات الطبية (بالإنجليزية)", href: "/insights" },
         ]}
       />

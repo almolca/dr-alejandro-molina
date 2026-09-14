@@ -68,6 +68,7 @@ export function DopplerWaveformPanel({
         className={styles.trace}
         role="img"
         aria-label={`${label}: ${description}`}
+        {...{ dir: "ltr" }}
       >
         <defs>
           <linearGradient id={`${uid}-fill`} x1="0" y1="0" x2="0" y2="1">
@@ -89,7 +90,7 @@ export function DopplerWaveformPanel({
         <path d={path} className={styles.wave} />
         <text x="12" y={Math.max(peakY - 8, 14)} className={styles.annotation}>{psvLabel}</text>
         <text x="12" y={troughY + 16} className={styles.annotation}>{edvLabel}</text>
-        <text x="8" y={VIEW_HEIGHT - 6} className={styles.axisLabel}>{isAr ? "الوقت ←" : "Time →"}</text>
+        <text x="8" y={VIEW_HEIGHT - 6} className={styles.axisLabel}>{isAr ? "الوقت →" : "Time →"}</text>
         <text x={VIEW_WIDTH - 8} y="14" textAnchor="end" className={styles.axisLabel}>{isAr ? "السرعة" : "Velocity"}</text>
       </svg>
       <p className={styles.panelLabel}>{label}</p>
