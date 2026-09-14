@@ -109,7 +109,7 @@ export default function SexualMedicinePageAr() {
       <RelatedTreatments
         locale="ar"
         items={[
-          { label: "زيادة سماكة القضيب", href: "/male-aesthetics/penile-girth-enhancement" },
+          { label: "زيادة سماكة القضيب", href: "/ar/male-aesthetics/penile-girth-enhancement" },
           { label: "التستوستيرون والصحة الهرمونية", href: "/ar/mens-health/testosterone" },
         ]}
       />

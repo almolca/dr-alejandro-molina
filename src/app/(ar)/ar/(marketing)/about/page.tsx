@@ -99,7 +99,7 @@ const narrative = [
             doctor.girthProcedureCount !== undefined ? `، بعدد ${doctor.girthProcedureCount} إجراء منجز` : ""
           }.`
         : ""),
-    href: "/male-aesthetics/penile-girth-enhancement",
+    href: "/ar/male-aesthetics/penile-girth-enhancement",
     linkLabel: "استكشف زيادة سماكة القضيب",
   },
   {

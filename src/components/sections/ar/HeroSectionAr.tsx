@@ -63,9 +63,8 @@ export function HeroSectionAr() {
               <BookingCta sourcePage="/ar" ctaPosition="hero" size="lg">
                 احجز استشارتك السرية
               </BookingCta>
-              {/* Temporary EN destination — no Arabic page yet, spec §7 */}
               <Button asChild variant="secondary" size="lg">
-                <a href="/male-aesthetics/penile-girth-enhancement">
+                <a href="/ar/male-aesthetics/penile-girth-enhancement">
                   استكشف زيادة سماكة القضيب
                 </a>
               </Button>

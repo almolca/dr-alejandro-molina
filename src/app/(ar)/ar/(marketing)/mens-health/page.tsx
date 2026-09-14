@@ -152,7 +152,7 @@ export default function MensHealthPageAr() {
         </Container>
       </section>
 
-      <RelatedTreatments locale="ar" items={[{ label: "زيادة سماكة القضيب", href: "/male-aesthetics/penile-girth-enhancement" }]} />
+      <RelatedTreatments locale="ar" items={[{ label: "زيادة سماكة القضيب", href: "/ar/male-aesthetics/penile-girth-enhancement" }]} />
 
       <Faq items={faqItems} eyebrow="الأسئلة الشائعة" heading="الأسئلة الشائعة" locale="ar" />
 

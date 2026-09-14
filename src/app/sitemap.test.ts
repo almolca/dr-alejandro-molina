@@ -27,7 +27,7 @@ describe("sitemap", () => {
     });
   });
 
-  it("includes the R9 Phase B Batch 1 and Batch 2 /ar/* routes", () => {
+  it("includes the R9 Phase B Batch 1 + Batch 2 + Batch 3 /ar/* routes", () => {
     const arEntries = entries.filter((e) => e.url.includes(`${siteUrl}/ar`));
     expect(arEntries.map((e) => e.url).sort()).toEqual(
       [
@@ -42,6 +42,9 @@ describe("sitemap", () => {
         "/ar/penile-implant",
         "/ar/peyronies-disease",
         "/ar/male-aesthetics",
+        "/ar/male-aesthetics/penile-girth-enhancement",
+        "/ar/male-aesthetics/scrotal-lift",
+        "/ar/male-aesthetics/penile-filler-correction",
         "/ar/male-fertility",
         "/ar/male-fertility/varicocele",
       ]

@@ -4,7 +4,6 @@ import { Container } from "@/components/ui/Container";
 import { BrandCurve } from "@/components/ui/BrandCurve";
 import { Reveal } from "@/components/motion/Reveal";
 
-/** Temporary EN destination for the CTA — no Arabic page yet, spec §7. */
 export function FeaturedProcedureSectionAr() {
   return (
     <section className="section-dark relative overflow-hidden bg-background py-section-y text-foreground">
@@ -18,7 +17,7 @@ export function FeaturedProcedureSectionAr() {
             لكل حالة، مع توقعات واقعية ومتابعة متخصصة.
           </p>
           <Button asChild size="lg" className="mt-8">
-            <Link href="/male-aesthetics/penile-girth-enhancement">استكشف زيادة سماكة القضيب</Link>
+            <Link href="/ar/male-aesthetics/penile-girth-enhancement">استكشف زيادة سماكة القضيب</Link>
           </Button>
         </Reveal>
         <div className="border-r border-accent-strong/50 pr-8">

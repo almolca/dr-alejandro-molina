@@ -44,19 +44,19 @@ const girthAuthorityLineAr = [
   .filter((part): part is string => Boolean(part))
   .join("، ");
 
-/** Temporary EN destinations — ship Batch 3. */
+/** All destinations below now live in Arabic (Batch 3). */
 const secondaryAreas = [
   {
     title: "شد الصفن",
     description:
       "جراحة تجميلية للصفن للرجال الذين يعانون من زيادة أو ترهل في جلد الصفن. يُخصَّص التقييم والتخطيط الجراحي فرديًا، مع مناقشة تفصيلية لموضع الندبة والتعافي والقيود.",
-    cta: { label: "استكشف شد الصفن", href: "/male-aesthetics/scrotal-lift" },
+    cta: { label: "استكشف شد الصفن", href: "/ar/male-aesthetics/scrotal-lift" },
   },
   {
     title: "تصحيح حشو القضيب",
     description:
       "قد يعاني الرجال الذين خضعوا سابقًا لحقن حشو في القضيب — هنا أو في مكان آخر — من عدم تناسق، أو عقيدات، أو عدم انتظام، أو انزياح، أو عدم رضا عن النتائج السابقة. تُقيَّم هذه الحالات فرديًا، مع النظر في إذابة الحشو أو التصحيح عند الحاجة.",
-    cta: { label: "استكشف تصحيح حشو القضيب", href: "/male-aesthetics/penile-filler-correction" },
+    cta: { label: "استكشف تصحيح حشو القضيب", href: "/ar/male-aesthetics/penile-filler-correction" },
   },
 ];
 
@@ -128,7 +128,7 @@ export default function MaleAestheticsPageAr() {
                 تشريح متخصص في المسالك البولية، وخبرة إجرائية، وتخطيط
                 علاج فردي.
               </p>
-              <Link href="/male-aesthetics/penile-girth-enhancement" className="mt-6 inline-flex text-sm underline decoration-accent-strong underline-offset-4">استكشف زيادة سماكة القضيب</Link>
+              <Link href="/ar/male-aesthetics/penile-girth-enhancement" className="mt-6 inline-flex text-sm underline decoration-accent-strong underline-offset-4">استكشف زيادة سماكة القضيب</Link>
             </Reveal>
             <Reveal delay={0.1}>
               <div className="mt-10 flex flex-wrap gap-4">
@@ -156,7 +156,7 @@ export default function MaleAestheticsPageAr() {
               الجراحية فقط عند الحاجة.
               {girthAuthorityLineAr ? ` يتمتع د. مولينا بـ${girthAuthorityLineAr}.` : ""}
             </p>
-            <Button asChild size="lg" className="mt-8"><Link href="/male-aesthetics/penile-girth-enhancement">استكشف زيادة سماكة القضيب</Link></Button>
+            <Button asChild size="lg" className="mt-8"><Link href="/ar/male-aesthetics/penile-girth-enhancement">استكشف زيادة سماكة القضيب</Link></Button>
           </Reveal>
           </div>
           <Reveal delay={0.1} className="hidden justify-self-center lg:flex">
@@ -252,9 +252,9 @@ export default function MaleAestheticsPageAr() {
       <RelatedTreatments
         locale="ar"
         items={[
-          { label: "زيادة سماكة القضيب", href: "/male-aesthetics/penile-girth-enhancement" },
-          { label: "شد الصفن", href: "/male-aesthetics/scrotal-lift" },
-          { label: "تصحيح حشو القضيب", href: "/male-aesthetics/penile-filler-correction" },
+          { label: "زيادة سماكة القضيب", href: "/ar/male-aesthetics/penile-girth-enhancement" },
+          { label: "شد الصفن", href: "/ar/male-aesthetics/scrotal-lift" },
+          { label: "تصحيح حشو القضيب", href: "/ar/male-aesthetics/penile-filler-correction" },
           { label: "مرض بيروني", href: "/ar/peyronies-disease" },
         ]}
       />
@@ -267,7 +267,7 @@ export default function MaleAestheticsPageAr() {
         bookingLabel="احجز استشارتك السرية"
         secondary={{
           label: "استكشف زيادة سماكة القضيب",
-          href: "/male-aesthetics/penile-girth-enhancement",
+          href: "/ar/male-aesthetics/penile-girth-enhancement",
         }}
       />
     </div>

@@ -42,13 +42,11 @@ const secondaryLinks = [
 
 /**
  * All primary/secondary hrefs above now point to real Arabic pages
- * except `/male-aesthetics/penile-girth-enhancement` and
- * `/mens-health/vasectomy`, which have no Arabic page yet and stay
- * temporary EN destinations, spec §7. (R9 Phase B: Batch 1 covered
- * `/ar/male-aesthetics` and `/ar/male-fertility`; Batch 2 covered the
- * remaining four — found still un-flipped here during Batch 2's Task 11
- * whole-site regression pass, since this component wasn't in Task 9's
- * declared edit scope.)
+ * except `/mens-health/vasectomy`, which has no Arabic page yet and
+ * stays a temporary EN destination — ships Batch 4. (R9 Phase B: Batch 1
+ * covered `/ar/male-aesthetics` and `/ar/male-fertility`; Batch 2
+ * covered four more, found un-flipped here during its own Task 11
+ * regression pass; Batch 3 covers `/male-aesthetics/penile-girth-enhancement`.)
  */
 export function CoreExpertiseSectionAr() {
   return (
@@ -57,7 +55,7 @@ export function CoreExpertiseSectionAr() {
         <SectionHeading eyebrow="مجالات الرعاية" heading="رعاية متخصصة لصحة الرجال" locale="ar" />
 
         <div className={visual.services}>
-          <Link href="/male-aesthetics/penile-girth-enhancement" className={visual.serviceFeature}>
+          <Link href="/ar/male-aesthetics/penile-girth-enhancement" className={visual.serviceFeature}>
             <span className="text-xs uppercase">الإجراء الرائد</span>
             <div>
               <h3 className="font-display text-3xl">زيادة سماكة القضيب</h3>

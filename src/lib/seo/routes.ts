@@ -64,13 +64,13 @@ export const routes: RouteEntry[] = [
   { path: "/peyronies-disease", status: "live", priority: 0.7, arPath: "/ar/peyronies-disease" },
 
   { path: "/male-aesthetics", status: "live", priority: 0.9, arPath: "/ar/male-aesthetics" },
-  { path: "/male-aesthetics/penile-girth-enhancement", status: "live", priority: 0.9 },
-  { path: "/male-aesthetics/scrotal-lift", status: "live", priority: 0.8 },
+  { path: "/male-aesthetics/penile-girth-enhancement", status: "live", priority: 0.9, arPath: "/ar/male-aesthetics/penile-girth-enhancement" },
+  { path: "/male-aesthetics/scrotal-lift", status: "live", priority: 0.8, arPath: "/ar/male-aesthetics/scrotal-lift" },
   // Built Phase B (SEO_RESTRUCTURE_IMPLEMENTATION_PLAN.md). Renamed from
   // the never-built, never-indexed "revision-correction" placeholder to
   // match the brief's more search-intent-precise naming — no redirect
   // needed, since nothing was ever live at the old slug.
-  { path: "/male-aesthetics/penile-filler-correction", status: "live", priority: 0.7 },
+  { path: "/male-aesthetics/penile-filler-correction", status: "live", priority: 0.7, arPath: "/ar/male-aesthetics/penile-filler-correction" },
 
   { path: "/male-fertility", status: "live", priority: 0.7, arPath: "/ar/male-fertility" },
   { path: "/male-fertility/varicocele", status: "live", priority: 0.6, arPath: "/ar/male-fertility/varicocele" },
