@@ -33,13 +33,12 @@ export default async function AdminOverviewPage({ searchParams }: Props) {
       </div>
 
       <div>
-        <h2 className="mb-3 font-display text-lg text-stone-900">Funnel</h2>
+        <h2 className="mb-3 font-display text-lg text-stone-900">Booking Funnel</h2>
         <FunnelChart
           stages={[
             { label: "Website Visits", count: funnel.visits },
             { label: "Book CTA Clicks", count: funnel.book_cta_clicks },
             { label: "Book Page Visits", count: funnel.book_page_views },
-            { label: "Leads Created", count: funnel.leads_created },
             { label: "NMC Booking Clicks", count: funnel.nmc_booking_clicks },
           ]}
         />
