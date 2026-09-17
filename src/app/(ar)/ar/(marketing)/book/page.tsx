@@ -50,7 +50,7 @@ export default async function BookPageAr({ searchParams }: Props) {
             <p className="text-eyebrow font-medium text-accent-strong">الاستشارة</p>
             <h1 className="mt-4 font-display text-display-xl text-foreground">احجز موعداً</h1>
             <p className="mt-6 text-body-lg text-muted-foreground">
-              تُدار مواعيد الاستشارة مع {AR_IDENTITY.doctorTitle} من خلال مستشفى إن إم سي رويال –
+              تُدار مواعيد الاستشارة مع {AR_IDENTITY.doctorDisplayName} من خلال مستشفى إن إم سي رويال –
               مدينة خليفة.
             </p>
 
