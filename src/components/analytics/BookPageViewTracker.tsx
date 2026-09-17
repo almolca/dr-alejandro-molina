@@ -11,7 +11,7 @@ import type { ServiceInterest } from "@/lib/domain/service-interest";
  * empty dependency array, since Strict Mode double-invokes effects in
  * development and this must still fire exactly once logically.
  */
-export function BookPageViewTracker({ service }: { service?: ServiceInterest }) {
+export function BookPageViewTracker({ path, service }: { path: string; service?: ServiceInterest }) {
   const searchParams = useSearchParams();
   const firedRef = useRef(false);
 
@@ -21,7 +21,7 @@ export function BookPageViewTracker({ service }: { service?: ServiceInterest }) 
     trackEvent({
       name: "book_page_view",
       properties: {
-        path: "/book",
+        path,
         service,
         utm_source: searchParams.get("utm_source") ?? undefined,
         utm_medium: searchParams.get("utm_medium") ?? undefined,
