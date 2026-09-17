@@ -19,7 +19,7 @@ const columns: Column<PagePerformanceRow>[] = [
     align: "right",
   },
   { key: "leads", header: "Leads", render: () => "—", align: "right" },
-  { key: "nmc_clicks", header: "NMC Clicks", render: () => "—", align: "right" },
+  { key: "nmc_clicks", header: "NMC Clicks", render: (r) => r.nmc_clicks.toLocaleString(), align: "right" },
 ];
 
 export default async function AdminPagesPage({ searchParams }: Props) {
@@ -38,10 +38,9 @@ export default async function AdminPagesPage({ searchParams }: Props) {
       </div>
 
       <p className="text-xs text-stone-500">
-        Leads and NMC clicks aren&rsquo;t attributed to an individual page in this schema version
-        (a lead only carries its last-touch marketing page, not necessarily where the form was
-        submitted) — see docs/patient-acquisition.md. See Sources/Services for lead-level
-        breakdowns instead.
+        Leads aren&rsquo;t attributed to an individual page in this schema version (a lead only
+        carries its last-touch marketing page, not necessarily where the form was submitted) —
+        see docs/patient-acquisition.md. See Sources/Services for lead-level breakdowns instead.
       </p>
 
       <DataTable columns={columns} rows={rows} rowKey={(r) => r.path} />

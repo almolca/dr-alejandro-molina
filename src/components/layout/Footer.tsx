@@ -89,7 +89,7 @@ export function Footer({ locale = "en" }: { locale?: "en" | "ar" }) {
                 </Link>
               </li>
               <li>
-                <Link href={bookHref} className="text-foreground/85 transition-colors hover:text-foreground">
+                <Link href={localizeHref(bookHref, locale)} className="text-foreground/85 transition-colors hover:text-foreground">
                   {t.book}
                 </Link>
               </li>

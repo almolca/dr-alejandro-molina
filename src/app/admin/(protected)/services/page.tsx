@@ -36,6 +36,11 @@ export default async function AdminServicesPage({ searchParams }: Props) {
         <TimeRangePicker basePath="/admin/services" currentRange={rangeParam} />
       </div>
 
+      <p className="text-xs text-stone-500">
+        Historical only — /book stopped collecting discussion topics on 17 September 2026 as part
+        of the R9 booking funnel correction. See docs/patient-acquisition.md.
+      </p>
+
       <DataTable columns={columns} rows={rows} rowKey={(r) => r.service_interest ?? "not_specified"} />
     </div>
   );

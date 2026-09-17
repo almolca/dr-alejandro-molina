@@ -1,5 +1,11 @@
 # Patient Acquisition, Attribution & Analytics (R7.2)
 
+**Note (17 September 2026): the R9 booking funnel correction removed the
+lead-capture form and `createLead` action this document describes below.
+`/book` and `/ar/book` now hand off directly to NMC with no lead creation.
+The sections below describing the old flow are retained for historical
+reference only.**
+
 This document describes the owned lead-capture layer built in R7.2: the
 funnel from a marketing page to the official NMC booking system, how
 traffic sources are attributed, how behavioral analytics works, and

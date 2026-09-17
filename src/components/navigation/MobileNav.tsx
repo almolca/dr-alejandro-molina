@@ -4,7 +4,7 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { Menu, X } from "lucide-react";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { useState } from "react";
-import { bookHref, getBookLabel, getPrimaryNav } from "@/config/navigation";
+import { bookHref, getBookLabel, getPrimaryNav, localizeHref } from "@/config/navigation";
 import { BookingCta } from "@/components/ui/BookingCta";
 
 const copy = {
@@ -79,7 +79,7 @@ export function MobileNav({ locale = "en" }: { locale?: "en" | "ar" }) {
                 {item.label}
               </Link>
             ))}
-            <Link href={bookHref} onClick={() => setOpen(false)} className="text-2xl font-display text-foreground">
+            <Link href={localizeHref(bookHref, locale)} onClick={() => setOpen(false)} className="text-2xl font-display text-foreground">
               {getBookLabel(locale)}
             </Link>
           </nav>

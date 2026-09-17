@@ -139,7 +139,7 @@ export default function MensHealthPageAr() {
                 <Link href="/ar/sexual-medicine"><span>01</span>الصحة الجنسية</Link>
                 <Link href="/ar/mens-health/testosterone"><span>02</span>الصحة الهرمونية</Link>
                 <Link href="/ar/male-fertility"><span>03</span>الخصوبة</Link>
-                <Link href="/book"><span>04</span>مخاوف المسالك البولية/الذكورة</Link>
+                <Link href="/ar/book"><span>04</span>مخاوف المسالك البولية/الذكورة</Link>
               </div>
             </div>
             <div className="bg-surface p-8">

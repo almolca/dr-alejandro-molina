@@ -12,7 +12,11 @@ import {
  * First-party analytics ingestion — R7.2 brief §11/§16. Validates and
  * allow-lists every field before insert; never echoes DB errors to the
  * client, and never fails loudly for a dropped analytics event (losing
- * one event is acceptable, breaking the page/booking flow is not).
+ * one event is acceptable, breaking the page/booking flow is not) — but
+ * a dropped insert (including the resolved `{ error }` supabase-js
+ * returns instead of throwing, e.g. a missing column before a pending
+ * migration is applied) is always logged server-side via console.error
+ * so a failure is diagnosable, never silent-and-undiagnosable.
  *
  * R9 booking funnel correction: `source` and `origin_page` are also
  * backfilled here, server-side, from the same httpOnly attribution
@@ -42,7 +46,7 @@ export async function POST(request: NextRequest) {
 
   try {
     const supabase = getServiceSupabase();
-    await supabase.from("analytics_events").insert({
+    const { error } = await supabase.from("analytics_events").insert({
       anonymous_session_id: parsed.data.anonymousSessionId,
       event_name: parsed.data.name,
       path: parsed.data.path,
@@ -55,6 +59,9 @@ export async function POST(request: NextRequest) {
       utm_campaign: parsed.data.utmCampaign ?? null,
       referrer_category: parsed.data.referrerCategory ?? null,
     });
+    if (error) {
+      console.error("[analytics_events insert failed]", error);
+    }
   } catch (err) {
     console.error("[analytics_events insert failed]", err);
   }

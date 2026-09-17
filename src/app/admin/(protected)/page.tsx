@@ -32,6 +32,11 @@ export default async function AdminOverviewPage({ searchParams }: Props) {
         <KpiCard label="NMC Booking Clicks" value={kpis.nmc_booking_clicks} />
       </div>
 
+      <p className="text-xs text-stone-500">
+        Leads is historical only — /book stopped collecting leads on 17 September 2026 as part of
+        the R9 booking funnel correction. See docs/patient-acquisition.md.
+      </p>
+
       <div>
         <h2 className="mb-3 font-display text-lg text-stone-900">Booking Funnel</h2>
         <FunnelChart
