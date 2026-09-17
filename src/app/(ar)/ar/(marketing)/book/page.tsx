@@ -85,8 +85,10 @@ export default async function BookPageAr({ searchParams }: Props) {
           </Reveal>
           <Reveal delay={0.08}>
             <p className="text-eyebrow font-medium text-accent-strong">موقع العيادة</p>
-            <p className="mt-4 font-display text-2xl text-foreground">مستشفى إن إم سي رويال – مدينة خليفة</p>
-            <p className="mt-2 text-sm text-muted-foreground">أبوظبي، الإمارات العربية المتحدة</p>
+            <p className="mt-4 font-display text-2xl text-foreground">{AR_IDENTITY.facilityName}</p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              {AR_IDENTITY.city}، {AR_IDENTITY.country}
+            </p>
           </Reveal>
         </Container>
       </section>

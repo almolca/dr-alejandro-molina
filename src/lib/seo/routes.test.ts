@@ -32,6 +32,10 @@ describe("getLocalizedPathPair", () => {
       ar: "/ar/mens-health/vasectomy",
     });
   });
+
+  it("returns the en/ar pair for /privacy, now live in Arabic (Batch 4)", () => {
+    expect(getLocalizedPathPair("/privacy")).toEqual({ en: "/privacy", ar: "/ar/privacy" });
+  });
 });
 
 describe("isArabicPath", () => {
@@ -74,6 +78,7 @@ describe("routes registry", () => {
       "/male-aesthetics/penile-filler-correction",
       "/male-fertility",
       "/male-fertility/varicocele",
+      "/privacy",
     ]);
   });
 });

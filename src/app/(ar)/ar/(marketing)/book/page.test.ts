@@ -33,4 +33,22 @@ describe("BookPageAr", () => {
     expect(trackers).toHaveLength(1);
     expect(trackers[0].props.path).toBe("/ar/book");
   });
+
+  it("renders the practice-location facility name via AR_IDENTITY, with booking CTA/tracker props unchanged (Batch 4)", async () => {
+    const tree = await BookPageAr({ searchParams: Promise.resolve({}) });
+    const paragraphs = findAll(tree, (el) => el.type === "p");
+    const facilityParagraph = paragraphs.find(
+      (p) => typeof p.props.children === "string" && p.props.children.includes("إن إم سي رويال"),
+    );
+    expect(facilityParagraph).toBeDefined();
+
+    const ctas = findAll(tree, (el) => el.type === NmcBookingButton);
+    expect(ctas).toHaveLength(1);
+    expect(ctas[0].props.label).toBe("المتابعة إلى حجز الموعد عبر NMC");
+    expect(ctas[0].props.sourcePage).toBe("/ar/book");
+
+    const trackers = findAll(tree, (el) => el.type === BookPageViewTracker);
+    expect(trackers).toHaveLength(1);
+    expect(trackers[0].props.path).toBe("/ar/book");
+  });
 });

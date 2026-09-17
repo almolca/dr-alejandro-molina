@@ -16,9 +16,15 @@ describe("getFooterServiceLinks (Batch 4 regression)", () => {
 });
 
 describe("getLegalNav (Batch 4 regression)", () => {
-  it("resolves the Privacy Policy legal-nav link to /privacy unchanged (arPath not registered until Task 6)", () => {
+  it("resolves the Privacy Policy legal-nav link to /ar/privacy now that arPath is registered (Batch 4)", () => {
     const arLinks = getLegalNav("ar");
     const privacyLink = arLinks.find((l) => l.label.includes("الخصوصية"));
+    expect(privacyLink?.href).toBe("/ar/privacy");
+  });
+
+  it("still resolves the English Privacy Policy legal-nav link to /privacy unchanged", () => {
+    const enLinks = getLegalNav("en");
+    const privacyLink = enLinks.find((l) => l.label === "Privacy Policy");
     expect(privacyLink?.href).toBe("/privacy");
   });
 });

@@ -82,7 +82,7 @@ export const routes: RouteEntry[] = [
   // duplicated here — that's the single source of truth for which
   // articles actually exist.
 
-  { path: "/privacy", status: "live", priority: 0.1, index: false },
+  { path: "/privacy", status: "live", priority: 0.1, index: false, arPath: "/ar/privacy" },
   { path: "/terms", status: "live", priority: 0.1, index: false },
   { path: "/medical-disclaimer", status: "live", priority: 0.1, index: false },
 

@@ -59,4 +59,9 @@ describe("sitemap", () => {
     const articleEntries = entries.filter((e) => e.url.includes("/insights/"));
     expect(articleEntries.length).toBeGreaterThan(0);
   });
+
+  it("excludes /ar/privacy from the sitemap, matching /privacy's index:false (Batch 4)", () => {
+    const privacyEntries = entries.filter((e) => e.url.includes("/privacy"));
+    expect(privacyEntries).toHaveLength(0);
+  });
 });
