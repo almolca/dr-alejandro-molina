@@ -2139,4 +2139,3 @@ Compose and deliver to the owner exactly the 14 items requested in the R9 bookin
 14. **Whether Production changed** — **NO.** No merge to `main`. No deploy. All work is on `feat/arabic-localization-r9-phase-b` only, verified in the local worktree.
 
 Then **stop**. Do not merge to `main`. Do not deploy Production. Do not begin Batch 4 without explicit further instruction.
-
