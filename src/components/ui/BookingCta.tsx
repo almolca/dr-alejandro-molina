@@ -1,20 +1,31 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { isBookingConfigured } from "@/config/practice";
+import { isArabicPath } from "@/lib/seo/routes";
 import { trackEvent } from "@/lib/analytics/events";
 import { cn } from "@/lib/utils/cn";
 import { Button, type ButtonProps } from "./Button";
 
 /**
- * Primary booking CTA — R7.2 brief §22. Routes to the owned lead-capture
- * funnel (`/book`, preserving service context) rather than linking
- * straight to NMC; the NMC handoff now happens only from inside `/book`
- * after a lead is captured (`BookingLeadForm`'s "Continue to NMC
- * Booking" step). Fires `book_cta_click`, not `nmc_booking_click` — that
- * event belongs solely to the post-lead-capture NMC handoff. Degrades
- * gracefully while `practice.bookingUrl` is still a placeholder (see
- * config/practice.ts), same as before.
+ * Pure routing logic, extracted from the component so it's directly
+ * unit-testable without a render (usePathname() can't be exercised
+ * outside one). Routes to /ar/book on any Arabic page, /book otherwise
+ * — this is the actual fix for the bug this task addresses: every
+ * Arabic page's BookingCta previously linked to the English /book.
+ */
+export function resolveBookHref(pathname: string, service?: string): string {
+  const bookPath = isArabicPath(pathname) ? "/ar/book" : "/book";
+  return service ? `${bookPath}?service=${encodeURIComponent(service)}` : bookPath;
+}
+
+/**
+ * Primary booking CTA — routes to /book (or /ar/book on an Arabic
+ * page) for the direct, low-friction NMC handoff; /book no longer
+ * collects a lead (R9 booking funnel correction). Fires
+ * `book_cta_click`. Degrades gracefully while `practice.bookingUrl` is
+ * still a placeholder (see config/practice.ts).
  */
 export function BookingCta({
   children = "Book a Consultation",
@@ -30,6 +41,8 @@ export function BookingCta({
   ctaPosition: string;
   sourcePage: string;
 } & Pick<ButtonProps, "className" | "variant" | "size">) {
+  const pathname = usePathname();
+
   if (!isBookingConfigured) {
     return (
       <Button
@@ -44,7 +57,7 @@ export function BookingCta({
     );
   }
 
-  const href = service ? `/book?service=${encodeURIComponent(service)}` : "/book";
+  const href = resolveBookHref(pathname, service);
 
   return (
     <Button asChild variant={variant} size={size} className={className}>
