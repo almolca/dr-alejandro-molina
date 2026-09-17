@@ -119,7 +119,7 @@ const footerServiceLinksAr: NavItem[] = [
   { label: "التستوستيرون والصحة الهرمونية", href: "/mens-health/testosterone" },
   { label: "مرض بيروني", href: "/peyronies-disease" },
   { label: "خصوبة الرجل", href: "/male-fertility" },
-  { label: "قطع القناة المنوية دون مشرط", href: "/mens-health/vasectomy" },
+  { label: "قطع القناة المنوية بدون مشرط", href: "/mens-health/vasectomy" },
 ];
 
 export function getFooterServiceLinks(locale: "en" | "ar"): NavItem[] {

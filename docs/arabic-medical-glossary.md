@@ -21,7 +21,7 @@ carried since R9 Phase A/B0).
 | Penile Doppler | دوبلر القضيب | / (homepage, B0) | |
 | Premature ejaculation | سرعة القذف | / (homepage, B0) | |
 | Varicocele | دوالي الخصية | / (homepage, B0) | |
-| No-scalpel vasectomy | قطع القناة المنوية بدون مشرط | / (homepage, B0) | |
+| No-scalpel vasectomy | قطع القناة المنوية بدون مشرط | / (homepage, B0); /ar/mens-health/vasectomy (Batch 4) | |
 | FEBU — Fellow of the European Board of Urology | FEBU — زميل المجلس الأوروبي لطب المسالك البولية | / (homepage, B0) | Keep "FEBU" in Latin script — it's a credential abbreviation, not translated anywhere |
 | Sexual medicine | الطب الجنسي | /sexual-medicine (Batch 1) | |
 | Men's health | صحة الرجل | /mens-health (Batch 1) | |
@@ -82,3 +82,4 @@ carried since R9 Phase A/B0).
 | Continue to NMC Booking (primary CTA) | المتابعة إلى حجز الموعد عبر NMC | /ar/book (R9 booking funnel correction) | Owner-specified verbatim. Used only on the NmcBookingButton component, never as a BookingCta label. |
 | "Appointments are managed through NMC" (supporting copy) | تُدار مواعيد الاستشارة مع [الطبيب] من خلال مستشفى إن إم سي رويال – مدينة خليفة | /ar/book (R9 booking funnel correction) | Owner-specified verbatim. |
 | "You will be redirected to NMC" (supporting line) | سيتم تحويلك إلى نظام الحجز الرسمي لدى NMC | /ar/book (R9 booking funnel correction) | Owner-specified verbatim. |
+| Vasovasostomy | مفاغرة الأسهر | /ar/mens-health/vasectomy (Batch 4) | New term this batch coins — no prior site usage to conflict with. |

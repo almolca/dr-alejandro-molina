@@ -22,7 +22,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
  */
 
 const PATH = "/privacy";
-const LAST_UPDATED = "14 September 2026 (R9 booking funnel correction)";
+const LAST_UPDATED = "17 September 2026 (Batch 4 content fix)";
 
 export const metadata: Metadata = buildMetadata({
   title: "Privacy Policy",
