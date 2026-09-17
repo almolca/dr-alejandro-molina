@@ -37,16 +37,13 @@ const secondaryLinks = [
   { label: "دوبلر القضيب", href: "/ar/erectile-dysfunction/penile-doppler" },
   { label: "سرعة القذف", href: "/ar/sexual-medicine/premature-ejaculation" },
   { label: "دوالي الخصية", href: "/ar/male-fertility/varicocele" },
-  { label: "قطع القناة المنوية بدون مشرط", href: "/mens-health/vasectomy" },
+  { label: "قطع القناة المنوية بدون مشرط", href: "/ar/mens-health/vasectomy" },
 ];
 
 /**
- * All primary/secondary hrefs above now point to real Arabic pages
- * except `/mens-health/vasectomy`, which has no Arabic page yet and
- * stays a temporary EN destination — ships Batch 4. (R9 Phase B: Batch 1
- * covered `/ar/male-aesthetics` and `/ar/male-fertility`; Batch 2
- * covered four more, found un-flipped here during its own Task 11
- * regression pass; Batch 3 covers `/male-aesthetics/penile-girth-enhancement`.)
+ * All primary/secondary hrefs above now point to real Arabic pages —
+ * `/mens-health/vasectomy` was the last temporary-EN destination in
+ * this file and now resolves to `/ar/mens-health/vasectomy` (Batch 4).
  */
 export function CoreExpertiseSectionAr() {
   return (

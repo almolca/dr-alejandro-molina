@@ -78,9 +78,9 @@ describe("buildMetadata", () => {
 
   it("R9: emits no hreflang alternates when no Arabic equivalent exists yet", () => {
     const metadata = buildMetadata({
-      title: "Vasectomy",
+      title: "Shockwave Therapy",
       description: "Specialist care.",
-      path: "/mens-health/vasectomy",
+      path: "/erectile-dysfunction/shockwave-therapy",
     });
 
     expect(metadata.alternates?.languages).toBeUndefined();

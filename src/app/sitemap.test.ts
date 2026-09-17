@@ -27,7 +27,7 @@ describe("sitemap", () => {
     });
   });
 
-  it("includes the R9 Phase B Batch 1 + Batch 2 + Batch 3 + the booking funnel correction /ar/* routes", () => {
+  it("includes the R9 Phase B Batch 1 + Batch 2 + Batch 3 + Batch 4 + the booking funnel correction /ar/* routes", () => {
     const arEntries = entries.filter((e) => e.url.includes(`${siteUrl}/ar`));
     expect(arEntries.map((e) => e.url).sort()).toEqual(
       [
@@ -36,6 +36,7 @@ describe("sitemap", () => {
         "/ar/book",
         "/ar/mens-health",
         "/ar/mens-health/testosterone",
+        "/ar/mens-health/vasectomy",
         "/ar/sexual-medicine",
         "/ar/sexual-medicine/premature-ejaculation",
         "/ar/erectile-dysfunction",

@@ -45,7 +45,7 @@ export const routes: RouteEntry[] = [
 
   { path: "/mens-health", status: "live", priority: 0.8, arPath: "/ar/mens-health" },
   { path: "/mens-health/testosterone", status: "live", priority: 0.9, arPath: "/ar/mens-health/testosterone" },
-  { path: "/mens-health/vasectomy", status: "live", priority: 0.6 },
+  { path: "/mens-health/vasectomy", status: "live", priority: 0.6, arPath: "/ar/mens-health/vasectomy" },
   { path: "/mens-health/low-libido", status: "planned", priority: 0.5 },
 
   { path: "/sexual-medicine", status: "live", priority: 0.7, arPath: "/ar/sexual-medicine" },

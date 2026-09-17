@@ -32,7 +32,7 @@ const breadcrumbItems = [
   { name: "صحة الرجل", href: PATH },
 ];
 
-/** Testosterone and ED now live in Arabic (Batch 2). Vasectomy stays temporary EN — ships Batch 4. */
+/** Testosterone and ED live in Arabic since Batch 2; vasectomy since Batch 4 — all four areas now link to real Arabic pages. */
 const areas = [
   {
     label: "التستوستيرون والصحة الهرمونية للرجال",
@@ -56,7 +56,7 @@ const areas = [
     label: "قطع القناة المنوية بدون مشرط",
     description:
       "نهج طفيف التوغل لمنع الحمل الدائم، مع استشارة منظمة حول التعافي والمخاطر والفحوصات بعد الإجراء.",
-    href: "/mens-health/vasectomy",
+    href: "/ar/mens-health/vasectomy",
   },
 ];
 

@@ -25,6 +25,13 @@ describe("getLocalizedPathPair", () => {
   it("returns the same Batch 1 pair when looked up from the Arabic side", () => {
     expect(getLocalizedPathPair("/ar/mens-health")).toEqual({ en: "/mens-health", ar: "/ar/mens-health" });
   });
+
+  it("returns the en/ar pair for /mens-health/vasectomy, now live in Arabic (Batch 4)", () => {
+    expect(getLocalizedPathPair("/mens-health/vasectomy")).toEqual({
+      en: "/mens-health/vasectomy",
+      ar: "/ar/mens-health/vasectomy",
+    });
+  });
 });
 
 describe("isArabicPath", () => {
@@ -54,6 +61,7 @@ describe("routes registry", () => {
       "/book",
       "/mens-health",
       "/mens-health/testosterone",
+      "/mens-health/vasectomy",
       "/sexual-medicine",
       "/sexual-medicine/premature-ejaculation",
       "/erectile-dysfunction",
