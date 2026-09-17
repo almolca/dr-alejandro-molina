@@ -78,3 +78,7 @@ carried since R9 Phase A/B0).
 | Migration (filler) | الانزياح | /male-aesthetics/penile-filler-correction (Batch 3) | |
 | Dissolution (filler) | الإذابة | /male-aesthetics/penile-filler-correction (Batch 3) | |
 | Excess/lax scrotal skin | زيادة أو ترهل جلد الصفن | /male-aesthetics/scrotal-lift (Batch 3) | |
+| Book a Consultation (booking-handoff page H1) | احجز موعداً | /ar/book (R9 booking funnel correction) | Owner-specified verbatim. Distinct from the pre-existing shared `BookingCta` default string `احجز استشارة` (row above) — this one is specifically the /ar/book page's own H1, not a button label. |
+| Continue to NMC Booking (primary CTA) | المتابعة إلى حجز الموعد عبر NMC | /ar/book (R9 booking funnel correction) | Owner-specified verbatim. Used only on the NmcBookingButton component, never as a BookingCta label. |
+| "Appointments are managed through NMC" (supporting copy) | تُدار مواعيد الاستشارة مع [الطبيب] من خلال مستشفى إن إم سي رويال – مدينة خليفة | /ar/book (R9 booking funnel correction) | Owner-specified verbatim. |
+| "You will be redirected to NMC" (supporting line) | سيتم تحويلك إلى نظام الحجز الرسمي لدى NMC | /ar/book (R9 booking funnel correction) | Owner-specified verbatim. |
