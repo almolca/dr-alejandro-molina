@@ -11,15 +11,15 @@ import type { ReactElement, ReactNode } from "react";
  * which is unsafe for anything using hooks), so a match must already
  * exist as a literal element in the tree being walked.
  */
-function isReactElement(node: ReactNode): node is ReactElement {
+function isReactElement(node: ReactNode): node is ReactElement<any> {
   return typeof node === "object" && node !== null && "type" in node && "props" in node;
 }
 
 export function findAll(
   node: ReactNode,
-  predicate: (el: ReactElement) => boolean,
-  found: ReactElement[] = [],
-): ReactElement[] {
+  predicate: (el: ReactElement<any>) => boolean,
+  found: ReactElement<any>[] = [],
+): ReactElement<any>[] {
   if (Array.isArray(node)) {
     for (const child of node) findAll(child, predicate, found);
     return found;
