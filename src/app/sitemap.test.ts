@@ -27,12 +27,13 @@ describe("sitemap", () => {
     });
   });
 
-  it("includes the R9 Phase B Batch 1 + Batch 2 + Batch 3 /ar/* routes", () => {
+  it("includes the R9 Phase B Batch 1 + Batch 2 + Batch 3 + the booking funnel correction /ar/* routes", () => {
     const arEntries = entries.filter((e) => e.url.includes(`${siteUrl}/ar`));
     expect(arEntries.map((e) => e.url).sort()).toEqual(
       [
         "/ar",
         "/ar/about",
+        "/ar/book",
         "/ar/mens-health",
         "/ar/mens-health/testosterone",
         "/ar/sexual-medicine",

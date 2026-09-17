@@ -10,12 +10,12 @@ describe("getLocalizedPathPair", () => {
     expect(getLocalizedPathPair("/ar")).toEqual({ en: "/", ar: "/ar" });
   });
 
-  it("returns null for an English route with no Arabic equivalent yet", () => {
-    expect(getLocalizedPathPair("/book")).toBeNull();
+  it("returns the en/ar pair for /book, now that /ar/book exists (R9 booking funnel correction)", () => {
+    expect(getLocalizedPathPair("/book")).toEqual({ en: "/book", ar: "/ar/book" });
   });
 
-  it("returns null for an Arabic path with no matching registry entry", () => {
-    expect(getLocalizedPathPair("/ar/book")).toBeNull();
+  it("returns the same pair when looked up from the Arabic side", () => {
+    expect(getLocalizedPathPair("/ar/book")).toEqual({ en: "/book", ar: "/ar/book" });
   });
 
   it("returns the en/ar pair for a Batch 1 hub route", () => {
@@ -51,6 +51,7 @@ describe("routes registry", () => {
     expect(withArPath).toEqual([
       "/",
       "/about",
+      "/book",
       "/mens-health",
       "/mens-health/testosterone",
       "/sexual-medicine",

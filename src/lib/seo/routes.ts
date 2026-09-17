@@ -41,7 +41,7 @@ export type RouteEntry = {
 export const routes: RouteEntry[] = [
   { path: "/", status: "live", priority: 1.0, arPath: "/ar" },
   { path: "/about", status: "live", priority: 0.7, arPath: "/ar/about" },
-  { path: "/book", status: "live", priority: 0.8 },
+  { path: "/book", status: "live", priority: 0.8, arPath: "/ar/book" },
 
   { path: "/mens-health", status: "live", priority: 0.8, arPath: "/ar/mens-health" },
   { path: "/mens-health/testosterone", status: "live", priority: 0.9, arPath: "/ar/mens-health/testosterone" },
