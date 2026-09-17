@@ -1,3 +1,5 @@
+"use client";
+
 import { isBookingConfigured, practice } from "@/config/practice";
 import { trackEvent } from "@/lib/analytics/events";
 import { cn } from "@/lib/utils/cn";
