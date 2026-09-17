@@ -141,6 +141,16 @@ export const topDoctorsAggregate = {
  * "450+" rather than restating the exact figure. If `verifiedReviewTotal`
  * ever drops below 450, this constant must be revisited by the owner
  * before publishing — it is intentionally not auto-derived.
+ *
+ * Sync note (R9 Phase B): `AR_REPUTATION.reviewHeadline` in
+ * `src/lib/i18n/ar-reputation.ts` — consumed by `AuthorityMediaSectionAr.tsx`
+ * and `PatientFeedbackSection.tsx` — is a translated mirror of this string
+ * with no automated link back to it. (`PhysicianAuthority.tsx` also
+ * imports `AR_REPUTATION` from the same module, but only for the
+ * unrelated `editorialWordingByOutlet` field, not `.reviewHeadline`.)
+ * If this headline is ever revisited by the owner, update that Arabic
+ * string in lockstep — including in `PhysicianAuthority.tsx` if an
+ * equivalent Arabic headline is added there later.
  */
 export const publicReviewHeadline = "450+ patient reviews across independent platforms";
 

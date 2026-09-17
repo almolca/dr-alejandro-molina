@@ -80,9 +80,9 @@ export function reopenConsentBanner(): void {
 
 /**
  * R9 Arabic i18n foundation (Phase A) — pure text-localization layer.
- * The Privacy Policy link intentionally stays pointed at `/privacy`
- * (English) for both locales: `/ar/privacy` doesn't exist until Phase C
- * (spec §13/§14). All consent mechanics below are unchanged by this.
+ * The Privacy Policy link pointed at `/privacy` (English) for both
+ * locales until Batch 4, when `/ar/privacy` shipped — the Arabic
+ * copy's link now points there; the English copy's link is unchanged.
  *
  * Locale is self-detected via `usePathname()` rather than threaded
  * through as a required prop: the root layout (`src/app/layout.tsx`)
@@ -151,7 +151,7 @@ const copy = {
       <>
         قد يستخدم هذا الموقع ملفات تعريف ارتباط تحليلية لفهم كيفية استخدام الزوار له. لا يتم تضمين
         أي معلومات صحية أو أعراض على الإطلاق. يمكنك القبول أو الرفض، وتغيير اختيارك في أي وقت — راجع{" "}
-        <Link href="/privacy" className="underline decoration-border underline-offset-4 hover:decoration-accent-strong">
+        <Link href="/ar/privacy" className="underline decoration-border underline-offset-4 hover:decoration-accent-strong">
           سياسة الخصوصية
         </Link>
         .

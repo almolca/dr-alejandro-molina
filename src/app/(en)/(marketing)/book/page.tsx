@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { doctor } from "@/config/doctor";
-import { isPhysicianProfileConfigured, practice, practiceLocationLine } from "@/config/practice";
+import { isPhysicianProfileConfigured, practice } from "@/config/practice";
 import { isServiceInterest, type ServiceInterest } from "@/lib/domain/service-interest";
-import { BookingLeadForm } from "@/components/forms/BookingLeadForm";
+import { NmcBookingButton } from "@/components/booking/NmcBookingButton";
 import { BookPageViewTracker } from "@/components/analytics/BookPageViewTracker";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -38,44 +38,40 @@ export default async function BookPage({ searchParams }: Props) {
       <JsonLd data={breadcrumbSchema(breadcrumbItems.map((i) => ({ name: i.name, path: i.href })))} />
 
       <Suspense fallback={null}>
-        <BookPageViewTracker service={defaultService} />
+        <BookPageViewTracker path={PATH} service={defaultService} />
       </Suspense>
 
       <Breadcrumb items={breadcrumbItems} />
 
-      {/* Hero + lead form */}
+      {/* Direct NMC handoff — R9 booking funnel correction: no form. */}
       <section className="py-section-y">
-        <Container className="mx-auto grid max-w-4xl gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start lg:gap-16">
+        <Container className="mx-auto max-w-2xl text-center">
           <Reveal>
             <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
               Consultation
             </p>
-            <h1 className="mt-4 font-display text-display-xl text-foreground">
-              Consult {doctor.displayName}
-            </h1>
+            <h1 className="mt-4 font-display text-display-xl text-foreground">Book a Consultation</h1>
             <p className="mt-6 text-body-lg text-muted-foreground">
-              {doctor.title} · {practiceLocationLine}
+              Appointments with {doctor.displayName} are managed through {practice.facilityName}.
             </p>
-            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-              Share your details below and continue directly to the official{" "}
-              {practice.facilityShortName} booking system to choose your appointment time.
+
+            <div className="mt-10">
+              <NmcBookingButton sourcePage={PATH} label="Continue to NMC Booking" />
+            </div>
+            <p className="mt-4 text-sm text-muted-foreground">
+              You will be redirected to the official {practice.facilityShortName} booking system.
             </p>
+
             {isPhysicianProfileConfigured && (
               <a
                 href={practice.physicianProfileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-6 inline-flex h-11 items-center text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
+                className="mt-8 inline-flex h-11 items-center text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
               >
                 View NMC Profile
               </a>
             )}
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <Suspense fallback={null}>
-              <BookingLeadForm defaultService={defaultService} sourcePage={PATH} />
-            </Suspense>
           </Reveal>
         </Container>
       </section>
@@ -97,29 +93,6 @@ export default async function BookPage({ searchParams }: Props) {
             <p className="mt-4 font-display text-2xl text-foreground">{practice.facilityName}</p>
             <p className="mt-2 text-sm text-muted-foreground">
               {practice.city}, {practice.country}
-            </p>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* What happens with your details */}
-      <section className="py-section-y">
-        <Container className="max-w-2xl">
-          <Reveal>
-            <h2 className="font-display text-display-md text-foreground">
-              How Booking Works
-            </h2>
-            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-              This page is an owned gateway to {practice.facilityShortName}&rsquo;s official
-              booking system, not a separate enquiry form — there is no callback workflow.
-              Submitting sends your name, email and (if provided) what you&rsquo;d like to
-              discuss to {doctor.displayName}&rsquo;s practice, and immediately continues you to
-              the official {practice.facilityName} appointment system, where booking and any
-              patient records are handled entirely by {practice.facilityShortName}. See our{" "}
-              <a href="/privacy" className="underline decoration-accent-strong underline-offset-4">
-                Privacy Policy
-              </a>{" "}
-              for details.
             </p>
           </Reveal>
         </Container>

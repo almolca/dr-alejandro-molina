@@ -1,0 +1,92 @@
+import visual from "@/components/editorial/VisualSystem.module.css";
+import { InternalLink as Link } from "@/components/ui/InternalLink";
+import { ArrowUpRight } from "lucide-react";
+import { Container } from "@/components/ui/Container";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { AR_IDENTITY } from "@/lib/i18n/ar-identity";
+
+const primaryAreas = [
+  {
+    number: "01",
+    title: "ضعف الانتصاب ودعامة القضيب",
+    description: "التشخيص قبل العلاج — من العلاج بمثبطات PDE5 إلى دعامة القضيب للحالات المستعصية.",
+    href: "/ar/erectile-dysfunction",
+  },
+  {
+    number: "02",
+    title: "التستوستيرون والصحة الهرمونية للرجال",
+    description: "تقييم هرموني وأيضي شامل قبل النظر في أي علاج.",
+    href: "/ar/mens-health/testosterone",
+  },
+  {
+    number: "03",
+    title: "التجميل الذكوري",
+    description: "نهج قائم على التشريح وتحت إشراف طبي لتجميل القضيب وتصحيحه.",
+    href: "/ar/male-aesthetics",
+  },
+  {
+    number: "04",
+    title: "خصوبة الرجل",
+    description: "تحليل السائل المنوي، والتقييم الهرموني، وتقييم دوالي الخصية.",
+    href: "/ar/male-fertility",
+  },
+];
+
+const secondaryLinks = [
+  { label: "مرض بيروني", href: "/ar/peyronies-disease" },
+  { label: "دوبلر القضيب", href: "/ar/erectile-dysfunction/penile-doppler" },
+  { label: "سرعة القذف", href: "/ar/sexual-medicine/premature-ejaculation" },
+  { label: "دوالي الخصية", href: "/ar/male-fertility/varicocele" },
+  { label: "قطع القناة المنوية بدون مشرط", href: "/ar/mens-health/vasectomy" },
+];
+
+/**
+ * All primary/secondary hrefs above now point to real Arabic pages —
+ * `/mens-health/vasectomy` was the last temporary-EN destination in
+ * this file and now resolves to `/ar/mens-health/vasectomy` (Batch 4).
+ */
+export function CoreExpertiseSectionAr() {
+  return (
+    <section className="py-section-y">
+      <Container>
+        <SectionHeading eyebrow="مجالات الرعاية" heading="رعاية متخصصة لصحة الرجال" locale="ar" />
+
+        <div className={visual.services}>
+          <Link href="/ar/male-aesthetics/penile-girth-enhancement" className={visual.serviceFeature}>
+            <span className="text-xs uppercase">الإجراء الرائد</span>
+            <div>
+              <h3 className="font-display text-3xl">زيادة سماكة القضيب</h3>
+              <p className="mt-4 text-sm text-stone-200">تخطيط قائم على التشريح ضمن ممارسة {AR_IDENTITY.doctorTitle}.</p>
+            </div>
+            <span className="mt-6 text-sm">استكشف الإجراء <span aria-hidden="true">↗</span></span>
+          </Link>
+          <div className={visual.serviceList}>
+            {primaryAreas.map((area) => (
+              <Link key={area.number} href={area.href} className={visual.serviceLink}>
+                <span className={visual.serviceNumber} aria-hidden="true">{area.number}</span>
+                <span>
+                  <span className="block font-display text-xl">{area.title}</span>
+                  <span className="mt-2 block max-w-lg text-sm text-muted-foreground">{area.description}</span>
+                </span>
+                <ArrowUpRight aria-hidden size={18} />
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3">
+          <span className="text-xs font-medium uppercase text-muted-foreground">أيضًا يُقيَّم</span>
+          {secondaryLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm text-muted-foreground underline decoration-border underline-offset-4 transition-colors hover:text-foreground hover:decoration-accent-strong"
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
+      </Container>
+    </section>
+  );
+}

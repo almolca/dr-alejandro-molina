@@ -37,7 +37,7 @@ export function Faq({
   return (
     <section className="py-section-y">
       <Container className="max-w-3xl">
-        <SectionHeading eyebrow={eyebrow} heading={heading} size="md" />
+        <SectionHeading eyebrow={eyebrow} heading={heading} size="md" locale={locale} />
 
         <Accordion.Root type="single" collapsible className="mt-10 border-t border-border">
           {items.map((item) => (

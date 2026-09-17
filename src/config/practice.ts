@@ -60,5 +60,11 @@ export const isPhysicianProfileConfigured =
 /**
  * Human-readable location line used throughout the site, e.g.
  * "Consultations at NMC Royal Hospital Khalifa City, Abu Dhabi" (spec §26).
+ *
+ * Sync note (R9 Phase B): the Arabic translation of this string lives
+ * as `AR_IDENTITY.practiceLocationLine` in `src/lib/i18n/ar-identity.ts`
+ * — the single source multiple Arabic pages/components import from,
+ * rather than each hardcoding its own copy. If `practice.facilityName`
+ * or `practice.city` ever changes, update that constant in lockstep.
  */
 export const practiceLocationLine = `${practice.facilityName}, ${practice.city}`;

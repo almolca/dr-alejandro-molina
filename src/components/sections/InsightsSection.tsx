@@ -2,36 +2,7 @@ import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { AmpersandText } from "@/components/ui/AmpersandText";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
-
-/**
- * Spec §7 Section 10 — three featured articles, verbatim titles from
- * spec's "initial article ideas". No dates or bylines are shown (spec:
- * "do not publish fake content dates or fake research claims") — a
- * category tag stands in for the usual article-card metadata. Slugs are
- * an implementation detail for Phase 4, not a claim; the pages
- * themselves don't exist yet, so links resolve to the site's 404 for
- * now, consistent with the rest of the nav (spec §38 phase gating).
- */
-const articles = [
-  {
-    title: "When Is a Penile Implant Considered for Erectile Dysfunction?",
-    tag: "Penile Implant Surgery",
-    href: "/insights/penile-implant-when-considered",
-    featured: true,
-  },
-  {
-    title:
-      "Low Testosterone: Symptoms, Diagnosis and When Treatment Is Appropriate",
-    tag: "Hormonal Health",
-    href: "/insights/low-testosterone-symptoms-diagnosis",
-  },
-  {
-    title:
-      "Penile Girth Enhancement: What a Medical Assessment Should Consider",
-    tag: "Male Genital Aesthetics",
-    href: "/insights/penile-girth-enhancement-assessment",
-  },
-];
+import { homepageFeaturedArticles as articles } from "@/content/insights/homepage-featured";
 
 export function InsightsSection() {
   return (

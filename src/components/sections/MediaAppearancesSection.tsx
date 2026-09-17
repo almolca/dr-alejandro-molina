@@ -8,7 +8,8 @@ import { Reveal } from "@/components/motion/Reveal";
  * ships empty. Do not add a fallback/placeholder state; an empty
  * trust section is worse than no section.
  */
-export function MediaAppearancesSection() {
+export function MediaAppearancesSection({ locale }: { locale?: "ar" } = {}) {
+  const isAr = locale === "ar";
   const publishable = mediaAppearances.filter((item) => item.publishReady);
   if (publishable.length === 0) return null;
 
@@ -16,8 +17,8 @@ export function MediaAppearancesSection() {
     <section className="border-t border-border py-section-y">
       <Container className="mx-auto max-w-2xl text-center">
         <Reveal>
-          <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
-            Media &amp; Editorial Contributions
+          <p className={`text-eyebrow font-medium uppercase text-accent-strong ${isAr ? "" : "tracking-[0.2em]"}`}>
+            {isAr ? "المساهمات الإعلامية والتحريرية" : "Media & Editorial Contributions"}
           </p>
           <ul className="mt-8 flex flex-col items-center gap-4">
             {publishable.map((item) => (
@@ -32,7 +33,7 @@ export function MediaAppearancesSection() {
                       rel="noopener noreferrer"
                       className="underline decoration-border underline-offset-4 hover:decoration-accent-strong"
                     >
-                      View
+                      {isAr ? "عرض" : "View"}
                     </a>
                   </>
                 )}

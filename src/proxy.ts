@@ -55,9 +55,9 @@ export function proxy(request: NextRequest) {
 
   // R8.1C privacy audit — attribution cookies (attr_first/attr_last,
   // book_origin) are non-essential to booking itself (traced every
-  // reader: only `book/actions.ts`, only to enrich a lead record that
-  // is created and submitted successfully with or without them) and
-  // are marketing/analytics attribution by purpose, exactly the kind
+  // reader: only `src/app/api/events/route.ts`, only to enrich a lead
+  // record that is created and submitted successfully with or without
+  // them) and are marketing/analytics attribution by purpose, exactly the kind
   // of cookie the site's own consent banner already claims a visitor
   // can decline. They were previously set unconditionally, before any
   // consent choice was possible — this cookie (mirrored client-side by
@@ -74,7 +74,7 @@ export function proxy(request: NextRequest) {
     if (refererHeader) {
       const refererUrl = new URL(refererHeader);
       refererHost = refererUrl.host;
-      refererPath = refererUrl.pathname + refererUrl.search;
+      refererPath = refererUrl.pathname;
     }
   } catch {
     refererHost = null;
@@ -83,15 +83,17 @@ export function proxy(request: NextRequest) {
 
   // Origin-page capture (R7.2 UX addendum) — independent of the
   // first/last-touch "fresh entry" logic below, so it runs on every
-  // /book load, including pure internal navigation from a marketing
-  // page. Only set when the referer is same-origin and isn't /book
-  // itself (e.g. a reload of /book, or the POST-time self-referer).
+  // /book or /ar/book load, including pure internal navigation from a
+  // marketing page. Only set when the referer is same-origin and isn't
+  // /book itself (e.g. a reload of /book, or the POST-time self-referer).
+  const isBookPagePath = pathname === "/book" || pathname === "/ar/book";
   if (
     hasAnalyticsConsent &&
-    pathname === "/book" &&
+    isBookPagePath &&
     refererPath &&
     refererHost === request.nextUrl.host &&
-    !refererPath.startsWith("/book")
+    !refererPath.startsWith("/book") &&
+    !refererPath.startsWith("/ar/book")
   ) {
     response.cookies.set(BOOK_ORIGIN_COOKIE, refererPath, {
       maxAge: BOOK_ORIGIN_MAX_AGE_SECONDS,

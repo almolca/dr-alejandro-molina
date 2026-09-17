@@ -20,7 +20,7 @@ export function Breadcrumb({ items }: { items: BreadcrumbItem[] }) {
             const isLast = index === items.length - 1;
             return (
               <li key={item.name} className="flex items-center gap-1.5">
-                {index > 0 && <ChevronRight aria-hidden size={12} />}
+                {index > 0 && <ChevronRight aria-hidden size={12} className="rtl:rotate-180" />}
                 {item.href && !isLast ? (
                   <Link
                     href={item.href}

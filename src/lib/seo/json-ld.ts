@@ -101,17 +101,21 @@ export function physicianSchema() {
   });
 }
 
-export function breadcrumbSchema(items: { name: string; path: string }[]) {
-  return {
+export function breadcrumbSchema(
+  items: { name: string; path: string }[],
+  options?: { inLanguage?: string },
+) {
+  return prune({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    inLanguage: options?.inLanguage,
     itemListElement: items.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name: item.name,
       item: new URL(item.path, siteUrl).toString(),
     })),
-  };
+  });
 }
 
 /**
@@ -119,17 +123,21 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
  * Phase 1 placeholder home page — future page-level implementers should
  * call this from each treatment page's `page.tsx`.
  */
-export function medicalWebPageSchema(input: {
-  name: string;
-  description: string;
-  path: string;
-  /** e.g. "MedicalCondition" name this page is about, if applicable. */
-  aboutType?: "MedicalCondition" | "MedicalProcedure" | "MedicalTherapy";
-  aboutName?: string;
-}) {
+export function medicalWebPageSchema(
+  input: {
+    name: string;
+    description: string;
+    path: string;
+    /** e.g. "MedicalCondition" name this page is about, if applicable. */
+    aboutType?: "MedicalCondition" | "MedicalProcedure" | "MedicalTherapy";
+    aboutName?: string;
+  },
+  options?: { inLanguage?: string },
+) {
   return prune({
     "@context": "https://schema.org",
     "@type": "MedicalWebPage",
+    inLanguage: options?.inLanguage,
     name: input.name,
     description: input.description,
     url: new URL(input.path, siteUrl).toString(),
