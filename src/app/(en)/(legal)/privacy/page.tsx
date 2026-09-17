@@ -120,8 +120,7 @@ export default function PrivacyPage() {
                 Consultation&rdquo; button click) are only recorded once you
                 accept analytics cookies. No symptom, health, or appointment
                 information is ever sent to analytics, and analytics events are
-                never linked to the contact details you submit through the
-                booking form.
+                never linked to any personal contact details.
               </p>
               <p className="mt-3">
                 You can change your cookie choice at any time using the
