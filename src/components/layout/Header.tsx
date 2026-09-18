@@ -26,6 +26,9 @@ export function Header({ locale = "en" }: { locale?: "en" | "ar" }) {
         scrolled ? "bg-background/90 shadow-sm backdrop-blur-md" : "bg-background",
       )}
     >
+      {/* min-h-28 is the actual mobile header height, not just a floor — BrandLogo's
+          mobile width (160px, 3:2 ratio) is sized to render under 112px so nothing
+          stretches this taller and destabilizes the sticky offset content relies on. */}
       <Container className="flex min-h-28 items-center justify-between gap-x-5">
         <Link href={homeHref} className="shrink-0" aria-label={homeAriaLabel}>
           <BrandLogo />
