@@ -84,7 +84,7 @@ export function Footer({ locale = "en" }: { locale?: "en" | "ar" }) {
                 </Link>
               </li>
               <li>
-                <Link href="/insights" className="text-foreground/85 transition-colors hover:text-foreground">
+                <Link href={localizeHref("/insights", locale)} className="text-foreground/85 transition-colors hover:text-foreground">
                   {t.insights}
                 </Link>
               </li>

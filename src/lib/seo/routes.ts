@@ -76,7 +76,12 @@ export const routes: RouteEntry[] = [
   { path: "/male-fertility/varicocele", status: "live", priority: 0.6, arPath: "/ar/male-fertility/varicocele" },
   { path: "/male-fertility/semen-analysis", status: "planned", priority: 0.5 },
 
-  { path: "/insights", status: "live", priority: 0.5 },
+  // R10 Phase C: /ar/insights is a genuine, live 6-article Arabic index
+  // (not the full 24-article EN list) — a coarser-grained hub-level
+  // equivalence than the strict per-article hreflang rule, and standard
+  // for index pages (see the code comment in the Arabic insights index
+  // page itself).
+  { path: "/insights", status: "live", priority: 0.5, arPath: "/ar/insights" },
   // Individual /insights/[slug] article routes are appended in
   // sitemap.ts directly from content/insights/articles.ts, rather than
   // duplicated here — that's the single source of truth for which

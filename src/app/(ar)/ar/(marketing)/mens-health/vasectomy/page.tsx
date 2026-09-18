@@ -187,15 +187,26 @@ export default function VasectomyPageAr() {
     <>
       <JsonLd
         data={[
-          breadcrumbSchema(breadcrumbItems.map((i) => ({ name: i.name, path: i.href }))),
-          medicalWebPageSchema({
-            name: "قطع القناة المنوية بدون مشرط",
-            description:
-              "قطع القناة المنوية بدون مشرط — وسيلة دائمة لمنع الحمل لدى الرجال تُجرى عبر فتحة صفنية مركزية صغيرة، مع استشارة حول التعافي والمخاطر والفحوصات بعد الإجراء.",
-            path: PATH,
-            aboutType: "MedicalProcedure",
-            aboutName: "قطع القناة المنوية بدون مشرط",
-          }),
+          breadcrumbSchema(
+            breadcrumbItems.map((i) => ({ name: i.name, path: i.href })),
+            { inLanguage: "ar" },
+          ),
+          medicalWebPageSchema(
+            {
+              name: "قطع القناة المنوية بدون مشرط",
+              description:
+                "قطع القناة المنوية بدون مشرط — وسيلة دائمة لمنع الحمل لدى الرجال تُجرى عبر فتحة صفنية مركزية صغيرة، مع استشارة حول التعافي والمخاطر والفحوصات بعد الإجراء.",
+              path: PATH,
+              aboutType: "MedicalProcedure",
+              // R10: aligned with every other page's convention — an
+              // English schema.org taxonomy value, not visible page
+              // copy (see the code comment on /ar/male-fertility for
+              // the same rationale). Previously this was the only page
+              // using an Arabic string here.
+              aboutName: "No-Scalpel Vasectomy",
+            },
+            { inLanguage: "ar" },
+          ),
         ]}
       />
 

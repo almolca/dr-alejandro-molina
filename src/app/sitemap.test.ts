@@ -28,11 +28,11 @@ describe("sitemap", () => {
   });
 
   it("includes the R9 Phase B Batch 1 + Batch 2 + Batch 3 + Batch 4 + the booking funnel correction /ar/* routes", () => {
-    // Excludes /ar/insights/* deliberately — those are R10 Phase C
-    // content-derived entries (see the dedicated test below), not
-    // routes.ts-driven pages from the R9 batches this test guards.
+    // Excludes /ar/insights and /ar/insights/* deliberately — the hub
+    // and its articles are R10 Phase C additions (see the dedicated
+    // test below), not part of the R9 batches this test guards.
     const arEntries = entries.filter(
-      (e) => e.url.includes(`${siteUrl}/ar`) && !e.url.includes("/ar/insights/"),
+      (e) => e.url.includes(`${siteUrl}/ar`) && !e.url.includes("/ar/insights"),
     );
     expect(arEntries.map((e) => e.url).sort()).toEqual(
       [
@@ -63,6 +63,15 @@ describe("sitemap", () => {
   it("still includes insight articles (regression check)", () => {
     const articleEntries = entries.filter((e) => e.url.includes("/insights/"));
     expect(articleEntries.length).toBeGreaterThan(0);
+  });
+
+  it("includes the R10 Arabic Insights hub, hub-paired with the English /insights index", () => {
+    const hub = entries.find((e) => e.url === `${siteUrl}/ar/insights`);
+    expect(hub).toBeDefined();
+    expect(hub?.alternates?.languages).toEqual({
+      "en-AE": `${siteUrl}/insights`,
+      "ar-AE": `${siteUrl}/ar/insights`,
+    });
   });
 
   it("includes the R10 first-wave Arabic Insights articles, with hreflang only where a genuine EN equivalent exists", () => {

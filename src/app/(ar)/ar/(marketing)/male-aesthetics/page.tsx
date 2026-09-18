@@ -100,6 +100,13 @@ export default function MaleAestheticsPageAr() {
               description:
                 "تقييم متخصص في طب المسالك البولية والذكورة للرجال الذين يفكرون في تجميل القضيب أو تصحيح علاج سابق.",
               path: PATH,
+              // R10: added for consistency with /ar/male-fertility (the
+              // other hub page that already sets aboutType/aboutName) —
+              // uses the hub's own flagship procedure as its overarching
+              // topic, same pattern as that hub picking its own primary
+              // sub-condition.
+              aboutType: "MedicalProcedure",
+              aboutName: "Penile Girth Enhancement",
             },
             { inLanguage: "ar" },
           ),

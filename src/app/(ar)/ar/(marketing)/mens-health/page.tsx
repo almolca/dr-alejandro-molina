@@ -15,7 +15,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { TreatmentCtaSection } from "@/components/sections/TreatmentCtaSection";
 import { AR_IDENTITY } from "@/lib/i18n/ar-identity";
-import { breadcrumbSchema } from "@/lib/seo/json-ld";
+import { breadcrumbSchema, medicalWebPageSchema } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
 
 const PATH = "/ar/mens-health";
@@ -81,7 +81,25 @@ const faqItems = [
 export default function MensHealthPageAr() {
   return (
     <div className={visual.scope}>
-      <JsonLd data={breadcrumbSchema(breadcrumbItems.map((i) => ({ name: i.name, path: i.href })), { inLanguage: "ar" })} />
+      <JsonLd
+        data={[
+          breadcrumbSchema(breadcrumbItems.map((i) => ({ name: i.name, path: i.href })), { inLanguage: "ar" }),
+          // R10: added for consistency with /ar/male-fertility and
+          // /ar/male-aesthetics (hubs that already set this) — uses the
+          // hub's dominant P1 spoke as its overarching topic.
+          medicalWebPageSchema(
+            {
+              name: "صحة الرجل",
+              description:
+                "تقييم متخصص لصحة الرجل — التستوستيرون والصحة الهرمونية، والمجالات ذات الصلة، بشكل فردي قبل النظر في أي علاج.",
+              path: PATH,
+              aboutType: "MedicalCondition",
+              aboutName: "Testosterone Deficiency",
+            },
+            { inLanguage: "ar" },
+          ),
+        ]}
+      />
 
       <Breadcrumb items={breadcrumbItems} />
 

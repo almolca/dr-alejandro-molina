@@ -78,6 +78,7 @@ describe("routes registry", () => {
       "/male-aesthetics/penile-filler-correction",
       "/male-fertility",
       "/male-fertility/varicocele",
+      "/insights",
       "/privacy",
     ]);
   });

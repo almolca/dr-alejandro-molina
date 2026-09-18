@@ -61,13 +61,15 @@ export default async function InsightArticlePageAr({ params }: Props) {
   if (!article) notFound();
 
   const path = `/ar/insights/${article.slug}`;
-  // 2-level trail, not "الرئيسية → رؤى → المقال": there is no /ar/insights
-  // hub yet (R10 Phase C deliberately doesn't build one for a 6-article
-  // first wave — see docs/r10-arabic-content-roadmap.md), and per the
-  // owner's breadcrumb decision, an Arabic breadcrumb must never link to
-  // a page that doesn't genuinely exist in Arabic.
+  // R10 Phase C follow-up: now that /ar/insights is a genuine, live
+  // Arabic hub (re-evaluated once the 6-article first wave shipped —
+  // see docs/r10-arabic-seo-research.md), the full 3-level trail is
+  // restored, matching the same "richer hierarchy once a real page
+  // exists" principle used for the penile-implant/peyronies-disease
+  // breadcrumb fix.
   const breadcrumbItems = [
     { name: "الرئيسية", href: "/ar" },
+    { name: "رؤى", href: "/ar/insights" },
     { name: article.title, href: path },
   ];
   const relatedArticles = getRelatedArticlesAr(article);

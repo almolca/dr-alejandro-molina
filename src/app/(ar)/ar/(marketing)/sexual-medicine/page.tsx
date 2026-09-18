@@ -10,7 +10,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/Stagger";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { TreatmentCtaSection } from "@/components/sections/TreatmentCtaSection";
-import { breadcrumbSchema } from "@/lib/seo/json-ld";
+import { breadcrumbSchema, medicalWebPageSchema } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
 
 const PATH = "/ar/sexual-medicine";
@@ -54,7 +54,23 @@ const areas = [
 export default function SexualMedicinePageAr() {
   return (
     <>
-      <JsonLd data={breadcrumbSchema(breadcrumbItems.map((i) => ({ name: i.name, path: i.href })), { inLanguage: "ar" })} />
+      <JsonLd
+        data={[
+          breadcrumbSchema(breadcrumbItems.map((i) => ({ name: i.name, path: i.href })), { inLanguage: "ar" }),
+          // R10: added for consistency — same rationale as /ar/mens-health.
+          medicalWebPageSchema(
+            {
+              name: "الطب الجنسي",
+              description:
+                "تقييم وعلاج متخصص لضعف الانتصاب وسرعة القذف، مع علاج يتناسب مع السبب الكامن.",
+              path: PATH,
+              aboutType: "MedicalCondition",
+              aboutName: "Erectile Dysfunction",
+            },
+            { inLanguage: "ar" },
+          ),
+        ]}
+      />
 
       <Breadcrumb items={breadcrumbItems} />
 
