@@ -24,10 +24,14 @@ export const metadata: Metadata = buildMetadata({
   path: PATH,
 });
 
-/** Breadcrumb parent stays the English /penile-surgery route — same documented gap as /ar/penile-implant (Task 6). */
+/**
+ * R10 Phase B: reduced to a 2-level trail — same fix and same reason as
+ * /ar/penile-implant (docs/r10-arabic-seo-research.md §5.3): the middle
+ * crumb pointed to the English-only "/penile-surgery", never built in
+ * Arabic.
+ */
 const breadcrumbItems = [
   { name: "الرئيسية", href: "/ar" },
-  { name: "جراحة القضيب", href: "/penile-surgery" },
   { name: "مرض بيروني", href: PATH },
 ];
 

@@ -21,7 +21,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 const PATH = "/ar/sexual-medicine/premature-ejaculation";
 
 export const metadata: Metadata = buildMetadata({
-  title: "سرعة القذف",
+  title: "سرعة القذف — التقييم والعلاج في أبوظبي",
   description:
     "تقييم متخصص لسرعة القذف في أبوظبي — خيارات سلوكية ونفسية-جنسية وطبية وإجرائية تُلائم كل حالة، بما في ذلك علاج حمض الهيالورونيك في الحشفة في حالات مختارة.",
   path: PATH,

@@ -18,7 +18,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 const PATH = "/ar/erectile-dysfunction/penile-doppler";
 
 export const metadata: Metadata = buildMetadata({
-  title: "دوبلر القضيب — تقييم متقدم لضعف الانتصاب",
+  title: "دوبلر القضيب في أبوظبي — تقييم متقدم لضعف الانتصاب",
   description:
     "تقييم دوبلر القضيب (الموجات فوق الصوتية الثنائية للقضيب) في أبوظبي — التدفق الشرياني الداخل، وظيفة الانسداد الوريدي، وكيفية توجيه النتائج لخطة علاج ضعف الانتصاب.",
   path: PATH,

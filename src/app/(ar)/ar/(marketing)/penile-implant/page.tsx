@@ -31,10 +31,17 @@ export const metadata: Metadata = buildMetadata({
   path: PATH,
 });
 
-/** Breadcrumb parent stays the English /penile-surgery route — never built in any R9 Phase B batch, out of this phase's scope entirely (not just "later batch"). Label is still Arabic. */
+/**
+ * R10 Phase B: the middle crumb previously pointed to the English-only
+ * "/penile-surgery" (never built in Arabic — see
+ * docs/r10-arabic-seo-research.md §5.3), dropping an Arabic reader into
+ * English mid-navigation. Reduced to a 2-level trail until a genuine
+ * "/ar/penile-surgery" page exists to restore the fuller hierarchy —
+ * this also matches the route's own flat (non-nested) URL shape in
+ * routes.ts.
+ */
 const breadcrumbItems = [
   { name: "الرئيسية", href: "/ar" },
-  { name: "جراحة القضيب", href: "/penile-surgery" },
   { name: "جراحة زراعة دعامة القضيب", href: PATH },
 ];
 
@@ -196,7 +203,7 @@ export default function PenileImplantPageAr() {
           </div>
 
           <MaskedReveal className="w-full self-start">
-            <PhotoFrame slot="implantPhysician" priority />
+            <PhotoFrame slot="implantPhysician" priority alt="الدكتور أليخاندرو مولينا، استشاري أمراض المسالك البولية والذكورة" />
           </MaskedReveal>
         </Container>
       </section>
@@ -286,7 +293,7 @@ export default function PenileImplantPageAr() {
             />
           </Reveal>
           <MaskedReveal className="mt-10 max-w-xl">
-            <PhotoFrame slot="implantDevice" landscape />
+            <PhotoFrame slot="implantDevice" landscape alt="مراجعة خيارات علاج دعامة القضيب" />
           </MaskedReveal>
           <div className="mt-14 grid gap-x-16 gap-y-14 border-t border-border pt-14 md:grid-cols-2">
             {prosthesisTypes.map((type) => (
@@ -311,7 +318,7 @@ export default function PenileImplantPageAr() {
         <Container>
           <SectionHeading eyebrow="المسار الجراحي" heading="التقييم، الجراحة، التعافي" locale="ar" />
           <MaskedReveal className="mt-10 max-w-2xl">
-            <PhotoFrame slot="implantSurgical" landscape tone="dark" />
+            <PhotoFrame slot="implantSurgical" landscape tone="dark" alt="الدكتور أليخاندرو مولينا في بيئة جراحية" />
           </MaskedReveal>
           <StaggerGroup className="mt-14 grid grid-cols-1 gap-10 border-t border-border pt-10 md:grid-cols-3">
             {pathway.map((step, index) => (
