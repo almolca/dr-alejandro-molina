@@ -8,6 +8,21 @@
 
   html {
     color-scheme: light;
+    /*
+     * The mobile header's compact-on-scroll transition (Header.tsx)
+     * animates its own in-flow height. Since it's the document's first
+     * element, that shrink moves every node below it — which Chrome's
+     * scroll anchoring "corrects" by silently dragging scrollY toward
+     * the shrink amount, observed pulling scrollY from 81 down to 45
+     * (measured via Playwright) right at the edge of the 40px exit
+     * threshold. Left in place, that drift could dip below the exit
+     * threshold, flip `compact` back off, and re-trigger the same
+     * drift in reverse — an oscillation. Disabling anchoring site-wide
+     * removes the compensation entirely; nothing on this site relies
+     * on it (no scroll-anchoring-sensitive infinite lists/streaming
+     * content), so there's no upside being traded away.
+     */
+    overflow-anchor: none;
   }
 
   body {
