@@ -9,6 +9,17 @@ type BuildMetadataInput = {
   path: string;
   /** Set false for pages that must not be indexed (none expected in MVP). */
   index?: boolean;
+  /**
+   * Explicit EN/AR pair override, for content not registered in the
+   * `routes` array — e.g. per-slug Insights articles, which
+   * (like their English counterparts) are sitemap-listed directly from
+   * `content/insights/*` rather than from `routes.ts` (R10). When
+   * provided, this replaces the automatic `getLocalizedPathPair(path)`
+   * lookup below. Omit for a genuinely English-only or Arabic-only
+   * article with no true equivalent on the other side — per R10's own
+   * rule, a forced/artificial hreflang pair is worse than none.
+   */
+  languagePair?: { en: string; ar: string };
 };
 
 /**
@@ -43,10 +54,11 @@ export function buildMetadata({
   description,
   path,
   index = true,
+  languagePair,
 }: BuildMetadataInput): Metadata {
   const url = new URL(path, siteUrl).toString();
   const locale = isArabicPath(path) ? "ar" : "en";
-  const pair = getLocalizedPathPair(path);
+  const pair = languagePair ?? getLocalizedPathPair(path);
   const languages = pair
     ? {
         "en-AE": new URL(pair.en, siteUrl).toString(),

@@ -127,8 +127,8 @@ const faqItems = [
     question: "كم مقدار الزيادة في الحجم يمكن أن أتوقعه؟",
     answer:
       "يعتمد ذلك على ثلاثة أمور: تشريحك الأساسي ومرونة أنسجتك، والتقنية والحجم المخطط لعلاجك، وما إذا كان العلاج يُقدَّم في جلسة واحدة أو على مراحل. ولأن هذه العوامل الثلاثة تختلف بشكل كبير بين المرضى، لا تُنشر قياسات نتائج محددة هنا — بل تُناقش بالتفصيل، وفي سياق تشريحك الخاص، أثناء الاستشارة.",
-    readMoreHref: "/insights/how-much-girth-can-penile-filler-add",
-    readMoreLabel: "اقرأ المزيد: How Much Girth Can Penile Filler Actually Add? (مقال بالإنجليزية)",
+    readMoreHref: "/ar/insights/penile-girth-enhancement-real-world-experience",
+    readMoreLabel: "اقرأ المزيد: زيادة سماكة القضيب بالفيلر، ما الذي تُظهره الخبرة الفعلية؟",
   },
   {
     question: "هل هذا جراحي أم غير جراحي؟",

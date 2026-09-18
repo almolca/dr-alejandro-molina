@@ -117,8 +117,8 @@ const faqItems = [
   {
     question: "هل يرتبط انخفاض التستوستيرون بضعف الانتصاب؟",
     answer: "من الممكن ذلك، رغم أنه نادرًا ما يكون العامل الوحيد — إذ يعتمد الانتصاب بشكل أساسي على آليات وعائية وعصبية، بينما يسهم التستوستيرون في الرغبة الجنسية ويدعم أجزاء من العملية. ولهذا يُقيَّم الاثنان معًا بدلاً من افتراض أن قراءة منخفضة تفسر الأعراض الجنسية بمفردها.",
-    readMoreHref: "/insights/testosterone-and-erectile-dysfunction",
-    readMoreLabel: "اقرأ المزيد: Testosterone and Erectile Dysfunction (مقال بالإنجليزية)",
+    readMoreHref: "/ar/insights/testosterone-and-erectile-dysfunction-ar",
+    readMoreLabel: "اقرأ المزيد: التستوستيرون وضعف الانتصاب، ما العلاقة بينهما؟",
   },
 ];
 

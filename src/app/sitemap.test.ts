@@ -28,7 +28,12 @@ describe("sitemap", () => {
   });
 
   it("includes the R9 Phase B Batch 1 + Batch 2 + Batch 3 + Batch 4 + the booking funnel correction /ar/* routes", () => {
-    const arEntries = entries.filter((e) => e.url.includes(`${siteUrl}/ar`));
+    // Excludes /ar/insights/* deliberately — those are R10 Phase C
+    // content-derived entries (see the dedicated test below), not
+    // routes.ts-driven pages from the R9 batches this test guards.
+    const arEntries = entries.filter(
+      (e) => e.url.includes(`${siteUrl}/ar`) && !e.url.includes("/ar/insights/"),
+    );
     expect(arEntries.map((e) => e.url).sort()).toEqual(
       [
         "/ar",
@@ -58,6 +63,25 @@ describe("sitemap", () => {
   it("still includes insight articles (regression check)", () => {
     const articleEntries = entries.filter((e) => e.url.includes("/insights/"));
     expect(articleEntries.length).toBeGreaterThan(0);
+  });
+
+  it("includes the R10 first-wave Arabic Insights articles, with hreflang only where a genuine EN equivalent exists", () => {
+    const arArticleEntries = entries.filter((e) => e.url.includes("/ar/insights/"));
+    expect(arArticleEntries).toHaveLength(6);
+
+    const venousLeak = arArticleEntries.find((e) => e.url.endsWith("/ar/insights/venous-leak-and-penile-doppler"));
+    expect(venousLeak?.alternates?.languages).toEqual({
+      "en-AE": `${siteUrl}/insights/venous-leak-erectile-dysfunction`,
+      "ar-AE": `${siteUrl}/ar/insights/venous-leak-and-penile-doppler`,
+    });
+
+    // This one adapts/merges two English source articles rather than
+    // mirroring one 1:1 — per R10's rule, it must NOT get a forced
+    // hreflang pair.
+    const girthExperience = arArticleEntries.find((e) =>
+      e.url.endsWith("/ar/insights/penile-girth-enhancement-real-world-experience"),
+    );
+    expect(girthExperience?.alternates).toBeUndefined();
   });
 
   it("excludes /ar/privacy from the sitemap, matching /privacy's index:false (Batch 4)", () => {

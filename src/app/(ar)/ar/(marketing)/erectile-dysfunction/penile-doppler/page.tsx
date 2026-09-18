@@ -285,9 +285,8 @@ export default function PenileDopplerPageAr() {
               كتسرب وريدي بنيوي ثابت.
             </p>
             <p className="mt-6 text-sm">
-              <Link href="/insights/venous-leak-erectile-dysfunction" className="text-foreground underline decoration-accent-strong underline-offset-4">
-                اقرأ المقال كاملاً: Venous Leak and Erectile Dysfunction
-                (مقال بالإنجليزية)
+              <Link href="/ar/insights/venous-leak-and-penile-doppler" className="text-foreground underline decoration-accent-strong underline-offset-4">
+                اقرأ المقال كاملاً: التسرب الوريدي وضعف الانتصاب
               </Link>
             </p>
           </Reveal>

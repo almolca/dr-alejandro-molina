@@ -252,9 +252,8 @@ export default function ErectileDysfunctionPageAr() {
               </Link>{" "}
               وسيلة التمييز العملية بين هذه الآليات. لمزيد من التفصيل حول
               إحداها تحديدًا، انظر{" "}
-              <Link href="/insights/venous-leak-erectile-dysfunction" className="text-foreground underline decoration-accent-strong underline-offset-4">
-                Venous Leak and Erectile Dysfunction: What Penile Doppler
-                Really Shows (مقال بالإنجليزية)
+              <Link href="/ar/insights/venous-leak-and-penile-doppler" className="text-foreground underline decoration-accent-strong underline-offset-4">
+                التسرب الوريدي وضعف الانتصاب: ماذا يُظهر فحص دوبلر القضيب فعلاً؟
               </Link>
               .
             </p>

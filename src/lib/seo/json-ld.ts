@@ -169,17 +169,28 @@ export function faqPageSchema(
   });
 }
 
-/** For Insights articles (Phase 4+). */
-export function articleSchema(input: {
-  headline: string;
-  description: string;
-  path: string;
-  datePublished: string;
-  dateModified?: string;
-}) {
+/**
+ * For Insights articles (Phase 4+).
+ *
+ * `options.inLanguage` added R10 for Arabic Insights articles — mirrors
+ * the same `{ inLanguage?: string }` pattern already used by
+ * `breadcrumbSchema`/`medicalWebPageSchema`/`faqPageSchema`. Optional
+ * and additive: every existing English call site is unaffected.
+ */
+export function articleSchema(
+  input: {
+    headline: string;
+    description: string;
+    path: string;
+    datePublished: string;
+    dateModified?: string;
+  },
+  options?: { inLanguage?: string },
+) {
   return prune({
     "@context": "https://schema.org",
     "@type": "Article",
+    inLanguage: options?.inLanguage,
     headline: input.headline,
     description: input.description,
     url: new URL(input.path, siteUrl).toString(),

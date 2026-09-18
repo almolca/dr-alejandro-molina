@@ -7,77 +7,88 @@ import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { PullQuote } from "@/components/ui/PullQuote";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import { Reveal } from "@/components/motion/Reveal";
-import { ArticleAuthorBlock } from "@/components/sections/ArticleAuthorBlock";
-import { ArticleVideoBlock } from "@/components/sections/ArticleVideoBlock";
-import { RelatedInsights } from "@/components/sections/RelatedInsights";
+import { ArticleAuthorBlockAr } from "@/components/sections/ArticleAuthorBlockAr";
+import { RelatedInsightsAr } from "@/components/sections/RelatedInsightsAr";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { getInsightArticle, getRelatedArticles, insightArticles } from "@/content/insights/articles";
-import { insightArticlesAr } from "@/content/insights/articles-ar";
-import { articleSchema, breadcrumbSchema, videoObjectSchema } from "@/lib/seo/json-ld";
+import { getInsightArticleAr, getRelatedArticlesAr, insightArticlesAr } from "@/content/insights/articles-ar";
+import { articleSchema, breadcrumbSchema } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
 
 export function generateStaticParams() {
-  return insightArticles.map((article) => ({ slug: article.slug }));
+  return insightArticlesAr.map((article) => ({ slug: article.slug }));
 }
 
 type Props = { params: Promise<{ slug: string }> };
 
+const ARABIC_MONTHS = [
+  "يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو",
+  "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر",
+];
+
+/**
+ * Formats an ISO date as "18 سبتمبر 2026" — matching the literal
+ * Gregorian-with-Arabic-month-names style already used on /ar/privacy.
+ * Deliberately not `toLocaleDateString("ar", ...)`: several `ar-*`
+ * locales default to the Hijri calendar or Eastern Arabic numerals,
+ * neither of which matches the rest of the site's date conventions.
+ */
+function formatArabicDate(iso: string): string {
+  const date = new Date(iso);
+  return `${date.getUTCDate()} ${ARABIC_MONTHS[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const article = getInsightArticle(slug);
+  const article = getInsightArticleAr(slug);
   if (!article) return {};
-
-  // R10: reverse lookup for the reciprocal half of a hreflang pair —
-  // an Arabic article declares itself the equivalent of this EN slug
-  // via `enEquivalentSlug`; without this, Google would see a one-way
-  // annotation (the AR page pointing here) with no return tag, which
-  // hreflang guidelines treat as unconfirmed/ignorable. Only the 5
-  // articles genuinely paired 1:1 get one — the merged/adapted 6th
-  // Arabic article deliberately has no `enEquivalentSlug` and so no EN
-  // article will link back to it here either.
-  const arEquivalent = insightArticlesAr.find((a) => a.enEquivalentSlug === article.slug);
 
   return buildMetadata({
     title: article.title,
     description: article.excerpt,
-    path: `/insights/${article.slug}`,
-    languagePair: arEquivalent
-      ? { en: `/insights/${article.slug}`, ar: `/ar/insights/${arEquivalent.slug}` }
+    path: `/ar/insights/${article.slug}`,
+    // R10 rule: only pair hreflang when the Arabic article is genuinely
+    // the equivalent of one specific English article (see file header
+    // in content/insights/articles-ar.ts for the per-article decision).
+    languagePair: article.enEquivalentSlug
+      ? { en: `/insights/${article.enEquivalentSlug}`, ar: `/ar/insights/${article.slug}` }
       : undefined,
   });
 }
 
-export default async function InsightArticlePage({ params }: Props) {
+export default async function InsightArticlePageAr({ params }: Props) {
   const { slug } = await params;
-  const article = getInsightArticle(slug);
+  const article = getInsightArticleAr(slug);
   if (!article) notFound();
 
-  const path = `/insights/${article.slug}`;
+  const path = `/ar/insights/${article.slug}`;
+  // 2-level trail, not "الرئيسية → رؤى → المقال": there is no /ar/insights
+  // hub yet (R10 Phase C deliberately doesn't build one for a 6-article
+  // first wave — see docs/r10-arabic-content-roadmap.md), and per the
+  // owner's breadcrumb decision, an Arabic breadcrumb must never link to
+  // a page that doesn't genuinely exist in Arabic.
   const breadcrumbItems = [
-    { name: "Home", href: "/" },
-    { name: "Insights", href: "/insights" },
+    { name: "الرئيسية", href: "/ar" },
     { name: article.title, href: path },
   ];
-  const relatedArticles = getRelatedArticles(article);
-  // Google's structured-data guidelines require thumbnailUrl for VideoObject —
-  // only emit the schema when both video and a real thumbnail exist.
-  const videoSchema =
-    article.video?.thumbnailUrl
-      ? videoObjectSchema({ video: article.video, datePublished: article.datePublished })
-      : undefined;
+  const relatedArticles = getRelatedArticlesAr(article);
 
   return (
     <>
       <JsonLd
         data={[
-          breadcrumbSchema(breadcrumbItems.map((i) => ({ name: i.name, path: i.href }))),
-          articleSchema({
-            headline: article.title,
-            description: article.excerpt,
-            path,
-            datePublished: article.datePublished,
-          }),
-          ...(videoSchema ? [videoSchema] : []),
+          breadcrumbSchema(
+            breadcrumbItems.map((i) => ({ name: i.name, path: i.href })),
+            { inLanguage: "ar" },
+          ),
+          articleSchema(
+            {
+              headline: article.title,
+              description: article.excerpt,
+              path,
+              datePublished: article.datePublished,
+            },
+            { inLanguage: "ar" },
+          ),
         ]}
       />
 
@@ -95,16 +106,10 @@ export default async function InsightArticlePage({ params }: Props) {
             </h1>
             <p className="mt-6 text-body-lg text-muted-foreground">{article.excerpt}</p>
             <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
-              <span>
-                {new Date(article.datePublished).toLocaleDateString("en-GB", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </span>
+              <span>{formatArabicDate(article.datePublished)}</span>
               {article.clinicalReviewRequired && (
                 <span className="rounded-full border border-border px-3 py-1">
-                  Clinical review pending
+                  قيد المراجعة الطبية
                 </span>
               )}
             </div>
@@ -112,22 +117,13 @@ export default async function InsightArticlePage({ params }: Props) {
         </Container>
       </section>
 
-      {/* Physician authorship — visible counterpart to the schema-only
-          `author` field on articleSchema() (E-E-A-T, Phase B). Applied
-          uniformly to every article, not just the new cluster. */}
       <Container className="max-w-2xl">
-        <ArticleAuthorBlock />
+        <ArticleAuthorBlockAr />
       </Container>
 
       {article.keyTakeaway && (
         <Container className="max-w-2xl py-10">
           <PullQuote>{article.keyTakeaway}</PullQuote>
-        </Container>
-      )}
-
-      {article.video && (
-        <Container className="max-w-2xl">
-          <ArticleVideoBlock video={article.video} />
         </Container>
       )}
 
@@ -152,13 +148,12 @@ export default async function InsightArticlePage({ params }: Props) {
           <Reveal delay={0.1}>
             <div className="mt-16 border-t border-border pt-8">
               <p className="text-xs text-muted-foreground">
-                This article is informational and does not replace an
-                individual medical assessment. See our{" "}
+                هذا المقال معلوماتي ولا يُغني عن تقييم طبي فردي. راجع{" "}
                 <Link
                   href="/medical-disclaimer"
                   className="underline decoration-border underline-offset-4 hover:decoration-accent-strong"
                 >
-                  medical disclaimer
+                  إخلاء المسؤولية الطبية (بالإنجليزية)
                 </Link>
                 .
               </p>
@@ -167,9 +162,10 @@ export default async function InsightArticlePage({ params }: Props) {
         </Container>
       </section>
 
-      <RelatedInsights articles={relatedArticles} />
+      <RelatedInsightsAr articles={relatedArticles} />
 
       <RelatedTreatments
+        locale="ar"
         items={[
           { label: article.relatedLabel, href: article.relatedHref },
           ...(article.secondaryRelatedHref && article.secondaryRelatedLabel
@@ -183,15 +179,17 @@ export default async function InsightArticlePage({ params }: Props) {
         <Container className="flex flex-col items-center text-center">
           <Reveal>
             <h2 className="mx-auto max-w-lg font-display text-display-md text-foreground">
-              Discuss This With Dr. Alejandro Molina
+              ناقش هذا الموضوع مع الدكتور أليخاندرو مولينا
             </h2>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-              <BookingCta sourcePage={path} ctaPosition="page-closing-cta" size="lg" />
+              <BookingCta sourcePage={path} ctaPosition="page-closing-cta" size="lg">
+                احجز استشارتك السرية
+              </BookingCta>
               <Link
                 href={article.relatedHref}
                 className="inline-flex h-13 items-center px-6 text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
               >
-                Explore {article.relatedLabel}
+                استكشف {article.relatedLabel}
               </Link>
             </div>
           </Reveal>
