@@ -22,7 +22,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 const PATH = "/ar/erectile-dysfunction";
 
 export const metadata: Metadata = buildMetadata({
-  title: "تقييم وعلاج ضعف الانتصاب",
+  title: "تقييم وعلاج ضعف الانتصاب في أبوظبي",
   description:
     "تقييم وعلاج متخصص لضعف الانتصاب في أبوظبي — أسباب وعائية وهرمونية واستقلابية ونفسية-جنسية، مع خطة علاج فردية تُلائم كل حالة.",
   path: PATH,
@@ -107,6 +107,10 @@ const faqItems = [
   {
     question: "هل يمكن أن يرتبط ضعف الانتصاب بالتستوستيرون؟",
     answer: "نعم، من الممكن ذلك. يُعد التقييم الهرموني، بما في ذلك التستوستيرون، جزءًا من التقييم الشامل — رغم أن ضعف الانتصاب ليس هرمونيًا في كل الحالات.",
+  },
+  {
+    question: "ما أسباب ضعف الانتصاب عند الشباب؟",
+    answer: "لا يقتصر ضعف الانتصاب على كبار السن. عند الشباب، غالبًا ما تكون الأسباب النفسية-الجنسية — مثل قلق الأداء أو التوتر أو عوامل العلاقة — أكثر شيوعًا نسبيًا، لكن الأسباب الوعائية والهرمونية والاستقلابية يمكن أن تحدث أيضًا في هذه الفئة العمرية. يهدف التقييم إلى تحديد الأسباب ذات الصلة الفعلية بدلاً من افتراض سبب واحد بناءً على العمر وحده.",
   },
   {
     question: "كيف يمكنني حجز استشارة؟",
@@ -248,9 +252,8 @@ export default function ErectileDysfunctionPageAr() {
               </Link>{" "}
               وسيلة التمييز العملية بين هذه الآليات. لمزيد من التفصيل حول
               إحداها تحديدًا، انظر{" "}
-              <Link href="/insights/venous-leak-erectile-dysfunction" className="text-foreground underline decoration-accent-strong underline-offset-4">
-                Venous Leak and Erectile Dysfunction: What Penile Doppler
-                Really Shows (مقال بالإنجليزية)
+              <Link href="/ar/insights/venous-leak-and-penile-doppler" className="text-foreground underline decoration-accent-strong underline-offset-4">
+                التسرب الوريدي وضعف الانتصاب: ماذا يُظهر فحص دوبلر القضيب فعلاً؟
               </Link>
               .
             </p>

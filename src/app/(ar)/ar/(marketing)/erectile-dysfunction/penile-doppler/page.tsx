@@ -18,7 +18,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 const PATH = "/ar/erectile-dysfunction/penile-doppler";
 
 export const metadata: Metadata = buildMetadata({
-  title: "دوبلر القضيب — تقييم متقدم لضعف الانتصاب",
+  title: "دوبلر القضيب في أبوظبي — تقييم متقدم لضعف الانتصاب",
   description:
     "تقييم دوبلر القضيب (الموجات فوق الصوتية الثنائية للقضيب) في أبوظبي — التدفق الشرياني الداخل، وظيفة الانسداد الوريدي، وكيفية توجيه النتائج لخطة علاج ضعف الانتصاب.",
   path: PATH,
@@ -285,9 +285,8 @@ export default function PenileDopplerPageAr() {
               كتسرب وريدي بنيوي ثابت.
             </p>
             <p className="mt-6 text-sm">
-              <Link href="/insights/venous-leak-erectile-dysfunction" className="text-foreground underline decoration-accent-strong underline-offset-4">
-                اقرأ المقال كاملاً: Venous Leak and Erectile Dysfunction
-                (مقال بالإنجليزية)
+              <Link href="/ar/insights/venous-leak-and-penile-doppler" className="text-foreground underline decoration-accent-strong underline-offset-4">
+                اقرأ المقال كاملاً: التسرب الوريدي وضعف الانتصاب
               </Link>
             </p>
           </Reveal>

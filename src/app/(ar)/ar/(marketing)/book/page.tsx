@@ -35,7 +35,12 @@ export default async function BookPageAr({ searchParams }: Props) {
 
   return (
     <>
-      <JsonLd data={breadcrumbSchema(breadcrumbItems.map((i) => ({ name: i.name, path: i.href })))} />
+      <JsonLd
+        data={breadcrumbSchema(
+          breadcrumbItems.map((i) => ({ name: i.name, path: i.href })),
+          { inLanguage: "ar" },
+        )}
+      />
 
       <Suspense fallback={null}>
         <BookPageViewTracker path={PATH} service={defaultService} />

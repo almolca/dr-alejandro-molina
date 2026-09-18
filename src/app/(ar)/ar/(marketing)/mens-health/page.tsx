@@ -15,7 +15,7 @@ import { Reveal } from "@/components/motion/Reveal";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { TreatmentCtaSection } from "@/components/sections/TreatmentCtaSection";
 import { AR_IDENTITY } from "@/lib/i18n/ar-identity";
-import { breadcrumbSchema } from "@/lib/seo/json-ld";
+import { breadcrumbSchema, medicalWebPageSchema } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
 
 const PATH = "/ar/mens-health";
@@ -81,7 +81,28 @@ const faqItems = [
 export default function MensHealthPageAr() {
   return (
     <div className={visual.scope}>
-      <JsonLd data={breadcrumbSchema(breadcrumbItems.map((i) => ({ name: i.name, path: i.href })), { inLanguage: "ar" })} />
+      <JsonLd
+        data={[
+          breadcrumbSchema(breadcrumbItems.map((i) => ({ name: i.name, path: i.href })), { inLanguage: "ar" }),
+          // R10: added for consistency with /ar/male-fertility and
+          // /ar/male-aesthetics (hubs that already set this). No
+          // aboutType/aboutName here deliberately, unlike those two —
+          // this hub presents a balanced menu of several conditions
+          // (testosterone, ED, PE, vasectomy) rather than one dominant
+          // topic, so borrowing one spoke's exact aboutName (as an
+          // earlier draft of this fix did) would misrepresent the hub
+          // as being specifically "about" just that one condition.
+          medicalWebPageSchema(
+            {
+              name: "صحة الرجل",
+              description:
+                "تقييم متخصص لصحة الرجل — التستوستيرون والصحة الهرمونية، والمجالات ذات الصلة، بشكل فردي قبل النظر في أي علاج.",
+              path: PATH,
+            },
+            { inLanguage: "ar" },
+          ),
+        ]}
+      />
 
       <Breadcrumb items={breadcrumbItems} />
 

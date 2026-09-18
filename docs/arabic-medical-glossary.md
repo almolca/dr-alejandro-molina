@@ -58,7 +58,7 @@ carried since R9 Phase A/B0).
 | Shockwave therapy | العلاج بالموجات الصادمة | /erectile-dysfunction (Batch 2) | |
 | Vacuum device | الأجهزة الفراغية | /erectile-dysfunction (Batch 2) | |
 | Hyaluronic acid | حمض الهيالورونيك | /sexual-medicine/premature-ejaculation (Batch 2) | |
-| SHBG (sex hormone-binding globulin) | الغلوبيولين الرابط للهرمونات الجنسية (SHBG) | /mens-health/testosterone (Batch 2) | Keep "SHBG" abbreviation in Latin script alongside the Arabic term |
+| SHBG (sex hormone-binding globulin) | الغلوبيولين الرابط للهرمونات الجنسية (SHBG) | /mens-health/testosterone (Batch 2) | Keep "SHBG" abbreviation in Latin script alongside the Arabic term. **R10 Phase B (2026-09-18):** the homepage's `SexualHormonalHealthSectionAr.tsx` had independently spelled this "الغلوبولين" (missing a ي) since the earlier B0 draft — corrected to match this row, which stays the canonical spelling. |
 | LH / FSH | LH / FSH | /mens-health/testosterone (Batch 2) | Kept in Latin script — standard clinical shorthand, no established single-term Arabic abbreviation in patient-facing material |
 | Prolactin | البرولاكتين | /mens-health/testosterone (Batch 2) | |
 | Hematocrit | الهيماتوكريت | /mens-health/testosterone (Batch 2) | |

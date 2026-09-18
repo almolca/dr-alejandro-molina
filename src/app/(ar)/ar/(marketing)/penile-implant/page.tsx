@@ -31,10 +31,17 @@ export const metadata: Metadata = buildMetadata({
   path: PATH,
 });
 
-/** Breadcrumb parent stays the English /penile-surgery route — never built in any R9 Phase B batch, out of this phase's scope entirely (not just "later batch"). Label is still Arabic. */
+/**
+ * R10 Phase B: the middle crumb previously pointed to the English-only
+ * "/penile-surgery" (never built in Arabic — see
+ * docs/r10-arabic-seo-research.md §5.3), dropping an Arabic reader into
+ * English mid-navigation. Reduced to a 2-level trail until a genuine
+ * "/ar/penile-surgery" page exists to restore the fuller hierarchy —
+ * this also matches the route's own flat (non-nested) URL shape in
+ * routes.ts.
+ */
 const breadcrumbItems = [
   { name: "الرئيسية", href: "/ar" },
-  { name: "جراحة القضيب", href: "/penile-surgery" },
   { name: "جراحة زراعة دعامة القضيب", href: PATH },
 ];
 
@@ -100,8 +107,8 @@ const faqItems = [
   {
     question: "ما الفرق بين الدعامات القضيبية القابلة للنفخ والمرنة؟",
     answer: "تستخدم الأجهزة القابلة للنفخ آلية مضخة لمحاكاة الصلابة والارتخاء الطبيعيين. أما الأجهزة المرنة فهي قضبان شبه صلبة أبسط تُوضع يدويًا. يعتمد اختيار ما يُناقش على تشريحك وصحتك وتفضيلك.",
-    readMoreHref: "/insights/inflatable-vs-malleable-penile-implant",
-    readMoreLabel: "اقرأ المزيد: Inflatable vs Malleable Penile Implant (مقال بالإنجليزية)",
+    readMoreHref: "/ar/insights/inflatable-vs-malleable-implant-ar",
+    readMoreLabel: "اقرأ المزيد: الفرق بين الدعامة القابلة للنفخ والدعامة المرنة",
   },
   {
     question: "هل سيكون الإحساس طبيعيًا بعد الجراحة؟",
@@ -118,6 +125,8 @@ const faqItems = [
   {
     question: "هل أنا مرشح لدعامة القضيب؟",
     answer: "تعتمد الأهلية على ثلاثة أمور: ما إذا كان ضعف الانتصاب مؤكدًا كشديد أو مقاوم للعلاج، وما إذا جُرِّبت علاجات أخرى دون نتائج موثوقة، وصحتك العامة وتوقعاتك. تُقيَّم هذه الأمور الثلاثة معًا أثناء الاستشارة — انظر فحص الأهلية أعلاه لمعرفة كيفية موازنتها عادة.",
+    readMoreHref: "/ar/insights/when-penile-implant-is-considered",
+    readMoreLabel: "اقرأ المزيد: متى تكون دعامة القضيب الخيار المناسب؟",
   },
   {
     question: "ما هي بدائل دعامة القضيب؟",
@@ -196,7 +205,7 @@ export default function PenileImplantPageAr() {
           </div>
 
           <MaskedReveal className="w-full self-start">
-            <PhotoFrame slot="implantPhysician" priority />
+            <PhotoFrame slot="implantPhysician" priority alt="الدكتور أليخاندرو مولينا، استشاري أمراض المسالك البولية والذكورة" />
           </MaskedReveal>
         </Container>
       </section>
@@ -286,7 +295,7 @@ export default function PenileImplantPageAr() {
             />
           </Reveal>
           <MaskedReveal className="mt-10 max-w-xl">
-            <PhotoFrame slot="implantDevice" landscape />
+            <PhotoFrame slot="implantDevice" landscape alt="مراجعة خيارات علاج دعامة القضيب" />
           </MaskedReveal>
           <div className="mt-14 grid gap-x-16 gap-y-14 border-t border-border pt-14 md:grid-cols-2">
             {prosthesisTypes.map((type) => (
@@ -311,7 +320,7 @@ export default function PenileImplantPageAr() {
         <Container>
           <SectionHeading eyebrow="المسار الجراحي" heading="التقييم، الجراحة، التعافي" locale="ar" />
           <MaskedReveal className="mt-10 max-w-2xl">
-            <PhotoFrame slot="implantSurgical" landscape tone="dark" />
+            <PhotoFrame slot="implantSurgical" landscape tone="dark" alt="الدكتور أليخاندرو مولينا في بيئة جراحية" />
           </MaskedReveal>
           <StaggerGroup className="mt-14 grid grid-cols-1 gap-10 border-t border-border pt-10 md:grid-cols-3">
             {pathway.map((step, index) => (

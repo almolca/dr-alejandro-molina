@@ -24,10 +24,14 @@ export const metadata: Metadata = buildMetadata({
   path: PATH,
 });
 
-/** Breadcrumb parent stays the English /penile-surgery route — same documented gap as /ar/penile-implant (Task 6). */
+/**
+ * R10 Phase B: reduced to a 2-level trail — same fix and same reason as
+ * /ar/penile-implant (docs/r10-arabic-seo-research.md §5.3): the middle
+ * crumb pointed to the English-only "/penile-surgery", never built in
+ * Arabic.
+ */
 const breadcrumbItems = [
   { name: "الرئيسية", href: "/ar" },
-  { name: "جراحة القضيب", href: "/penile-surgery" },
   { name: "مرض بيروني", href: PATH },
 ];
 
@@ -56,6 +60,8 @@ const faqItems = [
   {
     question: "هل سيزداد انحنائي سوءًا؟",
     answer: "يختلف هذا من حالة لأخرى. غالبًا ما يمر مرض بيروني بمرحلة نشطة يمكن أن تحدث خلالها تغيرات، تليها مرحلة مستقرة — يساعد التقييم في تحديد المرحلة التي تمر بها.",
+    readMoreHref: "/ar/insights/peyronies-disease-when-to-seek-assessment-ar",
+    readMoreLabel: "اقرأ المزيد: متى يجب طلب تقييم متخصص لمرض بيروني؟",
   },
   {
     question: "هل أحتاج إلى جراحة؟",

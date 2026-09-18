@@ -30,7 +30,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 const PATH = "/ar/male-aesthetics/penile-girth-enhancement";
 
 export const metadata: Metadata = buildMetadata({
-  title: "زيادة سماكة القضيب بحمض الهيالورونيك",
+  title: "زيادة سماكة القضيب بحمض الهيالورونيك في أبوظبي",
   description:
     "زيادة سماكة القضيب المتخصصة في أبوظبي مع د. أليخاندرو مولينا، استشاري أمراض المسالك البولية والذكورة — أكثر من 500 إجراء منجز، خبرة منذ 2018. نهج قائم على التشريح، خيارات حمض الهيالورونيك والجراحة، وتوقعات واقعية.",
   path: PATH,
@@ -127,8 +127,8 @@ const faqItems = [
     question: "كم مقدار الزيادة في الحجم يمكن أن أتوقعه؟",
     answer:
       "يعتمد ذلك على ثلاثة أمور: تشريحك الأساسي ومرونة أنسجتك، والتقنية والحجم المخطط لعلاجك، وما إذا كان العلاج يُقدَّم في جلسة واحدة أو على مراحل. ولأن هذه العوامل الثلاثة تختلف بشكل كبير بين المرضى، لا تُنشر قياسات نتائج محددة هنا — بل تُناقش بالتفصيل، وفي سياق تشريحك الخاص، أثناء الاستشارة.",
-    readMoreHref: "/insights/how-much-girth-can-penile-filler-add",
-    readMoreLabel: "اقرأ المزيد: How Much Girth Can Penile Filler Actually Add? (مقال بالإنجليزية)",
+    readMoreHref: "/ar/insights/penile-girth-enhancement-real-world-experience",
+    readMoreLabel: "اقرأ المزيد: زيادة سماكة القضيب بالفيلر، ما الذي تُظهره الخبرة الفعلية؟",
   },
   {
     question: "هل هذا جراحي أم غير جراحي؟",
@@ -389,7 +389,7 @@ export default function PenileGirthEnhancementPageAr() {
       <section className="border-t border-border bg-surface py-section-y">
         <Container className={visual.split}>
           <div>
-            <PhotoFrame slot="girthConsultation" landscape />
+            <PhotoFrame slot="girthConsultation" landscape alt="الدكتور أليخاندرو مولينا خلال استشارة زيادة سماكة القضيب" />
           </div>
           <div>
           <div>

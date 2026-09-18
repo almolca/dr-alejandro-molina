@@ -233,7 +233,7 @@ export default function MaleFertilityPageAr() {
         items={[
           { label: "دوالي الخصية", href: "/ar/male-fertility/varicocele" },
           { label: "التستوستيرون والصحة الهرمونية", href: "/ar/mens-health/testosterone" },
-          { label: "المقالات الطبية (بالإنجليزية)", href: "/insights" },
+          { label: "رؤى في طب الذكورة وصحة الرجل", href: "/ar/insights" },
         ]}
       />
 

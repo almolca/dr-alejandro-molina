@@ -32,7 +32,12 @@ const breadcrumbItems = [
 export default function PrivacyPageAr() {
   return (
     <>
-      <JsonLd data={breadcrumbSchema(breadcrumbItems.map((i) => ({ name: i.name, path: i.href })))} />
+      <JsonLd
+        data={breadcrumbSchema(
+          breadcrumbItems.map((i) => ({ name: i.name, path: i.href })),
+          { inLanguage: "ar" },
+        )}
+      />
       <Breadcrumb items={breadcrumbItems} />
 
       <section className="py-section-y">

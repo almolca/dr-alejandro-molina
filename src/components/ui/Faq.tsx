@@ -24,14 +24,27 @@ export type FaqItem = {
  */
 export function Faq({
   items,
-  eyebrow = "FAQs",
-  heading = "Frequently Asked Questions",
   locale,
+  // R10 fix: these previously defaulted to English regardless of
+  // `locale`, so any Arabic call site that didn't ALSO separately pass
+  // its own Arabic eyebrow/heading silently rendered "FAQs" /
+  // "Frequently Asked Questions" on an otherwise fully Arabic page
+  // (found on /ar/penile-implant and /ar/peyronies-disease during
+  // final visual QA — both used `<Faq items={faqItems} locale="ar" />`
+  // with no override). Every other locale-aware shared component in
+  // this codebase (AuthorityBlock, PatientFeedbackSection,
+  // RecognitionSection, etc.) branches its default text on `locale`
+  // internally instead of relying on the caller to override a static
+  // English default — this now matches that pattern. Destructuring
+  // `locale` before `eyebrow`/`heading` is required so their defaults
+  // can reference it.
+  eyebrow = locale === "ar" ? "الأسئلة الشائعة" : "FAQs",
+  heading = locale === "ar" ? "الأسئلة الشائعة" : "Frequently Asked Questions",
 }: {
   items: FaqItem[];
   eyebrow?: string;
   heading?: string;
-  /** When set, tags the FAQPage JSON-LD with `inLanguage` (spec §10/§24). Omit for English. */
+  /** When set, tags the FAQPage JSON-LD with `inLanguage` (spec §10/§24) and switches the default eyebrow/heading to Arabic. Omit for English. */
   locale?: "ar";
 }) {
   return (
