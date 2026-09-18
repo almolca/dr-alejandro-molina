@@ -15,7 +15,7 @@ export function RelatedInsightsAr({ articles }: { articles: InsightArticleAr[] }
   return (
     <section className="border-t border-border bg-surface py-section-y">
       <Container>
-        <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
+        <p className="text-eyebrow font-medium uppercase text-accent-strong">
           مقالات ذات صلة
         </p>
         <div className="mt-8 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2">

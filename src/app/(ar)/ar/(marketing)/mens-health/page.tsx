@@ -85,16 +85,19 @@ export default function MensHealthPageAr() {
         data={[
           breadcrumbSchema(breadcrumbItems.map((i) => ({ name: i.name, path: i.href })), { inLanguage: "ar" }),
           // R10: added for consistency with /ar/male-fertility and
-          // /ar/male-aesthetics (hubs that already set this) — uses the
-          // hub's dominant P1 spoke as its overarching topic.
+          // /ar/male-aesthetics (hubs that already set this). No
+          // aboutType/aboutName here deliberately, unlike those two —
+          // this hub presents a balanced menu of several conditions
+          // (testosterone, ED, PE, vasectomy) rather than one dominant
+          // topic, so borrowing one spoke's exact aboutName (as an
+          // earlier draft of this fix did) would misrepresent the hub
+          // as being specifically "about" just that one condition.
           medicalWebPageSchema(
             {
               name: "صحة الرجل",
               description:
                 "تقييم متخصص لصحة الرجل — التستوستيرون والصحة الهرمونية، والمجالات ذات الصلة، بشكل فردي قبل النظر في أي علاج.",
               path: PATH,
-              aboutType: "MedicalCondition",
-              aboutName: "Testosterone Deficiency",
             },
             { inLanguage: "ar" },
           ),

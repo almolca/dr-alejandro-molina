@@ -57,7 +57,7 @@ export default function InsightsIndexPageAr() {
       <section className="py-section-y">
         <Container className="max-w-3xl">
           <Reveal>
-            <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
+            <p className="text-eyebrow font-medium uppercase text-accent-strong">
               رؤى
             </p>
             <h1 className="mt-4 font-display text-display-xl text-foreground">
@@ -69,7 +69,7 @@ export default function InsightsIndexPageAr() {
             </p>
           </Reveal>
           <Reveal delay={0.1}>
-            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+            <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-xs font-medium uppercase text-muted-foreground">
               {categories.map((category) => (
                 <li key={category}>{category}</li>
               ))}
@@ -89,7 +89,7 @@ export default function InsightsIndexPageAr() {
                   className="group grid grid-cols-1 gap-3 border-b border-border py-10 md:grid-cols-[1fr_2fr] md:gap-16"
                 >
                   <div className="flex flex-col gap-2">
-                    <span className="text-xs font-medium uppercase tracking-widest text-accent-strong">
+                    <span className="text-xs font-medium uppercase text-accent-strong">
                       {article.category}
                     </span>
                     <span className="text-xs text-muted-foreground">

@@ -100,7 +100,7 @@ export default async function InsightArticlePageAr({ params }: Props) {
       <section className="py-section-y">
         <Container className="max-w-2xl">
           <Reveal>
-            <p className="text-eyebrow font-medium uppercase tracking-[0.2em] text-accent-strong">
+            <p className="text-eyebrow font-medium uppercase text-accent-strong">
               {article.category}
             </p>
             <h1 className="mt-4 font-display text-display-lg text-foreground">

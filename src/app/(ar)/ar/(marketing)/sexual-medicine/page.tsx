@@ -57,15 +57,15 @@ export default function SexualMedicinePageAr() {
       <JsonLd
         data={[
           breadcrumbSchema(breadcrumbItems.map((i) => ({ name: i.name, path: i.href })), { inLanguage: "ar" }),
-          // R10: added for consistency — same rationale as /ar/mens-health.
+          // R10: added for consistency — same rationale and same
+          // deliberate omission of aboutType/aboutName as /ar/mens-health
+          // (this hub balances ED and PE rather than being about one).
           medicalWebPageSchema(
             {
               name: "الطب الجنسي",
               description:
                 "تقييم وعلاج متخصص لضعف الانتصاب وسرعة القذف، مع علاج يتناسب مع السبب الكامن.",
               path: PATH,
-              aboutType: "MedicalCondition",
-              aboutName: "Erectile Dysfunction",
             },
             { inLanguage: "ar" },
           ),
