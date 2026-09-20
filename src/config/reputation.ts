@@ -39,7 +39,8 @@
  * Also NOT used: a "22 years of experience" figure and a "2,000+
  * procedures" figure surfaced on third-party/marketing sources — both
  * conflict with the owner-confirmed figures already in doctor.ts
- * (15+ years, 500+ Girth Enhancement procedures) and are not used.
+ * (15+ years, 1,000+ Girth Enhancement procedures as of the 2026-09-20
+ * update) and are not used.
  */
 
 export type ReviewPlatform = {

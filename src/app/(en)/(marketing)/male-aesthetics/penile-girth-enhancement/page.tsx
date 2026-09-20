@@ -29,7 +29,7 @@ const PATH = "/male-aesthetics/penile-girth-enhancement";
 export const metadata: Metadata = buildMetadata({
   title: "Penile Girth Enhancement with Hyaluronic Acid",
   description:
-    "Specialist penile girth enhancement in Abu Dhabi with Dr. Alejandro Molina, Consultant Urologist & Andrologist — 500+ procedures performed, experience since 2018. Anatomy-led, hyaluronic acid and surgical options, realistic expectations.",
+    `Specialist penile girth enhancement in Abu Dhabi with Dr. Alejandro Molina, Consultant Urologist & Andrologist — ${doctor.girthProcedureCount} procedures performed, experience since ${doctor.girthEnhancementSince}. Anatomy-led, hyaluronic acid and surgical options, realistic expectations.`,
   path: PATH,
 });
 
