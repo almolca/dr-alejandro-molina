@@ -737,7 +737,7 @@ export const insightArticles: InsightArticle[] = [
   },
   {
     slug: "lessons-from-500-penile-girth-enhancement-procedures",
-    title: "What I Have Learned From 500+ Penile Girth Enhancement Procedures",
+    title: "What I Have Learned From 1,000+ Penile Girth Enhancement Procedures",
     category: "Male Aesthetics",
     excerpt:
       "Clinical observations and practical considerations from substantial procedure experience — offered as personal clinical experience, not as published evidence or a guideline.",
