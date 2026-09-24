@@ -21,6 +21,7 @@ export const primaryNav: NavItem[] = [
   { label: "Penile Girth Enhancement", href: "/male-aesthetics/penile-girth-enhancement" },
   { label: "Penile Surgery", href: "/penile-surgery" },
   { label: "Male Aesthetics", href: "/male-aesthetics" },
+  { label: "Urologic Surgery", href: "/urologic-surgery" },
   { label: "About", href: "/about" },
 ];
 
@@ -57,6 +58,7 @@ export const footerServiceLinks: NavItem[] = [
   { label: "Peyronie's Disease", href: "/peyronies-disease" },
   { label: "Male Fertility", href: "/male-fertility" },
   { label: "No-Scalpel Vasectomy", href: "/mens-health/vasectomy" },
+  { label: "Laparoscopic Radical Prostatectomy", href: "/urologic-surgery/laparoscopic-radical-prostatectomy" },
   ...(features.prpPage
     ? [{ label: "PRP", href: "/erectile-dysfunction/prp" }]
     : []),
@@ -87,6 +89,7 @@ const primaryNavAr: NavItem[] = [
   { label: "زيادة سماكة القضيب", href: "/male-aesthetics/penile-girth-enhancement" },
   { label: "جراحة القضيب", href: "/penile-surgery" },
   { label: "التجميل الذكوري", href: "/male-aesthetics" },
+  { label: "جراحة المسالك البولية", href: "/urologic-surgery" },
   { label: "نبذة عن الطبيب", href: "/about" },
 ];
 
@@ -120,6 +123,7 @@ const footerServiceLinksAr: NavItem[] = [
   { label: "مرض بيروني", href: "/peyronies-disease" },
   { label: "خصوبة الرجل", href: "/male-fertility" },
   { label: "قطع القناة المنوية بدون مشرط", href: "/mens-health/vasectomy" },
+  { label: "استئصال البروستاتا الجذري بالمنظار", href: "/urologic-surgery/laparoscopic-radical-prostatectomy" },
 ];
 
 export function getFooterServiceLinks(locale: "en" | "ar"): NavItem[] {

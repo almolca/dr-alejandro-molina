@@ -14,7 +14,8 @@ export type EditorialMediaAsset = {
 
 export const editorialMedia: Record<
   "mensHealthHero" | "aestheticsHero" | "girthFlagship" |
-  "testosteroneHero" | "edHero" | "peHero" | "peyroniesHero",
+  "testosteroneHero" | "edHero" | "peHero" | "peyroniesHero" |
+  "urologicSurgeryHero" | "prostatectomyFlagship",
   EditorialMediaAsset
 > = {
   mensHealthHero: { src: "/images/mens-health.png", alt: "", approved: true },
@@ -24,4 +25,9 @@ export const editorialMedia: Record<
   edHero: { src: "/images/erectile-dysfunction.jpeg", alt: "", approved: true },
   peHero: { src: "/images/premature-ejaculation.jpeg", alt: "", approved: true },
   peyroniesHero: { src: "/images/peyronies-disease.jpeg", alt: "", approved: true },
+  // No real photography/illustration commissioned yet for the new
+  // Urologic Surgery pillar — renders an empty neutral surface (see
+  // EditorialFrame) rather than an invented or borrowed image.
+  urologicSurgeryHero: { src: null, alt: "", approved: false },
+  prostatectomyFlagship: { src: null, alt: "", approved: false },
 };

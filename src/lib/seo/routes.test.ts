@@ -78,6 +78,8 @@ describe("routes registry", () => {
       "/male-aesthetics/penile-filler-correction",
       "/male-fertility",
       "/male-fertility/varicocele",
+      "/urologic-surgery",
+      "/urologic-surgery/laparoscopic-radical-prostatectomy",
       "/insights",
       "/privacy",
     ]);

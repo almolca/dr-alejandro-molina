@@ -76,6 +76,19 @@ export const routes: RouteEntry[] = [
   { path: "/male-fertility/varicocele", status: "live", priority: 0.6, arPath: "/ar/male-fertility/varicocele" },
   { path: "/male-fertility/semen-analysis", status: "planned", priority: 0.5 },
 
+  // Secondary surgical-authority pillar (2026-09-24 owner-approved
+  // project). Kept deliberately smaller in priority than the Tier 1
+  // Men's Health / Sexual Medicine / Male Aesthetics pillar per the
+  // brief's explicit "must not compete visually/strategically" rule.
+  { path: "/urologic-surgery", status: "live", priority: 0.7, arPath: "/ar/urologic-surgery" },
+  { path: "/urologic-surgery/laparoscopic-radical-prostatectomy", status: "live", priority: 0.8, arPath: "/ar/urologic-surgery/laparoscopic-radical-prostatectomy" },
+  // Documented future siblings — status "planned" keeps them out of
+  // liveRoutes/sitemapRoutes and out of InternalLink prefetching; no
+  // card or link anywhere in the UI may point at these until a real
+  // page exists (see the /mens-health/low-libido precedent above).
+  { path: "/urologic-surgery/partial-nephrectomy", status: "planned", priority: 0.5 },
+  { path: "/urologic-surgery/radical-nephrectomy", status: "planned", priority: 0.5 },
+
   // R10 Phase C: /ar/insights is a genuine, live 6-article Arabic index
   // (not the full 24-article EN list) — a coarser-grained hub-level
   // equivalence than the strict per-article hreflang rule, and standard

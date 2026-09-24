@@ -54,6 +54,8 @@ describe("sitemap", () => {
         "/ar/male-aesthetics/penile-filler-correction",
         "/ar/male-fertility",
         "/ar/male-fertility/varicocele",
+        "/ar/urologic-surgery",
+        "/ar/urologic-surgery/laparoscopic-radical-prostatectomy",
       ]
         .map((path) => `${siteUrl}${path}`)
         .sort(),
