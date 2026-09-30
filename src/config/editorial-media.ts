@@ -25,17 +25,13 @@ export const editorialMedia: Record<
   edHero: { src: "/images/erectile-dysfunction.jpeg", alt: "", approved: true },
   peHero: { src: "/images/premature-ejaculation.jpeg", alt: "", approved: true },
   peyroniesHero: { src: "/images/peyronies-disease.jpeg", alt: "", approved: true },
-  // Owner-supplied 2026-09-30 for the Urologic Surgery pillar. Alt text
-  // deliberately describes only what is visibly depicted (a surgeon
-  // performing laparoscopy; surgical instruments and a monitor in an
-  // operating theatre) rather than naming Dr. Molina — provenance of
-  // these two images (stock vs. a genuine photograph of him) hasn't
-  // been confirmed, and `laparoscopic-radical-prostatectomy.jpeg`
-  // specifically shows no identifiable person at all. See PhotoFrame's
-  // header comment for the parallel rule this mirrors: never caption
-  // imagery as documentary evidence of a specific real event/person
-  // without verified provenance. AR pages override this via
+  // Owner-supplied 2026-09-30 for the Urologic Surgery pillar, corrected
+  // 2026-09-30 (initial pass had the two images swapped). `urologicSurgeryHero`
+  // is a general, non-identifying laparoscopic-surgery scene (instruments
+  // and a monitor). `prostatectomyFlagship` is owner-confirmed as the
+  // approved depiction of Dr. Molina performing laparoscopic surgery —
+  // its alt text names him accordingly; AR pages override both via
   // EditorialFrame's `alt` prop, same pattern as PhotoFrame.
   urologicSurgeryHero: { src: "/images/urologic-surgery.jpeg", alt: "Laparoscopic urologic surgery in the operating theatre", approved: true },
-  prostatectomyFlagship: { src: "/images/laparoscopic-radical-prostatectomy.jpeg", alt: "Laparoscopic instruments and monitor during radical prostatectomy in the operating theatre", approved: true },
+  prostatectomyFlagship: { src: "/images/laparoscopic-radical-prostatectomy.jpeg", alt: "Dr. Alejandro Molina performing laparoscopic radical prostatectomy in the operating theatre", approved: true },
 };

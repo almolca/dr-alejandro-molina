@@ -245,7 +245,7 @@ export default function LaparoscopicRadicalProstatectomyPageAr() {
             </Reveal>
             <p className="mt-6 text-sm text-muted-foreground">{AR_IDENTITY.doctorDisplayName}<br />{AR_IDENTITY.doctorTitle}</p>
           </div>
-          <EditorialFrame slot="prostatectomyFlagship" landscape priority tone="dark" alt="أدوات المنظار وشاشة العرض أثناء استئصال البروستاتا الجذري في غرفة العمليات" />
+          <EditorialFrame slot="prostatectomyFlagship" landscape priority tone="dark" alt="د. أليخاندرو مولينا يُجري استئصال البروستاتا الجذري بالمنظار في غرفة العمليات" />
         </Container>
       </EditorialField>
 
