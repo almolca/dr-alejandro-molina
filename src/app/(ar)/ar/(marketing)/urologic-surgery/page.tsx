@@ -85,7 +85,7 @@ export default function UrologicSurgeryPageAr() {
         <HeroAtmosphere align="left" restrained />
         <Container className="relative z-10 grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
           <MaskedReveal className="order-last w-full lg:order-first">
-            <EditorialFrame slot="urologicSurgeryHero" landscape priority />
+            <EditorialFrame slot="urologicSurgeryHero" landscape priority alt="جراحة المسالك البولية بالمنظار في غرفة العمليات" />
           </MaskedReveal>
 
           <div>

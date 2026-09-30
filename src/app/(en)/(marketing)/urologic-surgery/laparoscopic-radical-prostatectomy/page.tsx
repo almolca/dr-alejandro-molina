@@ -215,7 +215,7 @@ export default function LaparoscopicRadicalProstatectomyPage() {
               {/* 2. Experience / authority */}
               <div className={visual.flagshipMetrics}>
                 <p><strong>{series.procedureCount}</strong><span>Laparoscopic radical prostatectomies</span></p>
-                <p><strong>{series.outcomes.majorComplications.value}%</strong><span>Major complications (Clavien-Dindo ≥III)</span></p>
+                <p><strong>{series.outcomes.potency.value}%</strong><span>Potency at 12 months<br />In previously potent men with bilateral nerve-sparing, with or without PDE5 inhibitors</span></p>
               </div>
               <p className="mt-6 max-w-2xl text-body-lg text-muted-foreground">
                 More than 500 laparoscopic radical prostatectomies with a

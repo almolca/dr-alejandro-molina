@@ -222,7 +222,7 @@ export default function LaparoscopicRadicalProstatectomyPageAr() {
               {/* 2. الخبرة والمرجعية */}
               <div className={visual.flagshipMetrics}>
                 <p><strong>{series.procedureCount}</strong><span>استئصال بروستاتا جذري بالمنظار</span></p>
-                <p><strong>{series.outcomes.majorComplications.value}%</strong><span>مضاعفات كبرى (Clavien-Dindo ≥III)</span></p>
+                <p><strong>{series.outcomes.potency.value}%</strong><span>الفاعلية الجنسية عند 12 شهرًا<br />لدى مرضى كانوا فاعلين جنسيًا سابقًا، مع الحفاظ على الأعصاب من الجانبين، مع أو بدون مثبطات PDE5</span></p>
               </div>
               <p className="mt-6 max-w-2xl text-body-lg text-muted-foreground">
                 أكثر من 500 إجراء استئصال بروستاتا جذري بالمنظار، مع
@@ -245,7 +245,7 @@ export default function LaparoscopicRadicalProstatectomyPageAr() {
             </Reveal>
             <p className="mt-6 text-sm text-muted-foreground">{AR_IDENTITY.doctorDisplayName}<br />{AR_IDENTITY.doctorTitle}</p>
           </div>
-          <EditorialFrame slot="prostatectomyFlagship" landscape priority tone="dark" />
+          <EditorialFrame slot="prostatectomyFlagship" landscape priority tone="dark" alt="أدوات المنظار وشاشة العرض أثناء استئصال البروستاتا الجذري في غرفة العمليات" />
         </Container>
       </EditorialField>
 
