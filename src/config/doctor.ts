@@ -95,6 +95,65 @@ export const doctor = {
   girthProcedureCountValue: 1000,
 
   /**
+   * Laparoscopic Radical Prostatectomy surgical series — owner-confirmed
+   * 2026-09-24 for the Urologic Surgery pillar. This is Dr. Molina's own
+   * personal case series, supplied by the treating surgeon — explicitly
+   * NOT an independently audited registry and NOT a randomized
+   * comparative trial (owner directive; see
+   * docs/urologic-surgery-prostatectomy-evidence.md for the published
+   * literature these figures are benchmarked against, kept separate).
+   *
+   * Every consumer must carry the "personal series / practice-series
+   * data" framing visibly alongside these numbers, and every outcome
+   * figure must be paired with its definition — a bare percentage is
+   * not owner-approved (e.g. never render "74%" without the
+   * previously-potent/bilateral-nerve-sparing/PDE5i qualifier).
+   *
+   * Do NOT feed any field below into `personSchema()`/`physicianSchema()`
+   * (the global Person/Physician JSON-LD, `lib/seo/json-ld.ts`) — owner
+   * approved this data for visible page content and, where semantically
+   * appropriate and non-promotional, `MedicalWebPageSchema` context only.
+   */
+  laparoscopicProstatectomy: {
+    procedureCount: "500+",
+    procedureCountValue: 500,
+    outcomes: {
+      strictContinence: {
+        value: 89,
+        timeframe: "12 months",
+        definition: "0 pads/day",
+      },
+      socialContinence: {
+        value: 93,
+        timeframe: "12 months",
+        definition: "0–1 safety pad/day",
+      },
+      potency: {
+        value: 74,
+        timeframe: "12 months",
+        definition:
+          "previously potent patients, bilateral nerve-sparing, erections sufficient for penetration with or without PDE5 inhibitor therapy",
+      },
+      marginsOverall: {
+        value: 16,
+        definition: "global positive surgical margin rate",
+      },
+      marginsPT2: {
+        value: 6,
+        definition: "pT2 positive surgical margin rate",
+      },
+      marginsPT3: {
+        value: 18,
+        definition: "pT3 positive surgical margin rate",
+      },
+      majorComplications: {
+        value: 2.5,
+        definition: "Clavien-Dindo grade ≥III",
+      },
+    },
+  },
+
+  /**
    * B2B medical-education activity — kept as its own field, deliberately
    * separate from the clinical `credentials`/`expertise` above, per the
    * owner's explicit instruction to keep clinical (B2C) services and

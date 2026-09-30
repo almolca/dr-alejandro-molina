@@ -14,7 +14,8 @@ export type EditorialMediaAsset = {
 
 export const editorialMedia: Record<
   "mensHealthHero" | "aestheticsHero" | "girthFlagship" |
-  "testosteroneHero" | "edHero" | "peHero" | "peyroniesHero",
+  "testosteroneHero" | "edHero" | "peHero" | "peyroniesHero" |
+  "urologicSurgeryHero" | "prostatectomyFlagship",
   EditorialMediaAsset
 > = {
   mensHealthHero: { src: "/images/mens-health.png", alt: "", approved: true },
@@ -24,4 +25,13 @@ export const editorialMedia: Record<
   edHero: { src: "/images/erectile-dysfunction.jpeg", alt: "", approved: true },
   peHero: { src: "/images/premature-ejaculation.jpeg", alt: "", approved: true },
   peyroniesHero: { src: "/images/peyronies-disease.jpeg", alt: "", approved: true },
+  // Owner-supplied 2026-09-30 for the Urologic Surgery pillar, corrected
+  // 2026-09-30 (initial pass had the two images swapped). `urologicSurgeryHero`
+  // is a general, non-identifying laparoscopic-surgery scene (instruments
+  // and a monitor). `prostatectomyFlagship` is owner-confirmed as the
+  // approved depiction of Dr. Molina performing laparoscopic surgery —
+  // its alt text names him accordingly; AR pages override both via
+  // EditorialFrame's `alt` prop, same pattern as PhotoFrame.
+  urologicSurgeryHero: { src: "/images/urologic-surgery.jpeg", alt: "Laparoscopic urologic surgery in the operating theatre", approved: true },
+  prostatectomyFlagship: { src: "/images/laparoscopic-radical-prostatectomy.jpeg", alt: "Dr. Alejandro Molina performing laparoscopic radical prostatectomy in the operating theatre", approved: true },
 };

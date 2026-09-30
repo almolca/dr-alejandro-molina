@@ -10,17 +10,39 @@ import { getLocalizedPathPair } from "@/lib/seo/routes";
  * existing canonical route. Fertility remains in care areas and the footer.
  */
 
-export type NavItem = {
+export type NavChildItem = {
   label: string;
   href: string;
 };
 
+export type NavItem = {
+  label: string;
+  href: string;
+  /** Compact one-level submenu (desktop dropdown / mobile accordion) — never nested further. */
+  children?: NavChildItem[];
+};
+
+/**
+ * "Laparoscopic Surgery" (R11 owner request) is a relabel of the existing
+ * /urologic-surgery pillar for discoverability only — the route, canonical
+ * and hreflang architecture are untouched (spec: navigation-polish brief).
+ * Its submenu surfaces the flagship Radical Prostatectomy page one click
+ * from the primary nav without a route rename.
+ */
 export const primaryNav: NavItem[] = [
   { label: "Men's Health", href: "/mens-health" },
   { label: "Sexual Medicine", href: "/sexual-medicine" },
   { label: "Penile Girth Enhancement", href: "/male-aesthetics/penile-girth-enhancement" },
   { label: "Penile Surgery", href: "/penile-surgery" },
   { label: "Male Aesthetics", href: "/male-aesthetics" },
+  {
+    label: "Laparoscopic Surgery",
+    href: "/urologic-surgery",
+    children: [
+      { label: "Radical Prostatectomy", href: "/urologic-surgery/laparoscopic-radical-prostatectomy" },
+      { label: "View all Laparoscopic Surgery", href: "/urologic-surgery" },
+    ],
+  },
   { label: "About", href: "/about" },
 ];
 
@@ -57,6 +79,7 @@ export const footerServiceLinks: NavItem[] = [
   { label: "Peyronie's Disease", href: "/peyronies-disease" },
   { label: "Male Fertility", href: "/male-fertility" },
   { label: "No-Scalpel Vasectomy", href: "/mens-health/vasectomy" },
+  { label: "Laparoscopic Radical Prostatectomy", href: "/urologic-surgery/laparoscopic-radical-prostatectomy" },
   ...(features.prpPage
     ? [{ label: "PRP", href: "/erectile-dysfunction/prp" }]
     : []),
@@ -87,12 +110,24 @@ const primaryNavAr: NavItem[] = [
   { label: "زيادة سماكة القضيب", href: "/male-aesthetics/penile-girth-enhancement" },
   { label: "جراحة القضيب", href: "/penile-surgery" },
   { label: "التجميل الذكوري", href: "/male-aesthetics" },
+  {
+    label: "الجراحة بالمنظار",
+    href: "/urologic-surgery",
+    children: [
+      { label: "استئصال البروستاتا الجذري", href: "/urologic-surgery/laparoscopic-radical-prostatectomy" },
+      { label: "عرض جميع جراحات المنظار", href: "/urologic-surgery" },
+    ],
+  },
   { label: "نبذة عن الطبيب", href: "/about" },
 ];
 
 export function getPrimaryNav(locale: "en" | "ar"): NavItem[] {
   const items = locale === "ar" ? primaryNavAr : primaryNav;
-  return items.map((item) => ({ ...item, href: localizeHref(item.href, locale) }));
+  return items.map((item) => ({
+    ...item,
+    href: localizeHref(item.href, locale),
+    children: item.children?.map((child) => ({ ...child, href: localizeHref(child.href, locale) })),
+  }));
 }
 
 export function getBookLabel(locale: "en" | "ar"): string {
@@ -120,6 +155,7 @@ const footerServiceLinksAr: NavItem[] = [
   { label: "مرض بيروني", href: "/peyronies-disease" },
   { label: "خصوبة الرجل", href: "/male-fertility" },
   { label: "قطع القناة المنوية بدون مشرط", href: "/mens-health/vasectomy" },
+  { label: "استئصال البروستاتا الجذري بالمنظار", href: "/urologic-surgery/laparoscopic-radical-prostatectomy" },
 ];
 
 export function getFooterServiceLinks(locale: "en" | "ar"): NavItem[] {

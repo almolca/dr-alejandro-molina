@@ -83,3 +83,10 @@ carried since R9 Phase A/B0).
 | "Appointments are managed through NMC" (supporting copy) | تُدار مواعيد الاستشارة مع [الطبيب] من خلال مستشفى إن إم سي رويال – مدينة خليفة | /ar/book (R9 booking funnel correction) | Owner-specified verbatim. |
 | "You will be redirected to NMC" (supporting line) | سيتم تحويلك إلى نظام الحجز الرسمي لدى NMC | /ar/book (R9 booking funnel correction) | Owner-specified verbatim. |
 | Vasovasostomy | مفاغرة الأسهر | /ar/mens-health/vasectomy (Batch 4) | New term this batch coins — no prior site usage to conflict with. |
+| Prostate cancer | سرطان البروستاتا | /ar/urologic-surgery (new pillar, 2026-09-24) | Owner-approved. |
+| Radical prostatectomy | استئصال البروستاتا الجذري | /ar/urologic-surgery (new pillar, 2026-09-24) | Owner-approved. |
+| Laparoscopic radical prostatectomy | استئصال البروستاتا الجذري بالمنظار | /ar/urologic-surgery/laparoscopic-radical-prostatectomy (new pillar, 2026-09-24) | Owner-approved. Flagship term for the new pillar — keep exact wording everywhere. |
+| Robot-assisted radical prostatectomy | استئصال البروستاتا الجذري بمساعدة الروبوت | /ar/urologic-surgery/laparoscopic-radical-prostatectomy (new pillar, 2026-09-24) | Owner-approved. Used only in the transparent laparoscopic-vs-robotic comparison section — never implies Dr. Molina performs this approach. |
+| Nerve-sparing | الحفاظ على الأعصاب | /ar/urologic-surgery/laparoscopic-radical-prostatectomy (new pillar, 2026-09-24) | Owner-approved. |
+| Urinary continence | التحكم في التبول | /ar/urologic-surgery/laparoscopic-radical-prostatectomy (new pillar, 2026-09-24) | Owner-approved patient-facing phrasing (preferred over a literal "control of urine"). |
+| Positive surgical margin | هامش جراحي إيجابي | /ar/urologic-surgery/laparoscopic-radical-prostatectomy (new pillar, 2026-09-24) | Owner-approved. |
