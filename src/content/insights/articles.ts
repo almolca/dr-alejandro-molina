@@ -87,6 +87,8 @@ const PUBLISHED_PHASE_B = "2026-09-06";
 const PUBLISHED_PHASE_C = "2026-09-06";
 /** Real date this batch of R7 (Penile Implant + Testosterone cluster depth) articles was added. */
 const PUBLISHED_R7 = "2026-09-09";
+/** Real date this article (SEO/UX competitive upgrade — girth + implant) was added. */
+const PUBLISHED_R11 = "2026-09-30";
 
 export const insightArticles: InsightArticle[] = [
   {
@@ -909,6 +911,72 @@ export const insightArticles: InsightArticle[] = [
         heading: "Why this is discussed before surgery, not after",
         body: [
           "Realistic expectations about what an implant can and cannot restore are set out during assessment, specifically so a patient is not left drawing incorrect conclusions about the device after surgery. If sensation or ejaculation are a specific concern, they are a reasonable and expected topic to raise at consultation.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "penile-implant-after-radical-prostatectomy",
+    title: "Penile Implant After Radical Prostatectomy",
+    category: "Penile Surgery",
+    excerpt:
+      "Erectile dysfunction after radical prostatectomy follows its own pattern of recovery and treatment. Here's how the pathway from surgery to considering an implant actually works.",
+    datePublished: PUBLISHED_R11,
+    clinicalReviewRequired: true,
+    relatedHref: "/penile-implant",
+    relatedLabel: "Penile Implant Surgery",
+    secondaryRelatedHref: "/urologic-surgery/laparoscopic-radical-prostatectomy",
+    secondaryRelatedLabel: "Laparoscopic Radical Prostatectomy",
+    relatedArticleSlugs: ["penile-implant-when-considered", "orgasm-ejaculation-after-penile-implant"],
+    keyTakeaway:
+      "Not every man with erectile dysfunction after radical prostatectomy needs an implant. There is no fixed recovery deadline that applies to everyone, and no guaranteed outcome — this is an individual decision, reached after adequate time for recovery and other treatments have been tried.",
+    sections: [
+      {
+        heading: "Why erectile dysfunction can occur after prostatectomy",
+        body: [
+          "The nerves and blood vessels responsible for erectile function run directly alongside the prostate. Even with a technically successful, nerve-sparing operation, these structures can be affected by the surgery itself, and recovery of function is gradual rather than immediate.",
+        ],
+      },
+      {
+        heading: "Nerve-sparing reduces the risk — it doesn't guarantee recovery",
+        body: [
+          "Nerve-sparing surgery, where oncologically appropriate, is intended to preserve the nerves that run alongside the prostate. Whether bilateral, unilateral or no nerve-sparing is possible depends on what is found at surgery, not a preference stated in advance. Baseline erectile function before surgery and age both influence how much function is likely to recover, and by when.",
+        ],
+      },
+      {
+        heading: "Recovery is gradual, and varies between men",
+        body: [
+          "Erectile function can continue to recover for a considerable time after surgery, not just in the first weeks. There is no single timeline that applies to every patient — recovery is followed and reassessed over time, rather than judged against one fixed point.",
+        ],
+      },
+      {
+        heading: "Early rehabilitation: PDE5 inhibitors, vacuum devices and injections",
+        body: [
+          "PDE5 inhibitors, vacuum erection devices and intracavernosal injection therapy are the treatments typically used during this recovery window — sometimes introduced proactively, while nerve function is still resolving, rather than only once a problem is confirmed to be permanent.",
+        ],
+      },
+      {
+        heading: "When a penile implant becomes part of the conversation",
+        body: [
+          "An implant is considered only once erectile function has had adequate time to recover and the treatments above have not given reliable results — it sits at the end of this pathway, not the start. The same assessment principles used for any implant candidate apply, adapted to the specific context of prior prostate surgery.",
+        ],
+      },
+      {
+        heading: "Inflatable implant — the option considered in most depth",
+        body: [
+          "Most candidates who go on to have implant surgery, including after prostatectomy, choose an inflatable device, operated by a pump usually placed in the scrotum to achieve and release rigidity. A malleable device — simpler, with no pump, manually positioned — remains a secondary option in selected circumstances, such as where simplicity or manual dexterity make it more appropriate.",
+        ],
+      },
+      {
+        heading: "Sensation and orgasm",
+        body: [
+          "An implant restores rigidity mechanically. Sensation and orgasm depend on separate nerve pathways, which may already be affected by the prostatectomy itself rather than by the implant — a distinction discussed individually, since attributing a change correctly matters for realistic expectations.",
+        ],
+      },
+      {
+        heading: "Penile length expectations",
+        body: [
+          "Some men notice a reduction in length compared with their erections before surgery. This is generally related to tissue changes from the underlying condition and the prostatectomy itself, not something an implant causes or is able to restore — part of the realistic-expectations conversation at assessment, not a surprise left for afterward.",
         ],
       },
     ],

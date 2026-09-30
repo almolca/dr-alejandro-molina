@@ -76,9 +76,9 @@ describe("sitemap", () => {
     });
   });
 
-  it("includes the R10 first-wave Arabic Insights articles, with hreflang only where a genuine EN equivalent exists", () => {
+  it("includes the R10 first-wave + R11 Arabic Insights articles, with hreflang only where a genuine EN equivalent exists", () => {
     const arArticleEntries = entries.filter((e) => e.url.includes("/ar/insights/"));
-    expect(arArticleEntries).toHaveLength(6);
+    expect(arArticleEntries).toHaveLength(7);
 
     const venousLeak = arArticleEntries.find((e) => e.url.endsWith("/ar/insights/venous-leak-and-penile-doppler"));
     expect(venousLeak?.alternates?.languages).toEqual({
@@ -93,6 +93,15 @@ describe("sitemap", () => {
       e.url.endsWith("/ar/insights/penile-girth-enhancement-real-world-experience"),
     );
     expect(girthExperience?.alternates).toBeUndefined();
+
+    // R11 SEO/UX upgrade: a genuine EN/AR pair, reciprocal hreflang expected.
+    const postProstatectomyImplant = arArticleEntries.find((e) =>
+      e.url.endsWith("/ar/insights/penile-implant-after-radical-prostatectomy-ar"),
+    );
+    expect(postProstatectomyImplant?.alternates?.languages).toEqual({
+      "en-AE": `${siteUrl}/insights/penile-implant-after-radical-prostatectomy`,
+      "ar-AE": `${siteUrl}/ar/insights/penile-implant-after-radical-prostatectomy-ar`,
+    });
   });
 
   it("excludes /ar/privacy from the sitemap, matching /privacy's index:false (Batch 4)", () => {

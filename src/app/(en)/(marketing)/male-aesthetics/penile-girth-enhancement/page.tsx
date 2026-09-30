@@ -4,9 +4,12 @@ import visual from "@/components/editorial/VisualSystem.module.css";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { Scan, Target, Info, History, AlertCircle, Activity } from "lucide-react";
 import { doctor } from "@/config/doctor";
 import { trainingPrograms } from "@/config/reputation";
 import { PhysicianAuthority } from "@/components/editorial/PhysicianAuthority";
+import { CandidateCheck } from "@/components/editorial/CandidateCheck";
+import { RecoveryTimeline } from "@/components/editorial/RecoveryTimeline";
 import { EditorialField } from "@/components/editorial/LayeredEditorialPanel";
 import { ClinicalPathway, ProcedureFramework, VariabilityFactors, CareStages } from "@/components/editorial/ProcedureFramework";
 import { BookingCta } from "@/components/ui/BookingCta";
@@ -27,7 +30,7 @@ import { buildMetadata } from "@/lib/seo/metadata";
 const PATH = "/male-aesthetics/penile-girth-enhancement";
 
 export const metadata: Metadata = buildMetadata({
-  title: "Penile Girth Enhancement with Hyaluronic Acid",
+  title: "Penile Girth Enhancement with Hyaluronic Acid in Abu Dhabi",
   description:
     `Specialist penile girth enhancement in Abu Dhabi with Dr. Alejandro Molina, Consultant Urologist & Andrologist — ${doctor.girthProcedureCount} procedures performed, experience since ${doctor.girthEnhancementSince}. Anatomy-led, hyaluronic acid and surgical options, realistic expectations.`,
   path: PATH,
@@ -45,7 +48,7 @@ const options = [
   {
     label: "Non-surgical: hyaluronic acid",
     description:
-      "Hyaluronic acid is injected to increase girth, planned according to individual anatomy. Technique, product choice and aftercare all affect the result, and treatment is carried out within a medical, andrology-led context — the more commonly discussed starting point at consultation. Published clinical literature supports hyaluronic acid as an option for penile girth enhancement, though outcomes vary with anatomy, technique and the treatment plan chosen — which is why individual planning matters more than any single published figure.",
+      "Hyaluronic acid is injected to increase girth, planned according to individual anatomy. Technique, product choice and aftercare all affect the result, and treatment is carried out within a medical, andrology-led context — the more commonly discussed starting point at consultation. As with any injectable augmentation technique, outcomes vary with anatomy, technique and the treatment plan chosen — which is why individual planning matters more than any single figure quoted in advance.",
   },
   {
     label: "Surgical approaches",
@@ -91,7 +94,17 @@ const approachPillars = [
       "Previous filler — whether performed here or elsewhere — including irregularity, asymmetry, nodules or migration, can be assessed separately and in detail.",
     href: "/male-aesthetics/penile-filler-correction",
     linkLabel: "Explore Penile Filler Correction",
+    accent: true,
   },
+];
+
+const suitabilityFactors = [
+  { title: "Anatomy", description: "Baseline anatomy and tissue characteristics are assessed individually before any plan is made.", Icon: Scan },
+  { title: "Expectations", description: "What a realistic result looks like for your anatomy is discussed before treatment, not promised in advance.", Icon: Target },
+  { title: "Circumcision status", description: "Circumcised and uncircumcised anatomy are both assessed and planned for individually.", Icon: Info },
+  { title: "Previous penile filler", description: "Prior treatment — here or elsewhere — is reviewed as part of assessment, including any irregularity or asymmetry.", Icon: History },
+  { title: "Fibrosis / Peyronie's disease", description: "Scarring or curvature is assessed separately, and can change what is appropriate, and when.", Icon: AlertCircle },
+  { title: "Erectile function", description: "Erectile function is reviewed as part of the same andrology-led assessment, not assumed to be unrelated.", Icon: Activity },
 ];
 
 const afterConsiderations = [
@@ -147,9 +160,23 @@ const faqItems = [
     readMoreLabel: "Read more: How Long Does Penile Filler Last?",
   },
   {
+    question: "Can penile filler be dissolved?",
+    answer:
+      "Generally, yes. Hyaluronic acid-based filler can typically be dissolved using hyaluronidase, an enzyme that breaks it down — though whether dissolution is the right option in a specific case depends on individual assessment rather than being automatic.",
+    readMoreHref: "/insights/can-penile-filler-be-dissolved",
+    readMoreLabel: "Read more: Can Penile Filler Be Dissolved?",
+  },
+  {
     question: "What does aftercare involve?",
     answer:
       "In general terms, aftercare covers activity restrictions during the initial settling period, what swelling or firmness to expect versus what would warrant contacting the clinic, and a scheduled follow-up review once tissue has settled. The specific guidance you receive is tailored to the option and volume planned for you.",
+  },
+  {
+    question: "When can I return to sexual activity?",
+    answer:
+      "There is a general recovery pattern discussed at consultation, but exact timing depends on your healing and the specific treatment plan — it is set individually rather than quoted as a fixed number here.",
+    readMoreHref: "/insights/when-can-you-have-sex-after-penile-girth-enhancement",
+    readMoreLabel: "Read more: When Can You Have Sex After Penile Girth Enhancement?",
   },
   {
     question: "Can filler migrate, or develop nodules?",
@@ -242,13 +269,80 @@ export default function PenileGirthEnhancementPage() {
       <section className="border-t border-border bg-background py-14">
         <Container>
           <PhysicianAuthority dark />
+          <div className="mt-8 max-w-xl rounded-sm border border-accent-strong/40 bg-surface px-6 py-5">
+            <p className="font-display text-lg text-foreground">Correction Experience</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              Previous filler — whether performed here or elsewhere — including
+              irregularity, asymmetry or dissatisfaction with a prior result, is
+              assessed and managed as part of the same practice. No correction-case
+              count is published — every revision is individually assessed.
+            </p>
+            <Link
+              href="/male-aesthetics/penile-filler-correction"
+              className="mt-3 inline-flex text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
+            >
+              Explore Penile Filler Correction
+            </Link>
+          </div>
         </Container>
       </section>
 
+      {/* What this treatment can — and cannot — do: a scannable summary of facts the detailed sections below (Options, FAQ) already state in prose */}
+      <section className="border-t border-border bg-surface py-section-y">
+        <Container>
+          <SectionHeading
+            eyebrow="At a glance"
+            heading="What Penile Girth Enhancement Can — and Cannot — Change"
+            description="Penile girth enhancement with hyaluronic acid — sometimes searched for as penile filler or non-surgical penile enlargement — is designed to increase circumference, not penile length."
+          />
+          <CandidateCheck
+            goodHeading="What it can do"
+            goodIf={[
+              "Increase circumference (girth) along the shaft",
+              "Improve contour and proportion where clinically appropriate",
+              "Be planned and staged individually, treatment by treatment",
+              "Be dissolved with hyaluronidase if correction is clinically required",
+            ]}
+            notHeading="What it does not do"
+            notIf={[
+              "Increase penile length",
+              "Treat erectile dysfunction",
+              "Guarantee a specific centimetre increase",
+              "Suit every patient — suitability is assessed individually",
+            ]}
+          />
+        </Container>
+      </section>
+
+      {/* Who may be suitable — a fast summary layer; the full explanation for each factor is in "Dr. Molina's Approach" and the FAQ below */}
       <section className="py-section-y">
         <Container>
-          <SectionHeading eyebrow="Your clinical pathway" heading="From the first conversation to follow-up" />
-          <ClinicalPathway />
+          <SectionHeading eyebrow="Suitability" heading="Who May Be Suitable" />
+          <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {suitabilityFactors.map(({ title, description, Icon }) => (
+              <StaggerItem key={title} className="border-t border-border pt-6">
+                <Icon aria-hidden strokeWidth={1.25} className="h-6 w-6 text-accent-strong" />
+                <h3 className="mt-3 font-display text-lg text-foreground">{title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{description}</p>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </Container>
+      </section>
+
+      <section className="border-t border-border py-section-y">
+        <Container>
+          <SectionHeading eyebrow="Your treatment journey" heading="From Assessment to Refinement" />
+          <ClinicalPathway
+            steps={[
+              ["Assessment", "Discuss your goals, medical history and expectations."],
+              ["Anatomical planning", "Assess individual anatomy and any previous treatment."],
+              ["Treatment", "Proceed only after assessment and an agreed treatment plan."],
+              ["Early recovery", "Follow the aftercare guidance specific to your procedure."],
+              ["Follow-up", "Review your progress and any concerns with your clinician."],
+              ["Refinement when appropriate", "Where a result is asymmetric or a patient is unsatisfied, correction is assessed individually — see Correction Expertise above."],
+            ]}
+          />
         </Container>
       </section>
 
@@ -286,7 +380,10 @@ export default function PenileGirthEnhancementPage() {
           />
           <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {approachPillars.map((pillar) => (
-              <StaggerItem key={pillar.title} className="card-hover border-t border-border pt-6">
+              <StaggerItem
+                key={pillar.title}
+                className={`card-hover pt-6 ${pillar.accent ? "border-t-2 border-accent-strong" : "border-t border-border"}`}
+              >
                 <h3 className="font-display text-lg text-foreground">{pillar.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{pillar.description}</p>
                 {pillar.href && (
@@ -369,6 +466,21 @@ export default function PenileGirthEnhancementPage() {
             </p>
           </Reveal>
           <VariabilityFactors />
+        </Container>
+      </section>
+
+      {/* Recovery timeline — phase-based, no invented day/week counts: timing is discussed individually, matching the existing FAQ's own framing */}
+      <section className="border-t border-border bg-surface py-section-y">
+        <Container>
+          <SectionHeading eyebrow="What to expect" heading="Recovery, Phase by Phase" />
+          <RecoveryTimeline
+            phases={[
+              { label: "Immediate period", description: "Some swelling, firmness or bruising in the treated area is expected in the first few days — a normal part of the process, not a sign of a problem." },
+              { label: "Early recovery", description: "Activity is gradually resumed following the guidance specific to your treatment, while initial swelling settles." },
+              { label: "Return to sexual activity", description: "Timing is individual and discussed as part of your aftercare plan, once initial swelling and settling have progressed appropriately." },
+              { label: "Follow-up", description: "A scheduled review once tissue has settled, to assess the result and address any concerns." },
+            ]}
+          />
         </Container>
       </section>
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { AmpersandText } from "@/components/ui/AmpersandText";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
@@ -8,6 +9,8 @@ import { PhotoFrame } from "@/components/editorial/PhotoFrame";
 import { HeroAtmosphere } from "@/components/editorial/HeroAtmosphere";
 import { AuthorityMetric } from "@/components/editorial/PhysicianAuthority";
 import { CandidateCheck } from "@/components/editorial/CandidateCheck";
+import { ClinicalPathway } from "@/components/editorial/ProcedureFramework";
+import { RecoveryTimeline } from "@/components/editorial/RecoveryTimeline";
 import editorialStyles from "@/components/editorial/Editorial.module.css";
 import { doctor } from "@/config/doctor";
 import { ImplantDeviceDiagram } from "@/components/illustrations/ImplantDeviceDiagram";
@@ -37,23 +40,13 @@ const breadcrumbItems = [
   { name: "Penile Implant Surgery", href: PATH },
 ];
 
-const prosthesisTypes = [
-  {
-    name: "Inflatable prosthesis",
-    points: [
-      "Two- or three-piece devices designed to closely mirror natural rigidity and flaccidity",
-      "Includes an internal pump mechanism, most often placed in the scrotum",
-      "The option most commonly selected among candidates",
-    ],
-  },
-  {
-    name: "Malleable prosthesis",
-    points: [
-      "A simpler mechanical design, with no internal pump",
-      "Semi-rigid rods that can be manually positioned",
-      "May be considered when a simpler surgical approach is preferred",
-    ],
-  },
+const inflatableFeatures = [
+  { title: "Components", description: "Two or three pieces: cylinders placed within the erectile chambers, a fluid reservoir, and a pump — most often placed in the scrotum." },
+  { title: "Inflation", description: "Pressing the pump moves fluid from the reservoir into the cylinders, producing rigidity when desired." },
+  { title: "Deflation", description: "A release mechanism returns the fluid to the reservoir, allowing a return to a flaccid state." },
+  { title: "Flaccid-state appearance", description: "When deflated, the flaccid appearance is close to natural for most men, and the device is not generally noticeable in clothing." },
+  { title: "Patient operation", description: "The patient operates the pump himself, achieving and releasing rigidity when he chooses." },
+  { title: "Why it's the option most commonly selected", description: "Its inflate/deflate mechanism most closely mirrors the natural cycle of rigidity and flaccidity." },
 ];
 
 const pathway = [
@@ -170,7 +163,21 @@ const faqItems = [
   {
     question: "Can I have a penile implant after prostate surgery?",
     answer:
-      "Yes — erectile dysfunction following prostatectomy is a recognised and well-established reason patients consider a penile implant, particularly once other treatments have not given reliable results. The same assessment principles apply: confirming severity, reviewing what has already been tried, and discussing realistic expectations before proceeding.",
+      "Yes — erectile dysfunction following prostatectomy is a recognised and well-established reason patients consider a penile implant, particularly once other treatments have not given reliable results.",
+    readMoreHref: "/insights/penile-implant-after-radical-prostatectomy",
+    readMoreLabel: "Read more: Penile Implant After Radical Prostatectomy",
+  },
+  {
+    question: "Can penile implants treat Peyronie's disease?",
+    answer:
+      "An implant can address the erectile component when Peyronie's disease coexists with erectile dysfunction that hasn't responded reliably to other treatment, and in some cases the surgical technique used at the time of implant placement can help address curvature too. It isn't the default approach to Peyronie's disease alone, and suitability is assessed individually.",
+    readMoreHref: "/peyronies-disease",
+    readMoreLabel: "Explore Peyronie's Disease",
+  },
+  {
+    question: "What is the infection risk?",
+    answer:
+      "Infection is an uncommon but serious complication of implant surgery. Modern devices and strict surgical protocols are specifically intended to reduce that risk. Diabetes and some other health factors can increase individual risk, which is discussed and managed as part of your pre-surgical assessment.",
   },
 ];
 
@@ -245,13 +252,28 @@ export default function PenileImplantPage() {
             </dl>
             <div className={editorialStyles.rail}>
               <p>Advanced laparoscopic surgery · tertiary hospital experience</p>
-              {doctor.medicalTrainer && (
-                <p>
-                  <strong>Medical Trainer</strong> · {doctor.medicalTrainer.program}
-                </p>
-              )}
             </div>
           </div>
+        </Container>
+      </section>
+
+      {/* When is an implant considered — visual summary of the ED treatment ladder; the existing "Our approach" cards below are the detailed layer. Educational sequencing, not a rigid protocol. */}
+      <section className="border-t border-border bg-surface py-section-y">
+        <Container>
+          <SectionHeading
+            eyebrow="Where this fits"
+            heading="When Is a Penile Implant Considered?"
+            description="This reflects how erectile dysfunction is generally approached, not a rigid sequence every patient must follow — some steps may be skipped or reordered depending on individual circumstances."
+          />
+          <ClinicalPathway
+            steps={[
+              ["Erectile dysfunction", "Confirmed and assessed for underlying cause."],
+              ["Oral medication", "PDE5 inhibitors are typically the first treatment tried."],
+              ["Other non-surgical options", "Vacuum devices, shockwave therapy or intracavernosal injections, where appropriate."],
+              ["Persistent / refractory ED", "Considered when the above have not given reliable results."],
+              ["Implant assessment", "Candidacy, device type and expectations discussed individually."],
+            ]}
+          />
         </Container>
       </section>
 
@@ -304,10 +326,10 @@ export default function PenileImplantPage() {
         </Container>
       </section>
 
-      {/* Inflatable vs malleable comparison */}
+      {/* Primary focus: the inflatable prosthesis — the option most commonly selected. Malleable follows as a smaller, secondary card, deliberately not given equal visual weight. */}
       <section className="py-section-y">
         <Container>
-          <SectionHeading eyebrow="Device options" heading="Inflatable vs. Malleable" />
+          <SectionHeading eyebrow="Primary option" heading="The Inflatable Penile Implant" description="Most patients who go on to have implant surgery choose an inflatable device — the option covered in most depth here." />
           <Reveal delay={0.05}>
             <ImplantDeviceDiagram
               className="mt-10 h-24 w-full max-w-xl text-muted-foreground"
@@ -317,20 +339,27 @@ export default function PenileImplantPage() {
           <MaskedReveal className="mt-10 max-w-xl">
             <PhotoFrame slot="implantDevice" landscape />
           </MaskedReveal>
-          <div className="mt-14 grid gap-x-16 gap-y-14 border-t border-border pt-14 md:grid-cols-2">
-            {prosthesisTypes.map((type) => (
-              <Reveal key={type.name} className="card-hover border border-border p-6">
-                <h3 className="font-display text-2xl text-foreground">{type.name}</h3>
-                <ul className="mt-6 space-y-4">
-                  {type.points.map((point) => (
-                    <li key={point} className="flex gap-4 text-sm text-muted-foreground">
-                      <span aria-hidden className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent-strong" />
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </Reveal>
+          <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 border-t border-border pt-14 sm:grid-cols-2 lg:grid-cols-3">
+            {inflatableFeatures.map((feature) => (
+              <StaggerItem key={feature.title} className="border-t border-border pt-6">
+                <h3 className="font-display text-lg text-foreground">{feature.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
+              </StaggerItem>
             ))}
+          </StaggerGroup>
+
+          {/* Malleable — compact, secondary card. Not inferior, not a competing flagship comparison. */}
+          <div className="mt-16 max-w-xl border-t border-border pt-10">
+            <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">Secondary option</p>
+            <h3 className="mt-3 font-display text-xl text-foreground">Malleable Penile Implant</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              A simpler, semi-rigid device with no pump — the rods are manually
+              positioned. It is not considered inferior or obsolete: it remains
+              a useful option in selected circumstances, including where
+              simplicity, manual dexterity, anatomy or a previous surgery make
+              a mechanically simpler device more appropriate. Which device
+              suits you is discussed individually, not assumed in advance.
+            </p>
           </div>
         </Container>
       </section>
@@ -364,8 +393,24 @@ export default function PenileImplantPage() {
             heading="Sexual Function After Surgery"
             size="md"
           />
+          <div className="mt-10">
+            <CandidateCheck
+              goodHeading="What it changes"
+              goodIf={[
+                "Provides mechanical rigidity suitable for intercourse",
+                "Can restore dependable rigidity when less invasive treatments have failed",
+              ]}
+              notHeading="What it doesn't change"
+              notIf={[
+                "Does not restore spontaneous, natural erectile physiology",
+                "Does not inherently increase penile length",
+                "Sensation is generally preserved if it was present beforehand — the device does not automatically change it",
+                "Orgasm depends on the same nerve and hormonal pathways as before surgery; ejaculation depends on your underlying prostate/reproductive status",
+              ]}
+            />
+          </div>
           <Reveal delay={0.1}>
-            <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-10 text-sm leading-relaxed text-muted-foreground">
               A penile implant is designed to allow a man to achieve a
               rigid erection when desired. It does not change sensation,
               orgasm or ejaculation, which are governed by separate
@@ -398,6 +443,83 @@ export default function PenileImplantPage() {
           and cannot do — before proceeding, not after.
         </PullQuote>
       </Container>
+
+      {/* Post-prostatectomy ED and Peyronie's + ED — two specific clinical situations where an implant intersects with another diagnosis already covered elsewhere on this site, each explained rather than left as a bare link */}
+      <section className="border-t border-border bg-surface py-section-y">
+        <Container className="max-w-3xl">
+          <SectionHeading eyebrow="A specific clinical pathway" heading="Penile Implant After Radical Prostatectomy" />
+          <div className="mt-8 space-y-6 text-sm leading-relaxed text-muted-foreground">
+            <p>
+              Erectile dysfunction can persist after radical prostatectomy,
+              even when surgery goes well and, where oncologically
+              appropriate, nerve-sparing was performed. Nerve-sparing
+              reduces the risk of permanent erectile dysfunction, but does
+              not guarantee recovery — baseline erectile function before
+              surgery, age, and individual nerve healing all affect the
+              outcome.
+            </p>
+            <p>
+              Rehabilitation after prostatectomy typically starts with the
+              same treatment ladder used for erectile dysfunction from any
+              cause — PDE5 inhibitors, vacuum erection devices, and
+              intracavernosal injection therapy — often introduced early to
+              support recovery while nerve function is still resolving.
+            </p>
+            <p>
+              Where erectile function has not recovered sufficiently over
+              this period, and other treatments have not given reliable
+              results, a penile implant is one option discussed in
+              selected patients — assessed with the same principles used
+              for any candidate, applied to your specific situation.
+            </p>
+            <p className="flex flex-wrap gap-x-2">
+              <Link href="/urologic-surgery/laparoscopic-radical-prostatectomy" className="text-foreground underline decoration-accent-strong underline-offset-4">
+                Learn more about laparoscopic radical prostatectomy
+              </Link>
+              <span aria-hidden>·</span>
+              <Link href="/insights/penile-implant-after-radical-prostatectomy" className="text-foreground underline decoration-accent-strong underline-offset-4">
+                Read: Penile Implant After Radical Prostatectomy
+              </Link>
+            </p>
+          </div>
+        </Container>
+      </section>
+
+      <section className="py-section-y">
+        <Container className="max-w-3xl">
+          <SectionHeading eyebrow="A specific clinical pathway" heading="Peyronie's Disease and Penile Implant" />
+          <div className="mt-8 space-y-6 text-sm leading-relaxed text-muted-foreground">
+            <p>
+              Severe Peyronie&rsquo;s disease — where curvature, deformity or
+              shortening significantly affects sexual function — can
+              coexist with erectile dysfunction that does not respond
+              reliably to other treatment. In selected patients, a penile
+              implant can address the erectile component, and depending on
+              the surgical technique used, some of the curvature, in a
+              single procedure. This is assessed individually and is not
+              the default approach to Peyronie&rsquo;s disease alone.
+            </p>
+            <Link href="/peyronies-disease" className="inline-flex text-foreground underline decoration-accent-strong underline-offset-4">
+              Explore Peyronie&rsquo;s Disease
+            </Link>
+          </div>
+        </Container>
+      </section>
+
+      {/* Recovery timeline — phase-based, reusing the exact three phases already stated in the "How long is recovery?" FAQ below, no invented day/week counts */}
+      <section className="border-t border-border bg-surface py-section-y">
+        <Container>
+          <SectionHeading eyebrow="What to expect" heading="Recovery, Phase by Phase" />
+          <RecoveryTimeline
+            phases={[
+              { label: "Initial healing", description: "Restricted activity while early healing takes place after surgery." },
+              { label: "Gradual return to activity", description: "Normal daily activity is resumed gradually, following guidance specific to your surgery." },
+              { label: "Device-use introduction", description: "Once healing is sufficient, use of the device is introduced under guidance." },
+              { label: "Follow-up", description: "Progress and any concerns are reviewed as part of your individual recovery plan." },
+            ]}
+          />
+        </Container>
+      </section>
 
       {/* Risks — "not appropriate" cases already covered in the candidacy check above, not repeated here */}
       <section className="border-t border-border bg-surface py-section-y">

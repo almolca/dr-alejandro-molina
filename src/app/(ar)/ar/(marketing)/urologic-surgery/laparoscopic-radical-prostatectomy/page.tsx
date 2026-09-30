@@ -500,7 +500,7 @@ export default function LaparoscopicRadicalProstatectomyPageAr() {
               تتعافى الوظيفة الجنسية وتؤثر بشكل كبير على جودة الحياة، ولم
               تنجح العلاجات الأخرى،{" "}
               <Link href="/ar/penile-implant" className="text-foreground underline decoration-accent-strong underline-offset-4">
-                زراعة دعامة القضيب
+                دعامة القضيب
               </Link>{" "}
               أحد الخيارات التي تُناقش في تلك المرحلة.
             </p>
