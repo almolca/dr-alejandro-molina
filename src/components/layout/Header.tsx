@@ -33,7 +33,7 @@ export function Header({ locale = "en" }: { locale?: "en" | "ar" }) {
           of `compact`, so the scroll-collapse effect never reaches desktop/tablet. */}
       <Container
         className={cn(
-          "flex items-center justify-between gap-x-5 transition-[min-height] duration-200 ease-out",
+          "flex items-center justify-between gap-x-4 transition-[min-height] duration-200 ease-out",
           compact ? "min-h-[76px] md:min-h-28" : "min-h-28",
         )}
       >
@@ -43,7 +43,7 @@ export function Header({ locale = "en" }: { locale?: "en" | "ar" }) {
 
         <DesktopNav locale={locale} />
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 2xl:gap-3">
           <div className="hidden md:block">
             <BookingCta sourcePage="global-header" ctaPosition="header" size="sm">
               {bookingCtaLabel}

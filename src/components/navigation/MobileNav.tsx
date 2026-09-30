@@ -1,7 +1,8 @@
 "use client";
 
+import * as Accordion from "@radix-ui/react-accordion";
 import * as Dialog from "@radix-ui/react-dialog";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 import { useState } from "react";
 import { bookHref, getBookLabel, getPrimaryNav, localizeHref } from "@/config/navigation";
@@ -69,16 +70,47 @@ export function MobileNav({ locale = "en" }: { locale?: "en" | "ar" }) {
           </div>
 
           <nav aria-label="Primary" className="mt-6 flex flex-col gap-5">
-            {items.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="text-2xl font-display text-foreground"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {items.map((item) =>
+              item.children?.length ? (
+                <Accordion.Root key={item.href} type="single" collapsible>
+                  <Accordion.Item value={item.href}>
+                    <Accordion.Header>
+                      <Accordion.Trigger className="group flex w-full items-center justify-between gap-3 py-2 text-2xl font-display text-foreground">
+                        {item.label}
+                        <ChevronDown
+                          aria-hidden
+                          size={20}
+                          className="shrink-0 text-accent-strong transition-transform duration-200 ease-out group-data-[state=open]:rotate-180"
+                        />
+                      </Accordion.Trigger>
+                    </Accordion.Header>
+                    <Accordion.Content className="overflow-hidden data-[state=closed]:animate-none">
+                      <div className="mt-4 flex flex-col gap-4 ps-4">
+                        {item.children.map((child) => (
+                          <Link
+                            key={child.href}
+                            href={child.href}
+                            onClick={() => setOpen(false)}
+                            className="block py-1.5 text-lg text-muted-foreground"
+                          >
+                            {child.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </Accordion.Content>
+                  </Accordion.Item>
+                </Accordion.Root>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className="text-2xl font-display text-foreground"
+                >
+                  {item.label}
+                </Link>
+              ),
+            )}
             <Link href={localizeHref(bookHref, locale)} onClick={() => setOpen(false)} className="text-2xl font-display text-foreground">
               {getBookLabel(locale)}
             </Link>
