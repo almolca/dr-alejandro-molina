@@ -20,8 +20,14 @@ const stepsAr = [
   ["المتابعة", "مراجعة تقدمك وأي مخاوف مع طبيبك المعالج."],
 ];
 
-export function ClinicalPathway({ locale }: { locale?: "ar" } = {}) {
-  const steps = locale === "ar" ? stepsAr : stepsEn;
+/**
+ * `steps` is optional — omit it for the original consultation-to-follow-up
+ * journey (`stepsEn`/`stepsAr` below); pass a custom `[title, body][]` for
+ * a different journey on another page (e.g. the implant page's ED
+ * treatment-ladder pathway) without duplicating this component.
+ */
+export function ClinicalPathway({ locale, steps: customSteps }: { locale?: "ar"; steps?: [string, string][] } = {}) {
+  const steps = customSteps ?? (locale === "ar" ? stepsAr : stepsEn);
   return <ol className={styles.pathway}>{steps.map(([title,body],index)=><li className={styles.step} key={title}>
     <span className={styles.stepNumber}>{String(index+1).padStart(2,"0")}</span>
     <h3 className="mt-3 font-display text-xl">{title}</h3><p className="mt-3 max-w-xs text-sm text-muted-foreground">{body}</p>

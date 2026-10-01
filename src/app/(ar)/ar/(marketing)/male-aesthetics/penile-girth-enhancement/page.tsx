@@ -9,9 +9,14 @@ import { AR_IDENTITY } from "@/lib/i18n/ar-identity";
 import { AR_REPUTATION } from "@/lib/i18n/ar-reputation";
 import { doctor } from "@/config/doctor";
 import { trainingPrograms } from "@/config/reputation";
+import { Scan, Target, Info, History, AlertCircle, Activity, Ruler, Layers, ListChecks, Ban, RefreshCw, Bandage, CalendarCheck, HeartPulse, GitCompare } from "lucide-react";
+import { GirthIcon, ReversibilityIcon } from "@/components/illustrations";
 import { PhysicianAuthority } from "@/components/editorial/PhysicianAuthority";
+import { CandidateCheck } from "@/components/editorial/CandidateCheck";
+import { ConnectedPathway } from "@/components/editorial/ConnectedPathway";
+import { RecoveryTimeline } from "@/components/editorial/RecoveryTimeline";
 import { EditorialField } from "@/components/editorial/LayeredEditorialPanel";
-import { ClinicalPathway, ProcedureFramework, VariabilityFactors, CareStages } from "@/components/editorial/ProcedureFramework";
+import { ProcedureFramework, VariabilityFactors, CareStages } from "@/components/editorial/ProcedureFramework";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -48,7 +53,7 @@ const options = [
   {
     label: "غير جراحي: حمض الهيالورونيك",
     description:
-      "يُحقن حمض الهيالورونيك لزيادة السماكة، ويُخطَّط له وفقًا للتشريح الفردي. تؤثر التقنية واختيار المنتج والرعاية اللاحقة جميعها على النتيجة، ويُجرى العلاج ضمن سياق طبي بقيادة طبيب الذكورة — وهو نقطة البداية الأكثر مناقشة عند الاستشارة. تدعم الأدبيات السريرية المنشورة حمض الهيالورونيك كخيار لزيادة سماكة القضيب، رغم أن النتائج تختلف باختلاف التشريح والتقنية وخطة العلاج المختارة — ولهذا فإن التخطيط الفردي أهم من أي رقم منشور بمفرده.",
+      "يُحقن حمض الهيالورونيك لزيادة السماكة، ويُخطَّط له وفقًا للتشريح الفردي. تؤثر التقنية واختيار المنتج والرعاية اللاحقة جميعها على النتيجة، ويُجرى العلاج ضمن سياق طبي بقيادة طبيب الذكورة — وهو نقطة البداية الأكثر مناقشة عند الاستشارة. وكما هو الحال مع أي تقنية حقن تكبيرية، تختلف النتائج باختلاف التشريح والتقنية وخطة العلاج المختارة — ولهذا فإن التخطيط الفردي أهم من أي رقم يُذكر مسبقًا.",
   },
   {
     label: "الخيارات الجراحية",
@@ -94,7 +99,26 @@ const approachPillars = [
       "يمكن تقييم الحشو السابق — سواء أُجري هنا أو في مكان آخر — بما في ذلك عدم الانتظام أو عدم التماثل أو العقيدات أو الانزياح، بشكل منفصل ومفصّل.",
     href: "/ar/male-aesthetics/penile-filler-correction",
     linkLabel: "استكشف تصحيح حشو القضيب",
+    accent: true,
   },
+];
+
+const experienceMap = [
+  { title: "التنوع التشريحي", description: "لا يتشابه مريضان في التشريح الأساسي — تُبنى الخطط على هذا التنوع، لا على قالب موحد.", Icon: Scan },
+  { title: "حالة الختان", description: "يُخطَّط للتشريح المختون وغير المختون بشكل مختلف، كأمر معتاد لا استثناء.", Icon: Info },
+  { title: "الفيلر السابق", description: "العلاج السابق في مكان آخر نقطة بداية متكررة للتقييم، لا حالة نادرة.", Icon: History },
+  { title: "عدم التماثل", description: "التعرف على عدم التماثل الطبيعي أو الناتج عن العلاج والتخطيط حوله، لا معاملته كاستثناء نادر.", Icon: GitCompare },
+  { title: "التليف", description: "تغيّر الأنسجة الندبية من أي سبب ما يمكن أن تحققه الخطة بأمان، وتُقيَّم وفقًا لذلك.", Icon: AlertCircle },
+  { title: "التصحيح / المراجعة", description: "تقييم وإدارة نتيجة سابقة — هنا أو في مكان آخر — يعتمد على التعرف التراكمي على الأنماط نفسه.", Icon: RefreshCw },
+];
+
+const suitabilityFactors = [
+  { title: "التشريح", description: "يُقيَّم التشريح الأساسي وخصائص الأنسجة بشكل فردي قبل وضع أي خطة.", Icon: Scan },
+  { title: "التوقعات", description: "تُناقش النتيجة الواقعية المتوقعة لتشريحك قبل العلاج، لا كوعد مسبق.", Icon: Target },
+  { title: "حالة الختان", description: "يُقيَّم ويُخطَّط للتشريح المختون وغير المختون بشكل فردي على حد سواء.", Icon: Info },
+  { title: "فيلر سابق للقضيب", description: "يُراجَع العلاج السابق — هنا أو في مكان آخر — كجزء من التقييم، بما في ذلك أي عدم انتظام أو عدم تماثل.", Icon: History },
+  { title: "التليف / مرض بيروني", description: "يُقيَّم التندب أو الانحناء بشكل منفصل، وقد يغيّر ما هو مناسب ومتى.", Icon: AlertCircle },
+  { title: "الوظيفة الجنسية", description: "تُراجَع الوظيفة الجنسية كجزء من التقييم نفسه بقيادة طب الذكورة، لا باعتبارها غير ذات صلة.", Icon: Activity },
 ];
 
 const afterConsiderations = [
@@ -150,9 +174,19 @@ const faqItems = [
     readMoreLabel: "اقرأ المزيد: How Long Does Penile Filler Last? (مقال بالإنجليزية)",
   },
   {
+    question: "هل يمكن إذابة فيلر القضيب؟",
+    answer:
+      "بشكل عام، نعم. يمكن عادةً إذابة الحشو القائم على حمض الهيالورونيك باستخدام إنزيم الهيالورونيداز، الذي يحلّله — لكن ما إذا كانت الإذابة هي الخيار المناسب في حالة معينة يعتمد على تقييم فردي، لا أن يكون إجراءً تلقائيًا.",
+  },
+  {
     question: "ماذا تتضمن الرعاية اللاحقة؟",
     answer:
       "بشكل عام، تشمل الرعاية اللاحقة قيودًا على النشاط خلال فترة الاستقرار الأولية، وما يمكن توقعه من تورم أو صلابة مقابل ما يستدعي التواصل مع العيادة، ومراجعة متابعة مجدولة بمجرد استقرار الأنسجة. تُصمَّم الإرشادات المحددة التي تتلقاها وفقًا للخيار والحجم المخطط لك.",
+  },
+  {
+    question: "متى يمكنني العودة إلى النشاط الجنسي؟",
+    answer:
+      "هناك نمط عام للتعافي يُناقش أثناء الاستشارة، لكن التوقيت الدقيق يعتمد على شفائك وخطة علاجك المحددة — يُحدَّد بشكل فردي، لا كرقم ثابت هنا.",
   },
   {
     question: "هل يمكن أن ينزاح الحشو أو تتكوّن عقيدات؟",
@@ -249,13 +283,98 @@ export default function PenileGirthEnhancementPageAr() {
       <section className="border-t border-border bg-background py-14">
         <Container>
           <PhysicianAuthority dark locale="ar" />
+          <div className="mt-8 max-w-xl rounded-sm border border-accent-strong/40 bg-surface px-6 py-5">
+            <p className="font-display text-lg text-foreground">خبرة في التصحيح</p>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              يُقيَّم الحشو السابق — سواء أُجري هنا أو في مكان آخر — بما في ذلك
+              عدم الانتظام أو عدم التماثل أو عدم الرضا عن نتيجة سابقة، ويُدار
+              ضمن الممارسة نفسها. لا يُنشر عدد محدد لحالات المراجعة — تُقيَّم
+              كل حالة بشكل فردي.
+            </p>
+            <Link
+              href="/ar/male-aesthetics/penile-filler-correction"
+              className="mt-3 inline-flex text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
+            >
+              استكشف تصحيح حشو القضيب
+            </Link>
+          </div>
         </Container>
       </section>
 
+      {/* خريطة الخبرة — تترجم رقم 1,000+ إلى أبعاد نمطية سريرية ملموسة، بدلاً من تركه رقمًا مجردًا */}
+      <section className="border-t border-border bg-surface py-section-y">
+        <Container>
+          <SectionHeading eyebrow={`${doctor.girthProcedureCount} إجراء`} heading="ما تعنيه هذه الخبرة عمليًا" description="الحجم وحده لا يثبت شيئًا. ما يبنيه هو التعرف على الأنماط عبر المتغيرات التي تحدد الخطة فعليًا — تُستعرض هنا بشكل فردي، لا كحالة متوسطة واحدة." locale="ar" />
+          <StaggerGroup className="mt-12 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {experienceMap.map(({ title, description, Icon }) => (
+              <StaggerItem key={title} className="rounded-sm border border-border bg-background p-6">
+                <Icon aria-hidden strokeWidth={1.25} className="h-6 w-6 text-accent-strong" />
+                <h3 className="mt-3 font-display text-base text-foreground">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </Container>
+      </section>
+
+      {/* ما الذي تغيّره هذه العملية وما لا تغيّره — ملخص سريع، والتفاصيل الكاملة في الأقسام أدناه */}
+      <section className="border-t border-border bg-surface py-section-y">
+        <Container>
+          <SectionHeading
+            eyebrow="بإيجاز"
+            heading="ما الذي تغيّره زيادة سماكة القضيب — وما لا تغيّره"
+            description="زيادة سماكة القضيب بحمض الهيالورونيك — ويُعرف أحيانًا باسم فيلر القضيب أو زيادة محيط القضيب غير الجراحية — مصمم لزيادة السماكة (المحيط)، لا طول القضيب."
+            locale="ar"
+          />
+          <CandidateCheck
+            goodHeading="ما الذي يمكن تحقيقه"
+            goodIf={[
+              { Icon: GirthIcon, text: "زيادة السماكة (المحيط) على طول الجسم" },
+              { Icon: Layers, text: "تحسين الملامس والتناسب حيثما كان ذلك مناسبًا سريريًا" },
+              { Icon: ListChecks, text: "التخطيط والتنفيذ على مراحل بشكل فردي" },
+              { Icon: ReversibilityIcon, text: "إمكانية إذابة الحشو بإنزيم الهيالورونيداز إذا استدعت الحالة تصحيحًا" },
+            ]}
+            notHeading="ما لا تحققه"
+            notIf={[
+              { Icon: Ban, text: "زيادة طول القضيب" },
+              { Icon: Ban, text: "علاج ضعف الانتصاب" },
+              { Icon: Ban, text: "ضمان زيادة محددة بالسنتيمتر" },
+              { Icon: Ban, text: "مناسبة لكل مريض — تُقيَّم الملاءمة بشكل فردي" },
+            ]}
+          />
+        </Container>
+      </section>
+
+      {/* من قد يكون مرشحًا — طبقة ملخص سريعة؛ الشرح الكامل لكل عامل موجود في "نهج د. مولينا" والأسئلة الشائعة أدناه */}
       <section className="py-section-y">
         <Container>
-          <SectionHeading eyebrow="مسارك السريري" heading="من المحادثة الأولى إلى المتابعة" locale="ar" />
-          <ClinicalPathway locale="ar" />
+          <SectionHeading eyebrow="الملاءمة" heading="من قد يكون مرشحًا" locale="ar" />
+          <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {suitabilityFactors.map(({ title, description, Icon }) => (
+              <StaggerItem key={title} className="border-t border-border pt-6">
+                <Icon aria-hidden strokeWidth={1.25} className="h-6 w-6 text-accent-strong" />
+                <h3 className="mt-3 font-display text-lg text-foreground">{title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{description}</p>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </Container>
+      </section>
+
+      <section className="border-t border-border py-section-y">
+        <Container>
+          <SectionHeading eyebrow="مسار علاجك" heading="من التقييم إلى التحسين" locale="ar" />
+          <ConnectedPathway
+            locale="ar"
+            nodes={[
+              { Icon: ListChecks, title: "التقييم", description: "مناقشة الأهداف والتاريخ المرضي والتوقعات." },
+              { Icon: Ruler, title: "التخطيط التشريحي", description: "تقييم التشريح الفردي وأي علاج سابق." },
+              { Icon: GirthIcon, title: "العلاج", description: "يُنفَّذ بعد الاتفاق على خطة العلاج." },
+              { Icon: Bandage, title: "التعافي المبكر", description: "إرشادات الرعاية اللاحقة الخاصة بإجرائك." },
+              { Icon: CalendarCheck, title: "المتابعة", description: "مراجعة التقدم وأي مخاوف." },
+              { Icon: RefreshCw, title: "التحسين عند الاقتضاء", description: "عدم التماثل أو عدم الرضا يُقيَّم بشكل فردي." },
+            ]}
+          />
         </Container>
       </section>
 
@@ -293,7 +412,10 @@ export default function PenileGirthEnhancementPageAr() {
           />
           <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {approachPillars.map((pillar) => (
-              <StaggerItem key={pillar.title} className="card-hover border-t border-border pt-6">
+              <StaggerItem
+                key={pillar.title}
+                className={`card-hover pt-6 ${pillar.accent ? "border-t-2 border-accent-strong" : "border-t border-border"}`}
+              >
                 <h3 className="font-display text-lg text-foreground">{pillar.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{pillar.description}</p>
                 {pillar.href && (
@@ -374,6 +496,22 @@ export default function PenileGirthEnhancementPageAr() {
             </p>
           </Reveal>
           <VariabilityFactors locale="ar" />
+        </Container>
+      </section>
+
+      {/* التعافي على مراحل — بدون أرقام أيام/أسابيع مخترعة: التوقيت يُناقش بشكل فردي */}
+      <section className="border-t border-border bg-surface py-section-y">
+        <Container>
+          <SectionHeading eyebrow="ما يمكن توقعه" heading="التعافي، مرحلة بمرحلة" locale="ar" />
+          <RecoveryTimeline
+            locale="ar"
+            phases={[
+              { Icon: Activity, label: "الفترة الفورية", description: "من المتوقع حدوث بعض التورم أو الصلابة أو الكدمات في المنطقة المعالجة خلال الأيام الأولى — وهذا جزء طبيعي من العملية، لا علامة على وجود مشكلة." },
+              { Icon: Bandage, label: "التعافي المبكر", description: "يُستأنف النشاط تدريجيًا وفقًا للإرشادات الخاصة بعلاجك، بينما يستقر التورم الأولي." },
+              { Icon: HeartPulse, label: "العودة إلى النشاط الجنسي", description: "التوقيت فردي ويُناقش كجزء من خطة الرعاية اللاحقة، بمجرد تقدم استقرار التورم الأولي بشكل مناسب." },
+              { Icon: CalendarCheck, label: "المتابعة", description: "مراجعة مجدولة بمجرد استقرار الأنسجة، لتقييم النتيجة ومعالجة أي مخاوف." },
+            ]}
+          />
         </Container>
       </section>
 

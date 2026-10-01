@@ -150,7 +150,7 @@ const footerServiceLinksAr: NavItem[] = [
   { label: "التجميل الذكوري", href: "/male-aesthetics" },
   { label: "ضعف الانتصاب", href: "/erectile-dysfunction" },
   { label: "سرعة القذف", href: "/sexual-medicine/premature-ejaculation" },
-  { label: "زراعة دعامة القضيب", href: "/penile-implant" },
+  { label: "دعامة القضيب", href: "/penile-implant" },
   { label: "التستوستيرون والصحة الهرمونية", href: "/mens-health/testosterone" },
   { label: "مرض بيروني", href: "/peyronies-disease" },
   { label: "خصوبة الرجل", href: "/male-fertility" },

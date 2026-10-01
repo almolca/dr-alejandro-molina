@@ -20,7 +20,7 @@ export const editorialMedia: Record<
 > = {
   mensHealthHero: { src: "/images/mens-health.png", alt: "", approved: true },
   aestheticsHero: { src: "/images/male-aesthetics.png", alt: "", approved: true },
-  girthFlagship: { src: "/images/penile-girth-enhancement.png", alt: "", approved: true },
+  girthFlagship: { src: "/images/penile-girth-enhancement.png", alt: "Abstract illustration of a stepped increase in circumference, representing the concept of penile girth enhancement", approved: true },
   testosteroneHero: { src: "/images/testosterone.jpeg", alt: "", approved: true },
   edHero: { src: "/images/erectile-dysfunction.jpeg", alt: "", approved: true },
   peHero: { src: "/images/premature-ejaculation.jpeg", alt: "", approved: true },
