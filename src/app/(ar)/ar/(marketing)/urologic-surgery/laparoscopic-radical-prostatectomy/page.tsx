@@ -548,7 +548,7 @@ export default function LaparoscopicRadicalProstatectomyPageAr() {
         items={[
           { label: "جراحة المسالك البولية", href: "/ar/urologic-surgery" },
           { label: "ضعف الانتصاب", href: "/ar/erectile-dysfunction" },
-          { label: "زراعة دعامة القضيب", href: "/ar/penile-implant" },
+          { label: "دعامة القضيب", href: "/ar/penile-implant" },
           { label: "الصحة الرجولية", href: "/ar/mens-health" },
         ]}
       />
