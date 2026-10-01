@@ -9,12 +9,14 @@ import { AR_IDENTITY } from "@/lib/i18n/ar-identity";
 import { AR_REPUTATION } from "@/lib/i18n/ar-reputation";
 import { doctor } from "@/config/doctor";
 import { trainingPrograms } from "@/config/reputation";
-import { Scan, Target, Info, History, AlertCircle, Activity } from "lucide-react";
+import { Scan, Target, Info, History, AlertCircle, Activity, Ruler, Layers, ListChecks, Ban, RefreshCw, Bandage, CalendarCheck, HeartPulse, GitCompare } from "lucide-react";
+import { GirthIcon, ReversibilityIcon } from "@/components/illustrations";
 import { PhysicianAuthority } from "@/components/editorial/PhysicianAuthority";
 import { CandidateCheck } from "@/components/editorial/CandidateCheck";
+import { ConnectedPathway } from "@/components/editorial/ConnectedPathway";
 import { RecoveryTimeline } from "@/components/editorial/RecoveryTimeline";
 import { EditorialField } from "@/components/editorial/LayeredEditorialPanel";
-import { ClinicalPathway, ProcedureFramework, VariabilityFactors, CareStages } from "@/components/editorial/ProcedureFramework";
+import { ProcedureFramework, VariabilityFactors, CareStages } from "@/components/editorial/ProcedureFramework";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -99,6 +101,15 @@ const approachPillars = [
     linkLabel: "استكشف تصحيح حشو القضيب",
     accent: true,
   },
+];
+
+const experienceMap = [
+  { title: "التنوع التشريحي", description: "لا يتشابه مريضان في التشريح الأساسي — تُبنى الخطط على هذا التنوع، لا على قالب موحد.", Icon: Scan },
+  { title: "حالة الختان", description: "يُخطَّط للتشريح المختون وغير المختون بشكل مختلف، كأمر معتاد لا استثناء.", Icon: Info },
+  { title: "الفيلر السابق", description: "العلاج السابق في مكان آخر نقطة بداية متكررة للتقييم، لا حالة نادرة.", Icon: History },
+  { title: "عدم التماثل", description: "التعرف على عدم التماثل الطبيعي أو الناتج عن العلاج والتخطيط حوله، لا معاملته كاستثناء نادر.", Icon: GitCompare },
+  { title: "التليف", description: "تغيّر الأنسجة الندبية من أي سبب ما يمكن أن تحققه الخطة بأمان، وتُقيَّم وفقًا لذلك.", Icon: AlertCircle },
+  { title: "التصحيح / المراجعة", description: "تقييم وإدارة نتيجة سابقة — هنا أو في مكان آخر — يعتمد على التعرف التراكمي على الأنماط نفسه.", Icon: RefreshCw },
 ];
 
 const suitabilityFactors = [
@@ -290,6 +301,22 @@ export default function PenileGirthEnhancementPageAr() {
         </Container>
       </section>
 
+      {/* خريطة الخبرة — تترجم رقم 1,000+ إلى أبعاد نمطية سريرية ملموسة، بدلاً من تركه رقمًا مجردًا */}
+      <section className="border-t border-border bg-surface py-section-y">
+        <Container>
+          <SectionHeading eyebrow={`${doctor.girthProcedureCount} إجراء`} heading="ما تعنيه هذه الخبرة عمليًا" description="الحجم وحده لا يثبت شيئًا. ما يبنيه هو التعرف على الأنماط عبر المتغيرات التي تحدد الخطة فعليًا — تُستعرض هنا بشكل فردي، لا كحالة متوسطة واحدة." locale="ar" />
+          <StaggerGroup className="mt-12 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {experienceMap.map(({ title, description, Icon }) => (
+              <StaggerItem key={title} className="rounded-sm border border-border bg-background p-6">
+                <Icon aria-hidden strokeWidth={1.25} className="h-6 w-6 text-accent-strong" />
+                <h3 className="mt-3 font-display text-base text-foreground">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </Container>
+      </section>
+
       {/* ما الذي تغيّره هذه العملية وما لا تغيّره — ملخص سريع، والتفاصيل الكاملة في الأقسام أدناه */}
       <section className="border-t border-border bg-surface py-section-y">
         <Container>
@@ -302,17 +329,17 @@ export default function PenileGirthEnhancementPageAr() {
           <CandidateCheck
             goodHeading="ما الذي يمكن تحقيقه"
             goodIf={[
-              "زيادة السماكة (المحيط) على طول الجسم",
-              "تحسين الملامس والتناسب حيثما كان ذلك مناسبًا سريريًا",
-              "التخطيط والتنفيذ على مراحل بشكل فردي",
-              "إمكانية إذابة الحشو بإنزيم الهيالورونيداز إذا استدعت الحالة تصحيحًا",
+              { Icon: GirthIcon, text: "زيادة السماكة (المحيط) على طول الجسم" },
+              { Icon: Layers, text: "تحسين الملامس والتناسب حيثما كان ذلك مناسبًا سريريًا" },
+              { Icon: ListChecks, text: "التخطيط والتنفيذ على مراحل بشكل فردي" },
+              { Icon: ReversibilityIcon, text: "إمكانية إذابة الحشو بإنزيم الهيالورونيداز إذا استدعت الحالة تصحيحًا" },
             ]}
             notHeading="ما لا تحققه"
             notIf={[
-              "زيادة طول القضيب",
-              "علاج ضعف الانتصاب",
-              "ضمان زيادة محددة بالسنتيمتر",
-              "مناسبة لكل مريض — تُقيَّم الملاءمة بشكل فردي",
+              { Icon: Ban, text: "زيادة طول القضيب" },
+              { Icon: Ban, text: "علاج ضعف الانتصاب" },
+              { Icon: Ban, text: "ضمان زيادة محددة بالسنتيمتر" },
+              { Icon: Ban, text: "مناسبة لكل مريض — تُقيَّم الملاءمة بشكل فردي" },
             ]}
           />
         </Container>
@@ -337,15 +364,15 @@ export default function PenileGirthEnhancementPageAr() {
       <section className="border-t border-border py-section-y">
         <Container>
           <SectionHeading eyebrow="مسار علاجك" heading="من التقييم إلى التحسين" locale="ar" />
-          <ClinicalPathway
+          <ConnectedPathway
             locale="ar"
-            steps={[
-              ["التقييم", "مناقشة أهدافك وتاريخك المرضي وتوقعاتك."],
-              ["التخطيط التشريحي", "تقييم التشريح الفردي وأي علاج سابق."],
-              ["العلاج", "يُنفَّذ فقط بعد التقييم والاتفاق على خطة العلاج."],
-              ["التعافي المبكر", "اتباع إرشادات الرعاية اللاحقة الخاصة بإجرائك."],
-              ["المتابعة", "مراجعة تقدمك وأي مخاوف مع طبيبك المعالج."],
-              ["التحسين عند الاقتضاء", "عند وجود عدم تماثل أو عدم رضا، تُقيَّم المراجعة بشكل فردي — انظر خبرة التصحيح أعلاه."],
+            nodes={[
+              { Icon: ListChecks, title: "التقييم", description: "مناقشة الأهداف والتاريخ المرضي والتوقعات." },
+              { Icon: Ruler, title: "التخطيط التشريحي", description: "تقييم التشريح الفردي وأي علاج سابق." },
+              { Icon: GirthIcon, title: "العلاج", description: "يُنفَّذ بعد الاتفاق على خطة العلاج." },
+              { Icon: Bandage, title: "التعافي المبكر", description: "إرشادات الرعاية اللاحقة الخاصة بإجرائك." },
+              { Icon: CalendarCheck, title: "المتابعة", description: "مراجعة التقدم وأي مخاوف." },
+              { Icon: RefreshCw, title: "التحسين عند الاقتضاء", description: "عدم التماثل أو عدم الرضا يُقيَّم بشكل فردي." },
             ]}
           />
         </Container>
@@ -479,10 +506,10 @@ export default function PenileGirthEnhancementPageAr() {
           <RecoveryTimeline
             locale="ar"
             phases={[
-              { label: "الفترة الفورية", description: "من المتوقع حدوث بعض التورم أو الصلابة أو الكدمات في المنطقة المعالجة خلال الأيام الأولى — وهذا جزء طبيعي من العملية، لا علامة على وجود مشكلة." },
-              { label: "التعافي المبكر", description: "يُستأنف النشاط تدريجيًا وفقًا للإرشادات الخاصة بعلاجك، بينما يستقر التورم الأولي." },
-              { label: "العودة إلى النشاط الجنسي", description: "التوقيت فردي ويُناقش كجزء من خطة الرعاية اللاحقة، بمجرد تقدم استقرار التورم الأولي بشكل مناسب." },
-              { label: "المتابعة", description: "مراجعة مجدولة بمجرد استقرار الأنسجة، لتقييم النتيجة ومعالجة أي مخاوف." },
+              { Icon: Activity, label: "الفترة الفورية", description: "من المتوقع حدوث بعض التورم أو الصلابة أو الكدمات في المنطقة المعالجة خلال الأيام الأولى — وهذا جزء طبيعي من العملية، لا علامة على وجود مشكلة." },
+              { Icon: Bandage, label: "التعافي المبكر", description: "يُستأنف النشاط تدريجيًا وفقًا للإرشادات الخاصة بعلاجك، بينما يستقر التورم الأولي." },
+              { Icon: HeartPulse, label: "العودة إلى النشاط الجنسي", description: "التوقيت فردي ويُناقش كجزء من خطة الرعاية اللاحقة، بمجرد تقدم استقرار التورم الأولي بشكل مناسب." },
+              { Icon: CalendarCheck, label: "المتابعة", description: "مراجعة مجدولة بمجرد استقرار الأنسجة، لتقييم النتيجة ومعالجة أي مخاوف." },
             ]}
           />
         </Container>

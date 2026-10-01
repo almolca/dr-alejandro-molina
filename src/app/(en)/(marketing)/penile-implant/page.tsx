@@ -9,11 +9,16 @@ import { PhotoFrame } from "@/components/editorial/PhotoFrame";
 import { HeroAtmosphere } from "@/components/editorial/HeroAtmosphere";
 import { AuthorityMetric } from "@/components/editorial/PhysicianAuthority";
 import { CandidateCheck } from "@/components/editorial/CandidateCheck";
-import { ClinicalPathway } from "@/components/editorial/ProcedureFramework";
+import { ConnectedPathway } from "@/components/editorial/ConnectedPathway";
 import { RecoveryTimeline } from "@/components/editorial/RecoveryTimeline";
 import editorialStyles from "@/components/editorial/Editorial.module.css";
 import { doctor } from "@/config/doctor";
-import { ImplantDeviceDiagram } from "@/components/illustrations/ImplantDeviceDiagram";
+import {
+  Activity, Pill, Syringe, AlertCircle, Scissors, Bandage, CalendarCheck,
+  Fingerprint, Ruler, Droplet, EyeOff, Layers, ListChecks, Waves, Hand,
+  HeartPulse, History, Scan, Target,
+} from "lucide-react";
+import { ImplantDeviceDiagram, PumpIcon, RigidityIcon, CurvatureAssessmentDiagram } from "@/components/illustrations";
 import { PullQuote } from "@/components/ui/PullQuote";
 import { RelatedTreatments } from "@/components/ui/RelatedTreatments";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -41,12 +46,18 @@ const breadcrumbItems = [
 ];
 
 const inflatableFeatures = [
-  { title: "Components", description: "Two or three pieces: cylinders placed within the erectile chambers, a fluid reservoir, and a pump — most often placed in the scrotum." },
-  { title: "Inflation", description: "Pressing the pump moves fluid from the reservoir into the cylinders, producing rigidity when desired." },
-  { title: "Deflation", description: "A release mechanism returns the fluid to the reservoir, allowing a return to a flaccid state." },
-  { title: "Flaccid-state appearance", description: "When deflated, the flaccid appearance is close to natural for most men, and the device is not generally noticeable in clothing." },
-  { title: "Patient operation", description: "The patient operates the pump himself, achieving and releasing rigidity when he chooses." },
-  { title: "Why it's the option most commonly selected", description: "Its inflate/deflate mechanism most closely mirrors the natural cycle of rigidity and flaccidity." },
+  { title: "Components", description: "Two or three pieces: cylinders placed within the erectile chambers, a fluid reservoir, and a pump — most often placed in the scrotum.", Icon: Layers },
+  { title: "Inflation", description: "Pressing the pump moves fluid from the reservoir into the cylinders, producing rigidity when desired.", Icon: PumpIcon },
+  { title: "Deflation", description: "A release mechanism returns the fluid to the reservoir, allowing a return to a flaccid state.", Icon: Waves },
+  { title: "Flaccid-state appearance", description: "When deflated, the flaccid appearance is close to natural for most men, and the device is not generally noticeable in clothing.", Icon: EyeOff },
+  { title: "Patient operation", description: "The patient operates the pump himself, achieving and releasing rigidity when he chooses.", Icon: Hand },
+  { title: "Why it's the option most commonly selected", description: "Its inflate/deflate mechanism most closely mirrors the natural cycle of rigidity and flaccidity.", Icon: HeartPulse },
+];
+
+const howItWorksStages = [
+  { Icon: Waves, title: "Resting / flaccid", description: "The default state — no fluid in the cylinders." },
+  { Icon: PumpIcon, title: "Pump activation", description: "The patient presses the pump, moving fluid from the reservoir." },
+  { Icon: RigidityIcon, title: "Rigidity for intercourse", description: "Fluid fills the cylinders, producing rigidity on demand." },
 ];
 
 const pathway = [
@@ -54,16 +65,19 @@ const pathway = [
     phase: "Assessment",
     description:
       "Confirming that erectile dysfunction is severe or refractory, reviewing previous treatments tried, and evaluating overall health and expectations before surgery is considered.",
+    Icon: ListChecks,
   },
   {
     phase: "Surgery",
     description:
       "Performed under appropriate anaesthesia. The chosen device — inflatable or malleable — is placed within the erectile chambers of the penis.",
+    Icon: Scissors,
   },
   {
     phase: "Recovery",
     description:
       "A structured recovery period follows, with activity gradually resumed and device use introduced under guidance, timelines discussed individually at consultation.",
+    Icon: Bandage,
   },
 ];
 
@@ -92,22 +106,27 @@ const pathwayPrinciples = [
   {
     title: "Cause and severity",
     description: "Confirming that erectile dysfunction is genuinely severe or refractory — not assumed from symptoms alone.",
+    Icon: AlertCircle,
   },
   {
     title: "Previous treatments",
     description: "Reviewing what has already been tried — oral medication, vacuum devices, injectable therapy — and why it did or didn't work.",
+    Icon: History,
   },
   {
     title: "Wider clinical context",
     description: "Vascular, hormonal and anatomical factors that may be contributing are assessed, not overlooked in favour of a quick surgical fix.",
+    Icon: Scan,
   },
   {
     title: "Realistic expectations",
     description: "What an implant can and cannot restore — for rigidity, sensation, orgasm and perceived length — discussed before any surgical decision, not after.",
+    Icon: Target,
   },
   {
     title: "Device selection",
     description: "Inflatable or malleable, chosen according to anatomy, health and personal preference, not offered as a single default recommendation.",
+    Icon: PumpIcon,
   },
 ];
 
@@ -265,13 +284,13 @@ export default function PenileImplantPage() {
             heading="When Is a Penile Implant Considered?"
             description="This reflects how erectile dysfunction is generally approached, not a rigid sequence every patient must follow — some steps may be skipped or reordered depending on individual circumstances."
           />
-          <ClinicalPathway
-            steps={[
-              ["Erectile dysfunction", "Confirmed and assessed for underlying cause."],
-              ["Oral medication", "PDE5 inhibitors are typically the first treatment tried."],
-              ["Other non-surgical options", "Vacuum devices, shockwave therapy or intracavernosal injections, where appropriate."],
-              ["Persistent / refractory ED", "Considered when the above have not given reliable results."],
-              ["Implant assessment", "Candidacy, device type and expectations discussed individually."],
+          <ConnectedPathway
+            nodes={[
+              { Icon: Activity, title: "Erectile dysfunction", description: "Confirmed and assessed for underlying cause." },
+              { Icon: Pill, title: "Oral medication", description: "PDE5 inhibitors are typically tried first." },
+              { Icon: Syringe, title: "Other non-surgical options", description: "Vacuum devices, shockwave therapy or injections." },
+              { Icon: AlertCircle, title: "Persistent / refractory ED", description: "Considered when the above have not given reliable results." },
+              { Icon: PumpIcon, title: "Implant assessment", description: "Candidacy and device type discussed individually." },
             ]}
           />
         </Container>
@@ -288,7 +307,8 @@ export default function PenileImplantPage() {
           <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
             {pathwayPrinciples.map((item) => (
               <StaggerItem key={item.title} className="card-hover border-t border-border pt-6">
-                <h3 className="font-display text-lg text-foreground">{item.title}</h3>
+                <item.Icon aria-hidden strokeWidth={1.25} className="h-6 w-6 text-accent-strong" />
+                <h3 className="mt-3 font-display text-lg text-foreground">{item.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
               </StaggerItem>
             ))}
@@ -335,6 +355,11 @@ export default function PenileImplantPage() {
               className="mt-10 h-24 w-full max-w-xl text-muted-foreground"
               title="Schematic of a three-piece inflatable prosthesis: cylinder, pump and reservoir"
             />
+            <ul className="mt-4 flex max-w-xl flex-wrap gap-x-8 gap-y-2 text-xs font-medium uppercase tracking-widest text-muted-foreground">
+              <li>Cylinders</li>
+              <li>Pump</li>
+              <li>Reservoir</li>
+            </ul>
           </Reveal>
           <MaskedReveal className="mt-10 max-w-xl">
             <PhotoFrame slot="implantDevice" landscape />
@@ -342,11 +367,18 @@ export default function PenileImplantPage() {
           <StaggerGroup className="mt-14 grid grid-cols-1 gap-x-10 gap-y-10 border-t border-border pt-14 sm:grid-cols-2 lg:grid-cols-3">
             {inflatableFeatures.map((feature) => (
               <StaggerItem key={feature.title} className="border-t border-border pt-6">
-                <h3 className="font-display text-lg text-foreground">{feature.title}</h3>
+                <feature.Icon aria-hidden strokeWidth={1.25} className="h-6 w-6 text-accent-strong" />
+                <h3 className="mt-3 font-display text-lg text-foreground">{feature.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{feature.description}</p>
               </StaggerItem>
             ))}
           </StaggerGroup>
+
+          {/* How it works — 3-stage schematic, kept intentionally simple rather than graphic */}
+          <div className="mt-16 border-t border-border pt-10">
+            <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">How it works</p>
+            <ConnectedPathway nodes={howItWorksStages} />
+          </div>
 
           {/* Malleable — compact, secondary card. Not inferior, not a competing flagship comparison. */}
           <div className="mt-16 max-w-xl border-t border-border pt-10">
@@ -374,9 +406,12 @@ export default function PenileImplantPage() {
           <StaggerGroup className="mt-14 grid grid-cols-1 gap-10 border-t border-border pt-10 md:grid-cols-3">
             {pathway.map((step, index) => (
               <StaggerItem key={step.phase} className="card-hover border-t border-border pt-6 md:border-t-0 md:pt-0 md:[&:not(:first-child)]:border-l md:[&:not(:first-child)]:border-border md:[&:not(:first-child)]:pl-8">
-                <span className="font-display text-sm text-accent-strong">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
+                <div className="flex items-center gap-3">
+                  <step.Icon aria-hidden strokeWidth={1.25} className="h-6 w-6 text-accent-strong" />
+                  <span className="font-display text-sm text-accent-strong">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
                 <h3 className="mt-3 font-display text-xl text-foreground">{step.phase}</h3>
                 <p className="mt-3 text-sm text-muted-foreground">{step.description}</p>
               </StaggerItem>
@@ -397,15 +432,15 @@ export default function PenileImplantPage() {
             <CandidateCheck
               goodHeading="What it changes"
               goodIf={[
-                "Provides mechanical rigidity suitable for intercourse",
-                "Can restore dependable rigidity when less invasive treatments have failed",
+                { Icon: RigidityIcon, text: "Provides mechanical rigidity suitable for intercourse" },
+                { Icon: EyeOff, text: "Not generally noticeable in clothing once deflated" },
               ]}
               notHeading="What it doesn't change"
               notIf={[
-                "Does not restore spontaneous, natural erectile physiology",
-                "Does not inherently increase penile length",
-                "Sensation is generally preserved if it was present beforehand — the device does not automatically change it",
-                "Orgasm depends on the same nerve and hormonal pathways as before surgery; ejaculation depends on your underlying prostate/reproductive status",
+                { Icon: Fingerprint, text: "Sensation — generally preserved if present beforehand, not automatically changed by the device" },
+                { Icon: HeartPulse, text: "Orgasm — depends on the same nerve and hormonal pathways as before surgery" },
+                { Icon: Ruler, text: "Penile length — does not inherently increase" },
+                { Icon: Droplet, text: "Ejaculation — depends on your underlying prostate/reproductive status" },
               ]}
             />
           </div>
@@ -448,7 +483,15 @@ export default function PenileImplantPage() {
       <section className="border-t border-border bg-surface py-section-y">
         <Container className="max-w-3xl">
           <SectionHeading eyebrow="A specific clinical pathway" heading="Penile Implant After Radical Prostatectomy" />
-          <div className="mt-8 space-y-6 text-sm leading-relaxed text-muted-foreground">
+          <ConnectedPathway
+            nodes={[
+              { Icon: Scissors, title: "Radical prostatectomy", description: "Nerve-sparing performed where oncologically appropriate." },
+              { Icon: Bandage, title: "Recovery / rehabilitation", description: "PDE5 inhibitors, vacuum therapy and/or injections." },
+              { Icon: AlertCircle, title: "Persistent ED", description: "When function hasn't recovered sufficiently over time." },
+              { Icon: PumpIcon, title: "Implant assessment", description: "Discussed in selected patients, individually." },
+            ]}
+          />
+          <div className="mt-10 space-y-6 text-sm leading-relaxed text-muted-foreground">
             <p>
               Erectile dysfunction can persist after radical prostatectomy,
               even when surgery goes well and, where oncologically
@@ -488,7 +531,23 @@ export default function PenileImplantPage() {
       <section className="py-section-y">
         <Container className="max-w-3xl">
           <SectionHeading eyebrow="A specific clinical pathway" heading="Peyronie's Disease and Penile Implant" />
-          <div className="mt-8 space-y-6 text-sm leading-relaxed text-muted-foreground">
+          <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-5">
+            <div className="flex flex-col items-center gap-2 text-center">
+              <CurvatureAssessmentDiagram className="h-16 w-16 text-accent-strong" />
+              <p className="text-sm font-medium text-foreground">Peyronie&rsquo;s deformity</p>
+            </div>
+            <span aria-hidden className="font-display text-2xl text-muted-foreground">+</span>
+            <div className="flex flex-col items-center gap-2 text-center">
+              <Activity aria-hidden strokeWidth={1.25} className="h-12 w-12 text-accent-strong" />
+              <p className="text-sm font-medium text-foreground">Severe ED</p>
+            </div>
+            <span aria-hidden className="font-display text-2xl text-muted-foreground rtl:rotate-180">→</span>
+            <div className="flex flex-col items-center gap-2 text-center">
+              <PumpIcon className="h-12 w-12 text-accent-strong" />
+              <p className="text-sm font-medium text-foreground">Implant assessment<br />in selected cases</p>
+            </div>
+          </div>
+          <div className="mt-10 space-y-6 text-sm leading-relaxed text-muted-foreground">
             <p>
               Severe Peyronie&rsquo;s disease — where curvature, deformity or
               shortening significantly affects sexual function — can
@@ -512,10 +571,10 @@ export default function PenileImplantPage() {
           <SectionHeading eyebrow="What to expect" heading="Recovery, Phase by Phase" />
           <RecoveryTimeline
             phases={[
-              { label: "Initial healing", description: "Restricted activity while early healing takes place after surgery." },
-              { label: "Gradual return to activity", description: "Normal daily activity is resumed gradually, following guidance specific to your surgery." },
-              { label: "Device-use introduction", description: "Once healing is sufficient, use of the device is introduced under guidance." },
-              { label: "Follow-up", description: "Progress and any concerns are reviewed as part of your individual recovery plan." },
+              { Icon: Bandage, label: "Initial healing", description: "Restricted activity while early healing takes place after surgery." },
+              { Icon: Activity, label: "Gradual return to activity", description: "Normal daily activity is resumed gradually, following guidance specific to your surgery." },
+              { Icon: PumpIcon, label: "Device-use introduction", description: "Once healing is sufficient, use of the device is introduced under guidance." },
+              { Icon: CalendarCheck, label: "Follow-up", description: "Progress and any concerns are reviewed as part of your individual recovery plan." },
             ]}
           />
         </Container>

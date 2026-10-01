@@ -4,14 +4,16 @@ import visual from "@/components/editorial/VisualSystem.module.css";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Scan, Target, Info, History, AlertCircle, Activity } from "lucide-react";
+import { Scan, Target, Info, History, AlertCircle, Activity, Ruler, Layers, ListChecks, Ban, RefreshCw, Bandage, CalendarCheck, HeartPulse, GitCompare } from "lucide-react";
+import { GirthIcon, ReversibilityIcon } from "@/components/illustrations";
 import { doctor } from "@/config/doctor";
 import { trainingPrograms } from "@/config/reputation";
 import { PhysicianAuthority } from "@/components/editorial/PhysicianAuthority";
 import { CandidateCheck } from "@/components/editorial/CandidateCheck";
+import { ConnectedPathway } from "@/components/editorial/ConnectedPathway";
 import { RecoveryTimeline } from "@/components/editorial/RecoveryTimeline";
 import { EditorialField } from "@/components/editorial/LayeredEditorialPanel";
-import { ClinicalPathway, ProcedureFramework, VariabilityFactors, CareStages } from "@/components/editorial/ProcedureFramework";
+import { ProcedureFramework, VariabilityFactors, CareStages } from "@/components/editorial/ProcedureFramework";
 import { BookingCta } from "@/components/ui/BookingCta";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { Container } from "@/components/ui/Container";
@@ -96,6 +98,15 @@ const approachPillars = [
     linkLabel: "Explore Penile Filler Correction",
     accent: true,
   },
+];
+
+const experienceMap = [
+  { title: "Anatomical variation", description: "No two patients present the same baseline anatomy — plans are built from that variation, not a template.", Icon: Scan },
+  { title: "Circumcision status", description: "Circumcised and uncircumcised anatomy are planned for differently, as a matter of course.", Icon: Info },
+  { title: "Previous filler", description: "Prior treatment elsewhere is a recurring, not unusual, starting point for assessment.", Icon: History },
+  { title: "Asymmetry", description: "Recognising and planning around natural or treatment-related asymmetry, rather than treating it as a rare exception.", Icon: GitCompare },
+  { title: "Fibrosis", description: "Scar tissue from any cause changes what a plan can safely achieve, and is assessed accordingly.", Icon: AlertCircle },
+  { title: "Correction / revision", description: "Assessing and managing a prior result — here or elsewhere — draws on the same accumulated pattern recognition.", Icon: RefreshCw },
 ];
 
 const suitabilityFactors = [
@@ -287,6 +298,22 @@ export default function PenileGirthEnhancementPage() {
         </Container>
       </section>
 
+      {/* Experience map — translates the 1,000+ headline figure into concrete clinical-pattern dimensions, rather than leaving it as a bare number */}
+      <section className="border-t border-border bg-surface py-section-y">
+        <Container>
+          <SectionHeading eyebrow={`${doctor.girthProcedureCount} procedures`} heading="What This Experience Means in Practice" description="Volume on its own proves nothing. What it builds is pattern recognition across the variables that actually determine a plan — reviewed here individually, not as a single average case." />
+          <StaggerGroup className="mt-12 grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {experienceMap.map(({ title, description, Icon }) => (
+              <StaggerItem key={title} className="rounded-sm border border-border bg-background p-6">
+                <Icon aria-hidden strokeWidth={1.25} className="h-6 w-6 text-accent-strong" />
+                <h3 className="mt-3 font-display text-base text-foreground">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
+              </StaggerItem>
+            ))}
+          </StaggerGroup>
+        </Container>
+      </section>
+
       {/* What this treatment can — and cannot — do: a scannable summary of facts the detailed sections below (Options, FAQ) already state in prose */}
       <section className="border-t border-border bg-surface py-section-y">
         <Container>
@@ -298,17 +325,17 @@ export default function PenileGirthEnhancementPage() {
           <CandidateCheck
             goodHeading="What it can do"
             goodIf={[
-              "Increase circumference (girth) along the shaft",
-              "Improve contour and proportion where clinically appropriate",
-              "Be planned and staged individually, treatment by treatment",
-              "Be dissolved with hyaluronidase if correction is clinically required",
+              { Icon: GirthIcon, text: "Increase circumference (girth) along the shaft" },
+              { Icon: Layers, text: "Improve contour and proportion where clinically appropriate" },
+              { Icon: ListChecks, text: "Be planned and staged individually, treatment by treatment" },
+              { Icon: ReversibilityIcon, text: "Be dissolved with hyaluronidase if correction is clinically required" },
             ]}
             notHeading="What it does not do"
             notIf={[
-              "Increase penile length",
-              "Treat erectile dysfunction",
-              "Guarantee a specific centimetre increase",
-              "Suit every patient — suitability is assessed individually",
+              { Icon: Ban, text: "Increase penile length" },
+              { Icon: Ban, text: "Treat erectile dysfunction" },
+              { Icon: Ban, text: "Guarantee a specific centimetre increase" },
+              { Icon: Ban, text: "Suit every patient — suitability is assessed individually" },
             ]}
           />
         </Container>
@@ -333,14 +360,14 @@ export default function PenileGirthEnhancementPage() {
       <section className="border-t border-border py-section-y">
         <Container>
           <SectionHeading eyebrow="Your treatment journey" heading="From Assessment to Refinement" />
-          <ClinicalPathway
-            steps={[
-              ["Assessment", "Discuss your goals, medical history and expectations."],
-              ["Anatomical planning", "Assess individual anatomy and any previous treatment."],
-              ["Treatment", "Proceed only after assessment and an agreed treatment plan."],
-              ["Early recovery", "Follow the aftercare guidance specific to your procedure."],
-              ["Follow-up", "Review your progress and any concerns with your clinician."],
-              ["Refinement when appropriate", "Where a result is asymmetric or a patient is unsatisfied, correction is assessed individually — see Correction Expertise above."],
+          <ConnectedPathway
+            nodes={[
+              { Icon: ListChecks, title: "Assessment", description: "Goals, history and expectations discussed." },
+              { Icon: Ruler, title: "Anatomical planning", description: "Individual anatomy and any prior treatment assessed." },
+              { Icon: GirthIcon, title: "Treatment", description: "Performed after an agreed treatment plan." },
+              { Icon: Bandage, title: "Early recovery", description: "Aftercare guidance specific to your procedure." },
+              { Icon: CalendarCheck, title: "Follow-up", description: "Progress and any concerns reviewed." },
+              { Icon: RefreshCw, title: "Refinement when appropriate", description: "Asymmetry or dissatisfaction assessed individually." },
             ]}
           />
         </Container>
@@ -475,10 +502,10 @@ export default function PenileGirthEnhancementPage() {
           <SectionHeading eyebrow="What to expect" heading="Recovery, Phase by Phase" />
           <RecoveryTimeline
             phases={[
-              { label: "Immediate period", description: "Some swelling, firmness or bruising in the treated area is expected in the first few days — a normal part of the process, not a sign of a problem." },
-              { label: "Early recovery", description: "Activity is gradually resumed following the guidance specific to your treatment, while initial swelling settles." },
-              { label: "Return to sexual activity", description: "Timing is individual and discussed as part of your aftercare plan, once initial swelling and settling have progressed appropriately." },
-              { label: "Follow-up", description: "A scheduled review once tissue has settled, to assess the result and address any concerns." },
+              { Icon: Activity, label: "Immediate period", description: "Some swelling, firmness or bruising in the treated area is expected in the first few days — a normal part of the process, not a sign of a problem." },
+              { Icon: Bandage, label: "Early recovery", description: "Activity is gradually resumed following the guidance specific to your treatment, while initial swelling settles." },
+              { Icon: HeartPulse, label: "Return to sexual activity", description: "Timing is individual and discussed as part of your aftercare plan, once initial swelling and settling have progressed appropriately." },
+              { Icon: CalendarCheck, label: "Follow-up", description: "A scheduled review once tissue has settled, to assess the result and address any concerns." },
             ]}
           />
         </Container>
