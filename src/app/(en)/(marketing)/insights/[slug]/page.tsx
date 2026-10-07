@@ -11,6 +11,7 @@ import { ArticleAuthorBlock } from "@/components/sections/ArticleAuthorBlock";
 import { ArticleVideoBlock } from "@/components/sections/ArticleVideoBlock";
 import { RelatedInsights } from "@/components/sections/RelatedInsights";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ParagraphWithLinks } from "@/components/ui/ParagraphWithLinks";
 import { getInsightArticle, getRelatedArticles, insightArticles } from "@/content/insights/articles";
 import { insightArticlesAr } from "@/content/insights/articles-ar";
 import { articleSchema, breadcrumbSchema, videoObjectSchema } from "@/lib/seo/json-ld";
@@ -76,6 +77,7 @@ export default async function InsightArticlePage({ params }: Props) {
             description: article.excerpt,
             path,
             datePublished: article.datePublished,
+            lastReviewedDate: article.lastReviewedDate,
           }),
           ...(videoSchema ? [videoSchema] : []),
         ]}
@@ -102,11 +104,6 @@ export default async function InsightArticlePage({ params }: Props) {
                   day: "numeric",
                 })}
               </span>
-              {article.clinicalReviewRequired && (
-                <span className="rounded-full border border-border px-3 py-1">
-                  Clinical review pending
-                </span>
-              )}
             </div>
           </Reveal>
         </Container>
@@ -114,9 +111,13 @@ export default async function InsightArticlePage({ params }: Props) {
 
       {/* Physician authorship — visible counterpart to the schema-only
           `author` field on articleSchema() (E-E-A-T, Phase B). Applied
-          uniformly to every article, not just the new cluster. */}
+          uniformly to every article, not just the new cluster. Also
+          carries the "Medically reviewed by" line (penile implant
+          authority/E-E-A-T phase) — only when `lastReviewedDate` is a
+          real, owner-confirmed date; otherwise nothing review-related
+          renders at all (no "pending" badge, no invented date). */}
       <Container className="max-w-2xl">
-        <ArticleAuthorBlock />
+        <ArticleAuthorBlock lastReviewedDate={article.lastReviewedDate} />
       </Container>
 
       {article.keyTakeaway && (
@@ -141,7 +142,7 @@ export default async function InsightArticlePage({ params }: Props) {
                 <div className="mt-4 space-y-4">
                   {section.body.map((paragraph, index) => (
                     <p key={index} className="text-sm leading-relaxed text-muted-foreground">
-                      {paragraph}
+                      <ParagraphWithLinks text={paragraph} />
                     </p>
                   ))}
                 </div>

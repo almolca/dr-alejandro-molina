@@ -184,6 +184,15 @@ export function articleSchema(
     path: string;
     datePublished: string;
     dateModified?: string;
+    /**
+     * Real, owner-confirmed medical review date — mirrors the dormant
+     * `reviewedBy`/`lastReviewed` shape already scaffolded on
+     * `medicalWebPageSchema()`. Only set when `InsightArticle.lastReviewedDate`
+     * is present; never invented. Absent → both fields are pruned, exactly
+     * matching the public "no review badge" state (penile implant
+     * authority/E-E-A-T phase).
+     */
+    lastReviewedDate?: string;
   },
   options?: { inLanguage?: string },
 ) {
@@ -197,6 +206,8 @@ export function articleSchema(
     datePublished: input.datePublished,
     dateModified: input.dateModified || input.datePublished,
     author: { "@type": "Person", name: doctor.displayName },
+    reviewedBy: input.lastReviewedDate ? { "@type": "Person", name: doctor.displayName } : undefined,
+    lastReviewed: input.lastReviewedDate,
   });
 }
 

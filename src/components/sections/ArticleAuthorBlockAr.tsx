@@ -1,5 +1,6 @@
 import { doctor } from "@/config/doctor";
 import { AR_IDENTITY } from "@/lib/i18n/ar-identity";
+import { formatArabicDate } from "@/lib/i18n/format-arabic-date";
 import { InternalLink as Link } from "@/components/ui/InternalLink";
 
 /**
@@ -16,24 +17,34 @@ const credentialFragmentsAr = [
     `زيادة سماكة القضيب منذ ${doctor.girthEnhancementSince}`,
 ].filter((fragment): fragment is string => Boolean(fragment));
 
-export function ArticleAuthorBlockAr() {
+/** Arabic mirror of `ArticleAuthorBlock`'s `lastReviewedDate` line — see its doc comment for the full rationale. */
+export function ArticleAuthorBlockAr({ lastReviewedDate }: { lastReviewedDate?: string }) {
   return (
-    <div className="flex flex-wrap items-center justify-between gap-4 border-y border-border py-6">
-      <div>
-        <p className="font-display text-lg text-foreground">{AR_IDENTITY.doctorDisplayName}</p>
-        <p className="text-sm text-muted-foreground">{AR_IDENTITY.doctorTitle}</p>
-        {credentialFragmentsAr.length > 0 && (
-          <p className="mt-1 text-xs text-muted-foreground">
-            {credentialFragmentsAr.join(" · ")}
-          </p>
-        )}
+    <div className="border-y border-border py-6">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <p className="font-display text-lg text-foreground">{AR_IDENTITY.doctorDisplayName}</p>
+          <p className="text-sm text-muted-foreground">{AR_IDENTITY.doctorTitle}</p>
+          {credentialFragmentsAr.length > 0 && (
+            <p className="mt-1 text-xs text-muted-foreground">
+              {credentialFragmentsAr.join(" · ")}
+            </p>
+          )}
+        </div>
+        <Link
+          href="/ar/about"
+          className="text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
+        >
+          نبذة عن {AR_IDENTITY.doctorDisplayName}
+        </Link>
       </div>
-      <Link
-        href="/ar/about"
-        className="text-sm font-medium text-foreground underline decoration-accent-strong underline-offset-4"
-      >
-        نبذة عن {AR_IDENTITY.doctorDisplayName}
-      </Link>
+      {lastReviewedDate && (
+        <div className="mt-4 border-t border-border pt-4 text-xs text-muted-foreground">
+          <p className="font-medium text-foreground">تمت المراجعة الطبية بواسطة {AR_IDENTITY.doctorDisplayName}</p>
+          <p>{AR_IDENTITY.doctorTitle}</p>
+          <p>آخر مراجعة طبية: {formatArabicDate(lastReviewedDate)}</p>
+        </div>
+      )}
     </div>
   );
 }
