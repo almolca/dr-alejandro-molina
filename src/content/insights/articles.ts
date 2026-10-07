@@ -16,11 +16,16 @@
  * on every single article with zero exceptions and rendered a public
  * "Clinical review pending" badge everywhere — not informative, and not
  * something that should keep showing once an article genuinely has been
- * reviewed. The new field is optional and absent by default: no article
- * gets marked reviewed automatically, and no date is ever invented. Set
- * it only once the owner has explicitly confirmed a real review date for
- * that specific article; until then it stays `undefined` and nothing
- * review-related renders publicly (see `ArticleAuthorBlock`).
+ * reviewed. The field stays optional and no date is ever invented — see
+ * `docs/article-medical-review-log.md` for the full audit trail. Every
+ * article below now carries a real `lastReviewedDate`: `2026-10-07` is
+ * the actual date this full-library medical/editorial review (content
+ * accuracy, overstatement, terminology, internal links) was completed
+ * for all of them in one batch — not a fabricated or backdated value,
+ * and not a per-article date invented for variety (the brief this
+ * batch was done under explicitly prohibits both). A future article
+ * added without going through that same review process should leave
+ * this field unset rather than copy today's date forward.
  */
 
 export type InsightCategory =
@@ -108,6 +113,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Penile implant surgery sits at the end of the erectile dysfunction treatment ladder, not the start. Here's how that decision is actually reached.",
     datePublished: PUBLISHED,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/penile-implant",
     relatedLabel: "surgical treatment for refractory ED",
     sections: [
@@ -145,6 +151,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Fatigue and low libido can be associated with testosterone deficiency — but symptoms alone are not a diagnosis. Here's what a proper assessment actually involves.",
     datePublished: PUBLISHED,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/mens-health/testosterone",
     relatedLabel: "Testosterone & Male Hormonal Health",
     sections: [
@@ -176,6 +183,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Penile girth enhancement is approached very differently within an andrology context than as a generic cosmetic procedure. Here's what that distinction actually means in practice.",
     datePublished: PUBLISHED,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
     relatedArticleSlugs: ["how-much-girth-can-penile-filler-add", "lessons-from-500-penile-girth-enhancement-procedures"],
@@ -213,6 +221,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Low-Intensity Shockwave Therapy is one option on the erectile dysfunction treatment ladder — not a stand-alone cure. Here's where it actually fits.",
     datePublished: PUBLISHED,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/erectile-dysfunction/shockwave-therapy",
     relatedLabel: "Shockwave Therapy",
     sections: [
@@ -243,6 +252,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "\"Venous leak\" is a patient-friendly shorthand for something more nuanced — veno-occlusive dysfunction. Here's what Penile Doppler can and can't tell you about it.",
     datePublished: PUBLISHED_R7,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/erectile-dysfunction/penile-doppler",
     relatedLabel: "Penile Doppler",
     secondaryRelatedHref: "/erectile-dysfunction",
@@ -295,6 +305,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Penile curvature doesn't always need immediate treatment — but understanding your phase and severity early can shape which options stay open later.",
     datePublished: PUBLISHED,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/peyronies-disease",
     relatedLabel: "Peyronie's Disease",
     sections: [
@@ -335,6 +346,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "There's no single number that applies to every patient. Here's why girth outcomes are described in terms of variables, not a fixed figure — and what a consultation actually assesses.",
     datePublished: PUBLISHED_PHASE_B,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
     secondaryRelatedHref: "/male-aesthetics/penile-filler-correction",
@@ -374,6 +386,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Volume is planned individually, not standardised. Here's what actually determines how much product is used — and why a fixed number isn't quoted in advance.",
     datePublished: PUBLISHED_PHASE_B,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
     relatedArticleSlugs: ["how-much-girth-can-penile-filler-add", "how-long-does-penile-filler-last"],
@@ -411,6 +424,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Hyaluronic acid-based penile filler isn't a permanent result. Here's what actually affects how long it lasts, discussed as a range rather than a promise.",
     datePublished: PUBLISHED_PHASE_B,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
     secondaryRelatedHref: "/male-aesthetics/penile-filler-correction",
@@ -450,6 +464,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Penile filler doesn't stay static after treatment. Here's what tends to happen in the weeks, months and years afterward — and when a change is worth having assessed.",
     datePublished: PUBLISHED_PHASE_B,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
     secondaryRelatedHref: "/male-aesthetics/penile-filler-correction",
@@ -493,6 +508,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "There's a general recovery pattern discussed at consultation — but exact timing depends on healing and the specific treatment plan. Here's how that decision is actually made.",
     datePublished: PUBLISHED_PHASE_B,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
     relatedArticleSlugs: ["why-penile-filler-takes-weeks-to-settle", "how-long-does-penile-filler-last"],
@@ -530,6 +546,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "The result immediately after treatment isn't the final result. Here's why swelling and settling are a normal part of the process — and why judging the outcome too early can be misleading.",
     datePublished: PUBLISHED_PHASE_B,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
     relatedArticleSlugs: ["what-happens-to-penile-filler-over-time", "when-can-you-have-sex-after-penile-girth-enhancement"],
@@ -570,6 +587,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Product moving from where it was originally placed is one of the more specific reasons for assessment after penile filler. Here's what migration actually means, and how it differs from normal settling.",
     datePublished: PUBLISHED_PHASE_C,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-filler-correction",
     relatedLabel: "Penile Filler Correction",
     secondaryRelatedHref: "/male-aesthetics/penile-girth-enhancement",
@@ -613,6 +631,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "A firm area or an uneven contour after penile filler isn't automatically a problem, but it's not something to self-diagnose either. Here's how these findings are actually assessed.",
     datePublished: PUBLISHED_PHASE_C,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-filler-correction",
     relatedLabel: "Penile Filler Correction",
     secondaryRelatedHref: "/male-aesthetics/penile-girth-enhancement",
@@ -655,6 +674,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Short answer: hyaluronic acid-based penile filler can generally be dissolved, though whether it's the right option depends on assessment. Here's what dissolution actually involves.",
     datePublished: PUBLISHED_PHASE_C,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-filler-correction",
     relatedLabel: "Penile Filler Correction",
     secondaryRelatedHref: "/male-aesthetics/penile-girth-enhancement",
@@ -697,6 +717,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Two patients can have a broadly similar treatment and still describe the result differently. Here's why comparing texture and feel between patients isn't a reliable way to judge an outcome.",
     datePublished: PUBLISHED_PHASE_C,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
     secondaryRelatedHref: "/male-aesthetics/penile-filler-correction",
@@ -739,6 +760,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Clinical observations and practical considerations from substantial procedure experience — offered as personal clinical experience, not as published evidence or a guideline.",
     datePublished: PUBLISHED_PHASE_C,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
     secondaryRelatedHref: "/male-aesthetics/penile-filler-correction",
@@ -796,6 +818,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Two device types, two genuinely different mechanisms. Here's how they compare, and what actually determines which is right for a given patient.",
     datePublished: PUBLISHED_R7,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/penile-implant",
     relatedLabel: "inflatable penile implant",
     relatedArticleSlugs: ["penile-implant-when-considered"],
@@ -833,6 +856,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Recovery follows a structured pattern, even though the exact timeline is set individually. Here's how it generally unfolds.",
     datePublished: PUBLISHED_R7,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/penile-implant",
     relatedLabel: "penile implant surgery",
     relatedArticleSlugs: ["penile-implant-when-considered", "inflatable-vs-malleable-penile-implant"],
@@ -876,6 +900,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "A penile implant restores the ability to achieve rigidity — not every aspect of sexual function. Here's what it does and doesn't change.",
     datePublished: PUBLISHED_R7,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/penile-implant",
     relatedLabel: "penile prosthesis",
     relatedArticleSlugs: ["penile-implant-when-considered"],
@@ -913,6 +938,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Erectile dysfunction after radical prostatectomy follows its own pattern of recovery and treatment. Here's how the pathway from surgery to considering an implant actually works.",
     datePublished: PUBLISHED_R11,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/penile-implant",
     relatedLabel: "penile implant surgery after prostatectomy",
     secondaryRelatedHref: "/urologic-surgery/laparoscopic-radical-prostatectomy",
@@ -978,6 +1004,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Concerns about length are common before penile implant surgery. Here's why perceived or actual changes happen, and what an implant is — and isn't — designed to do about them.",
     datePublished: PUBLISHED_R12,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/penile-implant",
     relatedLabel: "penile prosthesis surgery",
     secondaryRelatedHref: "/peyronies-disease",
@@ -1041,6 +1068,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "A penile implant is a mechanical device, and like any mechanical device, it has a working lifespan. Here's what influences how long one lasts, and what revision surgery actually involves.",
     datePublished: PUBLISHED_R12,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/penile-implant",
     relatedLabel: "penile implant",
     relatedArticleSlugs: ["penile-implant-when-considered", "penile-implant-recovery-what-to-expect"],
@@ -1098,6 +1126,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "TRT is not appropriate for every man with a single low reading or a symptom of fatigue. Here's how candidacy is actually assessed.",
     datePublished: PUBLISHED_R7,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/mens-health/testosterone",
     relatedLabel: "Testosterone & Male Hormonal Health",
     relatedArticleSlugs: ["low-testosterone-symptoms-diagnosis", "shbg-and-free-testosterone-explained"],
@@ -1141,6 +1170,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Total testosterone can look normal while free testosterone tells a different story. Here's why both figures matter.",
     datePublished: PUBLISHED_R7,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/mens-health/testosterone",
     relatedLabel: "Testosterone & Male Hormonal Health",
     relatedArticleSlugs: ["low-testosterone-symptoms-diagnosis", "trt-who-is-it-for"],
@@ -1178,6 +1208,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Low testosterone can contribute to erectile dysfunction, but it is rarely the only factor. Here's how the two are assessed together.",
     datePublished: PUBLISHED_R7,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/mens-health/testosterone",
     relatedLabel: "Testosterone & Male Hormonal Health",
     secondaryRelatedHref: "/erectile-dysfunction",

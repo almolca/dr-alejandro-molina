@@ -12,7 +12,10 @@
  *
  * `lastReviewedDate` (penile implant authority/E-E-A-T phase) mirrors
  * the English library's own field exactly — see its file header for the
- * full rationale. Optional, absent by default, never invented.
+ * full rationale. Every article below now carries the real
+ * `2026-10-07` review-completion date from the full-library review
+ * batch (see `docs/article-medical-review-log.md`), including a
+ * cross-language consistency check against each genuine EN equivalent.
  *
  * `enEquivalentSlug` records the R10-required per-article hreflang
  * decision: set only when the Arabic article is genuinely the
@@ -68,6 +71,7 @@ export const insightArticlesAr: InsightArticleAr[] = [
     excerpt:
       "يسمع كثير من الرجال مصطلح «التسرب الوريدي» بعد فحص دوبلر للقضيب دون شرح واضح لما يعنيه فعليًا. إليك ما يُظهره الفحص فعلاً، وما لا يُظهره.",
     datePublished: PUBLISHED_R10,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/ar/erectile-dysfunction/penile-doppler",
     relatedLabel: "دوبلر القضيب",
     secondaryRelatedHref: "/ar/erectile-dysfunction",
@@ -110,6 +114,7 @@ export const insightArticlesAr: InsightArticleAr[] = [
     excerpt:
       "دعامة القضيب خيار جراحي يُناقش عادة في نهاية مسار تقييم، لا في بدايته. إليك كيف تُتَّخذ هذه القرار فعليًا.",
     datePublished: PUBLISHED_R10,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/ar/penile-implant",
     relatedLabel: "العلاج الجراحي لضعف الانتصاب المقاوم للعلاج",
     secondaryRelatedHref: "/ar/erectile-dysfunction",
@@ -151,6 +156,7 @@ export const insightArticlesAr: InsightArticleAr[] = [
     excerpt:
       "بمجرد أن تصبح دعامة القضيب خيارًا ذا صلة، يبقى سؤال اختيار نوع الجهاز. إليك الفروقات العملية بين النوعين.",
     datePublished: PUBLISHED_R10,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/ar/penile-implant",
     relatedLabel: "دعامة قضيبية قابلة للنفخ",
     relatedArticleSlugs: ["when-penile-implant-is-considered"],
@@ -189,6 +195,7 @@ export const insightArticlesAr: InsightArticleAr[] = [
     excerpt:
       "يتبع ضعف الانتصاب بعد استئصال البروستاتا الجذري نمط تعافٍ وعلاج خاصًا به. إليك كيف يسير المسار فعليًا من الجراحة إلى النظر في دعامة القضيب.",
     datePublished: PUBLISHED_R11,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/ar/penile-implant",
     relatedLabel: "جراحة دعامة القضيب بعد استئصال البروستاتا",
     secondaryRelatedHref: "/ar/urologic-surgery/laparoscopic-radical-prostatectomy",
@@ -255,6 +262,7 @@ export const insightArticlesAr: InsightArticleAr[] = [
     excerpt:
       "يفترض كثير من الرجال أن انخفاض التستوستيرون هو السبب المباشر لضعف الانتصاب، أو أن علاج التستوستيرون سيحل المشكلة تلقائيًا. العلاقة الفعلية أكثر تحديدًا من ذلك.",
     datePublished: PUBLISHED_R10,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/ar/mens-health/testosterone",
     relatedLabel: "التستوستيرون والصحة الهرمونية للرجال",
     secondaryRelatedHref: "/ar/erectile-dysfunction",
@@ -294,6 +302,7 @@ export const insightArticlesAr: InsightArticleAr[] = [
     excerpt:
       "لاحظتَ انحناءً في القضيب ولا تعرف إن كان الأمر يستحق زيارة مختص الآن أم الانتظار؟ إليك كيف يُنظر إلى هذا القرار سريريًا.",
     datePublished: PUBLISHED_R10,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/ar/peyronies-disease",
     relatedLabel: "مرض بيروني",
     enEquivalentSlug: "peyronies-disease-when-to-seek-assessment",
@@ -332,6 +341,7 @@ export const insightArticlesAr: InsightArticleAr[] = [
     excerpt:
       "تتضارب الادعاءات حول سلامة فيلر القضيب ومدى ديمومته عبر الإنترنت العربي. إليك ما تُظهره خبرة فعلية تجاوزت 1,000 إجراء منذ 2018.",
     datePublished: PUBLISHED_R10,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/ar/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "زيادة سماكة القضيب",
     secondaryRelatedHref: "/ar/male-aesthetics/penile-filler-correction",
@@ -378,6 +388,7 @@ export const insightArticlesAr: InsightArticleAr[] = [
     excerpt:
       "يسير التعافي وفق نمط منظم، حتى وإن حُدد الجدول الزمني الدقيق بشكل فردي. إليك كيف يسير عادةً.",
     datePublished: PUBLISHED_R12,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/ar/penile-implant",
     relatedLabel: "جراحة دعامة القضيب",
     relatedArticleSlugs: ["when-penile-implant-is-considered", "inflatable-vs-malleable-implant-ar"],
@@ -422,6 +433,7 @@ export const insightArticlesAr: InsightArticleAr[] = [
     excerpt:
       "تستعيد دعامة القضيب القدرة على تحقيق الصلابة — لا كل جوانب الوظيفة الجنسية. إليك ما تغيّره وما لا تغيّره.",
     datePublished: PUBLISHED_R12,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/ar/penile-implant",
     relatedLabel: "دعامة القضيب",
     relatedArticleSlugs: ["when-penile-implant-is-considered"],
@@ -460,6 +472,7 @@ export const insightArticlesAr: InsightArticleAr[] = [
     excerpt:
       "القلق بشأن الطول شائع قبل جراحة دعامة القضيب. إليك لماذا تحدث هذه التغيرات المُلاحَظة أو الفعلية، وما الذي تستطيع الدعامة فعله حيال ذلك — وما لا تستطيعه.",
     datePublished: PUBLISHED_R12,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/ar/penile-implant",
     relatedLabel: "جراحة دعامة القضيب",
     secondaryRelatedHref: "/ar/peyronies-disease",
@@ -524,6 +537,7 @@ export const insightArticlesAr: InsightArticleAr[] = [
     excerpt:
       "دعامة القضيب جهاز ميكانيكي، ومثل أي جهاز ميكانيكي، له عمر تشغيلي. إليك ما يؤثر في مدة بقائه، وما الذي تتضمنه جراحة المراجعة فعليًا.",
     datePublished: PUBLISHED_R12,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/ar/penile-implant",
     relatedLabel: "دعامة قضيبية",
     relatedArticleSlugs: ["when-penile-implant-is-considered", "penile-implant-recovery-ar"],
