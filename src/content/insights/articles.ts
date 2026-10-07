@@ -6,14 +6,26 @@
  *
  * Every article here is a genuine first draft written from concepts
  * already established elsewhere on this site (the corresponding
- * treatment page) — not from external sourcing. `clinicalReviewRequired`
- * is `true` on all of them uniformly: no medical content on this site
- * has had clinical/compliance sign-off yet (see IMPLEMENTATION_REPORT.md),
- * and singling some articles out as "reviewed" without an actual review
- * having happened would be misleading. `datePublished` is the real date
- * this content was added to the site — not an invented historical date,
- * citation date, or study date (spec: "do not invent... publication
- * dates").
+ * treatment page) — not from external sourcing. `datePublished` is the
+ * real date this content was added to the site — not an invented
+ * historical date, citation date, or study date (spec: "do not
+ * invent... publication dates").
+ *
+ * `lastReviewedDate` (penile implant authority/E-E-A-T phase) replaces
+ * the old sitewide `clinicalReviewRequired: boolean`, which was `true`
+ * on every single article with zero exceptions and rendered a public
+ * "Clinical review pending" badge everywhere — not informative, and not
+ * something that should keep showing once an article genuinely has been
+ * reviewed. The field stays optional and no date is ever invented — see
+ * `docs/article-medical-review-log.md` for the full audit trail. Every
+ * article below now carries a real `lastReviewedDate`: `2026-10-07` is
+ * the actual date this full-library medical/editorial review (content
+ * accuracy, overstatement, terminology, internal links) was completed
+ * for all of them in one batch — not a fabricated or backdated value,
+ * and not a per-article date invented for variety (the brief this
+ * batch was done under explicitly prohibits both). A future article
+ * added without going through that same review process should leave
+ * this field unset rather than copy today's date forward.
  */
 
 export type InsightCategory =
@@ -54,7 +66,8 @@ export type InsightArticle = {
   category: InsightCategory;
   excerpt: string;
   datePublished: string;
-  clinicalReviewRequired: boolean;
+  /** Real, owner-confirmed medical review date — see file header. Absent = not yet reviewed; never invented. */
+  lastReviewedDate?: string;
   relatedHref: string;
   relatedLabel: string;
   /**
@@ -89,6 +102,8 @@ const PUBLISHED_PHASE_C = "2026-09-06";
 const PUBLISHED_R7 = "2026-09-09";
 /** Real date this article (SEO/UX competitive upgrade — girth + implant) was added. */
 const PUBLISHED_R11 = "2026-09-30";
+/** Real date this batch (penile implant authority/E-E-A-T phase — length + lifespan articles) was added. */
+const PUBLISHED_R12 = "2026-10-07";
 
 export const insightArticles: InsightArticle[] = [
   {
@@ -98,9 +113,9 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Penile implant surgery sits at the end of the erectile dysfunction treatment ladder, not the start. Here's how that decision is actually reached.",
     datePublished: PUBLISHED,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/penile-implant",
-    relatedLabel: "Penile Implant Surgery",
+    relatedLabel: "surgical treatment for refractory ED",
     sections: [
       {
         heading: "Erectile dysfunction has many possible causes",
@@ -124,7 +139,7 @@ export const insightArticles: InsightArticle[] = [
       {
         heading: "What to discuss at consultation",
         body: [
-          "If a penile implant is a relevant option, consultation covers the difference between inflatable and malleable devices, what the surgical pathway and recovery involve, and the realistic — not guaranteed — expectations for sexual function afterward.",
+          "If a penile implant is a relevant option, consultation covers the difference between [inflatable and malleable devices](/insights/inflatable-vs-malleable-penile-implant), what the surgical pathway and recovery involve, and the realistic — not guaranteed — expectations for sexual function afterward.",
         ],
       },
     ],
@@ -136,7 +151,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Fatigue and low libido can be associated with testosterone deficiency — but symptoms alone are not a diagnosis. Here's what a proper assessment actually involves.",
     datePublished: PUBLISHED,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/mens-health/testosterone",
     relatedLabel: "Testosterone & Male Hormonal Health",
     sections: [
@@ -168,7 +183,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Penile girth enhancement is approached very differently within an andrology context than as a generic cosmetic procedure. Here's what that distinction actually means in practice.",
     datePublished: PUBLISHED,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
     relatedArticleSlugs: ["how-much-girth-can-penile-filler-add", "lessons-from-500-penile-girth-enhancement-procedures"],
@@ -206,7 +221,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Low-Intensity Shockwave Therapy is one option on the erectile dysfunction treatment ladder — not a stand-alone cure. Here's where it actually fits.",
     datePublished: PUBLISHED,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/erectile-dysfunction/shockwave-therapy",
     relatedLabel: "Shockwave Therapy",
     sections: [
@@ -237,7 +252,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "\"Venous leak\" is a patient-friendly shorthand for something more nuanced — veno-occlusive dysfunction. Here's what Penile Doppler can and can't tell you about it.",
     datePublished: PUBLISHED_R7,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/erectile-dysfunction/penile-doppler",
     relatedLabel: "Penile Doppler",
     secondaryRelatedHref: "/erectile-dysfunction",
@@ -290,7 +305,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Penile curvature doesn't always need immediate treatment — but understanding your phase and severity early can shape which options stay open later.",
     datePublished: PUBLISHED,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/peyronies-disease",
     relatedLabel: "Peyronie's Disease",
     sections: [
@@ -316,6 +331,7 @@ export const insightArticles: InsightArticle[] = [
         heading: "Not every case needs active treatment",
         body: [
           "Mild curvature without functional impact may simply be monitored. Where treatment is appropriate, options range from conservative management through procedural and, for stable and significant curvature, surgical correction — matched to phase and severity rather than assumed in advance.",
+          "When Peyronie's disease coexists with erectile dysfunction that hasn't responded reliably to other treatment, a [penile implant](/penile-implant) may also be considered as part of that assessment.",
         ],
       },
     ],
@@ -330,7 +346,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "There's no single number that applies to every patient. Here's why girth outcomes are described in terms of variables, not a fixed figure — and what a consultation actually assesses.",
     datePublished: PUBLISHED_PHASE_B,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
     secondaryRelatedHref: "/male-aesthetics/penile-filler-correction",
@@ -370,7 +386,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Volume is planned individually, not standardised. Here's what actually determines how much product is used — and why a fixed number isn't quoted in advance.",
     datePublished: PUBLISHED_PHASE_B,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
     relatedArticleSlugs: ["how-much-girth-can-penile-filler-add", "how-long-does-penile-filler-last"],
@@ -408,7 +424,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Hyaluronic acid-based penile filler isn't a permanent result. Here's what actually affects how long it lasts, discussed as a range rather than a promise.",
     datePublished: PUBLISHED_PHASE_B,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
     secondaryRelatedHref: "/male-aesthetics/penile-filler-correction",
@@ -448,7 +464,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Penile filler doesn't stay static after treatment. Here's what tends to happen in the weeks, months and years afterward — and when a change is worth having assessed.",
     datePublished: PUBLISHED_PHASE_B,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
     secondaryRelatedHref: "/male-aesthetics/penile-filler-correction",
@@ -492,7 +508,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "There's a general recovery pattern discussed at consultation — but exact timing depends on healing and the specific treatment plan. Here's how that decision is actually made.",
     datePublished: PUBLISHED_PHASE_B,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
     relatedArticleSlugs: ["why-penile-filler-takes-weeks-to-settle", "how-long-does-penile-filler-last"],
@@ -530,7 +546,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "The result immediately after treatment isn't the final result. Here's why swelling and settling are a normal part of the process — and why judging the outcome too early can be misleading.",
     datePublished: PUBLISHED_PHASE_B,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
     relatedArticleSlugs: ["what-happens-to-penile-filler-over-time", "when-can-you-have-sex-after-penile-girth-enhancement"],
@@ -571,7 +587,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Product moving from where it was originally placed is one of the more specific reasons for assessment after penile filler. Here's what migration actually means, and how it differs from normal settling.",
     datePublished: PUBLISHED_PHASE_C,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-filler-correction",
     relatedLabel: "Penile Filler Correction",
     secondaryRelatedHref: "/male-aesthetics/penile-girth-enhancement",
@@ -615,7 +631,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "A firm area or an uneven contour after penile filler isn't automatically a problem, but it's not something to self-diagnose either. Here's how these findings are actually assessed.",
     datePublished: PUBLISHED_PHASE_C,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-filler-correction",
     relatedLabel: "Penile Filler Correction",
     secondaryRelatedHref: "/male-aesthetics/penile-girth-enhancement",
@@ -658,7 +674,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Short answer: hyaluronic acid-based penile filler can generally be dissolved, though whether it's the right option depends on assessment. Here's what dissolution actually involves.",
     datePublished: PUBLISHED_PHASE_C,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-filler-correction",
     relatedLabel: "Penile Filler Correction",
     secondaryRelatedHref: "/male-aesthetics/penile-girth-enhancement",
@@ -701,7 +717,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Two patients can have a broadly similar treatment and still describe the result differently. Here's why comparing texture and feel between patients isn't a reliable way to judge an outcome.",
     datePublished: PUBLISHED_PHASE_C,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
     secondaryRelatedHref: "/male-aesthetics/penile-filler-correction",
@@ -744,7 +760,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Clinical observations and practical considerations from substantial procedure experience — offered as personal clinical experience, not as published evidence or a guideline.",
     datePublished: PUBLISHED_PHASE_C,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "Penile Girth Enhancement",
     secondaryRelatedHref: "/male-aesthetics/penile-filler-correction",
@@ -802,9 +818,9 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Two device types, two genuinely different mechanisms. Here's how they compare, and what actually determines which is right for a given patient.",
     datePublished: PUBLISHED_R7,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/penile-implant",
-    relatedLabel: "Penile Implant Surgery",
+    relatedLabel: "inflatable penile implant",
     relatedArticleSlugs: ["penile-implant-when-considered"],
     sections: [
       {
@@ -840,9 +856,9 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Recovery follows a structured pattern, even though the exact timeline is set individually. Here's how it generally unfolds.",
     datePublished: PUBLISHED_R7,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/penile-implant",
-    relatedLabel: "Penile Implant Surgery",
+    relatedLabel: "penile implant surgery",
     relatedArticleSlugs: ["penile-implant-when-considered", "inflatable-vs-malleable-penile-implant"],
     sections: [
       {
@@ -884,9 +900,9 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "A penile implant restores the ability to achieve rigidity — not every aspect of sexual function. Here's what it does and doesn't change.",
     datePublished: PUBLISHED_R7,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/penile-implant",
-    relatedLabel: "Penile Implant Surgery",
+    relatedLabel: "penile prosthesis",
     relatedArticleSlugs: ["penile-implant-when-considered"],
     sections: [
       {
@@ -922,9 +938,9 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Erectile dysfunction after radical prostatectomy follows its own pattern of recovery and treatment. Here's how the pathway from surgery to considering an implant actually works.",
     datePublished: PUBLISHED_R11,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/penile-implant",
-    relatedLabel: "Penile Implant Surgery",
+    relatedLabel: "penile implant surgery after prostatectomy",
     secondaryRelatedHref: "/urologic-surgery/laparoscopic-radical-prostatectomy",
     secondaryRelatedLabel: "Laparoscopic Radical Prostatectomy",
     relatedArticleSlugs: ["penile-implant-when-considered", "orgasm-ejaculation-after-penile-implant"],
@@ -976,7 +992,129 @@ export const insightArticles: InsightArticle[] = [
       {
         heading: "Penile length expectations",
         body: [
-          "Some men notice a reduction in length compared with their erections before surgery. This is generally related to tissue changes from the underlying condition and the prostatectomy itself, not something an implant causes or is able to restore — part of the realistic-expectations conversation at assessment, not a surprise left for afterward.",
+          "Some men notice a reduction in length compared with their erections before surgery. This is generally related to tissue changes from the underlying condition and the prostatectomy itself, not something an implant causes or is able to restore — part of the realistic-expectations conversation at assessment, not a surprise left for afterward. See [Penile Length After Penile Implant Surgery](/insights/penile-length-after-penile-implant) for a fuller discussion.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "penile-length-after-penile-implant",
+    title: "Penile Length After Penile Implant Surgery: What to Realistically Expect",
+    category: "Penile Surgery",
+    excerpt:
+      "Concerns about length are common before penile implant surgery. Here's why perceived or actual changes happen, and what an implant is — and isn't — designed to do about them.",
+    datePublished: PUBLISHED_R12,
+    lastReviewedDate: "2026-10-07",
+    relatedHref: "/penile-implant",
+    relatedLabel: "penile prosthesis surgery",
+    secondaryRelatedHref: "/peyronies-disease",
+    secondaryRelatedLabel: "Peyronie's Disease",
+    relatedArticleSlugs: [
+      "penile-implant-when-considered",
+      "penile-implant-after-radical-prostatectomy",
+      "peyronies-disease-when-to-seek-assessment",
+    ],
+    keyTakeaway:
+      "A penile implant is not a penile-lengthening procedure. It restores the ability to achieve rigidity; it does not reverse length changes that occurred before surgery.",
+    sections: [
+      {
+        heading: "Why length is a common concern before implant surgery",
+        body: [
+          "Many men considering a penile implant have already noticed some reduction in length compared to the erections they had before erectile dysfunction developed. This concern is understandable, and it is addressed directly at assessment rather than left for after surgery.",
+        ],
+      },
+      {
+        heading: "Length changes often predate the implant itself",
+        body: [
+          "Longstanding erectile dysfunction can be associated with gradual tissue changes — including reduced elasticity and some fibrosis within the erectile chambers — that are already present by the time a patient is assessed for an implant. These changes are a consequence of the underlying condition, not something caused by implant surgery.",
+        ],
+      },
+      {
+        heading: "Post-prostatectomy factors",
+        body: [
+          "After radical prostatectomy specifically, some men notice a reduction in erect — and sometimes flaccid — length during the recovery period, related to nerve and tissue changes from the surgery itself rather than anything to do with a later implant. This is discussed as part of the broader [post-prostatectomy erectile dysfunction pathway](/insights/penile-implant-after-radical-prostatectomy), separate from implant candidacy itself.",
+        ],
+      },
+      {
+        heading: "Peyronie's disease and length",
+        body: [
+          "Peyronie's disease can independently cause shortening alongside curvature, as fibrous plaque affects the elasticity of the erectile tissue. When Peyronie's disease and erectile dysfunction coexist, this is assessed as part of the same evaluation that considers implant candidacy — see [Peyronie's Disease](/peyronies-disease).",
+        ],
+      },
+      {
+        heading: "How implant sizing works, at a high level",
+        body: [
+          "Cylinder sizing is based on individual anatomy, measured intraoperatively, with the goal of restoring rigidity appropriate to the patient's own anatomy — not of adding length beyond what the patient's tissue can accommodate. Oversizing is deliberately avoided, since it increases the risk of pain and complications without a reliable length benefit.",
+        ],
+      },
+      {
+        heading: "Why an implant is not a lengthening procedure",
+        body: [
+          "A penile implant is designed to restore the mechanical ability to achieve rigidity for intercourse. It is not designed, marketed, or intended as a method of increasing length, and does not reverse length loss that occurred before surgery. Any realistic expectation about length — not just function — is set out clearly during consultation, before a surgical decision is made.",
+        ],
+      },
+      {
+        heading: "Setting realistic expectations before surgery",
+        body: [
+          "Because length concerns are common and emotionally significant, they are treated as a standard part of the pre-surgical conversation, not an afterthought. Discussing expectations clearly before surgery, rather than after, is the best way to avoid misunderstanding what [penile implant surgery](/penile-implant) can and cannot change.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "penile-implant-lifespan-revision",
+    title: "How Long Does a Penile Implant Last? Device Lifespan, Revision and Replacement",
+    category: "Penile Surgery",
+    excerpt:
+      "A penile implant is a mechanical device, and like any mechanical device, it has a working lifespan. Here's what influences how long one lasts, and what revision surgery actually involves.",
+    datePublished: PUBLISHED_R12,
+    lastReviewedDate: "2026-10-07",
+    relatedHref: "/penile-implant",
+    relatedLabel: "penile implant",
+    relatedArticleSlugs: ["penile-implant-when-considered", "penile-implant-recovery-what-to-expect"],
+    keyTakeaway:
+      "No single lifespan figure applies to every patient or every device generation. Mechanical wear, not a fixed expiry date, is what eventually leads some patients to revision surgery.",
+    sections: [
+      {
+        heading: "A penile implant is a mechanical device",
+        body: [
+          "Like any mechanical device placed in the body, a penile implant is not expected to last indefinitely. Modern devices are built for durability, but mechanical components — particularly in inflatable systems with moving parts — are subject to wear over time.",
+        ],
+      },
+      {
+        heading: "What influences how long a device lasts",
+        body: [
+          "Device longevity varies between patients and depends on factors including the specific device used, how frequently it is operated, and individual healing and tissue factors. This is why a single lifespan number, applied uniformly to every patient, would be misleading rather than informative.",
+        ],
+      },
+      {
+        heading: "Mechanical failure",
+        body: [
+          "Mechanical failure — most often involving the pump, tubing or fluid seals in an inflatable device — is the most common reason a device eventually needs revision. It is not usually sudden or dangerous; it typically presents as a gradual loss of reliable inflation or deflation, which is a reasonable reason to be reassessed.",
+        ],
+      },
+      {
+        heading: "Infection and erosion",
+        body: [
+          "Infection and erosion — where the device becomes exposed through the skin or urethra — are less common but more serious complications that can also lead to device removal or revision, sometimes urgently. Strict surgical protocols at the time of the original surgery are specifically intended to reduce, though not eliminate, this risk.",
+        ],
+      },
+      {
+        heading: "What revision surgery involves",
+        body: [
+          "Revision surgery addresses a specific problem with an existing device — whether mechanical failure, infection, erosion or a change in anatomy — rather than repeating the original procedure identically. Depending on the reason for revision, this may involve replacing a single component, exchanging the entire device, or, in the case of infection, device removal with staged reinsertion once the infection has fully resolved.",
+        ],
+      },
+      {
+        heading: "Why primary and revision surgery are not the same operation",
+        body: [
+          "Revision surgery is generally more complex than the original (primary) implant surgery, because it takes place in tissue that has already been operated on once. This is one reason device selection and surgical technique at the time of the original surgery matter — not only for function immediately after surgery, but for how straightforward any future revision would be, should it become necessary.",
+        ],
+      },
+      {
+        heading: "Why surgeon assessment matters, not a published number",
+        body: [
+          "Published lifespan figures in the medical literature vary by device generation, study design and follow-up length, and quoting a single number here would overstate the certainty of that evidence for an individual patient. What matters practically is recognising the signs that a device may need reassessment, and having that reassessment carried out by a surgeon experienced in both primary and revision [penile implant surgery](/penile-implant).",
         ],
       },
     ],
@@ -988,7 +1126,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "TRT is not appropriate for every man with a single low reading or a symptom of fatigue. Here's how candidacy is actually assessed.",
     datePublished: PUBLISHED_R7,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/mens-health/testosterone",
     relatedLabel: "Testosterone & Male Hormonal Health",
     relatedArticleSlugs: ["low-testosterone-symptoms-diagnosis", "shbg-and-free-testosterone-explained"],
@@ -1032,7 +1170,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Total testosterone can look normal while free testosterone tells a different story. Here's why both figures matter.",
     datePublished: PUBLISHED_R7,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/mens-health/testosterone",
     relatedLabel: "Testosterone & Male Hormonal Health",
     relatedArticleSlugs: ["low-testosterone-symptoms-diagnosis", "trt-who-is-it-for"],
@@ -1070,7 +1208,7 @@ export const insightArticles: InsightArticle[] = [
     excerpt:
       "Low testosterone can contribute to erectile dysfunction, but it is rarely the only factor. Here's how the two are assessed together.",
     datePublished: PUBLISHED_R7,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/mens-health/testosterone",
     relatedLabel: "Testosterone & Male Hormonal Health",
     secondaryRelatedHref: "/erectile-dysfunction",

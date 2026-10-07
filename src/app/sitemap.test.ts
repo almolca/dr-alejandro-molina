@@ -76,9 +76,9 @@ describe("sitemap", () => {
     });
   });
 
-  it("includes the R10 first-wave + R11 Arabic Insights articles, with hreflang only where a genuine EN equivalent exists", () => {
+  it("includes the R10 first-wave + R11 + R12 Arabic Insights articles, with hreflang only where a genuine EN equivalent exists", () => {
     const arArticleEntries = entries.filter((e) => e.url.includes("/ar/insights/"));
-    expect(arArticleEntries).toHaveLength(7);
+    expect(arArticleEntries).toHaveLength(11);
 
     const venousLeak = arArticleEntries.find((e) => e.url.endsWith("/ar/insights/venous-leak-and-penile-doppler"));
     expect(venousLeak?.alternates?.languages).toEqual({
@@ -101,6 +101,34 @@ describe("sitemap", () => {
     expect(postProstatectomyImplant?.alternates?.languages).toEqual({
       "en-AE": `${siteUrl}/insights/penile-implant-after-radical-prostatectomy`,
       "ar-AE": `${siteUrl}/ar/insights/penile-implant-after-radical-prostatectomy-ar`,
+    });
+
+    // R12 penile implant authority/E-E-A-T phase: 2 restored-parity
+    // translations + 2 new EN/AR article pairs, all genuine 1:1 pairs.
+    const recovery = arArticleEntries.find((e) => e.url.endsWith("/ar/insights/penile-implant-recovery-ar"));
+    expect(recovery?.alternates?.languages).toEqual({
+      "en-AE": `${siteUrl}/insights/penile-implant-recovery-what-to-expect`,
+      "ar-AE": `${siteUrl}/ar/insights/penile-implant-recovery-ar`,
+    });
+
+    const orgasm = arArticleEntries.find((e) => e.url.endsWith("/ar/insights/orgasm-ejaculation-after-implant-ar"));
+    expect(orgasm?.alternates?.languages).toEqual({
+      "en-AE": `${siteUrl}/insights/orgasm-ejaculation-after-penile-implant`,
+      "ar-AE": `${siteUrl}/ar/insights/orgasm-ejaculation-after-implant-ar`,
+    });
+
+    const length = arArticleEntries.find((e) => e.url.endsWith("/ar/insights/penile-length-after-implant-ar"));
+    expect(length?.alternates?.languages).toEqual({
+      "en-AE": `${siteUrl}/insights/penile-length-after-penile-implant`,
+      "ar-AE": `${siteUrl}/ar/insights/penile-length-after-implant-ar`,
+    });
+
+    const lifespan = arArticleEntries.find((e) =>
+      e.url.endsWith("/ar/insights/penile-implant-lifespan-revision-ar"),
+    );
+    expect(lifespan?.alternates?.languages).toEqual({
+      "en-AE": `${siteUrl}/insights/penile-implant-lifespan-revision`,
+      "ar-AE": `${siteUrl}/ar/insights/penile-implant-lifespan-revision-ar`,
     });
   });
 

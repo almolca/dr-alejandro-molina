@@ -8,11 +8,14 @@
  * one, including why it won't cannibalize the service page it
  * supports.
  *
- * `clinicalReviewRequired` is `true` on all of them, matching the
- * English library's own uniform policy — no medical content on this
- * site has had clinical/compliance sign-off yet, and singling these
- * out as "reviewed" without an actual review would be misleading.
  * `datePublished` is the real date this batch was added.
+ *
+ * `lastReviewedDate` (penile implant authority/E-E-A-T phase) mirrors
+ * the English library's own field exactly — see its file header for the
+ * full rationale. Every article below now carries the real
+ * `2026-10-07` review-completion date from the full-library review
+ * batch (see `docs/article-medical-review-log.md`), including a
+ * cross-language consistency check against each genuine EN equivalent.
  *
  * `enEquivalentSlug` records the R10-required per-article hreflang
  * decision: set only when the Arabic article is genuinely the
@@ -41,7 +44,8 @@ export type InsightArticleAr = {
   category: InsightCategoryAr;
   excerpt: string;
   datePublished: string;
-  clinicalReviewRequired: boolean;
+  /** Real, owner-confirmed medical review date — see file header. Absent = not yet reviewed; never invented. */
+  lastReviewedDate?: string;
   relatedHref: string;
   relatedLabel: string;
   secondaryRelatedHref?: string;
@@ -56,6 +60,8 @@ export type InsightArticleAr = {
 const PUBLISHED_R10 = "2026-09-18";
 /** Real date this article (SEO/UX competitive upgrade — girth + implant) was added. */
 const PUBLISHED_R11 = "2026-09-30";
+/** Real date this batch (penile implant authority/E-E-A-T phase — AR parity + length + lifespan articles) was added. */
+const PUBLISHED_R12 = "2026-10-07";
 
 export const insightArticlesAr: InsightArticleAr[] = [
   {
@@ -65,7 +71,7 @@ export const insightArticlesAr: InsightArticleAr[] = [
     excerpt:
       "يسمع كثير من الرجال مصطلح «التسرب الوريدي» بعد فحص دوبلر للقضيب دون شرح واضح لما يعنيه فعليًا. إليك ما يُظهره الفحص فعلاً، وما لا يُظهره.",
     datePublished: PUBLISHED_R10,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/ar/erectile-dysfunction/penile-doppler",
     relatedLabel: "دوبلر القضيب",
     secondaryRelatedHref: "/ar/erectile-dysfunction",
@@ -108,9 +114,9 @@ export const insightArticlesAr: InsightArticleAr[] = [
     excerpt:
       "دعامة القضيب خيار جراحي يُناقش عادة في نهاية مسار تقييم، لا في بدايته. إليك كيف تُتَّخذ هذه القرار فعليًا.",
     datePublished: PUBLISHED_R10,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/ar/penile-implant",
-    relatedLabel: "جراحة زراعة دعامة القضيب",
+    relatedLabel: "العلاج الجراحي لضعف الانتصاب المقاوم للعلاج",
     secondaryRelatedHref: "/ar/erectile-dysfunction",
     secondaryRelatedLabel: "تقييم وعلاج ضعف الانتصاب",
     relatedArticleSlugs: ["inflatable-vs-malleable-implant-ar"],
@@ -150,9 +156,9 @@ export const insightArticlesAr: InsightArticleAr[] = [
     excerpt:
       "بمجرد أن تصبح دعامة القضيب خيارًا ذا صلة، يبقى سؤال اختيار نوع الجهاز. إليك الفروقات العملية بين النوعين.",
     datePublished: PUBLISHED_R10,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/ar/penile-implant",
-    relatedLabel: "جراحة زراعة دعامة القضيب",
+    relatedLabel: "دعامة قضيبية قابلة للنفخ",
     relatedArticleSlugs: ["when-penile-implant-is-considered"],
     enEquivalentSlug: "inflatable-vs-malleable-penile-implant",
     sections: [
@@ -189,9 +195,9 @@ export const insightArticlesAr: InsightArticleAr[] = [
     excerpt:
       "يتبع ضعف الانتصاب بعد استئصال البروستاتا الجذري نمط تعافٍ وعلاج خاصًا به. إليك كيف يسير المسار فعليًا من الجراحة إلى النظر في دعامة القضيب.",
     datePublished: PUBLISHED_R11,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/ar/penile-implant",
-    relatedLabel: "جراحة زراعة دعامة القضيب",
+    relatedLabel: "جراحة دعامة القضيب بعد استئصال البروستاتا",
     secondaryRelatedHref: "/ar/urologic-surgery/laparoscopic-radical-prostatectomy",
     secondaryRelatedLabel: "استئصال البروستاتا الجذري بالمنظار",
     relatedArticleSlugs: ["when-penile-implant-is-considered", "inflatable-vs-malleable-implant-ar"],
@@ -256,7 +262,7 @@ export const insightArticlesAr: InsightArticleAr[] = [
     excerpt:
       "يفترض كثير من الرجال أن انخفاض التستوستيرون هو السبب المباشر لضعف الانتصاب، أو أن علاج التستوستيرون سيحل المشكلة تلقائيًا. العلاقة الفعلية أكثر تحديدًا من ذلك.",
     datePublished: PUBLISHED_R10,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/ar/mens-health/testosterone",
     relatedLabel: "التستوستيرون والصحة الهرمونية للرجال",
     secondaryRelatedHref: "/ar/erectile-dysfunction",
@@ -296,7 +302,7 @@ export const insightArticlesAr: InsightArticleAr[] = [
     excerpt:
       "لاحظتَ انحناءً في القضيب ولا تعرف إن كان الأمر يستحق زيارة مختص الآن أم الانتظار؟ إليك كيف يُنظر إلى هذا القرار سريريًا.",
     datePublished: PUBLISHED_R10,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/ar/peyronies-disease",
     relatedLabel: "مرض بيروني",
     enEquivalentSlug: "peyronies-disease-when-to-seek-assessment",
@@ -323,6 +329,7 @@ export const insightArticlesAr: InsightArticleAr[] = [
         heading: "ما الذي يتضمنه التقييم",
         body: [
           "يشمل التقييم عادة التاريخ المرضي والفحص السريري، والموجات فوق الصوتية عند الاقتضاء لتقييم اللويحة والتدفق الدموي. بناءً على المرحلة والشدة ودرجة تأثير الانحناء على الوظيفة، تُناقَش مسارات تحفظية أو إجرائية أو جراحية بشكل فردي — لا كخيار واحد يُطبَّق على الجميع.",
+          "عندما يتزامن مرض بيروني مع ضعف انتصاب لم يستجب بشكل موثوق لعلاجات أخرى، قد يُنظر أيضًا في [دعامة القضيب](/ar/penile-implant) كجزء من ذلك التقييم.",
         ],
       },
     ],
@@ -334,7 +341,7 @@ export const insightArticlesAr: InsightArticleAr[] = [
     excerpt:
       "تتضارب الادعاءات حول سلامة فيلر القضيب ومدى ديمومته عبر الإنترنت العربي. إليك ما تُظهره خبرة فعلية تجاوزت 1,000 إجراء منذ 2018.",
     datePublished: PUBLISHED_R10,
-    clinicalReviewRequired: true,
+    lastReviewedDate: "2026-10-07",
     relatedHref: "/ar/male-aesthetics/penile-girth-enhancement",
     relatedLabel: "زيادة سماكة القضيب",
     secondaryRelatedHref: "/ar/male-aesthetics/penile-filler-correction",
@@ -367,6 +374,217 @@ export const insightArticlesAr: InsightArticleAr[] = [
         heading: "لماذا يهم هذا عمليًا لمن يفكر في الإجراء",
         body: [
           "الدرس العملي من هذا الحجم من الخبرة ليس رقمًا يُنشر، بل نهج: تقييم تشريحي فردي أولاً، ثم مناقشة صريحة لما هو واقعي وما ليس كذلك في حالتك تحديدًا، ثم خطة علاجية — لا الاتجاه المعاكس. هذا ينطبق سواء كانت هذه تجربتك الأولى مع الإجراء، أو كنت تراجع نتيجة سابقة أُجريت في مكان آخر.",
+        ],
+      },
+    ],
+  },
+
+  // --- Penile implant authority/E-E-A-T phase: AR parity (translations, not machine-translated) + 2 new articles ---
+
+  {
+    slug: "penile-implant-recovery-ar",
+    title: "التعافي بعد جراحة دعامة القضيب: ماذا تتوقع؟",
+    category: "جراحة القضيب",
+    excerpt:
+      "يسير التعافي وفق نمط منظم، حتى وإن حُدد الجدول الزمني الدقيق بشكل فردي. إليك كيف يسير عادةً.",
+    datePublished: PUBLISHED_R12,
+    lastReviewedDate: "2026-10-07",
+    relatedHref: "/ar/penile-implant",
+    relatedLabel: "جراحة دعامة القضيب",
+    relatedArticleSlugs: ["when-penile-implant-is-considered", "inflatable-vs-malleable-implant-ar"],
+    enEquivalentSlug: "penile-implant-recovery-what-to-expect",
+    sections: [
+      {
+        heading: "التعافي يسير على مراحل، لا كحدث واحد",
+        body: [
+          "يمر التعافي من جراحة دعامة القضيب عادةً بثلاث مراحل: فترة تعافٍ أولية بنشاط محدود، ثم عودة تدريجية إلى النشاط اليومي المعتاد، وأخيرًا إدخال موجَّه لاستخدام الجهاز بعد اكتمال التعافي بما يكفي. النظر إلى الأمر كتسلسل، لا كعدّ تنازلي نحو نقطة واحدة اسمها «التعافي الكامل»، طريقة أكثر فائدة لضبط التوقعات.",
+        ],
+      },
+      {
+        heading: "فترة التعافي الأولية",
+        body: [
+          "بعض التورم والانزعاج والكدمات في الفترة الأولى جزء طبيعي من التعافي الجراحي، لا علامة على وجود خلل. يُقيَّد النشاط عمدًا خلال هذه المرحلة لحماية موقع الجراحة أثناء التئامه.",
+        ],
+      },
+      {
+        heading: "العودة إلى النشاط الطبيعي",
+        body: [
+          "مع تقدم التعافي، يُعاد إدخال النشاط تدريجيًا لا دفعة واحدة. تعتمد وتيرة ذلك على طريقة تعافي كل مريض تحديدًا، لا على جدول ثابت يُطبَّق على الجميع.",
+        ],
+      },
+      {
+        heading: "متى يبدأ استخدام الجهاز",
+        body: [
+          "تعلّم استخدام الجهاز — تفعيل الدعامة القابلة للنفخ وإرخاؤها، أو وضع الدعامة المرنة — يُقدَّم تحت إشراف بعد اكتمال التعافي بما يكفي، لا مباشرة بعد الجراحة. هذا النهج التدريجي يحمي نتيجة الجراحة بينما يكتسب المريض الثقة في استخدام الجهاز.",
+        ],
+      },
+      {
+        heading: "لماذا لا يُذكر هنا عدد أيام محدد",
+        body: [
+          "تختلف وتيرة التعافي والخطة الجراحية والتشريح الفردي بين المرضى، ولهذا يصف هذا المقال بنية التعافي بدلاً من جدول زمني عام واحد — يُحدَّد الجدول الزمني الخاص بحالتك أثناء الاستشارة ويُعاد تقييمه مع تقدم التعافي.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "orgasm-ejaculation-after-implant-ar",
+    title: "هل يمكن الوصول إلى النشوة والقذف مع دعامة القضيب؟",
+    category: "جراحة القضيب",
+    excerpt:
+      "تستعيد دعامة القضيب القدرة على تحقيق الصلابة — لا كل جوانب الوظيفة الجنسية. إليك ما تغيّره وما لا تغيّره.",
+    datePublished: PUBLISHED_R12,
+    lastReviewedDate: "2026-10-07",
+    relatedHref: "/ar/penile-implant",
+    relatedLabel: "دعامة القضيب",
+    relatedArticleSlugs: ["when-penile-implant-is-considered"],
+    enEquivalentSlug: "orgasm-ejaculation-after-penile-implant",
+    sections: [
+      {
+        heading: "الغرض الذي صُممت الدعامة من أجله",
+        body: [
+          "صُممت دعامة القضيب لتمكين الرجل من تحقيق انتصاب صلب عندما يرغب في ذلك. هذا هو غرضها المحدد — استعادة القدرة الميكانيكية على تحقيق الصلابة اللازمة للإيلاج.",
+        ],
+      },
+      {
+        heading: "ما لا تغيّره الدعامة",
+        body: [
+          "تخضع النشوة والقذف والإحساس الجلدي لمسارات عصبية وهرمونية منفصلة، مستقلة عن الآلية التي تنتج الصلابة. لا تغيّر جراحة الدعامة هذه المسارات مباشرة — فهي لم تُصمَّم لذلك، ولا تدّعي ذلك.",
+        ],
+      },
+      {
+        heading: "لماذا يلاحظ بعض الرجال فرقًا رغم ذلك",
+        body: [
+          "السبب الأصلي لضعف الانتصاب — كتغيّرات عصبية بعد جراحة حوضية مثل استئصال البروستاتا، أو تأثر عصبي مرتبط بالسكري، أو تغيّرات وعائية طويلة الأمد — يمكن أن يؤثر بشكل مستقل في الإحساس أو النشوة أو القذف، بمعزل عن الدعامة نفسها. من المهم نسبة أي تغيّر إلى سببه الحقيقي، لا افتراض أن الجهاز هو المسؤول عنه.",
+        ],
+      },
+      {
+        heading: "لماذا يُناقَش هذا قبل الجراحة لا بعدها",
+        body: [
+          "تُوضَع التوقعات الواقعية حول ما يمكن أن تستعيده الدعامة وما لا يمكنها استعادته أثناء التقييم، تحديدًا حتى لا يخرج المريض باستنتاجات غير دقيقة عن الجهاز بعد الجراحة. إذا كان الإحساس أو القذف مصدر قلق محدد، فهو موضوع مشروع ومتوقَّع يستحق طرحه أثناء الاستشارة.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "penile-length-after-implant-ar",
+    title: "طول القضيب بعد جراحة دعامة القضيب: ما التوقعات الواقعية؟",
+    category: "جراحة القضيب",
+    excerpt:
+      "القلق بشأن الطول شائع قبل جراحة دعامة القضيب. إليك لماذا تحدث هذه التغيرات المُلاحَظة أو الفعلية، وما الذي تستطيع الدعامة فعله حيال ذلك — وما لا تستطيعه.",
+    datePublished: PUBLISHED_R12,
+    lastReviewedDate: "2026-10-07",
+    relatedHref: "/ar/penile-implant",
+    relatedLabel: "جراحة دعامة القضيب",
+    secondaryRelatedHref: "/ar/peyronies-disease",
+    secondaryRelatedLabel: "مرض بيروني",
+    relatedArticleSlugs: [
+      "when-penile-implant-is-considered",
+      "penile-implant-after-radical-prostatectomy-ar",
+      "peyronies-disease-when-to-seek-assessment-ar",
+    ],
+    keyTakeaway:
+      "دعامة القضيب ليست إجراءً لإطالة القضيب. فهي تستعيد القدرة على تحقيق الصلابة، ولا تُصلح تغيّرات الطول التي حدثت قبل الجراحة.",
+    enEquivalentSlug: "penile-length-after-penile-implant",
+    sections: [
+      {
+        heading: "لماذا يُعد الطول مصدر قلق شائع قبل جراحة الدعامة",
+        body: [
+          "كثير من الرجال الذين يفكرون في دعامة القضيب قد لاحظوا بالفعل تراجعًا في الطول مقارنة بانتصاباتهم قبل ظهور ضعف الانتصاب. هذا القلق مفهوم، ويُناقَش صراحة أثناء التقييم، لا بعد الجراحة.",
+        ],
+      },
+      {
+        heading: "تغيّرات الطول غالبًا ما تسبق الدعامة نفسها",
+        body: [
+          "يمكن أن يرتبط ضعف الانتصاب طويل الأمد بتغيّرات تدريجية في الأنسجة — تشمل انخفاض المرونة وبعض التليّف داخل الأجسام الكهفية — تكون موجودة بالفعل وقت تقييم المريض لدعامة القضيب. هذه التغيّرات نتيجة للحالة الكامنة، لا شيئًا تتسبب فيه جراحة الدعامة.",
+        ],
+      },
+      {
+        heading: "عوامل ما بعد استئصال البروستاتا",
+        body: [
+          "بعد استئصال البروستاتا الجذري تحديدًا، يلاحظ بعض الرجال تراجعًا في طول الانتصاب، وأحيانًا الطول في حالة الارتخاء أيضًا، خلال فترة التعافي — نتيجة تغيّرات عصبية ونسيجية ناتجة عن الجراحة نفسها، لا عن أي دعامة لاحقة. يُناقَش هذا كجزء من [مسار ضعف الانتصاب بعد استئصال البروستاتا](/ar/insights/penile-implant-after-radical-prostatectomy-ar)، بمعزل عن أهلية الدعامة نفسها.",
+        ],
+      },
+      {
+        heading: "مرض بيروني والطول",
+        body: [
+          "يمكن أن يتسبب مرض بيروني في تراجع الطول بشكل مستقل إلى جانب الانحناء، لأن اللويحة الليفية تؤثر في مرونة الأنسجة الكهفية. عندما يتزامن مرض بيروني مع ضعف الانتصاب، يُقيَّم ذلك ضمن التقييم نفسه الذي يأخذ أهلية الدعامة بعين الاعتبار — راجع [مرض بيروني](/ar/peyronies-disease).",
+        ],
+      },
+      {
+        heading: "كيف يعمل تحديد مقاس الدعامة، من منظور عام",
+        body: [
+          "يُحدَّد مقاس الأسطوانات بناءً على التشريح الفردي، ويُقاس أثناء الجراحة نفسها، بهدف استعادة صلابة تناسب تشريح المريض — لا إضافة طول يتجاوز ما يمكن أن تستوعبه أنسجته. يُتجنَّب تعمّدًا اختيار مقاس أكبر من اللازم، لأن ذلك يزيد خطر الألم والمضاعفات دون فائدة موثوقة في الطول.",
+        ],
+      },
+      {
+        heading: "لماذا ليست الدعامة إجراءً لإطالة القضيب",
+        body: [
+          "صُممت دعامة القضيب لاستعادة القدرة الميكانيكية على تحقيق الصلابة اللازمة للإيلاج. لم تُصمَّم أو تُسوَّق أو يُقصد بها أن تكون وسيلة لزيادة الطول، ولا تُصلح فقدان الطول الذي حدث قبل الجراحة. تُوضَع أي توقعات واقعية بشأن الطول — لا الوظيفة فقط — بوضوح أثناء الاستشارة، قبل اتخاذ أي قرار جراحي.",
+        ],
+      },
+      {
+        heading: "ضبط توقعات واقعية قبل الجراحة",
+        body: [
+          "لأن القلق بشأن الطول شائع وذو أهمية نفسية حقيقية، فإنه يُعامَل كجزء أساسي من نقاش ما قبل الجراحة، لا كفكرة لاحقة. مناقشة التوقعات بوضوح قبل الجراحة، لا بعدها، هي الطريقة الأفضل لتجنّب أي سوء فهم حول ما تستطيع [جراحة دعامة القضيب](/ar/penile-implant) تغييره وما لا تستطيعه.",
+        ],
+      },
+    ],
+  },
+  {
+    slug: "penile-implant-lifespan-revision-ar",
+    title: "كم تدوم دعامة القضيب؟ العمر الافتراضي للجهاز، والمراجعة، والاستبدال",
+    category: "جراحة القضيب",
+    excerpt:
+      "دعامة القضيب جهاز ميكانيكي، ومثل أي جهاز ميكانيكي، له عمر تشغيلي. إليك ما يؤثر في مدة بقائه، وما الذي تتضمنه جراحة المراجعة فعليًا.",
+    datePublished: PUBLISHED_R12,
+    lastReviewedDate: "2026-10-07",
+    relatedHref: "/ar/penile-implant",
+    relatedLabel: "دعامة قضيبية",
+    relatedArticleSlugs: ["when-penile-implant-is-considered", "penile-implant-recovery-ar"],
+    keyTakeaway:
+      "لا يوجد رقم واحد للعمر الافتراضي ينطبق على كل مريض أو كل جيل من الأجهزة. التآكل الميكانيكي، لا تاريخ انتهاء صلاحية ثابت، هو ما يقود بعض المرضى في النهاية إلى جراحة مراجعة.",
+    enEquivalentSlug: "penile-implant-lifespan-revision",
+    sections: [
+      {
+        heading: "دعامة القضيب جهاز ميكانيكي",
+        body: [
+          "مثل أي جهاز ميكانيكي يُوضع داخل الجسم، لا يُتوقع أن تدوم دعامة القضيب إلى الأبد. تُصمَّم الأجهزة الحديثة لتكون متينة، لكن المكوّنات الميكانيكية — خصوصًا في الأنظمة القابلة للنفخ ذات الأجزاء المتحركة — عرضة للتآكل مع مرور الوقت.",
+        ],
+      },
+      {
+        heading: "ما الذي يؤثر في مدة بقاء الجهاز",
+        body: [
+          "يختلف العمر الافتراضي للجهاز بين المرضى، ويعتمد على عوامل منها نوع الجهاز المستخدم، ومدى تكرار تشغيله، وعوامل التئام وتشريح كل مريض. لهذا السبب، فإن ذكر رقم واحد للعمر الافتراضي يُطبَّق بشكل موحّد على الجميع سيكون مضلِّلاً أكثر منه مفيدًا.",
+        ],
+      },
+      {
+        heading: "التعطل الميكانيكي",
+        body: [
+          "التعطل الميكانيكي — وغالبًا ما يشمل المضخة أو الأنابيب أو صمامات السائل في الجهاز القابل للنفخ — هو السبب الأكثر شيوعًا لاحتياج الجهاز إلى مراجعة في النهاية. ولا يكون عادة مفاجئًا أو خطيرًا؛ بل يظهر عادةً كفقدان تدريجي لموثوقية النفخ أو الإفراغ، وهو سبب معقول لإعادة التقييم.",
+        ],
+      },
+      {
+        heading: "العدوى والتآكل النسيجي",
+        body: [
+          "العدوى والتآكل النسيجي — حيث يصبح الجهاز مكشوفًا عبر الجلد أو مجرى البول — مضاعفات أقل شيوعًا لكنها أكثر خطورة، ويمكن أن تؤدي أيضًا إلى إزالة الجهاز أو مراجعته، وأحيانًا بشكل عاجل. تهدف البروتوكولات الجراحية الصارمة وقت الجراحة الأصلية تحديدًا إلى تقليل هذا الخطر، لا إلغاءه تمامًا.",
+        ],
+      },
+      {
+        heading: "ما الذي تتضمنه جراحة المراجعة",
+        body: [
+          "تعالج جراحة المراجعة مشكلة محددة في جهاز قائم — سواء كانت تعطلاً ميكانيكيًا أو عدوى أو تآكلاً نسيجيًا أو تغيّرًا في التشريح — لا إعادة الإجراء الأصلي بالكامل. وبحسب سبب المراجعة، قد يشمل ذلك استبدال مكوّن واحد، أو استبدال الجهاز بالكامل، أو في حالة العدوى، إزالة الجهاز مع إعادة تركيبه على مراحل بعد الشفاء التام من العدوى.",
+        ],
+      },
+      {
+        heading: "لماذا لا تتطابق الجراحة الأولية وجراحة المراجعة",
+        body: [
+          "تكون جراحة المراجعة عادة أكثر تعقيدًا من جراحة الدعامة الأصلية، لأنها تُجرى في أنسجة سبق أن خضعت لعملية جراحية. هذا أحد أسباب أهمية اختيار الجهاز والتقنية الجراحية وقت الجراحة الأصلية — لا لأثرها على الوظيفة مباشرة بعد الجراحة فقط، بل لمدى بساطة أي مراجعة مستقبلية إن احتاجها المريض.",
+        ],
+      },
+      {
+        heading: "لماذا يهم تقييم الجراح، لا رقم منشور",
+        body: [
+          "تختلف أرقام العمر الافتراضي المنشورة في الأدبيات الطبية باختلاف جيل الجهاز وتصميم الدراسة ومدة المتابعة، وذكر رقم واحد هنا سيبالغ في يقينية هذه الأدلة بالنسبة لمريض فردي. ما يهم عمليًا هو إدراك العلامات التي تشير إلى حاجة الجهاز لإعادة تقييم، وأن يتولى هذا التقييم جرّاح ذو خبرة في جراحة الدعامة الأولية وجراحة المراجعة على حد سواء — [جراحة دعامة القضيب](/ar/penile-implant).",
         ],
       },
     ],

@@ -135,6 +135,8 @@ const faqItems = [
     question: "Is a penile implant permanent?",
     answer:
       "The device is intended for long-term use, though mechanical parts can wear over time and some patients may eventually need revision surgery. It is not offered as a universal cure, and is only considered after other treatments have been explored.",
+    readMoreHref: "/insights/penile-implant-lifespan-revision",
+    readMoreLabel: "Read more: How Long Does a Penile Implant Last?",
   },
   {
     question: "What's the difference between inflatable and malleable implants?",
@@ -161,6 +163,8 @@ const faqItems = [
     question: "Am I a candidate for a penile implant?",
     answer:
       "Candidacy depends on three things: whether erectile dysfunction is confirmed as severe or refractory, whether other treatments have already been tried without reliable results, and your overall health and expectations. All three are assessed together at consultation — see the candidacy check above for how this is typically weighed.",
+    readMoreHref: "/insights/penile-implant-when-considered",
+    readMoreLabel: "Read more: When Is a Penile Implant Considered for Erectile Dysfunction?",
   },
   {
     question: "What are the alternatives to a penile implant?",
@@ -178,6 +182,8 @@ const faqItems = [
     question: "Will my penis look or feel shorter after implant surgery?",
     answer:
       "Some men do perceive a reduction in length compared to the erections they had before erectile dysfunction developed. This is generally related to tissue changes from the underlying condition itself — particularly if ED has been longstanding — rather than something the implant surgery removes. It's part of the realistic-expectations discussion at assessment, not something left as a surprise afterward.",
+    readMoreHref: "/insights/penile-length-after-penile-implant",
+    readMoreLabel: "Read more: Penile Length After Penile Implant Surgery",
   },
   {
     question: "Can I have a penile implant after prostate surgery?",
@@ -229,11 +235,16 @@ export default function PenileImplantPage() {
                 Penile Surgery
               </p>
               <h1 className="mt-4 font-display text-display-xl text-foreground">
-                Penile Implant Surgery
+                Penile Implant Surgery in Abu Dhabi
               </h1>
               <p className="mt-6 max-w-xl text-body-lg text-muted-foreground">
-                A surgical solution for severe erectile dysfunction when
-                other treatments no longer provide reliable results.
+                Dr. Alejandro Molina, Consultant Urologist &amp; Andrologist
+                in Abu Dhabi, treats severe and refractory erectile
+                dysfunction — including after radical prostatectomy, and
+                where Peyronie&rsquo;s disease is also present — with
+                penile implant surgery (penile prosthesis). The inflatable
+                penile implant is the option most commonly selected, with
+                the malleable alternative considered individually.
               </p>
             </Reveal>
             <Reveal delay={0.1}>

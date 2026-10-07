@@ -10,7 +10,9 @@ import { Reveal } from "@/components/motion/Reveal";
 import { ArticleAuthorBlockAr } from "@/components/sections/ArticleAuthorBlockAr";
 import { RelatedInsightsAr } from "@/components/sections/RelatedInsightsAr";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { ParagraphWithLinks } from "@/components/ui/ParagraphWithLinks";
 import { getInsightArticleAr, getRelatedArticlesAr, insightArticlesAr } from "@/content/insights/articles-ar";
+import { formatArabicDate } from "@/lib/i18n/format-arabic-date";
 import { articleSchema, breadcrumbSchema } from "@/lib/seo/json-ld";
 import { buildMetadata } from "@/lib/seo/metadata";
 
@@ -19,23 +21,6 @@ export function generateStaticParams() {
 }
 
 type Props = { params: Promise<{ slug: string }> };
-
-const ARABIC_MONTHS = [
-  "يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو",
-  "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر",
-];
-
-/**
- * Formats an ISO date as "18 سبتمبر 2026" — matching the literal
- * Gregorian-with-Arabic-month-names style already used on /ar/privacy.
- * Deliberately not `toLocaleDateString("ar", ...)`: several `ar-*`
- * locales default to the Hijri calendar or Eastern Arabic numerals,
- * neither of which matches the rest of the site's date conventions.
- */
-function formatArabicDate(iso: string): string {
-  const date = new Date(iso);
-  return `${date.getUTCDate()} ${ARABIC_MONTHS[date.getUTCMonth()]} ${date.getUTCFullYear()}`;
-}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -88,6 +73,7 @@ export default async function InsightArticlePageAr({ params }: Props) {
               description: article.excerpt,
               path,
               datePublished: article.datePublished,
+              lastReviewedDate: article.lastReviewedDate,
             },
             { inLanguage: "ar" },
           ),
@@ -109,18 +95,13 @@ export default async function InsightArticlePageAr({ params }: Props) {
             <p className="mt-6 text-body-lg text-muted-foreground">{article.excerpt}</p>
             <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground">
               <span>{formatArabicDate(article.datePublished)}</span>
-              {article.clinicalReviewRequired && (
-                <span className="rounded-full border border-border px-3 py-1">
-                  قيد المراجعة الطبية
-                </span>
-              )}
             </div>
           </Reveal>
         </Container>
       </section>
 
       <Container className="max-w-2xl">
-        <ArticleAuthorBlockAr />
+        <ArticleAuthorBlockAr lastReviewedDate={article.lastReviewedDate} />
       </Container>
 
       {article.keyTakeaway && (
@@ -139,7 +120,7 @@ export default async function InsightArticlePageAr({ params }: Props) {
                 <div className="mt-4 space-y-4">
                   {section.body.map((paragraph, index) => (
                     <p key={index} className="text-sm leading-relaxed text-muted-foreground">
-                      {paragraph}
+                      <ParagraphWithLinks text={paragraph} />
                     </p>
                   ))}
                 </div>
