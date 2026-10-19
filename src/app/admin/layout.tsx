@@ -35,6 +35,8 @@ const inter = Inter({
  * noindex admin tool; splitting admin onto a narrower provider set is a
  * legitimate future cleanup, intentionally not done here.
  */
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   ...rootMetadata,
   robots: { index: false, follow: false, nocache: true },
