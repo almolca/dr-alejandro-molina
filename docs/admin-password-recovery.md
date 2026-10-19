@@ -24,10 +24,17 @@ For every Preview under review, add its exact URL with `/admin/reset-password/ca
 
 Existing server-only SUPABASE_SERVICE_ROLE_KEY is used solely as an HMAC signing fallback here; no service-role Auth client is used for recovery. A separate ADMIN_RECOVERY_SECRET can be configured instead. Keep this server-only and consistent across all deployment instances. Rotating either signing key invalidates outstanding proofs. Vercel's existing service-role key was confirmed present for Production and Preview without revealing it. The local .env has no signing secret, so local success-path verification uses test fixtures.
 
-Check SMTP sender, provider delivery limits and recovery template before launch. Default SMTP delivery is restricted; a configured production SMTP provider is recommended by Supabase.
+The default Supabase sender successfully delivered the owner acceptance email on 19 October 2026. Its provider limits still apply; configure production SMTP if delivery volume or reliability requires it.
 
 ## Verification
 
 Automated tests cover signed-proof tampering, wrong user/session, expiry, secret rotation, password length/matching, trusted origin validation, missing/expired/non-recovery/unauthorized callback, PKCE flow ID forwarding, update without proof, success/sign-out, generic email responses and fixed email redirect.
 
-Owner acceptance test before merge: request an email in Preview, open it in that browser, set a new password, verify new credentials, reject old credentials, then verify reusing the link fails. The owner should enter the chosen password privately. Do not record tokens, passwords, env values or auth-bearing browser traces.
+Owner acceptance completed on 19 October 2026: the recovery email arrived, its link opened in the requesting browser, the owner set a private new password, and confirmed completion. Passwords, tokens, environment values and auth-bearing browser traces were not recorded. Invalid, expired, reused and non-recovery paths remain covered by automated tests and fail closed.
+
+Dependency verification after acceptance:
+
+- Next.js and `eslint-config-next` were updated from 16.3.4 to the patched 16.4.2 release.
+- Vitest was updated from 3.2.7 to 5.0.5; Node types now match the Node 24 runtime used locally and by Vercel.
+- `npm audit --omit=dev` reports zero production vulnerabilities.
+- The remaining npm advisory is confined to the ESLint development dependency chain. Its upstream `braces` package has no patched release available; npm's forced suggestion would downgrade `eslint-config-next` to an incompatible Next.js 14 release and is intentionally not applied.
