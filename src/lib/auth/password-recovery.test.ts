@@ -34,4 +34,20 @@ describe("password recovery security", () => {
     vi.stubEnv("ADMIN_AUTH_ORIGIN", "https://preview.example.com");
     expect(recoveryOrigin()).toBe("https://preview.example.com");
   });
+  it("prefers Vercel's stable branch URL for Preview recovery links", () => {
+    vi.stubEnv("ADMIN_AUTH_ORIGIN", "");
+    vi.stubEnv("VERCEL_ENV", "preview");
+    vi.stubEnv("VERCEL_BRANCH_URL", "project-git-feature-team.vercel.app");
+    vi.stubEnv("VERCEL_URL", "project-random-deployment-team.vercel.app");
+    expect(recoveryOrigin()).toBe("https://project-git-feature-team.vercel.app");
+
+    vi.stubEnv("VERCEL_BRANCH_URL", "");
+    expect(recoveryOrigin()).toBe("https://project-random-deployment-team.vercel.app");
+  });
+  it("rejects malformed Vercel Preview hosts", () => {
+    vi.stubEnv("ADMIN_AUTH_ORIGIN", "");
+    vi.stubEnv("VERCEL_ENV", "preview");
+    vi.stubEnv("VERCEL_BRANCH_URL", "attacker.example.com");
+    expect(() => recoveryOrigin()).toThrow("Invalid preview host");
+  });
 });

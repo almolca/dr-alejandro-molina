@@ -9,7 +9,9 @@ export const passwordSchema = z.object({
 
 export function recoveryOrigin() {
   // Never derive an email redirect from untrusted Host/forwarded headers.
-  const previewHost = process.env.VERCEL_ENV === "preview" ? process.env.VERCEL_URL : undefined;
+  const previewHost = process.env.VERCEL_ENV === "preview"
+    ? process.env.VERCEL_BRANCH_URL || process.env.VERCEL_URL
+    : undefined;
   if (previewHost && !/^[a-z0-9-]+\.vercel\.app$/.test(previewHost)) throw new Error("Invalid preview host");
   const configured = process.env.ADMIN_AUTH_ORIGIN || (previewHost ? `https://${previewHost}` : undefined);
   if (configured) {

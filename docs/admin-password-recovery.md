@@ -20,7 +20,7 @@ Site URL must be `https://dralejandromolinaurologist.com`.
 Allow this exact production Redirect URL:
 `https://dralejandromolinaurologist.com/admin/reset-password/callback`
 
-For every Preview under review, add its exact URL with `/admin/reset-password/callback` to Supabase Redirect URLs. Avoid broad wildcards. Preview derives its own origin from Vercel's trusted VERCEL_URL; production uses the fixed canonical domain. ADMIN_AUTH_ORIGIN can override with a trusted exact origin; localhost:3000 HTTP is allowed only in development.
+Allow the exact stable Vercel branch URL for this feature branch with `/admin/reset-password/callback`. Avoid broad wildcards. Preview prefers Vercel's trusted `VERCEL_BRANCH_URL`, which continues to point at the latest deployment for the branch, and falls back to `VERCEL_URL` if the branch URL is unavailable. Production uses the fixed canonical domain. `ADMIN_AUTH_ORIGIN` can override with a trusted exact origin; localhost:3000 HTTP is allowed only in development.
 
 Existing server-only SUPABASE_SERVICE_ROLE_KEY is used solely as an HMAC signing fallback here; no service-role Auth client is used for recovery. A separate ADMIN_RECOVERY_SECRET can be configured instead. Keep this server-only and consistent across all deployment instances. Rotating either signing key invalidates outstanding proofs. Vercel's existing service-role key was confirmed present for Production and Preview without revealing it. The local .env has no signing secret, so local success-path verification uses test fixtures.
 
